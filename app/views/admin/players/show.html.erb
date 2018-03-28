@@ -1,0 +1,55 @@
+<h1>Admin::Players#show</h1>
+<p><%= @player.first_name %> <%= @player.last_name %></p>
+
+<table>
+    <tr>
+        <td>First Name</td>
+        <td><%= @player.first_name %></td>
+    </tr>
+    <tr>
+        <td>Last Name</td>
+        <td><%= @player.last_name %></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td><%= @player.email %></td>
+    </tr>
+    <tr>
+        <td>Is admin?</td>
+        <td><%= @player.is_admin %></td>
+    </tr>
+    <tr>
+        <td>Score</td>
+        <td><%= @player.score %></td>
+    </tr>
+    <tr>
+        <td>Games Played</td>
+        <td><%= @player.games_played %></td>
+    </tr>
+    <tr>
+        <td>Games Won</td>
+        <td><%= @player.games_won %></td>
+    </tr>
+    <tr>
+        <td>Venues played at</td>
+        <td><%= @player.venues.count %></td>
+    </tr>
+    <tr>
+        <td>Seasons played in</td>
+        <td><%= @player.seasons.count %></td>
+    </tr>
+    <tr>
+        <td>Receiving promotional emails</td>
+        <td><%= @player.notify_promotional %></td>
+    </tr>
+    <tr>
+        <td>Receiving upcoming event emails</td>
+        <td><%= @player.notify_events %></td>
+    </tr>
+    <tr>
+        <td>Sign in count</td>
+        <td><%= @player.sign_in_count %></td>
+    </tr>
+</table>
+
+<%= link_to 'Edit this player', edit_admin_player_path(@player) %>

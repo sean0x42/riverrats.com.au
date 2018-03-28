@@ -1,0 +1,4 @@
+<h1>Welcome <%= @player.first_name %>,</h1>
+<p>You have successfully been registered for the River Rats Poker League! Your username is: <%= @player.username %>, and your password is: <%= @password %>. You may update this password when you log in for the first time.</p>
+<%= link_to 'Click here to log in', new_player_session_url %>
+<p>Thanks for joining.</p>

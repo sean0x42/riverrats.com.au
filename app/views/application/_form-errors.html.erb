@@ -1,0 +1,16 @@
+<% if object.errors.any? %>
+    <div id="error-explanation">
+
+        <h4>
+            <%= pluralize(object.errors.count, 'error') %>
+            prohibited this project from being saved:
+        </h4>
+
+        <ul>
+            <% object.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+
+    </div>
+<% end %>

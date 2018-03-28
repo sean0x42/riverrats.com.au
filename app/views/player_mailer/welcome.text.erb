@@ -1,0 +1,16 @@
+Welcome <%= @player.first_name %>
+=====================================================
+You have successfully been registered for the River
+Rats Poker League!
+
+Your username is:
+<%= @player.username %>
+
+Your password is:
+<%= @password %>
+
+You may update this password when you log in for the
+first time.
+
+To login to the website, follow this link:
+<%= new_player_session_url %>

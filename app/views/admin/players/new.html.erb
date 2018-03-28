@@ -1,0 +1,27 @@
+<h1>Admin::Players#new</h1>
+<p>Create a new player</p>
+
+<%= form_for @player, url: { action: 'create' } do |f| %>
+
+    <%= render partial: 'application/form-errors', locals: { object: @player } %>
+
+    <div class="field">
+        <%= f.label :first_name %><br/>
+        <%= f.text_field :first_name, autofocus: true, spellcheck: false %>
+    </div>
+
+    <div class="field">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name, spellcheck: false %>
+    </div>
+
+    <div class="field">
+        <%= f.label :email %><br/>
+        <%= f.email_field :email %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit 'Create new player' %>
+    </div>
+
+<% end %>
