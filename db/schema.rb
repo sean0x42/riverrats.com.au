@@ -26,28 +26,21 @@ ActiveRecord::Schema.define(version: 20180328035029) do
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
-  create_table "game_players", force: :cascade do |t|
-    t.bigint "game_id", null: false
-    t.bigint "player_id", null: false
-    t.integer "position", limit: 2, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_game_players_on_game_id"
-    t.index ["player_id"], name: "index_game_players_on_player_id"
-  end
-
-  create_table "game_referees", id: false, force: :cascade do |t|
-    t.bigint "game_id", null: false
-    t.bigint "player_id", null: false
-    t.index ["game_id"], name: "index_game_referees_on_game_id"
-    t.index ["player_id"], name: "index_game_referees_on_player_id"
-  end
-
   create_table "games", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_games_on_event_id"
+  end
+
+  create_table "games_players", force: :cascade do |t|
+    t.bigint "game_id"
+    t.bigint "player_id"
+    t.integer "position", limit: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_games_players_on_game_id"
+    t.index ["player_id"], name: "index_games_players_on_player_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -77,16 +70,47 @@ ActiveRecord::Schema.define(version: 20180328035029) do
     t.index ["username"], name: "index_players_on_username", unique: true
   end
 
-  create_table "region_players", force: :cascade do |t|
-    t.bigint "region_id", null: false
-    t.bigint "player_id", null: false
+  create_table "players_regions", force: :cascade do |t|
+    t.bigint "region_id"
+    t.bigint "player_id"
     t.integer "score", default: 0, null: false
     t.integer "games_played", default: 0, null: false
     t.integer "games_won", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_region_players_on_player_id"
-    t.index ["region_id"], name: "index_region_players_on_region_id"
+    t.index ["player_id"], name: "index_players_regions_on_player_id"
+    t.index ["region_id"], name: "index_players_regions_on_region_id"
+  end
+
+  create_table "players_seasons", force: :cascade do |t|
+    t.bigint "season_id"
+    t.bigint "player_id"
+    t.integer "score", default: 0, null: false
+    t.integer "games_played", default: 0, null: false
+    t.integer "games_won", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_players_seasons_on_player_id"
+    t.index ["season_id"], name: "index_players_seasons_on_season_id"
+  end
+
+  create_table "players_venues", force: :cascade do |t|
+    t.bigint "venue_id"
+    t.bigint "player_id"
+    t.integer "score", default: 0, null: false
+    t.integer "games_played", default: 0, null: false
+    t.integer "games_won", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_players_venues_on_player_id"
+    t.index ["venue_id"], name: "index_players_venues_on_venue_id"
+  end
+
+  create_table "referees", id: false, force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "player_id", null: false
+    t.index ["game_id"], name: "index_referees_on_game_id"
+    t.index ["player_id"], name: "index_referees_on_player_id"
   end
 
   create_table "regions", force: :cascade do |t|
@@ -97,33 +121,9 @@ ActiveRecord::Schema.define(version: 20180328035029) do
     t.index ["slug"], name: "index_regions_on_slug", unique: true
   end
 
-  create_table "season_players", force: :cascade do |t|
-    t.bigint "season_id", null: false
-    t.bigint "player_id", null: false
-    t.integer "score", default: 0, null: false
-    t.integer "games_played", default: 0, null: false
-    t.integer "games_won", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_season_players_on_player_id"
-    t.index ["season_id"], name: "index_season_players_on_season_id"
-  end
-
   create_table "seasons", force: :cascade do |t|
     t.date "start_at", null: false
     t.date "end_at", null: false
-  end
-
-  create_table "venue_players", force: :cascade do |t|
-    t.bigint "venue_id", null: false
-    t.bigint "player_id", null: false
-    t.integer "score", default: 0, null: false
-    t.integer "games_played", default: 0, null: false
-    t.integer "games_won", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_venue_players_on_player_id"
-    t.index ["venue_id"], name: "index_venue_players_on_venue_id"
   end
 
   create_table "venues", force: :cascade do |t|

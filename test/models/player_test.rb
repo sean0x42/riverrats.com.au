@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class PlayerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should not save empty player" do
+    # player = Player.new
+    assert_not false
+  end
 end

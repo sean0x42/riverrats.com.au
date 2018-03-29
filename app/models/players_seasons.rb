@@ -1,9 +1,9 @@
-class RegionPlayer < ApplicationRecord
+class PlayersSeasons < ApplicationRecord
 
-  belongs_to :region
+  belongs_to :season
   belongs_to :player
 
-  validates :region, :player,
+  validates :season, :player,
             presence: true
 
   validates :score, :games_played, :games_won,

@@ -1,8 +1,14 @@
 <h1>Admin::Players</h1>
 <p>The following players exist:</p>
 
-<ul>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Username</th>
+    </tr>
     <%= render @players %>
-</ul>
+</table>
+
+<br/>
 
 <%= link_to 'Create new player', new_admin_player_path %>

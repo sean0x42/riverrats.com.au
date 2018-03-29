@@ -1,4 +1,4 @@
-<h1>Admin::Players#new</h1>
+<h1>New Player</h1>
 <p>Create a new player</p>
 
 <%= form_for @player, url: { action: 'create' } do |f| %>
@@ -21,7 +21,9 @@
     </div>
 
     <div class="actions">
-        <%= f.submit 'Create new player' %>
+        <br />
+        <%= f.submit 'Create new player' %> |
+        <%= link_to 'Cancel', admin_players_path %>
     </div>
 
 <% end %>

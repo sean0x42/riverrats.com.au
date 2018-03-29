@@ -1,7 +1,9 @@
 class Region < ApplicationRecord
 
-  has_many :region_players
-  has_many :players, through: :region_players
+  has_many :players_regions,
+           class_name: 'PlayersRegions',
+           dependent: :nullify
+  has_many :players, through: :players_regions
 
   has_many :venues
 

@@ -7,7 +7,8 @@ Rails.application.routes.draw do
                sign_up: 'register'
              },
              controllers: {
-               registrations: 'players/registrations'
+               registrations: 'players/registrations',
+               sessions: 'players/sessions'
              }
 
   root to: 'events#index'

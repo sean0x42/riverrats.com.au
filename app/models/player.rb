@@ -6,20 +6,29 @@ class Player < ApplicationRecord
 
   before_validation :generate_username, on: :create
 
-  has_many :game_players
-  has_many :games, through: :game_players
+  has_many :games_players,
+           class_name: 'GamesPlayers',
+           dependent: :nullify
+  has_many :games, through: :games_players
 
-  has_and_belongs_to_many :games
+  has_and_belongs_to_many :games, join_table: :referees
 
-  has_many :venue_players
-  has_many :venues, through: :venue_players
+  has_many :players_venues,
+           class_name: 'PlayersVenues',
+           dependent: :nullify
+  has_many :venues, through: :players_venues
 
-  has_many :region_players
-  has_many :regions, through: :region_players
+  has_many :players_regions,
+           class_name: 'PlayersRegions',
+           dependent: :nullify
+  has_many :regions, through: :players_regions
 
-  has_many :season_players
-  has_many :seasons, through: :season_players
+  has_many :players_seasons,
+           class_name: 'PlayersSeasons',
+           dependent: :nullify
+  has_many :seasons, through: :players_seasons
 
+  # Virtual attribute for authenticating by either username or email
   attr_accessor :login
   attr_writer :login
 
@@ -30,7 +39,7 @@ class Player < ApplicationRecord
               with: /\A[a-zA-Z0-9-]*\z/,
               message: 'only allows numbers, letters, underscores (_), and hyphens (-)'
             },
-            length: { minimum: 6 }
+            length: { is: 2 }
 
   validates :first_name, :last_name,
             presence: true,
@@ -43,7 +52,7 @@ class Player < ApplicationRecord
   validates :score, :games_played, :games_won,
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  validates :notify_promotional, :notify_events, :is_admin,
+  validates :notify_promotional, :notify_events,
             presence: true
 
   def to_param
@@ -53,6 +62,19 @@ class Player < ApplicationRecord
   # @return [String] Player's full name.
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def login
+    @login || self.username || self.email
+  end
+
+  def self.find_for_database_authentication (warden_conditions)
+    conditions = warden_conditions.dup
+    if (login = conditions.delete(:login))
+      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
   end
 
   private

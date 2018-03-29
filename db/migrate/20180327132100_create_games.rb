@@ -5,9 +5,9 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    create_table :game_referees, id: false do |t|
-      t.belongs_to :game,   index: true, null: false
-      t.belongs_to :player, index: true, null: false
+    create_table :referees, id: false do |t|
+      t.belongs_to :game,   index: true
+      t.belongs_to :player, index: true
     end
   end
 end

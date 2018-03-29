@@ -1,5 +1,6 @@
-<h1>Admin::Players#show</h1>
-<p><%= @player.first_name %> <%= @player.last_name %></p>
+<h1>@<%= @player.username %></h1>
+
+<p>Here's some info about <%= @player.first_name %>:</p>
 
 <table>
     <tr>
@@ -19,26 +20,6 @@
         <td><%= @player.is_admin %></td>
     </tr>
     <tr>
-        <td>Score</td>
-        <td><%= @player.score %></td>
-    </tr>
-    <tr>
-        <td>Games Played</td>
-        <td><%= @player.games_played %></td>
-    </tr>
-    <tr>
-        <td>Games Won</td>
-        <td><%= @player.games_won %></td>
-    </tr>
-    <tr>
-        <td>Venues played at</td>
-        <td><%= @player.venues.count %></td>
-    </tr>
-    <tr>
-        <td>Seasons played in</td>
-        <td><%= @player.seasons.count %></td>
-    </tr>
-    <tr>
         <td>Receiving promotional emails</td>
         <td><%= @player.notify_promotional %></td>
     </tr>
@@ -52,4 +33,6 @@
     </tr>
 </table>
 
-<%= link_to 'Edit this player', edit_admin_player_path(@player) %>
+<br />
+<%= link_to 'Edit', edit_admin_player_path(@player) %> |
+<%= link_to 'Delete', admin_player_path(@player), method: :delete, data: { confirm: t('player.confirm_delete')} %>

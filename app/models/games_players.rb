@@ -1,4 +1,5 @@
-class GamePlayer < ApplicationRecord
+class GamesPlayers < ApplicationRecord
+
   belongs_to :game
   belongs_to :player
 

@@ -1,8 +1,9 @@
-class SeasonPlayer < ApplicationRecord
-  belongs_to :season
+class PlayersVenues < ApplicationRecord
+
+  belongs_to :venue
   belongs_to :player
 
-  validates :season, :player,
+  validates :venue, :player,
             presence: true
 
   validates :score, :games_played, :games_won,

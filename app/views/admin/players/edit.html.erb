@@ -1,2 +1,39 @@
-<h1>Admin::Players#edit</h1>
-<p>Find me in app/views/admin/players/edit.html.erb</p>
+<h1>Edit @<%= @player.username %></h1>
+<p>Update this players details</p>
+
+<%= form_for @player, url: { action: 'update' } do |f| %>
+
+    <%= render partial: 'application/form-errors', locals: { object: @player } %>
+
+    <div class="field">
+        <%= f.label :username %><br/>
+        <%= f.text_field :username, spellcheck: false %>
+    </div>
+
+    <div class="field">
+        <%= f.label :first_name %><br/>
+        <%= f.text_field :first_name, spellcheck: false %>
+    </div>
+
+    <div class="field">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name, spellcheck: false %>
+    </div>
+
+    <div class="field">
+        <%= f.label :email %><br/>
+        <%= f.email_field :email %>
+    </div>
+
+    <div class="field">
+        <%= f.check_box :is_admin %>
+        <%= f.label :is_admin %>
+    </div>
+
+    <div class="actions">
+        <br />
+        <%= f.submit 'Update' %> |
+        <%= link_to 'Cancel', admin_player_path(@player) %>
+    </div>
+
+<% end %>

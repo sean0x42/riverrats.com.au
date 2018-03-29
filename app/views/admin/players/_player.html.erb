@@ -1,1 +1,4 @@
-<li><%= link_to player.username, admin_player_path(player) %></li>
+<tr>
+    <td><%= link_to player.full_name, admin_player_path(player) %></td>
+    <td>@<%= player.username %></td>
+</tr>
