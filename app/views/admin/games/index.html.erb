@@ -1,2 +1,19 @@
-<h1>Admin::Games</h1>
+<h1>Games</h1>
 <p>The following games exist:</p>
+
+<% if @games.empty? %>
+    There's nothing here.<br />
+<% else %>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Players</th>
+            <th>Referees</th>
+        </tr>
+        <%= render @games %>
+    </table>
+<% end %>
+
+<br />
+
+<%= link_to 'Create a new game', new_admin_game_path %>

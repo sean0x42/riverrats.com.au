@@ -1,2 +1,7 @@
-<h1>Admin::Games#edit</h1>
-<p>Find me in app/views/admin/games/edit.html.erb</p>
+<h1>Edit Game</h1>
+<p>Edit a game.</p>
+
+
+<br />
+
+<%= link_to 'Delete', admin_games_path(@game), method: :delete, data: { confirm: t('game.destroy')} %>

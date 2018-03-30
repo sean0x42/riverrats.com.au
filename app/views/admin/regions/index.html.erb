@@ -1,2 +1,17 @@
-<h1>Admin::Regions#index</h1>
-<p>Find me in app/views/admin/regions/index.html.erb</p>
+<h1>Regions</h1>
+<p>The following regions exist:</p>
+
+<% if @regions.empty? %>
+    There's nothing here.
+<%  else  %>
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        <%=  render @regions  %>
+    </table>
+<%  end %>
+
+<br/>
+
+<%= link_to 'Create new region', new_admin_region_path %>

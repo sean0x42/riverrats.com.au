@@ -1,0 +1,36 @@
+<%= form_for [:admin, @venue] do |f| %>
+
+    <%= render partial: 'application/form-errors', locals: { object: @venue } %>
+
+    <div class="field">
+        <%= f.label :name %><br/>
+        <%= f.text_field :name, autofocus: true, spellcheck: false %>
+    </div>
+
+    <div class="field">
+        <%= f.label :region_id %><br />
+        <%= f.collection_select(:region_id, Region.all, :id, :name) %>
+    </div>
+
+    <div class="field">
+        <%= f.label :address %><br />
+        <%= f.text_field :address %>
+    </div>
+
+    <div class="field">
+        <%= f.label :suburb %><br />
+        <%= f.text_field :suburb %>
+    </div>
+
+    <div class="field">
+        <%= f.label :state %><br />
+        <%= f.select :state, Venue.states.keys.map { |key| [key.titlecase, key] } %>
+    </div>
+
+    <div class="actions">
+        <br />
+        <%= f.submit %> |
+        <%= link_to 'Cancel', admin_venues_path %>
+    </div>
+
+<% end %>

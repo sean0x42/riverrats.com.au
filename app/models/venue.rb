@@ -1,4 +1,8 @@
+require 'slug_helper'
+
 class Venue < ApplicationRecord
+
+  include SlugHelper
 
   has_many :players_venues,
            class_name: 'PlayersVenues',
@@ -37,5 +41,13 @@ class Venue < ApplicationRecord
   validates :address, :suburb,
             presence: true,
             length: { within: 3..64 }
+
+  before_validation do
+    self.slug = slugify(self.name)
+  end
+
+  def to_param
+    slug
+  end
 
 end

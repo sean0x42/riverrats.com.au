@@ -1,2 +1,8 @@
-<h1>Admin::Venues#edit</h1>
-<p>Find me in app/views/admin/venues/edit.html.erb</p>
+<h1>Edit Venue</h1>
+<p>Edit venue '<%= @venue.name %>'.</p>
+
+<%= render 'form' %>
+
+<br />
+
+<%= link_to 'Delete', admin_venue_path(@venue), method: :delete, data: { confirm: t('venue.confirm_delete')} %>

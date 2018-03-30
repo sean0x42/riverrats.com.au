@@ -13,18 +13,23 @@ Rails.application.routes.draw do
 
   root to: 'events#index'
   get 'events/show'
-  get 'regions/show'
-  get 'venues/show'
-  get 'games/show'
+  get 'players/auto-complete', to: 'players#auto_complete'
 
-  resources :players, only: [:show], param: :username
+  resources :games, only: :show
+  resources :players,
+            only: :show,
+            param: :username
+  resources :regions, :venues,
+            only: :show,
+            param: :slug
 
   namespace :admin do
     resources :players, param: :username
-    resources :games, except: [:show]
-    resources :events, except: [:show]
-    resources :regions, except: [:show]
-    resources :venues, except: [:show]
+    resources :games, :events,
+              except: :show
+    resources :regions, :venues,
+              except: :show,
+              param: :slug
   end
 
 end

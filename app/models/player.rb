@@ -4,6 +4,15 @@ class Player < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  searchkick callbacks: :async
+
+  def search_data
+    {
+      full_name: self.full_name,
+      username: "@#{self.username}"
+    }
+  end
+
   before_validation :generate_username, on: :create
 
   has_many :games_players,
@@ -39,7 +48,7 @@ class Player < ApplicationRecord
               with: /\A[a-zA-Z0-9-]*\z/,
               message: 'only allows numbers, letters, underscores (_), and hyphens (-)'
             },
-            length: { is: 2 }
+            length: { minimum: 2 }
 
   validates :first_name, :last_name,
             presence: true,

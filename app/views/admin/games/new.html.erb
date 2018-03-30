@@ -1,2 +1,28 @@
-<h1>Admin::Games#new</h1>
-<p>Find me in app/views/admin/games/new.html.erb</p>
+<h1>New Game</h1>
+<p>Here you can create a new game.</p>
+
+<ol id="players">
+
+</ol>
+
+<input type="text" id="query" name="query" />
+
+<%= javascript_include_tag 'jquery-3.3.1.min', 'typeahead.bundle.min', 'admin/game' %>
+
+<script>
+    var players = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            url: '/players/auto-complete?query=%QUERY',
+            wildcard: '%QUERY'
+        }
+    });
+    $('#query').typeahead({
+        highlight: true
+    }, {
+        source: players,
+        limit: 10,
+        display: "name"
+    });
+</script>

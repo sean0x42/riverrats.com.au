@@ -1,2 +1,8 @@
-<h1>Admin::Regions#edit</h1>
-<p>Find me in app/views/admin/regions/edit.html.erb</p>
+<h1>Edit Region</h1>
+<p>Edit '<%= @region.name %>'.</p>
+
+<%= render 'form' %>
+
+<br />
+
+<%= link_to 'Delete', admin_region_path(@region), method: :delete, data: { confirm: t('region.confirm_delete')} %>

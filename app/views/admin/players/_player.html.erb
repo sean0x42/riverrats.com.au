@@ -1,4 +1,7 @@
 <tr>
-    <td><%= link_to player.full_name, admin_player_path(player) %></td>
+    <td><%= player.full_name %></td>
     <td>@<%= player.username %></td>
+    <td><%= link_to 'view (public)', player_path(player) %></td>
+    <td><%= link_to 'view (admin)', admin_player_path(player) %></td>
+    <td><%= link_to 'edit', edit_admin_player_path(player) %></td>
 </tr>
