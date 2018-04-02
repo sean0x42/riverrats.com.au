@@ -1,5 +1,7 @@
 class Admin::VenuesController < ApplicationController
 
+  before_action :authenticate_player!
+
   # GET /admin/venues
   def index
     @venues = Venue.all
@@ -22,9 +24,9 @@ class Admin::VenuesController < ApplicationController
     end
   end
 
-  # GET /admin/venue/:slug/edit
+  # GET /admin/venue/:id/edit
   def edit
-    @venue = Venue.find_by! slug: params[:slug]
+    @venue = Venue.friendly.find params[:id]
   end
 
   private

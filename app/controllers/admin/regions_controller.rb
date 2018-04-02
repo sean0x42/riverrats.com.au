@@ -1,5 +1,7 @@
 class Admin::RegionsController < ApplicationController
 
+  before_action :authenticate_player!
+
   # GET /admin/regions
   def index
     @regions = Region.all
@@ -22,14 +24,14 @@ class Admin::RegionsController < ApplicationController
     end
   end
 
-  # GET /admin/regions/:slug/edit
+  # GET /admin/regions/:id/edit
   def edit
-    @region = Region.find_by! slug: params[:slug]
+    @region = Region.friendly.find params[:id]
   end
 
-  # PATCH /admin/regions/:slug
+  # PATCH /admin/regions/:id
   def update
-    @region = Region.find_by! slug: params[:slug]
+    @region = Region.friendly.find params[:id]
 
     if @region.update region_params
       flash[:notice] = t('region.update') % {region: @region.name }
@@ -39,9 +41,9 @@ class Admin::RegionsController < ApplicationController
     end
   end
 
-  # DELETE /admin/regions/:slug
+  # DELETE /admin/regions/:id
   def destroy
-    @region = Region.find_by! slug: params[:slug]
+    @region = Region.friendly.find params[:id]
     @region.destroy
 
     flash[:notice] = t('region.destroy') % {region: @region.name }

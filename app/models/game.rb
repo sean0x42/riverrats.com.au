@@ -1,15 +1,34 @@
 class Game < ApplicationRecord
 
+  belongs_to :venue
+  belongs_to :season
+
   has_many :games_players,
            class_name: 'GamesPlayers',
-           dependent: :nullify
+           dependent: :nullify,
+           inverse_of: :game
   has_many :players, through: :games_players
 
-  has_and_belongs_to_many :players, join_table: :referees
+  has_many :referees,
+           dependent: :nullify,
+           inverse_of: :game
+  has_many :players, through: :referees
 
-  belongs_to :event
+  accepts_nested_attributes_for :games_players,
+                                reject_if: :all_blank,
+                                allow_destroy: true
 
-  validates :event,
+  accepts_nested_attributes_for :referees,
+                                reject_if: :all_blank,
+                                allow_destroy: true
+
+  validates :venue, :season,
             presence: true
+
+  def name
+    "Game ##{self.id}"
+  end
+
+
 
 end

@@ -1,7 +1,7 @@
 <tr>
-    <td><%= game.created_at %></td>
-    <td><%= game.players.count %></td>
-    <td>0</td>
+    <td><%= game.name %></td>
+    <td style="text-align: right"><%= game.games_players.count %></td>
+    <td style="text-align: right"><%= game.referees.count %></td>
     <td><%= link_to 'view (public)', game_path(game) %></td>
     <td><%= link_to 'edit', edit_admin_game_path(game) %></td>
 </tr>

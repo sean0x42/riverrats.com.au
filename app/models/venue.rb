@@ -1,8 +1,7 @@
-require 'slug_helper'
-
 class Venue < ApplicationRecord
 
-  include SlugHelper
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
   has_many :players_venues,
            class_name: 'PlayersVenues',
@@ -22,32 +21,22 @@ class Venue < ApplicationRecord
     :western_australia
   ]
 
-  validates :slug,
-            presence: true,
-            uniqueness: true
-
   validates :name,
             presence: true,
             uniqueness: true,
             length: { within: 3..64 }
 
-  validates :region, :state,
-            presence: true
+  validates :slug, presence: true
 
-  validates :longitude, :latitude,
-            presence: true,
-            numericality: true
-
-  validates :address, :suburb,
-            presence: true,
-            length: { within: 3..64 }
-
-  before_validation do
-    self.slug = slugify(self.name)
-  end
-
-  def to_param
-    slug
-  end
+  # validates :region, :state,
+  #           presence: true
+  #
+  # validates :longitude, :latitude,
+  #           presence: true,
+  #           numericality: true
+  #
+  # validates :address, :suburb,
+  #           presence: true,
+  #           length: { within: 3..64 }
 
 end

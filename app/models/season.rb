@@ -8,4 +8,12 @@ class Season < ApplicationRecord
   validates :start_at, :end_at,
             presence: true
 
+  def name
+    "Season #{quarter}, #{start_at.year}"
+  end
+
+  def quarter
+    (Date.today.month / 3.0).ceil
+  end
+
 end

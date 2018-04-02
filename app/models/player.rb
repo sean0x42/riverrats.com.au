@@ -4,7 +4,8 @@ class Player < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  searchkick callbacks: :async
+  searchkick callbacks: :async,
+             word_start: [:full_name, :username]
 
   def search_data
     {
@@ -20,7 +21,8 @@ class Player < ApplicationRecord
            dependent: :nullify
   has_many :games, through: :games_players
 
-  has_and_belongs_to_many :games, join_table: :referees
+  has_many :referees, dependent: :nullify
+  has_many :games, through: :referees
 
   has_many :players_venues,
            class_name: 'PlayersVenues',

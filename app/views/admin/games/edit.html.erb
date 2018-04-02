@@ -1,7 +1,12 @@
+<% content_for :scripts do %>
+    <%= javascript_include_tag 'admin/admin' %>
+<% end %>
+
 <h1>Edit Game</h1>
 <p>Edit a game.</p>
 
+<%= render 'form' %>
 
 <br />
 
-<%= link_to 'Delete', admin_games_path(@game), method: :delete, data: { confirm: t('game.destroy')} %>
+<%= link_to 'Delete', admin_game_path(@game), method: :delete, data: { confirm: t('game.confirm_delete')} %>

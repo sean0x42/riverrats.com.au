@@ -1,2 +1,11 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<h1><%= @game.name %></h1>
+<p>This game has the following stats: </p>
+
+<table>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Score</th>
+    </tr>
+    <%= render collection: @game.games_players, partial: 'games_players' %>
+</table>

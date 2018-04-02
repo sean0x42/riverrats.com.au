@@ -1,0 +1,114 @@
+<%= form_for [:admin, @game] do |f| %>
+
+    <%= render partial: 'application/form-errors', locals: { object: @game } %>
+
+    <div class="field">
+        <%= f.label :venue_id %><br />
+        <%= f.collection_select :venue_id, Venue.all, :id, :name %>
+    </div>
+
+    <div class="field">
+        <%= f.label :season_id %><br />
+        <%= f.collection_select :season_id, Season.all, :id, :name %>
+    </div>
+
+    <h3>Players</h3>
+    <ol id="games_players">
+        <%= f.fields_for :games_players do |game_player| %>
+            <%= render 'games_player_fields', f: game_player %>
+        <% end %>
+        <div class="links">
+            <input type="text" class="typeahead" style="width: 270px;" />
+            <%= link_to_add_association 'Add player', f, :games_players, style: 'display: none' %>
+        </div>
+    </ol>
+
+    <h3>Referees</h3>
+    <ul id="referees">
+        <%= f.fields_for :referees do |referee| %>
+            <%= render 'referee_fields', f: referee %>
+        <% end %>
+        <div class="links">
+            <input type="text" class="typeahead" style="width: 250px;" />
+            <%= link_to_add_association 'Add referee', f, :referees %>
+        </div>
+    </ul>
+
+    <div class="field">
+        <br />
+        <%= f.submit %> |
+        <%= link_to 'Cancel', admin_games_path %>
+    </div>
+
+<% end %>
+
+<script>
+
+    var currentResult = null;
+    var $form = $("form");
+
+    var players = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            url: '<%= players_auto_complete_path %>?query=%QUERY',
+            wildcard: '%QUERY'
+        }
+    });
+
+    $(".typeahead").typeahead({ highlight: true }, {
+        source: players,
+        limit: 10,
+        display: "name",
+        templates: {
+            empty: "<div>No matches.</div>",
+            suggestion: function (data) {
+                return "<div>" + formatResult(data) + "</div>"
+            }
+        }
+    }).bind("typeahead:select", select);
+
+
+    $form.on("cocoon:before-insert", function (event, insertedItem) {
+
+        // Ensure a result was given
+        if (currentResult === null) event.preventDefault();
+
+        insertedItem.children(".player-id").val(currentResult.id);
+        insertedItem.children(".player-label").html(formatResult(currentResult));
+
+        // Clear typeahead
+        $(".typeahead").typeahead("val", "");
+        currentResult = null;
+
+    });
+
+    $form.on("submit", function () {
+        $("#games_players").find(".player-position").each(function (i, element) {
+            $(element).val(i);
+        });
+    });
+
+
+    /**
+     * Handles the typeahead select event.
+     * @param event Event object.
+     * @param result Search result.
+     */
+    function select (event, result) {
+        var link = $(event.target).parent().next("a.add_fields");
+        currentResult = result;
+        link.click();
+    }
+
+
+    /**
+     * Formats a result.
+     * @param result Result to format.
+     * @returns {string} A string representation of this result.
+     */
+    function formatResult (result) {
+        return result.name + " &lt;" + result.username + "&gt;";
+    }
+
+</script>

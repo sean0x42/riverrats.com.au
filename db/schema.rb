@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328035029) do
+ActiveRecord::Schema.define(version: 20180331130657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,11 +26,25 @@ ActiveRecord::Schema.define(version: 20180328035029) do
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
   create_table "games", force: :cascade do |t|
-    t.bigint "event_id", null: false
+    t.bigint "venue_id", null: false
+    t.bigint "season_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_games_on_event_id"
+    t.index ["season_id"], name: "index_games_on_season_id"
+    t.index ["venue_id"], name: "index_games_on_venue_id"
   end
 
   create_table "games_players", force: :cascade do |t|
@@ -106,9 +120,11 @@ ActiveRecord::Schema.define(version: 20180328035029) do
     t.index ["venue_id"], name: "index_players_venues_on_venue_id"
   end
 
-  create_table "referees", id: false, force: :cascade do |t|
-    t.bigint "game_id", null: false
-    t.bigint "player_id", null: false
+  create_table "referees", force: :cascade do |t|
+    t.bigint "game_id"
+    t.bigint "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_referees_on_game_id"
     t.index ["player_id"], name: "index_referees_on_player_id"
   end
@@ -130,11 +146,11 @@ ActiveRecord::Schema.define(version: 20180328035029) do
     t.string "slug", null: false
     t.string "name", null: false
     t.bigint "region_id", null: false
-    t.decimal "latitude", precision: 10, scale: 6, null: false
-    t.decimal "longitude", precision: 10, scale: 6, null: false
-    t.string "address", null: false
-    t.string "suburb", null: false
-    t.integer "state", limit: 2, null: false
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.string "address"
+    t.string "suburb"
+    t.integer "state", limit: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["region_id"], name: "index_venues_on_region_id"

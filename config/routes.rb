@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  require 'sidekiq/web'
+  authenticated :player do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   devise_for :players,
              path_names: {
                sign_in: 'login',
@@ -15,21 +20,16 @@ Rails.application.routes.draw do
   get 'events/show'
   get 'players/auto-complete', to: 'players#auto_complete'
 
-  resources :games, only: :show
   resources :players,
             only: :show,
             param: :username
-  resources :regions, :venues,
-            only: :show,
-            param: :slug
+  resources :games, :venues, only: :show
+  resources :regions, only: :show, param: :slug
 
   namespace :admin do
     resources :players, param: :username
-    resources :games, :events,
+    resources :games, :events, :regions, :venues,
               except: :show
-    resources :regions, :venues,
-              except: :show,
-              param: :slug
   end
 
 end
