@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180331130657) do
+ActiveRecord::Schema.define(version: 20180403123954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.string "type", null: false
+    t.bigint "player_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "proof_file_name"
+    t.string "proof_content_type"
+    t.integer "proof_file_size"
+    t.datetime "proof_updated_at"
+    t.index ["player_id"], name: "index_achievements_on_player_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -53,6 +65,8 @@ ActiveRecord::Schema.define(version: 20180331130657) do
     t.integer "position", limit: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "score", default: 0, null: false
+    t.boolean "soft_delete", default: false, null: false
     t.index ["game_id"], name: "index_games_players_on_game_id"
     t.index ["player_id"], name: "index_games_players_on_player_id"
   end

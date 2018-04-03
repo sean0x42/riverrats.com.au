@@ -1,0 +1,5 @@
+<li class="nested-fields">
+    <%= f.hidden_field :player_id, class: 'player-id' %>
+    <span class="player-label"><%= @names[f.object.player_id] %></span>
+    <%= link_to_remove_association 'remove', f %>
+</li>

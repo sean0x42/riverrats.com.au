@@ -21,3 +21,7 @@ td {
 .tt-menu {
     background: white;
 }
+
+.field {
+    margin: 1rem 0;
+}

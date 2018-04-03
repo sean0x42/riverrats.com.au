@@ -54,8 +54,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'cocoon'
+gem 'connection_pool'
 gem 'devise'
 gem 'friendly_id', '~> 5.1.0'
+gem 'paperclip', '~> 6.0.0'
+gem 'rails-observers'
 gem 'searchkick'
 gem 'sidekiq'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?

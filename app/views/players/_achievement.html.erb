@@ -1,0 +1,11 @@
+<tr>
+    <td><%= Object.const_get(achievement.type).title %></td>
+    <td><%= Object.const_get(achievement.type).description %></td>
+    <td>
+        <% if achievement.proof.present? %>
+            <%= link_to 'Yes', achievement.proof.url(:full) %>
+        <% else %>
+            No
+        <% end %>
+    </td>
+</tr>

@@ -25,6 +25,20 @@ class Game < ApplicationRecord
   validates :venue, :season,
             presence: true
 
+  validate :validate_referees, :validate_players
+
+  def validate_players
+    if games_players.size < 2
+      errors.add(:games_players, 'not enough')
+    end
+  end
+
+  def validate_referees
+    if referees.size < 1
+      errors.add(:referees, 'not enough')
+    end
+  end
+
   def name
     "Game ##{self.id}"
   end

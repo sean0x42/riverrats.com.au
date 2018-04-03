@@ -1,0 +1,81 @@
+<h1>Award Achievement</h1>
+<p>Award a player with an achievement.</p>
+
+<%= form_for [:admin, @achievement.becomes(Achievement)], html: { multipart: true } do |f| %>
+
+    <%= render partial: 'application/form-errors', locals: { object: @achievement } %>
+
+    <div class="field">
+        <%= f.label :type, 'Achievement' %><br />
+        <%= f.select :type, options_for_select(
+            [
+                [StraightFlush.title, StraightFlush.sti_name],
+                [RoyalFlush.title,    RoyalFlush.sti_name]
+            ]
+        ) %>
+    </div>
+
+    <div class="field">
+        <%= f.label :player_id %><br/>
+        <%= f.hidden_field :player_id %>
+        <input type="text" class="typeahead" style="width: 250px" value="<%= @player_name %>" />
+    </div>
+
+    <div class="field">
+        <%= f.label :proof %><br />
+        <%= f.file_field :proof %>
+    </div>
+
+    <div class="actions">
+        <br />
+        <%= f.submit 'Award achievement' %> |
+        <%= link_to 'Cancel', admin_achievements_path %>
+    </div>
+
+<% end %>
+
+
+<script>
+
+    var players = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            url: '<%= players_auto_complete_path %>?query=%QUERY',
+            wildcard: '%QUERY'
+        }
+    });
+
+    $(".typeahead").typeahead({ highlight: true }, {
+        source: players,
+        limit: 10,
+        display: "name",
+        templates: {
+            empty: "<div>No matches.</div>",
+            suggestion: function (data) {
+                return "<div>" + formatResult(data) + "</div>"
+            }
+        }
+    }).bind("typeahead:select", select);
+
+
+    /**
+     * Handles the typeahead select event.
+     * @param event Event object.
+     * @param result Search result.
+     */
+    function select (event, result) {
+        $("#achievement_player_id").val(result.id);
+    }
+
+
+    /**
+     * Formats a result.
+     * @param result Result to format.
+     * @returns {string} A string representation of this result.
+     */
+    function formatResult (result) {
+        return result.name + " &lt;" + result.username + "&gt;";
+    }
+
+</script>

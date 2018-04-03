@@ -1,6 +1,7 @@
 <h1>@<%= @player.username %></h1>
 <p>Here's some info about <%= @player.full_name %>:</p>
 
+<h2>Stats</h2>
 <table>
     <tr>
         <td>Score</td>
@@ -23,3 +24,19 @@
         <td><%= @player.seasons.count %></td>
     </tr>
 </table>
+
+<div>
+    <h2>Achievements</h2>
+    <% if @player.achievements.empty? %>
+        <p>There's nothing here.</p>
+    <% else %>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Proof?</th>
+            </tr>
+            <%= render collection: @player.achievements, partial: 'achievement' %>
+        </table>
+    <% end %>
+</div>

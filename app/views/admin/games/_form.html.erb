@@ -30,7 +30,7 @@
         <% end %>
         <div class="links">
             <input type="text" class="typeahead" style="width: 250px;" />
-            <%= link_to_add_association 'Add referee', f, :referees %>
+            <%= link_to_add_association 'Add referee', f, :referees, style: 'display: none' %>
         </div>
     </ul>
 
@@ -75,7 +75,7 @@
         if (currentResult === null) event.preventDefault();
 
         insertedItem.children(".player-id").val(currentResult.id);
-        insertedItem.children(".player-label").html(formatResult(currentResult));
+        insertedItem.children(".player-label").html(currentResult.username);
 
         // Clear typeahead
         $(".typeahead").typeahead("val", "");

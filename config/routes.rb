@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :players, param: :username
     resources :games, :events, :regions, :venues,
               except: :show
+    resources :achievements, only: [:index, :new, :create]
   end
 
 end
