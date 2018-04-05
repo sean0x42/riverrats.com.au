@@ -29,7 +29,7 @@ module RiverratsComAu
     ]
 
     # Register observers
-    config.active_record.observers = :game_observer
+    config.active_record.observers = [:game_observer]
 
   end
 end
