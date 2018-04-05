@@ -40,7 +40,8 @@ class GamesPlayers < ApplicationRecord
 
       # Init. Note that delta here denotes a change. I.e.
       # delta_score is the change in score.
-      delta_plays, delta_wins = 0
+      delta_plays = 0
+      delta_wins  = 0
 
       # Calculate new score
       self.score = calculate_score(position)
