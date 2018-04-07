@@ -1,2 +1,14 @@
-<h1>Venues#show</h1>
-<p>Find me in app/views/venues/show.html.erb</p>
+<h1><%= @venue.name %></h1>
+<p>Here's an overview of this venue, belonging to the <%= link_to @venue.region.name, region_path(@venue.region) %>.</p>
+
+<h2>Leaderboard</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Score</th>
+        <th>Games Played</th>
+        <th>Games Won</th>
+    </tr>
+    <%= render collection: @venue.players_venues.first(50), partial: 'players' %>
+</table>
+

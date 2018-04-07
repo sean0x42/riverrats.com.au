@@ -1,2 +1,2 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<h1><%= @event.clean_title %></h1>
+<p>This page is for an event that occurs <%= local_time_ago @event.start_at %>.</p>

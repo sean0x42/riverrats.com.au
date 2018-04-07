@@ -16,21 +16,30 @@ Rails.application.routes.draw do
                sessions: 'players/sessions'
              }
 
-  root to: 'events#index'
-  get 'events/show'
   get 'players/auto-complete', to: 'players#auto_complete'
 
   resources :players,
             only: :show,
             param: :username
-  resources :games, :venues, only: :show
-  resources :regions, only: :show, param: :slug
+
+  resources :games, :events,
+            only: :show
+
+  resources :regions, :venues,
+            only: :show,
+            param: :slug
 
   namespace :admin do
-    resources :players, param: :username
+
+    resources :players,
+              param: :username
+
     resources :games, :events, :regions, :venues,
               except: :show
-    resources :achievements, only: [:index, :new, :create]
+
+    resources :achievements,
+              only: [:index, :new, :create]
+
   end
 
 end

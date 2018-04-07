@@ -1,2 +1,8 @@
-<h1>Admin::Events#edit</h1>
-<p>Find me in app/views/admin/events/edit.html.erb</p>
+<h1>Edit <%= @event.clean_title %></h1>
+<p>Make some changes or something.</p>
+
+<%= render 'form' %>
+
+<br />
+
+<%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: t('event.confirm_delete')} %>

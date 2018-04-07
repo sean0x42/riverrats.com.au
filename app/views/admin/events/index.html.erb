@@ -1,8 +1,18 @@
-<h1>Admin::Events</h1>
+<h1>Events</h1>
 <p>Here's all events</p>
 
-<ul>
-    <%= render @events %>
-</ul>
+<% if @events.empty? %>
+    There's nothing here.
+<% else %>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Starts at</th>
+        </tr>
+        <%= render @events %>
+    </table>
+<% end %>
+
+<br />
 
 <%= link_to 'Create a new event', new_admin_event_path %>

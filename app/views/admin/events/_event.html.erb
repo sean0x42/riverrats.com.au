@@ -1,0 +1,6 @@
+<tr>
+    <td><%= event.clean_title %></td>
+    <td><%= local_time_ago event.start_at %></td>
+    <td><%= link_to 'view (public)', event_path(event) %></td>
+    <td><%= link_to 'edit', edit_admin_event_path(event) %></td>
+</tr>

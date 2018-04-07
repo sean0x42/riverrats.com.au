@@ -19,11 +19,18 @@ en:
   venue:
     confirm_delete: "Are you sure you want to delete this venue?"
     create: "Successfully created venue '%{venue}'."
+    update: "Successfully updated a venue '%{venue}'."
+    destroy: "Successfully deleted venue '%{venue}'."
   game:
     confirm_delete: "Are you sure you want to delete this game?"
     create: "Successfully created %{game}."
     update: "Successfully updated %{game}."
     destroy: "Successfully deleted %{game}."
+  event:
+    confirm_delete: "Are you sure you want to delete this event?"
+    create: "Successfully created an event: %{event}."
+    update: "Successfully updated an event: %{event}."
+    destroy: "Successfully deleted event: %{event}."
   achievement:
     wins:
       title: "Wins %{level}."

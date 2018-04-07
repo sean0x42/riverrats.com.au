@@ -1,7 +1,7 @@
 class Venue < ApplicationRecord
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: [:slugged, :finders]
 
   has_many :players_venues,
            class_name: 'PlayersVenues',

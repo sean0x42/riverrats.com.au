@@ -24,9 +24,30 @@ class Admin::VenuesController < ApplicationController
     end
   end
 
-  # GET /admin/venue/:id/edit
+  # GET /admin/venues/:id/edit
   def edit
     @venue = Venue.friendly.find params[:id]
+  end
+
+  # PATCH /admin/venues/:id
+  def update
+    @venue = Venue.friendly.find params[:id]
+
+    if @venue.update venue_params
+      flash[:notice] = t('venue.update') % {venue: @venue.name }
+      redirect_to admin_venues_path
+    else
+      render 'edit'
+    end
+  end
+
+  # DELETE /admin/venues/:id
+  def destroy
+    @venue = Venue.friendly.find params[:id]
+    @venue.destroy
+
+    flash[:notice] = t('venue.destroy') % {venue: @venue.name }
+    redirect_to admin_venues_path
   end
 
   private
@@ -34,4 +55,5 @@ class Admin::VenuesController < ApplicationController
     def venue_params
       params.require(:venue).permit(:name, :region_id, :address, :suburb, :state)
     end
+
 end

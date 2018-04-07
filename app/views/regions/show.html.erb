@@ -1,6 +1,18 @@
 <h1><%= @region.name %></h1>
-<p>This region has the following venues:</p>
+<p>Here's some info about this region.</p>
 
+<h2>Venues</h2>
 <ul>
     <%= render collection: @region.venues, partial: 'venue' %>
 </ul>
+
+<h2>Leaderboard</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Score</th>
+        <th>Games Played</th>
+        <th>Games Won</th>
+    </tr>
+    <%= render collection: @region.players_regions.first(50), partial: 'players' %>
+</table>
