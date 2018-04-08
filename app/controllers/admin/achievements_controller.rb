@@ -1,5 +1,7 @@
 class Admin::AchievementsController < ApplicationController
 
+  before_action :authenticate_player!
+
   # GET /admin/achievements
   def index
   end
