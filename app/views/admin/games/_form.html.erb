@@ -3,16 +3,12 @@
     <%= render partial: 'application/form-errors', locals: { object: @game } %>
 
     <div class="field">
-        <%= f.label :venue_id %><br />
-        <%= f.collection_select :venue_id, Venue.all, :id, :name %>
-    </div>
-
-    <div class="field">
-        <%= f.label :season_id %><br />
-        <%= f.collection_select :season_id, Season.all, :id, :name %>
+        <%= f.label :played_on %>
+        <%= f.date_select :played_on, autofocus: true %>
     </div>
 
     <h3>Players</h3>
+    <p><%= link_to 'Create new player', new_admin_player_path, target: '_blank' %> (Opens in a new tab)</p>
     <ol id="games_players">
         <%= f.fields_for :games_players do |game_player| %>
             <%= render 'games_player_fields', f: game_player %>
@@ -33,6 +29,16 @@
             <%= link_to_add_association 'Add referee', f, :referees, style: 'display: none' %>
         </div>
     </ul>
+
+    <div class="field">
+        <%= f.label :venue_id %><br />
+        <%= f.collection_select :venue_id, Venue.all, :id, :name %>
+    </div>
+
+    <div class="field">
+        <%= f.label :season_id %><br />
+        <%= f.collection_select :season_id, Season.all, :id, :name %>
+    </div>
 
     <div class="field">
         <br />

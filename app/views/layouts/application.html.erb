@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-AU">
   <head>
-      <title>RiverratsComAu</title>
+
+      <title>River Rats Poker League</title>
+
       <%= csrf_meta_tags %>
+
+      <meta charset="UTF-8" />
+      <meta name="description" content="<%= yield(:page_description) || 'Poker in Forster/Tuncurry and Taree - Over $2000 given away weekly.' %>" />
+
+      <link rel="icon" type="image/x-icon" href="/favicon.ico">
+      <link rel="icon" type="image/png" sizes="196x196" href="/favicon-192.png">
+      <link rel="icon" type="image/png" sizes="160x160" href="/favicon-160.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+      <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180-precomposed.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152-precomposed.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120-precomposed.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76-precomposed.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60-precomposed.png">
 
       <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
       <%= yield :scripts %>
+
   </head>
 
   <body>

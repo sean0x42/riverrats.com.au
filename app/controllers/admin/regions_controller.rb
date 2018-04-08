@@ -4,7 +4,7 @@ class Admin::RegionsController < ApplicationController
 
   # GET /admin/regions
   def index
-    @regions = Region.all
+    @regions = Region.order(:name).page params[:page]
   end
 
   # GET /admin/regions/new

@@ -13,7 +13,7 @@
     </tr>
     <tr>
         <td>Email</td>
-        <td><%= @player.email %></td>
+        <td><%= @player.email.blank? ? '[No email given]' : @player.email %></td>
     </tr>
     <tr>
         <td>Is admin?</td>

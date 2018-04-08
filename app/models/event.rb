@@ -4,6 +4,8 @@ class Event < ApplicationRecord
 
   default_scope { order(:start_at) }
 
+  paginates_per 50
+
   validates :venue, :start_at,
             presence: true
 

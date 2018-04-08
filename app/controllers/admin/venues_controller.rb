@@ -4,7 +4,7 @@ class Admin::VenuesController < ApplicationController
 
   # GET /admin/venues
   def index
-    @venues = Venue.all
+    @venues = Venue.order(:name).page params[:page]
   end
 
   # GET /admin/venues/new
@@ -17,8 +17,7 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.new venue_params
 
     if @venue.save
-      flash[:notify] = t('venue.create') % {venue: @venue.name }
-      redirect_to admin_venues_path
+      redirect_to admin_venues_path, notice: t('venue.create') % {venue: @venue.name }
     else
       render 'new'
     end
@@ -34,8 +33,7 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.friendly.find params[:id]
 
     if @venue.update venue_params
-      flash[:notice] = t('venue.update') % {venue: @venue.name }
-      redirect_to admin_venues_path
+      redirect_to admin_venues_path, notice: t('venue.update') % {venue: @venue.name }
     else
       render 'edit'
     end
@@ -46,8 +44,7 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.friendly.find params[:id]
     @venue.destroy
 
-    flash[:notice] = t('venue.destroy') % {venue: @venue.name }
-    redirect_to admin_venues_path
+    redirect_to admin_venues_path, notice: t('venue.destroy') % {venue: @venue.name }
   end
 
   private

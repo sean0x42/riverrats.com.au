@@ -3,15 +3,14 @@ class Game < ApplicationRecord
   belongs_to :venue
   belongs_to :season
 
-  has_many :games_players,
-           class_name: 'GamesPlayers',
-           dependent: :nullify,
-           inverse_of: :game
+  default_scope { order(id: :desc) }
+
+  paginates_per 50
+
+  has_many :games_players, class_name: 'GamesPlayers', dependent: :nullify, inverse_of: :game
   has_many :players, through: :games_players
 
-  has_many :referees,
-           dependent: :nullify,
-           inverse_of: :game
+  has_many :referees, dependent: :nullify, inverse_of: :game
   has_many :players, through: :referees
 
   accepts_nested_attributes_for :games_players,
@@ -22,7 +21,7 @@ class Game < ApplicationRecord
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
-  validates :venue, :season,
+  validates :venue, :season, :played_on,
             presence: true
 
   validate :validate_referees, :validate_players
@@ -42,7 +41,5 @@ class Game < ApplicationRecord
   def name
     "Game ##{self.id}"
   end
-
-
 
 end

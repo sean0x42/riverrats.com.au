@@ -4,7 +4,7 @@ class Admin::EventsController < ApplicationController
 
   # GET /admin/events
   def index
-    @events = Event.all.first(50)
+    @events = Event.order(:start_at).page params[:page]
   end
 
   # GET /admin/events/new
@@ -17,8 +17,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.new event_params
 
     if @event.save
-      flash[:notice] = t('event.create') % { event: @event.clean_title }
-      redirect_to admin_events_path
+      redirect_to admin_events_path, notice: t('event.create') % { event: @event.clean_title }
     else
       render 'new'
     end
@@ -34,8 +33,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find params[:id]
 
     if @event.update event_params
-      flash[:notice] = t('event.update') % { event: @event.clean_title }
-      redirect_to admin_events_path
+      redirect_to admin_events_path, notice: t('event.update') % { event: @event.clean_title }
     else
       render 'edit'
     end
@@ -46,8 +44,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find params[:id]
     @event.destroy
 
-    flash[:notice] = t('event.destroy') % { event: @event.clean_title }
-    redirect_to admin_events_path
+    redirect_to admin_events_path, notice: t('event.destroy') % { event: @event.clean_title }
   end
 
   private

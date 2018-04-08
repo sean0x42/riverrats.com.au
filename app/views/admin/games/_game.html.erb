@@ -2,6 +2,7 @@
     <td><%= game.name %></td>
     <td style="text-align: right"><%= game.games_players.count %></td>
     <td style="text-align: right"><%= game.referees.count %></td>
+    <td><%= local_relative_time game.played_on, type: 'weekday-or-date' %></td>
     <td><%= link_to 'view (public)', game_path(game) %></td>
     <td><%= link_to 'edit', edit_admin_game_path(game) %></td>
 </tr>

@@ -3,32 +3,25 @@ class Player < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  searchkick callbacks: :async,
-             word_start: [:full_name, :username]
+  searchkick callbacks: :async, word_start: [:full_name, :username]
+
+  paginates_per 50
 
   before_validation :generate_username, on: :create
 
-  has_many :games_players,
-           class_name: 'GamesPlayers',
-           dependent: :nullify
+  has_many :games_players, class_name: 'GamesPlayers', dependent: :nullify
   has_many :games, through: :games_players
 
   has_many :referees, dependent: :nullify
   has_many :games, through: :referees
 
-  has_many :players_venues,
-           class_name: 'PlayersVenues',
-           dependent: :nullify
+  has_many :players_venues, class_name: 'PlayersVenues', dependent: :nullify
   has_many :venues, through: :players_venues
 
-  has_many :players_regions,
-           class_name: 'PlayersRegions',
-           dependent: :nullify
+  has_many :players_regions, class_name: 'PlayersRegions', dependent: :nullify
   has_many :regions, through: :players_regions
 
-  has_many :players_seasons,
-           class_name: 'PlayersSeasons',
-           dependent: :nullify
+  has_many :players_seasons, class_name: 'PlayersSeasons', dependent: :nullify
   has_many :seasons, through: :players_seasons
 
   has_many :achievements
@@ -50,7 +43,7 @@ class Player < ApplicationRecord
   validates :first_name, :last_name,
             presence: true,
             format: {
-              with: /\A[a-zA-Z-]*\z/,
+              with: /\A[a-zA-Z][a-zA-Z-]*[a-zA-Z]\z/,
               message: 'only allows latin letters, and hyphens (-)'
             },
             length: { maximum: 64 }
@@ -70,25 +63,16 @@ class Player < ApplicationRecord
   # All data to be indexed by Elasticsearch/Searchkick
   # @return [Hash] Data to be indexed.
   def search_data
-    {
-      full_name: self.full_name,
-      username: "@#{self.username}"
-    }
+    { full_name: self.full_name, username: "@#{self.username}" }
   end
 
 
-  ###
-  # Convert the player's first and last names into a full
-  # name.
-  # @return [String] Player's full name.
   def full_name
     "#{first_name} #{last_name}"
   end
 
-
   ###
-  # Allows the user of either the username of email to
-  # login.
+  # Allows the user of either the username of email to login.
   def login
     @login || self.username || self.email
   end
@@ -107,43 +91,24 @@ class Player < ApplicationRecord
   end
 
 
-  ###
-  # Awards the given +achievement+ the this player.
-  # @param [Achievement] achievement The achievement to
-  #        award to this player.
   def award (achievement)
-    achievements << achievement.new
+    base.achievements << achievement.new
   end
 
-
-  ###
-  # Determines whether the given +achievement+ has been
-  # awarded to this player.
-  # @param [Achievement] achievement The achievement to
-  #        look for.
-  # @return [Boolean] Whether the achievement was found.
   def awarded? (achievement)
     achievements.exists?(type: achievement.sti_name)
   end
 
+  def generate_username
+    self.username = UsernameGenerator.generate(first_name, last_name)
+  end
 
-  private
+  def email_required?
+    false
+  end
 
-    ###
-    # Generates a unique username comprised of the player's
-    # first name, last name, and a unique number.
-    # ...
-    def generate_username
-      if self.username.nil?
-        count = 0
-
-        begin
-          username = "#{first_name}#{last_name}#{count if count != 0}".downcase
-          count += 1
-        end while Player.exists?(username: username)
-
-        self.username = username
-      end
-    end
+  def email_changed?
+    false
+  end
 
 end

@@ -4,7 +4,7 @@ class Admin::PlayersController < ApplicationController
 
   # GET /admin/players
   def index
-    @players = Player.all
+    @players = Player.order(score: :desc).page params[:page]
   end
 
   # GET /admin/players/:username

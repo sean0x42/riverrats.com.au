@@ -9,9 +9,12 @@
             <th>Game</th>
             <th># of Players</th>
             <th># of Tournament Directors</th>
+            <th>Played</th>
         </tr>
         <%= render @games %>
     </table>
+
+    <%= paginate @games %>
 <% end %>
 
 <br />
