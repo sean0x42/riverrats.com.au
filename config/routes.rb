@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'welcome/index'
+
   require 'sidekiq/web'
   authenticated :player do
     mount Sidekiq::Web => '/sidekiq'
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
              }
 
   get 'players/auto-complete', to: 'players#auto_complete'
+
+  root 'welcome#index'
 
   resources :players,
             only: :show,
