@@ -1,48 +1,48 @@
-<%= form_for [:admin, @game] do |f| %>
+<%= form_for [:admin, @game] do |form| %>
 
     <%= render partial: 'application/form-errors', locals: { object: @game } %>
 
     <div class="field">
-        <%= f.label :played_on %>
-        <%= f.date_select :played_on, autofocus: true %>
+        <%= form.label :played_on %>
+        <%= form.date_select :played_on, autofocus: true %>
     </div>
 
     <h3>Players</h3>
     <p><%= link_to 'Create new player', new_admin_player_path, target: '_blank' %> (Opens in a new tab)</p>
     <ol id="games_players">
-        <%= f.fields_for :games_players do |game_player| %>
+        <%= form.fields_for :games_players do |game_player| %>
             <%= render 'games_player_fields', f: game_player %>
         <% end %>
         <div class="links">
             <input type="text" class="typeahead" style="width: 270px;" />
-            <%= link_to_add_association 'Add player', f, :games_players, style: 'display: none' %>
+            <%= link_to_add_association 'Add player', form, :games_players, style: 'display: none' %>
         </div>
     </ol>
 
     <h3>Tournament Directors</h3>
     <ul id="referees">
-        <%= f.fields_for :referees do |referee| %>
+        <%= form.fields_for :referees do |referee| %>
             <%= render 'referee_fields', f: referee %>
         <% end %>
         <div class="links">
             <input type="text" class="typeahead" style="width: 250px;" />
-            <%= link_to_add_association 'Add referee', f, :referees, style: 'display: none' %>
+            <%= link_to_add_association 'Add referee', form, :referees, style: 'display: none' %>
         </div>
     </ul>
 
     <div class="field">
-        <%= f.label :venue_id %><br />
-        <%= f.collection_select :venue_id, Venue.all, :id, :name %>
+        <%= form.label :venue_id %><br />
+        <%= form.collection_select :venue_id, Venue.all, :id, :name %>
     </div>
 
     <div class="field">
-        <%= f.label :season_id %><br />
-        <%= f.collection_select :season_id, Season.all, :id, :name %>
+        <%= form.label :season_id %><br />
+        <%= form.collection_select :season_id, Season.all, :id, :name %>
     </div>
 
     <div class="field">
         <br />
-        <%= f.submit %> |
+        <%= form.submit %> |
         <%= link_to 'Cancel', admin_games_path %>
     </div>
 

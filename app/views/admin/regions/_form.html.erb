@@ -1,15 +1,15 @@
-<%= form_for [:admin, @region] do |f| %>
+<%= form_for [:admin, @region] do |form| %>
 
     <%= render partial: 'application/form-errors', locals: { object: @region } %>
 
     <div class="field">
-        <%= f.label :name %><br/>
-        <%= f.text_field :name, autofocus: true, spellcheck: false %>
+        <%= form.label :name %><br/>
+        <%= form.text_field :name, autofocus: true, spellcheck: false %>
     </div>
 
     <div class="actions">
         <br />
-        <%= f.submit %> |
+        <%= form.submit %> |
         <%= link_to 'Cancel', admin_regions_path %>
     </div>
 

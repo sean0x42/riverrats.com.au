@@ -1,20 +1,20 @@
-<%= form_for [:admin, @venue] do |f| %>
+<%= form_for [:admin, @venue] do |form| %>
 
     <%= render partial: 'application/form-errors', locals: { object: @venue } %>
 
     <div class="field">
-        <%= f.label :name %><br/>
-        <%= f.text_field :name, autofocus: true, spellcheck: false %>
+        <%= form.label :name %><br/>
+        <%= form.text_field :name, autofocus: true, spellcheck: false %>
     </div>
 
     <div class="field">
-        <%= f.label :region_id %><br />
-        <%= f.collection_select(:region_id, Region.all, :id, :name) %>
+        <%= form.label :region_id %><br />
+        <%= form.collection_select(:region_id, Region.all, :id, :name) %>
     </div>
 
     <div class="actions">
         <br />
-        <%= f.submit %> |
+        <%= form.submit %> |
         <%= link_to 'Cancel', admin_venues_path %>
     </div>
 

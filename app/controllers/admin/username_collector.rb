@@ -1,6 +1,6 @@
 require 'set'
 
-class UsernameCollector
+class Admin::UsernameCollector
 
   ###
   # Retrieves a hash of player usernames.
@@ -22,7 +22,7 @@ class UsernameCollector
       players.merge attributes.map { |set| set[:player_id] }
     end
 
-    to_name_hash Player.where(id: players.to_a)
+    self.to_name_hash Player.where(id: players.to_a)
 
   end
 
@@ -40,7 +40,7 @@ class UsernameCollector
     # Join using an SQL union
     join = Player.from("(#{players.to_sql} UNION #{referees.to_sql}) AS players")
 
-    to_name_hash join
+    self.to_name_hash join
 
   end
 
@@ -51,7 +51,7 @@ class UsernameCollector
   # Converts a collection of +players+ into a hash.
   # @param [Collection] players Collection of players.
   # @return [Hash] A hash in the form { player_id => player_username }
-  def to_name_hash (players)
+  def self.to_name_hash (players)
     players.map{ |player| [player.id, "@#{player.username}"] }.to_h
   end
 

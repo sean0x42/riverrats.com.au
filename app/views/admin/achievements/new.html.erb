@@ -1,13 +1,13 @@
 <h1>Award Achievement</h1>
 <p>Award a player with an achievement.</p>
 
-<%= form_for [:admin, @achievement.becomes(Achievement)], html: { multipart: true } do |f| %>
+<%= form_for [:admin, @achievement.becomes(Achievement)], html: { multipart: true } do |form| %>
 
     <%= render partial: 'application/form-errors', locals: { object: @achievement } %>
 
     <div class="field">
-        <%= f.label :type, 'Achievement' %><br />
-        <%= f.select :type, options_for_select(
+        <%= form.label :type, 'Achievement' %><br />
+        <%= form.select :type, options_for_select(
             [
                 [StraightFlush.title, StraightFlush.sti_name],
                 [RoyalFlush.title,    RoyalFlush.sti_name]
@@ -16,19 +16,19 @@
     </div>
 
     <div class="field">
-        <%= f.label :player_id %><br/>
-        <%= f.hidden_field :player_id %>
+        <%= form.label :player_id %><br/>
+        <%= form.hidden_field :player_id %>
         <input type="text" class="typeahead" style="width: 250px" value="<%= @player_name %>" />
     </div>
 
     <div class="field">
-        <%= f.label :proof %><br />
-        <%= f.file_field :proof %>
+        <%= form.label :proof %><br />
+        <%= form.file_field :proof %>
     </div>
 
     <div class="actions">
         <br />
-        <%= f.submit 'Award achievement' %> |
+        <%= form.submit 'Award achievement' %> |
         <%= link_to 'Cancel', admin_achievements_path %>
     </div>
 
