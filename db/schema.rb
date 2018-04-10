@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20180409021905) do
     t.datetime "start_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "type", null: false
+    t.integer "period", limit: 2
+    t.integer "interval", limit: 2
+    t.text "days"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
@@ -53,7 +57,7 @@ ActiveRecord::Schema.define(version: 20180409021905) do
     t.bigint "season_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "played_on", default: "2018-04-08", null: false
+    t.date "played_on", default: "2018-04-10", null: false
     t.index ["season_id"], name: "index_games_on_season_id"
     t.index ["venue_id"], name: "index_games_on_venue_id"
   end
@@ -134,16 +138,6 @@ ActiveRecord::Schema.define(version: 20180409021905) do
     t.index ["player_id", "venue_id"], name: "index_players_venues_on_player_id_and_venue_id", unique: true
     t.index ["player_id"], name: "index_players_venues_on_player_id"
     t.index ["venue_id"], name: "index_players_venues_on_venue_id"
-  end
-
-  create_table "recurring_events", force: :cascade do |t|
-    t.string "title"
-    t.bigint "venue_id", null: false
-    t.datetime "start_at", null: false
-    t.text "schedule", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["venue_id"], name: "index_recurring_events_on_venue_id"
   end
 
   create_table "referees", force: :cascade do |t|

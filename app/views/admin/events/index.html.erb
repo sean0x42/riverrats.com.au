@@ -1,6 +1,11 @@
 <h1>Events</h1>
 <p>Here's all events</p>
 
+<%= link_to 'Create a new event', new_admin_event_path %>
+
+<br />
+
+<h2>Upcoming Events</h2>
 <% if @events.empty? %>
     There's nothing here.
 <% else %>
@@ -15,6 +20,19 @@
     <%= paginate @events %>
 <% end %>
 
-<br />
+<h2>Schedulers</h2>
 
-<%= link_to 'Create a new event', new_admin_event_path %>
+<% if @recurring_events.empty? %>
+    There's nothing here.
+<% else %>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Starts at</th>
+            <th>Period</th>
+            <th>Interval</th>
+        </tr>
+        <%= render partial: 'recurring_event', collection: @recurring_events %>
+    </table>
+<% end %>
+

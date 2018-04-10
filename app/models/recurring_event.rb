@@ -1,18 +1,34 @@
-class RecurringEvent < ApplicationRecord
-  include IceCube
+class RecurringEvent < Event
 
   belongs_to :venue
 
-  serialize :schedule, Schedule
+  enum period: [
+    :daily,
+    :weekly,
+    :monthly,
+    :yearly
+  ]
 
   validates :title,
             length: { within: 3..32 },
             allow_blank: true
 
-  def schedule
-    Schedule.new(self.start_date) do |s|
-      s.add_recurrence_rule Rule.daily(1).count(7)
-    end
+  validates :period,
+            presence: true
+
+  validates :interval,
+            presence: true,
+            numericality: {
+              only_integer: true,
+              greater_than: 0
+            }
+
+  def day= (value)
+    self.days = value.to_json
+  end
+
+  def selected_days
+    JSON.parse(self.days || '[]')
   end
 
 end

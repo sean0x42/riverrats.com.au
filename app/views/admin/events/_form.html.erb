@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, @event] do |form| %>
+<%= form_with model: [:admin, @event.becomes(Event)] do |form| %>
 
     <%= render partial: 'application/form-errors', locals: { object: @event } %>
 
@@ -12,20 +12,46 @@
         <%= form.datetime_select :start_at %>
     </div>
 
+    <br/>
+
     <div class="field">
-        <br/>
-        <%= form.check_box :recurring, id: 'event_recurring' %>
-        <%= form.label :recurring, 'This event is recurring' %>
+        <%= form.label :type %>
+        <%= form.select :type, options_for_select(
+            [
+                ['One time event',  Event.sti_name],
+                ['Recurring event', RecurringEvent.sti_name]
+            ],
+            @event.type
+        ), {}, id: 'event_type' %>
     </div>
 
     <!-- Fields related to a recurring event -->
-    <div class="recurring-event-fields">
+    <div id="recurring-event-fields">
+
         <div class="field">
-            <%= form.label :schedule %>
-            <%= form.text_field :schedule, id: 'event_schedule' %>
+            <%= form.label :period, 'Occurs' %>
+            <%= form.select :period, RecurringEvent.periods.keys.to_a, {}, id: 'event_period' %>
         </div>
-        <br/>
+
+        <div class="field">
+            <%= form.label :interval, 'Every' %>
+            <%= form.number_field :interval,
+                                  value: params.has_key?(:interval) ? params[:interval] : 1,
+                                  min: 1, style: 'width: 60px;',
+                                  id: 'event_interval' %>
+            <span id="interval-label">day(s)</span>
+        </div>
+
+        <div class="field" id="weekday-fields">
+            <%= form.label 'On these days:' %><br/>
+            <%= week_day_checkboxes form, @event %>
+        </div>
+
+        <p style="font-weight: bold;">Summary: <span id="summary" style="font-weight: normal;"></span></p>
+
     </div>
+
+    <br/>
 
     <div class="field">
         <%= form.label :venue_id %><br />
@@ -42,204 +68,36 @@
 
 <script>
 
-    var $fieldWrapper = $(".recurring-event-fields > .field");
-    var $checkbox = $("#event_recurring");
-    var $periodField, $countField, $weeklyField;
-    var $summary;
-    var schedule = '';
-
-    /** @const */
-    var FIELD_PREFIX = "schedule";
+    var $summary = $("#summary");
+    var $periodField = $("#event_period");
+    var $intervalField = $("#event_interval");
+    var $weeklyField = $("#weekday-fields");
+    var $typeSelect = $("#event_type");
+    var $recurringEventFields = $("#recurring-event-fields");
 
     /** @const */
     var period = {
         DAILY: {
-            countLabel: "day(s)",
+            intervalLabel: "day(s)",
             singular: "day",
             adverb: "Daily"
         },
         WEEKLY: {
-            countLabel: "week(s)",
+            intervalLabel: "week(s)",
             singular: "week",
             adverb: "Weekly"
         },
         MONTHLY: {
-            countLabel: "month(s)",
+            intervalLabel: "month(s)",
             singular: "month",
             adverb: "Monthly"
         },
         YEARLY: {
-            countLabel: "year(s)",
+            intervalLabel: "year(s)",
             singular: "year",
             adverb: "Yearly"
         }
     };
-
-    /** @const */
-    var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-
-    /**
-     * Returns an array of keys in the period object.
-     * @return {array} A list of periods.
-     */
-    function getPeriods () {
-        return $.map(period, function (value, key) {
-            return key.toLowerCase();
-        });
-    }
-
-
-    /**
-     * Creates some fields for inputting a recurrence schedule
-     */
-    function createFields () {
-
-        schedule = $fieldWrapper.children("#event_schedule").val();
-
-        // Remove all children
-        $fieldWrapper.empty();
-
-        // Create period select
-        $periodField = $("<div>", { class: 'field' });
-        $periodField.append(createLabel("period", "Occurs "));
-        $periodField.append(createSelect("period", getPeriods()));
-        $periodField.appendTo($fieldWrapper);
-
-        // Create period field
-        $countField = $("<div>",{ class: 'field' });
-        $countField.append(createLabel("count", "Every "));
-        $countField.append(createInput("count", "number", { value: '1', min: '1', style: "width: 60px" }));
-        $countField.append($("<span>", { text: " day(s)", id: "count-type" }));
-        $countField.appendTo($fieldWrapper);
-
-        // Create summary
-        $summary = $("<p>", { text: "Summary: ", style: "font-weight: bold;" }).append($("<span>", { id: 'recurring-summary' }));
-        $summary.appendTo($fieldWrapper);
-
-        updateSummary();
-
-    }
-
-
-    /**
-     * Creates a new label.
-     * @param scope {string} Essentially the name of the field.
-     * @param value {string=} Contents of the label. Scope if not defined.
-     * @return {HTMLElement} a form label.
-     */
-    function createLabel (scope, value) {
-        return $("<label>", {
-            for: getFieldId(scope),
-            text: (typeof value === "undefined") ? scope : value
-        });
-    }
-
-
-    /**
-     * Creates a new select element.
-     * @param scope {string} Essentially the name of the field.
-     * @param options {array} An array of possible options.
-     * @return {HTMLElement} a JQuery select element.
-     */
-    function createSelect (scope, options) {
-
-        // Create HTMLElement
-        var $select = $("<select>", {
-            id: getFieldId(scope),
-            name: getFieldName(scope)
-        });
-
-        // Generate options
-        options.forEach(function (option) {
-            $("<option>", {
-                value: option,
-                text: option
-            }).appendTo($select);
-        });
-
-        return $select;
-
-    }
-
-
-    /**
-     * Creates a new form input.
-     * @param scope {string} Essentially the name of the field.
-     * @param type {string} The HTML type of the input.
-     * @param extras {object=} Additional options.
-     * @return {HTMLElement} A form input element.
-     */
-    function createInput (scope, type, extras) {
-
-        var options = {
-            id: getFieldId(scope),
-            name: getFieldName(scope),
-            type: type
-        };
-
-        // Merge default options and extra options
-        jQuery.extend(options, extras);
-
-        return $("<input>", options);
-
-    }
-
-
-    /**
-     * Creates a collection of checkboxes.
-     * @param scope {string} Essentially the name of the field.
-     * @param labels {array} A list of all checkbox labels.
-     * @return {HTMLElement} A collection of checkboxes.
-     */
-    function createCheckboxes (scope, labels) {
-
-        // Create a wrapper
-        console.debug("Creating checkboxes.");
-        var $wrapper = $("<div>", { class: "checkboxes" });
-
-        // Add each label
-        labels.forEach(function (label, i) {
-
-            $("<input>", {
-                type: "checkbox",
-                id: getFieldId(scope + "_" + i),
-                name: getFieldName(scope + "[" + i + "]"),
-                "data-weekday": label
-            }).appendTo($wrapper);
-
-            $("<label>", {
-                for: getFieldId(scope + "_" + i),
-                text: label
-            }).appendTo($wrapper);
-
-            $("<br/>").appendTo($wrapper);
-
-        });
-
-        return $wrapper;
-
-    }
-
-
-    /**
-     * Formats a scope so that it can be used as a field ID.
-     * @param scope {string} Essentially the name of the field.
-     * @return {string} A formatted string.
-     */
-    function getFieldId (scope) {
-        return FIELD_PREFIX + "_" + scope;
-    }
-
-
-    /**
-     * Formats a scope so that it can be used as a field name.
-     * @param scope {string} Essentially the name of the field.
-     * @return {string} A formatted string.
-     */
-    function getFieldName (scope) {
-        return FIELD_PREFIX + "[" + scope + "]";
-    }
 
 
     /**
@@ -249,17 +107,15 @@
 
         // Collect relevant vars
         console.debug("Updating summary.");
-        var $span         = $summary.children().first();
         var value         = "";
-        var periodValue   = $periodField.children("select").val();
-        var workingPeriod = period[periodValue.toUpperCase()];
-        var count         = parseInt($countField.children("input").val());
+        var workingPeriod = period[$periodField.val().toUpperCase()];
+        var interval      = parseInt($intervalField.val());
 
         // Handle simple cases
-        if (count === 1) {
+        if (interval === 1) {
             value += workingPeriod.adverb;
         } else {
-            value += "Every " + pluralise(workingPeriod, count);
+            value += "Every " + pluralise(workingPeriod, interval);
         }
 
         // Handle weekly checkboxes
@@ -268,7 +124,7 @@
         }
 
         // Set text in span
-        $span.text(value);
+        $summary.text(value);
 
     }
 
@@ -287,7 +143,7 @@
             // Ensure checkbox has been checked
             var $this = $(checkbox);
             if ($this.is(":checked")) {
-                days.push($this.attr("data-weekday"));
+                days.push($this.val().charAt(0).toUpperCase() + $this.val().slice(1));
             }
         });
 
@@ -343,19 +199,16 @@
     function onSelectChange () {
 
         // Get period
-        var val = $(this).val();
-        var workingPeriod = period[val.toUpperCase()];
+        var workingPeriod = period[$periodField.val().toUpperCase()];
 
-        // Update count label
-        $countField.children("#count-type").text(" " + workingPeriod.countLabel + ".");
+        // Update interval label
+        $intervalField.children("#interval-label").text(" " + workingPeriod.intervalLabel + ".");
 
         // Handle period specific form fields
-        switch (workingPeriod) {
-            case period.WEEKLY:
-                createWeeklyField();
-                break;
-            default:
-                removeWeeklyField();
+        if (workingPeriod === period.WEEKLY) {
+            $weeklyField.show();
+        } else {
+            $weeklyField.hide();
         }
 
         updateSummary();
@@ -364,42 +217,51 @@
 
 
     /**
-     * Create checkboxes for week days.
+     * Updates the fields according to the given type
      */
-    function createWeeklyField () {
-        $weeklyField = $("<div>", { class: "field weekly-fields" });
-        $weeklyField.append(createLabel("weekly", "On these days:"));
-        $weeklyField.append($("<br/>"));
-        $weeklyField.append(createCheckboxes("weekly", weekDays));
-        $weeklyField.insertAfter($countField);
-    }
+    function updateType () {
 
+        // Determine whether to show or hide the fields
+        var show = $typeSelect.val() === "RecurringEvent";
 
-    /**
-     * Removes the checkboxes for weekdays.
-     */
-    function removeWeeklyField () {
-
-        // Ensure field exists
-        if (typeof $weeklyField === "undefined" || $(".weekly-fields").length === 0) {
-            return;
+        if (show) {
+            $recurringEventFields.show();
+        } else {
+            $recurringEventFields.hide();
         }
 
-        $weeklyField.remove();
-
     }
 
 
-    $(document).ready(function(){
+    // Wait for the DOM to be ready
+    $(document).on("turbolinks:load", function () {
 
-        console.debug("Creating schedule fields.");
-        createFields();
+        $summary = $("#summary");
+        $periodField = $("#event_period");
+        $intervalField = $("#event_interval");
+        $weeklyField = $("#weekday-fields");
+        $typeSelect = $("#event_type");
+        $recurringEventFields = $("#recurring-event-fields");
 
+        // Register events
         $(document).off("change");
-        $(document).on("change", "#" + getFieldId("period"), onSelectChange);
-        $(document).on("change", "#" + getFieldId("count"),  updateSummary);
+        $(document).on("change", $periodField, onSelectChange);
+        $(document).on("change", $intervalField,  updateSummary);
         $(document).on("change", "input[type='checkbox']",   updateSummary);
+        $(document).on("change", $typeSelect, updateType);
+
+        updateSummary();
 
     });
+
+    // Hide weekly fields if the currently selected period is not weekly
+    if ($periodField.val() !== "weekly") {
+        $weeklyField.hide();
+    }
+
+    // Hide recurring event fields if necessary
+    if ($typeSelect.val() === "Event") {
+        $recurringEventFields.hide();
+    }
 
 </script>

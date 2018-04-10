@@ -49,7 +49,10 @@ class Player < ApplicationRecord
             length: { maximum: 64 }
 
   validates :score, :games_played, :games_won,
-            numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+            numericality: {
+              only_integer: true,
+              greater_than_or_equal_to: 0
+            }
 
   validates :notify_promotional, :notify_events,
             presence: true
