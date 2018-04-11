@@ -48,3 +48,9 @@ en:
     straight_flush:
       title: "Straight Flush"
       description: "Get dealt a straight flush."
+  description:
+    players:
+      registrations:
+        new: "Join the River Rats Poker League official website. Here you can track your scores, games, achievements and more!"
+      sessions:
+        new: "Login to access your River Rats Poker League account. You can use either your email address or your username."

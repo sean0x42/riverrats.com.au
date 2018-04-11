@@ -8,6 +8,11 @@
     </div>
 
     <div class="field">
+        <%= form.label :description %><br />
+        <%= form.text_area :description, id: 'event_description' %>
+    </div>
+
+    <div class="field">
         <%= form.label :start_at %><br />
         <%= form.datetime_select :start_at %>
     </div>

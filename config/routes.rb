@@ -11,11 +11,12 @@ Rails.application.routes.draw do
              path_names: {
                sign_in: 'login',
                sign_out: 'logout',
-               sign_up: 'register'
+               sign_up: 'join'
              },
              controllers: {
                registrations: 'players/registrations',
-               sessions: 'players/sessions'
+               sessions: 'players/sessions',
+               passwords: 'players/passwords'
              }
 
   get 'players/auto-complete', to: 'players#auto_complete'

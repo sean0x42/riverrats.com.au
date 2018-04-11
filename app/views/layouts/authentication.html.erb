@@ -1,0 +1,22 @@
+<% content_for :styles do %>
+    <%= stylesheet_link_tag 'authentication', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
+<% content_for :body_class do %>authentication<% end %>
+
+<% content_for :body do %>
+
+    <div class="auth-wrapper">
+
+        <!-- Logo linking home -->
+        <%= link_to root_path, class: 'logo' do %>
+            <%= image_tag 'logo-textless.svg' %>
+        <% end %>
+
+        <%= yield %>
+
+    </div>
+
+<% end %>
+
+<%= render template: 'layouts/application' %>

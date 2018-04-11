@@ -1,4 +1,7 @@
 class Players::PasswordsController < Devise::PasswordsController
+
+  layout 'authentication'
+
   # GET /resource/password/new
   # def new
   #   super

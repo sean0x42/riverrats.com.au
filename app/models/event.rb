@@ -11,7 +11,13 @@ class Event < ApplicationRecord
 
   validates :title,
             length: { within: 3..32 },
-            allow_blank: true
+            allow_blank: true,
+            allow_nil: true
+
+  validates :description,
+            length: { maximum: 128 },
+            allow_blank: true,
+            allow_nil: true
 
   ###
   # Returns either the events title, or an untitled label.

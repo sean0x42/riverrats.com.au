@@ -1,27 +1,36 @@
-<h2>Log in</h2>
+<% content_for :title do %>Sign in<% end %>
+<% content_for :description do %><%= t('description.players.sessions.new') %><% end %>
+
+<!--<h1>Welcome back!</h1>-->
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="field">
-    <%= f.label :login, 'Email or username' %><br />
-    <%= f.text_field :login, autofocus: true %>
-  </div>
+    <%= render 'application/flashes' %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <%= f.label :login, 'Email or username' %><br/>
+        <%= f.text_field :login, autofocus: true %>
     </div>
-  <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+    <div class="field">
+        <%= f.label :password %><br/>
+        <%= f.password_field :password, autocomplete: 'off' %>
+    </div>
+
+    <div class="field remember-and-forget">
+        <div class="remember">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+        </div>
+        <%= link_to 'Forgot your password?', new_password_path(resource_name) %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit 'Sign in', class: 'button wide' %>
+    </div>
+
+    <div class="form-footer">
+        <p>Don't have an account? <%= link_to 'Create one!', new_registration_path(resource_name) %></p>
+    </div>
+
 <% end %>
-
-<%= render "devise/shared/links" %>

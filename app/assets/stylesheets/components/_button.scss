@@ -1,0 +1,76 @@
+.button, .button-secondary, .button-tertiary {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  vertical-align: middle;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 15px 26px;
+
+  & > i {
+    font-size: 22px;
+    font-weight: normal;
+    margin: -0.25rem;
+    margin-right: 0.75rem;
+  }
+
+  &.wide {
+    width: 100%;
+  }
+}
+
+.button {
+  color: $branding-primary-text;
+  background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
+  transition: all 300ms;
+  transform: translateY(0px);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &.danger {
+    color: $danger-text;
+    background: linear-gradient(90deg, $danger-red, $danger-red-rotated);
+  }
+}
+
+.button-secondary {
+  $from: lighten($branding-primary,         8%);
+  $to:   lighten($branding-primary-rotated, 8%);
+  position: relative;
+  color: darken($branding-primary, 10%);
+  background: none;
+  border-left: 2px solid $from;
+  border-right: 2px solid $to;
+  border-radius: 2px;
+
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 2px;
+    background: linear-gradient(90deg, $from, $to);
+  }
+
+  &:before { top:    0; }
+  &:after  { bottom: 0; }
+
+  i { color: lighten($branding-primary, 10%); }
+
+  &.danger {
+    // TODO
+  }
+
+}
+
+.button-tertiary {
+  // TODO
+}

@@ -1,0 +1,42 @@
+/*
+ *= require modern-normalize.min
+ *= require inter-ui.css.erb
+ *= require_self
+ */
+
+
+/*
+ * Settings
+ */
+@import "settings/colours";
+
+
+/*
+ * Generic
+ */
+@import "generic/hightlight";
+@import "generic/text-rendering";
+@import "generic/type";
+
+
+/*
+ * Elements
+ */
+@import "elements/body";
+@import "elements/headings";
+@import "elements/links";
+
+
+/*
+ * Components
+ */
+@import "components/button";
+
+
+td {
+    padding: 0.25rem;
+}
+
+.tt-menu {
+    background: white;
+}

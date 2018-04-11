@@ -1,4 +1,7 @@
-<h2>Register</h2>
+<% content_for :title do %>Sign up<% end %>
+<% content_for :description do %><%= t('description.players.registrations.new') %><% end %>
+
+<!--<h1>Looking to join?</h1>-->
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
@@ -10,12 +13,14 @@
 
     <div class="field">
         <%= f.label :last_name %><br />
-        <%= f.text_field :last_name, spellcheck: false %>
+        <%= f.text_field :last_name, spellcheck: false, placeholder: 'Surname, family name...' %>
     </div>
+
+    <hr />
 
     <div class="field">
         <%= f.label :email %><br/>
-        <%= f.email_field :email %>
+        <%= f.email_field :email, placeholder: 'someone@example.com' %>
     </div>
 
     <div class="field">
@@ -23,18 +28,22 @@
         <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br/>
-        <%= f.password_field :password, autocomplete: "off" %>
+        <%= f.password_field :password, autocomplete: 'off' %>
     </div>
 
     <div class="field">
         <%= f.label :password_confirmation %><br/>
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        <%= f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Retype your password' %>
     </div>
 
+    <hr />
+
     <div class="actions">
-        <%= f.submit "Sign up" %>
+        <%= f.submit 'Sign up', class: 'button wide' %>
+    </div>
+
+    <div class="form-footer">
+        <p>Already have an account? <%= link_to 'Log in', new_session_path(resource_name) %>.</p>
     </div>
 
 <% end %>
-
-<%= render "devise/shared/links" %>
