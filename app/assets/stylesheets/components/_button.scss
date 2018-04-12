@@ -20,8 +20,11 @@
   }
 
   &.wide {
+    justify-content: center;
     width: 100%;
   }
+
+  &:hover { text-decoration: none; }
 }
 
 .button {
@@ -56,7 +59,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    width: 2px;
+    height: 2px;
     background: linear-gradient(90deg, $from, $to);
   }
 

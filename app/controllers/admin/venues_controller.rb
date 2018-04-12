@@ -1,5 +1,6 @@
 class Admin::VenuesController < ApplicationController
 
+  layout 'admin'
   before_action :authenticate_player!
 
   # GET /admin/venues

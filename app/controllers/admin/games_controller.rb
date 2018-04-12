@@ -1,10 +1,16 @@
 class Admin::GamesController < ApplicationController
 
+  layout 'admin'
   before_action :authenticate_player!
 
   # GET /admin/games
   def index
-    @games = Game.order(id: :desc).page params[:page]
+    all = Game.order(id: :desc)
+    @games = all.page params[:page]
+    @stats = {
+      count: all.count,
+      new_count: all.where('created_at > ?', Date.today - 30.days).count,
+    }
   end
 
   # GET /admin/games/new

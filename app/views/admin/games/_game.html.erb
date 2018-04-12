@@ -1,8 +1,8 @@
 <tr>
-    <td><%= game.name %></td>
+    <td><%= link_to game.name, edit_admin_game_path(game) %></td>
     <td style="text-align: right"><%= game.games_players.count %></td>
     <td style="text-align: right"><%= game.referees.count %></td>
     <td><%= local_relative_time game.played_on, type: 'weekday-or-date' %></td>
-    <td><%= link_to 'view (public)', game_path(game) %></td>
-    <td><%= link_to 'edit', edit_admin_game_path(game) %></td>
+    <td><%= link_to game.venue.name, venue_path(game.venue) %></td>
+    <td><%= game.season.name %></td>
 </tr>

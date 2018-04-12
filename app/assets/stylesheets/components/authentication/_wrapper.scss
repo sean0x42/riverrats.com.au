@@ -3,4 +3,11 @@
   max-width: 430px;
   padding: 1rem;
   width: 100%;
+
+  .copyright {
+    text-align: center;
+    font-size: 15px;
+    margin: 4rem 0 0;
+    color: lighten($generic-text, 40%);
+  }
 }

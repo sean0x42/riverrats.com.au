@@ -12,11 +12,16 @@
 
 
 /*
+ * Tools
+ */
+@import "tools/no-select";
+
+
+/*
  * Generic
  */
 @import "generic/hightlight";
 @import "generic/text-rendering";
-@import "generic/type";
 
 
 /*
@@ -31,12 +36,3 @@
  * Components
  */
 @import "components/button";
-
-
-td {
-    padding: 0.25rem;
-}
-
-.tt-menu {
-    background: white;
-}

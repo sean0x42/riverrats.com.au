@@ -1,5 +1,6 @@
 class Admin::EventsController < ApplicationController
 
+  layout 'admin'
   before_action :authenticate_player!
 
   # GET /admin/events

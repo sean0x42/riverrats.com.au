@@ -1,20 +1,54 @@
-<h1>Players</h1>
-<p>The following players exist:</p>
+<!--<div class="admin-header">-->
+    <!--hey-->
+    <!--<%= link_to 'Create player', new_admin_player_path, class: 'button' %>-->
+<!--</div>-->
 
-<% if @players.empty? %>
-    There's nothing here
-<% else %>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Username</th>
-        </tr>
-        <%= render @players %>
-    </table>
+<div class="admin-breakdown">
 
-    <%= paginate @players %>
-<% end %>
+    <h2>
+        <span>breakdown</span>
+        <i class="material-icons">&#xE8E5;</i>
+    </h2>
 
-<br/>
+    <div class="stats">
 
-<%= link_to 'Create new player', new_admin_player_path %>
+        <!-- Registered players -->
+        <div class="stat">
+            <p class="value"><%= number_with_delimiter @stats[:count] %></p>
+            <p class="description">registered players</p>
+        </div>
+
+        <!-- New players -->
+        <div class="stat">
+            <p class="value"><%= number_with_delimiter @stats[:new_count] %></p>
+            <p class="description">in the last 30 days</p>
+        </div>
+
+        <!-- # of admins -->
+        <div class="stat">
+            <p class="value"><%= number_with_delimiter @stats[:admin_count] %></p>
+            <p class="description">administrators</p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="admin-body">
+
+    <% if @players.empty? %>
+        There's nothing here
+    <% else %>
+        <table>
+            <tr>
+                <th style="text-align: left">Name</th>
+                <th style="text-align: left">Username</th>
+                <th style="text-align: right">Score</th>
+            </tr>
+            <%= render @players %>
+        </table>
+
+        <%= paginate @players %>
+    <% end %>
+
+</div>

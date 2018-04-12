@@ -43,7 +43,7 @@ Rails.application.routes.draw do
               except: :show
 
     resources :achievements,
-              only: [:index, :new, :create]
+              only: [:new, :create]
 
   end
 

@@ -1,10 +1,7 @@
 class Admin::AchievementsController < ApplicationController
 
+  layout 'admin'
   before_action :authenticate_player!
-
-  # GET /admin/achievements
-  def index
-  end
 
   # GET /admin/achievements/new
   def new
@@ -20,7 +17,7 @@ class Admin::AchievementsController < ApplicationController
         type: Object.const_get(@achievement.type).title,
         player: "@#{@achievement.player.username}"
       }
-      redirect_to admin_achievements_path
+      redirect_to admin_players_path
     else
       if params.has_key? :achievement and params[:achievement].has_key? :player_id
         @player_name = Player.find(params[:achievement][:player_id]).full_name

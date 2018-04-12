@@ -5,8 +5,6 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-    <%= render 'application/flashes' %>
-
     <div class="field">
         <%= f.label :login, 'Email or username' %><br/>
         <%= f.text_field :login, autofocus: true %>

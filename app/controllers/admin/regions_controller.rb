@@ -1,5 +1,6 @@
 class Admin::RegionsController < ApplicationController
 
+  layout 'admin'
   before_action :authenticate_player!
 
   # GET /admin/regions

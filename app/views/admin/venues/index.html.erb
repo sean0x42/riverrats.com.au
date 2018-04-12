@@ -1,20 +1,21 @@
-<h1>Venues</h1>
-<p>The following venues exist:</p>
+<div class="admin-body">
 
-<% if @venues.empty? %>
-    There's nothing here. <br />
-<% else %>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Region</th>
-        </tr>
-        <%= render @venues %>
-    </table>
+    <% if @venues.empty? %>
+        There's nothing here. <br />
+    <% else %>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Region</th>
+            </tr>
+            <%= render @venues %>
+        </table>
 
-    <%= paginate @venues %>
-<% end %>
+        <%= paginate @venues %>
+    <% end %>
 
-<br />
+    <br />
 
-<%= link_to 'Create new venue', new_admin_venue_path %>
+    <%= link_to 'Create new venue', new_admin_venue_path %>
+
+</div>

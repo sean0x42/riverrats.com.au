@@ -1,38 +1,38 @@
-<h1>Events</h1>
-<p>Here's all events</p>
+<div class="admin-body">
 
-<%= link_to 'Create a new event', new_admin_event_path %>
+    <h2>Upcoming Events</h2>
+    <% if @events.empty? %>
+        There's nothing here.
+    <% else %>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Starts at</th>
+            </tr>
+            <%= render @events %>
+        </table>
 
-<br />
+        <%= paginate @events %>
+    <% end %>
 
-<h2>Upcoming Events</h2>
-<% if @events.empty? %>
-    There's nothing here.
-<% else %>
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Starts at</th>
-        </tr>
-        <%= render @events %>
-    </table>
+    <h2>Schedulers</h2>
 
-    <%= paginate @events %>
-<% end %>
+    <% if @recurring_events.empty? %>
+        There's nothing here.
+    <% else %>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Starts at</th>
+                <th>Period</th>
+                <th>Interval</th>
+            </tr>
+            <%= render partial: 'recurring_event', collection: @recurring_events %>
+        </table>
+    <% end %>
 
-<h2>Schedulers</h2>
+    <br />
 
-<% if @recurring_events.empty? %>
-    There's nothing here.
-<% else %>
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Starts at</th>
-            <th>Period</th>
-            <th>Interval</th>
-        </tr>
-        <%= render partial: 'recurring_event', collection: @recurring_events %>
-    </table>
-<% end %>
+    <%= link_to 'Create a new event', new_admin_event_path %>
 
+</div>

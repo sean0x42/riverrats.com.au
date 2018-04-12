@@ -1,10 +1,17 @@
 class Admin::PlayersController < ApplicationController
 
+  layout 'admin'
   before_action :authenticate_player!
 
   # GET /admin/players
   def index
-    @players = Player.order(score: :desc).page params[:page]
+    all = Player.order(score: :desc)
+    @players      = all.page params[:page]
+    @stats = {
+      count: all.count,
+      new_count: all.where('created_at > ?', Date.today - 30.days).count,
+      admin_count: all.where(is_admin: true).count
+    }
   end
 
   # GET /admin/players/:username
@@ -26,6 +33,7 @@ class Admin::PlayersController < ApplicationController
       player.first_name = auth_params[:first_name]
       player.last_name = auth_params[:last_name]
       player.email = auth_params[:email]
+      player.is_admin = auth_params[:is_admin]
       player.password = generated_password
     end
 
@@ -67,14 +75,11 @@ class Admin::PlayersController < ApplicationController
   private
 
     def auth_params
-      params.require(:player).permit(:first_name, :last_name, :email)
+      params.require(:player).permit(:first_name, :last_name, :email, :is_admin)
     end
 
     def edit_params
-      params.require(:player).permit(
-        :username, :first_name, :last_name, :email,
-        :is_admin
-      )
+      params.require(:player).permit(:username, :first_name, :last_name, :email, :is_admin)
     end
 
 end

@@ -1,22 +1,50 @@
-<h1>Games</h1>
-<p>The following games exist:</p>
+<div class="admin-breakdown">
 
-<% if @games.empty? %>
-    There's nothing here.<br />
-<% else %>
-    <table>
-        <tr>
-            <th>Game</th>
-            <th># of Players</th>
-            <th># of Tournament Directors</th>
-            <th>Played</th>
-        </tr>
-        <%= render @games %>
-    </table>
+    <h2>
+        <span>breakdown</span>
+        <i class="material-icons">&#xE8E5;</i>
+    </h2>
 
-    <%= paginate @games %>
-<% end %>
+    <div class="stats">
 
-<br />
+        <!-- Registered players -->
+        <div class="stat">
+            <p class="value"><%= number_with_delimiter @stats[:count] %></p>
+            <p class="description">games played</p>
+        </div>
 
-<%= link_to 'Create a new game', new_admin_game_path %>
+        <!-- New players -->
+        <div class="stat">
+            <p class="value"><%= number_with_delimiter @stats[:new_count] %></p>
+            <p class="description">in the last 30 days</p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="admin-body">
+
+    <% if @games.empty? %>
+        There's nothing here.<br />
+    <% else %>
+        <table>
+            <tr>
+                <th style="text-align: left">Name</th>
+                <th style="text-align: right">Players</th>
+                <th style="text-align: right">Referees</th>
+                <th style="text-align: left">Played on</th>
+                <th style="text-align: left">Venue</th>
+                <th style="text-align: left">Season</th>
+            </tr>
+            <%= render @games %>
+        </table>
+
+        <%= paginate @games %>
+    <% end %>
+
+    <br />
+
+    <%= link_to 'Create a new game', new_admin_game_path %>
+
+</div>

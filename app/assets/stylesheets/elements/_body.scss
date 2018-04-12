@@ -1,4 +1,8 @@
 body {
+  background: hsl(220, 5%, 95%);
   overflow-x: hidden;
   width: 100vw;
+  font-family: 'Inter UI', sans-serif;
+  line-height: 1.75;
+  color: $generic-text;
 }

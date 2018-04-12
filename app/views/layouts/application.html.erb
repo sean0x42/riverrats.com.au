@@ -19,6 +19,5 @@
     <body class="<%= yield(:body_class) %>">
         <%= render 'flashes' %>
         <%= content_for?(:body) ? yield(:body) : yield %>
-        <!--<%= link_to 'Logout', destroy_player_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' } %>-->
     </body>
 </html>

@@ -20,6 +20,11 @@
         <%= form.email_field :email %>
     </div>
 
+    <div class="field">
+        <%= form.check_box :is_admin %>
+        <%= form.label :is_admin %>
+    </div>
+
     <div class="actions">
         <br />
         <%= form.submit 'Create new player' %> |
