@@ -1,39 +1,42 @@
-<h1>Award Achievement</h1>
-<p>Award a player with an achievement.</p>
 
-<%= form_for [:admin, @achievement.becomes(Achievement)], html: { multipart: true } do |form| %>
+<div class="admin-body">
 
-    <%= render partial: 'application/form-errors', locals: { object: @achievement } %>
+    <p>Award a player with an achievement.</p>
 
-    <div class="field">
-        <%= form.label :type, 'Achievement' %><br />
-        <%= form.select :type, options_for_select(
-            [
-                [StraightFlush.title, StraightFlush.sti_name],
-                [RoyalFlush.title,    RoyalFlush.sti_name]
-            ]
-        ) %>
-    </div>
+    <%= form_for [:admin, @achievement.becomes(Achievement)], html: { multipart: true } do |form| %>
 
-    <div class="field">
-        <%= form.label :player_id %><br/>
-        <%= form.hidden_field :player_id %>
-        <input type="text" class="typeahead" style="width: 250px" value="<%= @player_name %>" />
-    </div>
+        <%= render partial: 'application/form-errors', locals: { object: @achievement } %>
 
-    <div class="field">
-        <%= form.label :proof %><br />
-        <%= form.file_field :proof %>
-    </div>
+        <div class="field">
+            <%= form.label :type, 'Achievement' %><br />
+            <%= form.select :type, options_for_select(
+                [
+                    [StraightFlush.title, StraightFlush.sti_name],
+                    [RoyalFlush.title,    RoyalFlush.sti_name]
+                ]
+            ) %>
+        </div>
 
-    <div class="actions">
-        <br />
-        <%= form.submit 'Award achievement' %> |
-        <%= link_to 'Cancel', admin_players_path %>
-    </div>
+        <div class="field">
+            <%= form.label :player_id %><br/>
+            <%= form.hidden_field :player_id %>
+            <input type="text" class="typeahead" style="width: 250px" value="<%= @player_name %>" />
+        </div>
 
-<% end %>
+        <div class="field">
+            <%= form.label :proof %><br />
+            <%= form.file_field :proof %>
+        </div>
 
+        <div class="actions">
+            <br />
+            <%= form.submit 'Award achievement' %> |
+            <%= link_to 'Cancel', admin_players_path %>
+        </div>
+
+    <% end %>
+
+</div>
 
 <script>
 

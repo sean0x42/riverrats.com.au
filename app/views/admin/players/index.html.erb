@@ -1,49 +1,52 @@
-<!--<div class="admin-header">-->
-    <!--hey-->
-    <!--<%= link_to 'Create player', new_admin_player_path, class: 'button' %>-->
-<!--</div>-->
-
-<div class="admin-breakdown">
-
-    <h2>
-        <span>breakdown</span>
-        <i class="material-icons">&#xE8E5;</i>
-    </h2>
-
-    <div class="stats">
-
-        <!-- Registered players -->
-        <div class="stat">
-            <p class="value"><%= number_with_delimiter @stats[:count] %></p>
-            <p class="description">registered players</p>
-        </div>
-
-        <!-- New players -->
-        <div class="stat">
-            <p class="value"><%= number_with_delimiter @stats[:new_count] %></p>
-            <p class="description">in the last 30 days</p>
-        </div>
-
-        <!-- # of admins -->
-        <div class="stat">
-            <p class="value"><%= number_with_delimiter @stats[:admin_count] %></p>
-            <p class="description">administrators</p>
-        </div>
-
-    </div>
-
+<div class="admin-header">
+    <%= render_search admin_players_path, 'Search players' %>
+    <%= link_to 'Create player', new_admin_player_path, class: 'button' %>
 </div>
 
 <div class="admin-body">
+
+    <div class="admin-breakdown">
+
+        <h2>
+            <span>breakdown</span>
+            <i class="material-icons">&#xE8E5;</i>
+        </h2>
+
+        <div class="stats">
+
+            <!-- Registered players -->
+            <div class="stat">
+                <p class="value"><%= number_with_delimiter @stats[:count] %></p>
+                <p class="description">registered players</p>
+            </div>
+
+            <!-- New players -->
+            <div class="stat">
+                <p class="value"><%= number_with_delimiter @stats[:new_count] %></p>
+                <p class="description">in the last 30 days</p>
+            </div>
+
+            <!-- # of admins -->
+            <div class="stat">
+                <p class="value"><%= number_with_delimiter @stats[:admin_count] %></p>
+                <p class="description">administrators</p>
+            </div>
+
+        </div>
+
+    </div>
 
     <% if @players.empty? %>
         There's nothing here
     <% else %>
         <table>
             <tr>
-                <th style="text-align: left">Name</th>
-                <th style="text-align: left">Username</th>
-                <th style="text-align: right">Score</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th class="status">Admin</th>
+                <th class="numeric stretch">Score</th>
+                <th class="numeric">Played</th>
+                <th class="numeric">Won</th>
             </tr>
             <%= render @players %>
         </table>

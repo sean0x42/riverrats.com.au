@@ -1,0 +1,32 @@
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.02),
+  0 5px 15px rgba(0, 0, 0, 0.02);
+
+  input[type="submit"] { display: none; }
+
+  input[type="search"] {
+    font-size: 15px;
+    color: $generic-text;
+    padding: 15px 15px 15px 52px;
+    line-height: 1.0;
+    width: 100%;
+    border: none;
+  }
+
+  i {
+    position: absolute;
+    top: 0;
+    font-size: 21px;
+    color: lighten($generic-text, 15%);
+    transition: color 200ms;
+    padding: 12px 1.2rem;
+    pointer-events: none;
+  }
+
+}

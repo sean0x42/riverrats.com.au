@@ -1,14 +1,3 @@
-// Interface colours
-$danger-red: hsl(6, 78%, 57%);
-$danger-red-rotated: adjust-hue($danger-red, 8deg);
-$danger-text: hsl(6, 15%, 97%);
-
-$acceptance-green: hsl(145, 67%, 43%);
-
-$breakdown: hsl(38, 90%, 51%);
-$breakdown-rotated: adjust_hue($breakdown, 8deg);
-$breakdown-text: hsl(38, 15%, 21%);
-
 // Branding colours
 $branding-primary: hsl(282, 34%, 48%);
 $branding-primary-rotated: adjust-hue($branding-primary, 18deg);
@@ -18,6 +7,19 @@ $branding-secondary: hsl(88, 50%, 53%);
 $branding-secondary-rotated: adjust_hue($branding-secondary, 14deg);
 $branding-secondary-text: hsl(88, 10%, 96%);
 
+// Interface colours
+$danger-red: hsl(6, 78%, 57%);
+$danger-red-rotated: adjust-hue($danger-red, 8deg);
+$danger-text: hsl(6, 15%, 97%);
+
+$acceptance-green: hsl(145, 67%, 43%);
+
+$breakdown: $branding-primary; // hsl(38, 90%, 51%);
+$breakdown-rotated: adjust_hue($breakdown, 8deg);
+$breakdown-text: hsl(38, 15%, 21%);
+
 // Default text colours
-$generic-text: hsl(240, 15%, 18%);
+$generic-text: hsl(240, 10%, 18%);
 $generic-text-bold: darken($generic-text, 10%);
+
+$border-on-white: hsl(240, 10%, 90%);

@@ -14,7 +14,7 @@
       margin-top: 0;
     }
 
-    & > div > h2 {
+    & > div h2 {
       display: flex;
       align-items: center;
       color: $generic-text;
@@ -43,6 +43,8 @@
 
   .admin-header {
     display: flex;
+    align-items: flex-start;
+    margin: 0 0 2rem;
 
     .button, .button-secondary {
       margin-left: auto;

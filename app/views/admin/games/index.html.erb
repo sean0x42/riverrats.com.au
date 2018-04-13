@@ -1,50 +1,51 @@
-<div class="admin-breakdown">
-
-    <h2>
-        <span>breakdown</span>
-        <i class="material-icons">&#xE8E5;</i>
-    </h2>
-
-    <div class="stats">
-
-        <!-- Registered players -->
-        <div class="stat">
-            <p class="value"><%= number_with_delimiter @stats[:count] %></p>
-            <p class="description">games played</p>
-        </div>
-
-        <!-- New players -->
-        <div class="stat">
-            <p class="value"><%= number_with_delimiter @stats[:new_count] %></p>
-            <p class="description">in the last 30 days</p>
-        </div>
-
-    </div>
-
+<div class="admin-header">
+    <%= render_search '/', 'Search games' %>
+    <%= link_to 'Create game', new_admin_game_path, class: 'button' %>
 </div>
 
 <div class="admin-body">
+
+    <div class="admin-breakdown">
+
+        <h2>
+            <span>breakdown</span>
+            <i class="material-icons">&#xE8E5;</i>
+        </h2>
+
+        <div class="stats">
+
+            <!-- Registered players -->
+            <div class="stat">
+                <p class="value"><%= number_with_delimiter @stats[:count] %></p>
+                <p class="description">games played</p>
+            </div>
+
+            <!-- New players -->
+            <div class="stat">
+                <p class="value"><%= number_with_delimiter @stats[:new_count] %></p>
+                <p class="description">in the last 30 days</p>
+            </div>
+
+        </div>
+
+    </div>
 
     <% if @games.empty? %>
         There's nothing here.<br />
     <% else %>
         <table>
             <tr>
-                <th style="text-align: left">Name</th>
-                <th style="text-align: right">Players</th>
-                <th style="text-align: right">Referees</th>
-                <th style="text-align: left">Played on</th>
-                <th style="text-align: left">Venue</th>
-                <th style="text-align: left">Season</th>
+                <th>Name</th>
+                <th>Played</th>
+                <th>Venue</th>
+                <th class="stretch">Season</th>
+                <th class="numeric">Players</th>
+                <th class="numeric">Referees</th>
             </tr>
             <%= render @games %>
         </table>
 
         <%= paginate @games %>
     <% end %>
-
-    <br />
-
-    <%= link_to 'Create a new game', new_admin_game_path %>
 
 </div>

@@ -1,5 +1,12 @@
 <tr>
     <td><%= link_to player.full_name, admin_player_path(player) %></td>
     <td>@<%= player.username %></td>
-    <td style="text-align: right"><%= player.score %></td>
+    <td class="status">
+        <% if player.is_admin %>
+            <div class="status-dot active"></div>
+        <% end %>
+    </td>
+    <td class="numeric stretch"><%= player.score %></td>
+    <td class="numeric"><%= player.games_played %></td>
+    <td class="numeric"><%= player.games_won %></td>
 </tr>

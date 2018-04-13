@@ -1,0 +1,33 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1px solid $border-on-white;
+    &:last-child { border-bottom: none; }
+  }
+
+  th, td {
+    padding: 6px 10px;
+
+    &.numeric {
+      text-align: right;
+    }
+
+    &.status {
+      text-align: center;
+      .status-dot { margin: 0 auto; }
+    }
+
+    &:not(.stretch) {
+      width: 1%;
+      white-space: nowrap;
+    }
+
+  }
+
+  th {
+    text-align: left;
+  }
+
+}

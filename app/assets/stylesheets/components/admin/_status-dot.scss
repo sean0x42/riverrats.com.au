@@ -1,0 +1,11 @@
+.status-dot {
+  $size: 7px;
+  height: $size;
+  width: $size;
+  border-radius: 50%;
+  background: $danger-red;
+
+  &.active {
+    background: $acceptance-green;
+  }
+}
