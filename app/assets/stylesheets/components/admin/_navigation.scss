@@ -1,38 +1,33 @@
 .admin-navigation {
-  flex-shrink: 0;
-  width: 260px;
-  margin-right: 2rem;
-
-  & > h2 {
-    color: lighten($generic-text-bold, 30%);
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    margin: 3rem 0 0;
-    padding-left: 12px;
-    &:first-child { margin: 0 }
-  }
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background: white;
+  z-index: 1000;
 
   ul {
+    display: flex;
+    justify-content: space-around;
     padding: 0;
-    margin: 0.5rem 0 1rem;
+    margin: 0;
     list-style-type: none;
 
     a {
       @include no-select;
       display: flex;
+      flex-direction: column;
+      font-size: 15px;
       color: lighten($generic-text, 15%);
       border-radius: 3px;
       align-items: center;
-      padding: 6px 12px;
+      padding: 6px 1rem;
       margin: 3px 0;
       text-decoration: none;
 
       i {
-        font-size: 22px;
+        font-size: 28px;
         color: lighten($generic-text, 25%);
-        margin: -3px 0.75rem -3px 0;
       }
 
       &:hover {
@@ -40,7 +35,6 @@
       }
 
       &.active {
-        background: white;
         color: darken($branding-primary, 5%);
         i { color: $branding-primary; }
       }
@@ -49,10 +43,63 @@
 
   }
 
-  hr {
-    border: none;
-    border-top: 1px solid hsl(220, 8%, 88%);
-    margin: 2rem 0 1.5rem;
+  & > h2, hr, .copyright {
+    display: none;
+  }
+
+}
+
+
+@media (min-width: 1000px) {
+
+  .admin-navigation {
+    position: relative;
+    width: 270px;
+    flex-shrink: 0;
+    margin-right: 2rem;
+    background: none;
+
+    & > h2 {
+      display: block;
+      color: lighten($generic-text-bold, 30%);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      margin: 3rem 0 0;
+      padding-left: 12px;
+      &:first-child { margin: 0 }
+    }
+
+    ul {
+      display: block;
+      margin: 0.5rem 0 1rem;
+
+      a {
+        flex-direction: row;
+        font-size: 16px;
+        padding: 6px 12px;
+
+        i {
+          font-size: 22px;
+          margin: -3px 0.75rem -3px 0;
+        }
+
+        &.active { background: white; }
+      }
+
+      .more { display: none; }
+    }
+
+    hr {
+      display: block;
+      border: none;
+      border-top: 1px solid $border-on-grey;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .copyright { display: inline; }
+
   }
 
 }

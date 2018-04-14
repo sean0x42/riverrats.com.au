@@ -1,40 +1,48 @@
-<h1>@<%= @player.username %></h1>
+<% content_for :title do %>Player @<%= @player.username %> (Admin)<% end %>
 
-<p>Here's some info about <%= @player.first_name %>:</p>
+<div class="admin-body">
 
-<%= link_to 'View public profile', player_path(@player) %>
+    <p>Here's some info about <%= @player.first_name %>:</p>
 
-<table>
-    <tr>
-        <td>First Name</td>
-        <td><%= @player.first_name %></td>
-    </tr>
-    <tr>
-        <td>Last Name</td>
-        <td><%= @player.last_name %></td>
-    </tr>
-    <tr>
-        <td>Email</td>
-        <td><%= @player.email.blank? ? '[No email given]' : @player.email %></td>
-    </tr>
-    <tr>
-        <td>Is admin?</td>
-        <td><%= @player.is_admin %></td>
-    </tr>
-    <tr>
-        <td>Receiving promotional emails</td>
-        <td><%= @player.notify_promotional %></td>
-    </tr>
-    <tr>
-        <td>Receiving upcoming event emails</td>
-        <td><%= @player.notify_events %></td>
-    </tr>
-    <tr>
-        <td>Sign in count</td>
-        <td><%= @player.sign_in_count %></td>
-    </tr>
-</table>
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td><%= @player.first_name %></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><%= @player.last_name %></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><%= @player.email.blank? ? '[No email given]' : @player.email %></td>
+        </tr>
+        <tr>
+            <td>Is admin?</td>
+            <td><%= @player.is_admin ? 'Yes' : 'No' %></td>
+        </tr>
+        <tr>
+            <td>Receiving promotional emails?</td>
+            <td><%= @player.notify_promotional ? 'Yes' : 'No' %></td>
+        </tr>
+        <tr>
+            <td>Receiving upcoming event emails?</td>
+            <td><%= @player.notify_events ? 'Yes' : 'No' %></td>
+        </tr>
+        <tr>
+            <td>Sign in count</td>
+            <td><%= @player.sign_in_count %></td>
+        </tr>
+    </table>
 
-<br />
-<%= link_to 'Edit', edit_admin_player_path(@player) %> |
-<%= link_to 'Delete', admin_player_path(@player), method: :delete, data: { confirm: t('player.confirm_delete')} %>
+    <div class="buttons">
+
+        <%= link_to edit_admin_player_path(@player), class: 'button', title: 'Edit this player' do %>
+            <span>Edit @<%= @player.username %></span>
+        <% end %>
+
+        <%= link_to 'View public profile', player_path(@player), class: 'button-secondary', title: 'View this players public profile.' %>
+
+    </div>
+
+</div>

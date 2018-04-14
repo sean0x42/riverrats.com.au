@@ -1,12 +1,24 @@
+<% content_for :title do %>Edit <%= @game.name %> (Admin)<% end %>
+
 <% content_for :scripts do %>
     <%= javascript_include_tag 'admin/admin' %>
 <% end %>
 
-<h1>Edit Game</h1>
-<p>Edit a game.</p>
+<div class="admin-body">
 
-<%= render 'form' %>
+    <%= render 'form' %>
 
-<br />
+    <div class="danger-zone">
 
-<%= link_to 'Delete', admin_game_path(@game), method: :delete, data: { confirm: t('game.confirm_delete')} %>
+        <h2>
+            <span>Danger zone</span>
+            <i class="material-icons">&#xE002;</i>
+        </h2>
+
+        <div class="buttons">
+            <%= link_to 'Delete', admin_game_path(@game), method: :delete, data: { confirm: t('game.confirm_delete')}, class: 'button danger' %>
+        </div>
+
+    </div>
+
+</div>

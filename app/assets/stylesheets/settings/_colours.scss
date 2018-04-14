@@ -8,9 +8,9 @@ $branding-secondary-rotated: adjust_hue($branding-secondary, 14deg);
 $branding-secondary-text: hsl(88, 10%, 96%);
 
 // Interface colours
-$danger-red: hsl(6, 78%, 57%);
+$danger-red: hsl(11, 70%, 57%);
 $danger-red-rotated: adjust-hue($danger-red, 8deg);
-$danger-text: hsl(6, 15%, 97%);
+$danger-text: hsl(11, 15%, 97%);
 
 $acceptance-green: hsl(145, 67%, 43%);
 
@@ -23,3 +23,6 @@ $generic-text: hsl(240, 10%, 18%);
 $generic-text-bold: darken($generic-text, 10%);
 
 $border-on-white: hsl(240, 10%, 90%);
+$border-on-grey: hsl(240, 10%, 88%);
+
+$button-border: hsl(282, 15%, 92%);

@@ -1,8 +1,9 @@
+<% content_for :title, 'New game (Admin)' %>
+
 <% content_for :scripts do %>
     <%= javascript_include_tag 'admin/admin' %>
 <% end %>
 
-<h1>New Game</h1>
-<p>Here you can create a new game.</p>
-
-<%= render 'form' %>
+<div class="admin-body">
+    <%= render 'form' %>
+</div>

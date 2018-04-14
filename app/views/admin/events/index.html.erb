@@ -1,5 +1,24 @@
 <div class="admin-body">
 
+    <div class="admin-breakdown">
+
+        <h2>
+            <span>breakdown</span>
+            <i class="material-icons">&#xE8E5;</i>
+        </h2>
+
+        <div class="stats">
+
+            <!-- Upcoming events -->
+            <div class="stat">
+                <p class="value"><%= number_with_delimiter @stats[:upcoming] %></p>
+                <p class="description">upcoming events</p>
+            </div>
+
+        </div>
+
+    </div>
+
     <h2>Upcoming Events</h2>
     <% if @events.empty? %>
         There's nothing here.
@@ -30,9 +49,5 @@
             <%= render partial: 'recurring_event', collection: @recurring_events %>
         </table>
     <% end %>
-
-    <br />
-
-    <%= link_to 'Create a new event', new_admin_event_path %>
 
 </div>

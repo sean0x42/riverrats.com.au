@@ -1,11 +1,6 @@
 <%= form_for [:admin, @game] do |form| %>
 
-    <%= render partial: 'application/form-errors', locals: { object: @game } %>
-
-    <div class="field">
-        <%= form.label :played_on %>
-        <%= form.date_select :played_on, autofocus: true %>
-    </div>
+    <%= render partial: 'application/form-errors', locals: {object: @game} %>
 
     <h3>Players</h3>
     <p><%= link_to 'Create new player', new_admin_player_path, target: '_blank' %> (Opens in a new tab)</p>
@@ -14,7 +9,7 @@
             <%= render 'games_player_fields', f: game_player %>
         <% end %>
         <div class="links">
-            <input type="text" class="typeahead" style="width: 270px;" />
+            <input type="text" class="typeahead" style="width: 270px;"/>
             <%= link_to_add_association 'Add player', form, :games_players, style: 'display: none' %>
         </div>
     </ol>
@@ -25,25 +20,29 @@
             <%= render 'referee_fields', f: referee %>
         <% end %>
         <div class="links">
-            <input type="text" class="typeahead" style="width: 250px;" />
+            <input type="text" class="typeahead" style="width: 250px;"/>
             <%= link_to_add_association 'Add referee', form, :referees, style: 'display: none' %>
         </div>
     </ul>
 
     <div class="field">
-        <%= form.label :venue_id %><br />
+        <%= form.label :played_on %>
+        <%= form.date_select :played_on %>
+    </div>
+
+    <div class="field">
+        <%= form.label :venue_id %><br/>
         <%= form.collection_select :venue_id, Venue.all, :id, :name %>
     </div>
 
     <div class="field">
-        <%= form.label :season_id %><br />
+        <%= form.label :season_id %><br/>
         <%= form.collection_select :season_id, Season.all, :id, :name %>
     </div>
 
-    <div class="field">
-        <br />
-        <%= form.submit %> |
-        <%= link_to 'Cancel', admin_games_path %>
+    <div class="buttons">
+        <%= form.submit class: 'button' %>
+        <%= link_to 'Cancel', admin_games_path, class: 'button-tertiary' %>
     </div>
 
 <% end %>
@@ -62,7 +61,7 @@
         }
     });
 
-    $(".typeahead").typeahead({ highlight: true }, {
+    $(".typeahead").typeahead({highlight: true}, {
         source: players,
         limit: 10,
         display: "name",
@@ -101,7 +100,7 @@
      * @param event Event object.
      * @param result Search result.
      */
-    function select (event, result) {
+    function select(event, result) {
         var link = $(event.target).parent().next("a.add_fields");
         currentResult = result;
         link.click();
@@ -113,7 +112,7 @@
      * @param result Result to format.
      * @returns {string} A string representation of this result.
      */
-    function formatResult (result) {
+    function formatResult(result) {
         return result.name + " &lt;" + result.username + "&gt;";
     }
 

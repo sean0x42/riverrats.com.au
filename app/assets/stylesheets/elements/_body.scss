@@ -2,7 +2,19 @@ body {
   background: hsl(220, 1%, 95%);
   overflow-x: hidden;
   width: 100vw;
-  font-family: 'Inter UI', sans-serif;
+  font-family:
+          'Inter UI',
+          '-apple-system',
+          'system-ui',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica Neue',
+          'Arial',
+          'sans-serif',
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol';
   line-height: 1.75;
   color: $generic-text;
 }

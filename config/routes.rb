@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
+    root to: redirect('/admin/players')
+
     resources :players,
               param: :username
 

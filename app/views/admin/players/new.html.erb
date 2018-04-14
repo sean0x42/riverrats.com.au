@@ -1,5 +1,4 @@
-<h1>New Player</h1>
-<p>Create a new player</p>
+<% content_for :title, 'New player (Admin)' %>
 
 <%= form_for @player, url: { action: 'create' } do |form| %>
 

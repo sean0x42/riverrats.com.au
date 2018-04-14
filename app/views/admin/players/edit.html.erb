@@ -1,39 +1,48 @@
-<h1>Edit @<%= @player.username %></h1>
-<p>Update this players details</p>
+<% content_for :title do %>Edit @<%= @player.username %> (Admin)<% end %>
 
-<%= form_for @player, url: { action: 'update' } do |form| %>
+<div class="admin-body">
 
-    <%= render partial: 'application/form-errors', locals: { object: @player } %>
+    <p>Update this players details</p>
 
-    <div class="field">
-        <%= form.label :username %><br/>
-        <%= form.text_field :username, spellcheck: false %>
-    </div>
+    <%= form_for @player, url: { action: 'update' } do |form| %>
 
-    <div class="field">
-        <%= form.label :first_name %><br/>
-        <%= form.text_field :first_name, spellcheck: false %>
-    </div>
+        <%= render partial: 'application/form-errors', locals: { object: @player } %>
 
-    <div class="field">
-        <%= form.label :last_name %><br />
-        <%= form.text_field :last_name, spellcheck: false %>
-    </div>
+        <div class="field">
+            <%= form.label :username %><br/>
+            <%= form.text_field :username, spellcheck: false %>
+        </div>
 
-    <div class="field">
-        <%= form.label :email %><br/>
-        <%= form.email_field :email %>
-    </div>
+        <div class="field">
+            <%= form.label :first_name %><br/>
+            <%= form.text_field :first_name, spellcheck: false %>
+        </div>
 
-    <div class="field">
-        <%= form.check_box :is_admin %>
-        <%= form.label :is_admin %>
-    </div>
+        <div class="field">
+            <%= form.label :last_name %><br />
+            <%= form.text_field :last_name, spellcheck: false %>
+        </div>
 
-    <div class="actions">
-        <br />
-        <%= form.submit 'Update' %> |
-        <%= link_to 'Cancel', admin_player_path(@player) %>
-    </div>
+        <div class="field">
+            <%= form.label :email %><br/>
+            <%= form.email_field :email %>
+        </div>
 
-<% end %>
+        <div class="field">
+            <%= form.check_box :is_admin %>
+            <%= form.label :is_admin %>
+        </div>
+
+        <div class="actions">
+            <br />
+            <%= form.submit 'Update' %> |
+            <%= link_to 'Cancel', admin_player_path(@player) %>
+        </div>
+
+        <%= link_to admin_player_path(@player), method: :delete, class: 'button-secondary danger', data: { confirm: t('player.confirm_delete')} do %>
+            <span>Delete</span>
+        <% end %>
+
+    <% end %>
+
+</div>

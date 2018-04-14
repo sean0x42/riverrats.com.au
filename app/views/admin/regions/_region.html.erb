@@ -1,5 +1,3 @@
 <tr>
-    <td><%= region.name %></td>
-    <td><%= link_to 'view (public)', region_path(region) %></td>
-    <td><%= link_to 'edit', edit_admin_region_path(region) %></td>
+    <td><%= link_to region.name, edit_admin_region_path(region) %></td>
 </tr>

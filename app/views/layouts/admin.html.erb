@@ -6,13 +6,27 @@
 
 <% content_for :body do %>
 
+    <div class="header" style="width: 100%; background: white; height: 80px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.02), 0 5px 15px rgba(0, 0, 0, 0.02)"></div>
+
+    <!-- Wraps everything into the centre of the page -->
     <div class="admin-wrapper">
 
-        <%= render 'admin/navigation' %>
+        <!--<h1>Players</h1>-->
+        <div class="admin-flex">
+            <%= render 'admin/buttons' %>
+        </div>
 
-        <div class="admin-content-wrapper">
-            <%= yield %><br/>
-            <%= link_to 'Logout', destroy_player_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' } %>
+        <!-- Wraps content side by side-->
+        <div class="admin-flex">
+
+            <%= render 'admin/navigation' %>
+
+            <!-- Wraps right side of content-->
+            <div class="admin-content-wrapper">
+                <%= yield %><br/>
+                <%= link_to 'Logout', destroy_player_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' } %>
+            </div>
+
         </div>
 
     </div>
