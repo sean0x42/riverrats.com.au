@@ -5,7 +5,7 @@
     <ul>
 
         <!-- Players -->
-        <li>
+        <li id="players">
             <%= link_to admin_players_path, title: 'Manage Players', class: controller_name == 'players' ? 'active' : '' do %>
                 <i class="material-icons">&#xE7FB;</i>
                 <span>Players</span>
@@ -13,7 +13,7 @@
         </li>
 
         <!-- Games -->
-        <li>
+        <li id="games">
             <%= link_to admin_games_path, title: 'Manage Games', class: controller_name == 'games' ? 'active' : '' do %>
                 <i class="material-icons">&#xE021;</i>
                 <span>Games</span>
@@ -21,7 +21,7 @@
         </li>
 
         <!-- Events -->
-        <li>
+        <li id="events">
             <%= link_to admin_events_path, title: 'Manage Events', class: controller_name == 'events' ? 'active' : '' do %>
                 <i class="material-icons">&#xE616;</i>
                 <span>Events</span>
@@ -29,7 +29,7 @@
         </li>
 
         <!-- Venues -->
-        <li>
+        <li id="venues">
             <%= link_to admin_venues_path, title: 'Manage Venues', class: controller_name == 'venues' ? 'active' : '' do %>
                 <i class="material-icons">&#xE8F9;</i>
                 <span>Venues</span>
@@ -37,7 +37,7 @@
         </li>
 
         <!-- Regions -->
-        <li>
+        <li id="regions">
             <%= link_to admin_regions_path, title: 'Manage Regions', class: controller_name == 'regions' ? 'active' : '' do %>
                 <i class="material-icons">&#xE0C8;</i>
                 <span>Regions</span>
@@ -56,7 +56,7 @@
 
     <h2>Actions</h2>
 
-    <ul>
+    <ul class="actions">
 
         <!-- Achievements -->
         <li>

@@ -8,17 +8,26 @@
 
     <%= render 'form' %>
 
-    <div class="danger-zone">
+    <% if false %>
+    <section class="danger-zone">
 
-        <h2>
-            <span>Danger zone</span>
-            <i class="material-icons">&#xE002;</i>
-        </h2>
-
-        <div class="buttons">
-            <%= link_to 'Delete', admin_game_path(@game), method: :delete, data: { confirm: t('game.confirm_delete')}, class: 'button danger' %>
+        <div class="section-outline">
+            <h2>
+                <span>Danger zone</span>
+                <i class="material-icons">&#xE002;</i>
+            </h2>
+            <p>Be careful! These actions could have unforeseen consequences.</p>
         </div>
 
-    </div>
+        <div class="section-content">
+            <div class="buttons">
+                <%= link_to admin_game_path(@game), method: :delete, data: { confirm: t('game.confirm_delete')}, class: 'button-secondary danger' do %>
+                    Delete <%= @game.name %>
+                <% end %>
+            </div>
+        </div>
+
+    </section>
+    <% end %>
 
 </div>

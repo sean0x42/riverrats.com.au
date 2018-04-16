@@ -1,6 +1,7 @@
 require 'set'
 
-class Admin::UsernameCollector
+class Admin::AttributeCollector
+
 
   ###
   # Retrieves a hash of player usernames.
@@ -34,14 +35,23 @@ class Admin::UsernameCollector
   def self.from_db (game_id)
 
     # Get all players and referees
-    players  = Player.joins(:games_players).where(games_players: { game_id: game_id })
+    players = Player.joins(:games_players).where(games_players: { game_id: game_id })
     referees = Player.joins(:referees).where(referees: { game_id: game_id })
 
     # Join using an SQL union
     join = Player.from("(#{players.to_sql} UNION #{referees.to_sql}) AS players")
 
-    self.to_name_hash join
+    # Map to attributes array
+    attrs = self.empty_attrs
+    attrs[:names] = join.map { |player| [player.id, player.full_name] }.to_h
+    attrs[:usernames] = join.map { |player| [player.id, "@#{player.username}"] }.to_h
+    return attrs
 
+  end
+
+
+  def self.empty_attrs
+    { names: {}, usernames: {} }.symbolize_keys!
   end
 
 
@@ -52,7 +62,7 @@ class Admin::UsernameCollector
   # @param [Collection] players Collection of players.
   # @return [Hash] A hash in the form { player_id => player_username }
   def self.to_name_hash (players)
-    players.map{ |player| [player.id, "@#{player.username}"] }.to_h
+    players.map { |player| [player.id, "@#{player.username}"] }.to_h
   end
 
 end

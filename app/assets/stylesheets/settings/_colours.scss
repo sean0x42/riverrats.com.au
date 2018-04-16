@@ -1,7 +1,7 @@
 // Branding colours
 $branding-primary: hsl(282, 34%, 48%);
 $branding-primary-rotated: adjust-hue($branding-primary, 18deg);
-$branding-primary-text: hsl(282, 10%, 98%);
+$branding-primary-text: hsl(282, 10%, 99%);
 
 $branding-secondary: hsl(88, 50%, 53%);
 $branding-secondary-rotated: adjust_hue($branding-secondary, 14deg);
@@ -9,7 +9,7 @@ $branding-secondary-text: hsl(88, 10%, 96%);
 
 // Interface colours
 $danger-red: hsl(11, 70%, 57%);
-$danger-red-rotated: adjust-hue($danger-red, 8deg);
+$danger-red-rotated: adjust-hue($danger-red, 4deg);
 $danger-text: hsl(11, 15%, 97%);
 
 $acceptance-green: hsl(145, 67%, 43%);
@@ -22,7 +22,17 @@ $breakdown-text: hsl(38, 15%, 21%);
 $generic-text: hsl(240, 10%, 18%);
 $generic-text-bold: darken($generic-text, 10%);
 
-$border-on-white: hsl(240, 10%, 90%);
-$border-on-grey: hsl(240, 10%, 88%);
+$border-on-white: hsl(240, 8%, 86%);
+$border-on-grey: hsl(240, 8%, 84%);
 
 $button-border: hsl(282, 15%, 92%);
+$input-background: lighten($border-on-white, 12%);
+
+
+// Pikaday
+$pd-day-selected-bg: $branding-primary;
+$pd-day-selected-color: $branding-primary-text;
+$pd-day-today-color: $branding-primary;
+$pd-day-selected-shadow: transparent;
+$pd-day-hover-color: $branding-secondary-text;
+$pd-day-hover-bg: $branding-secondary;

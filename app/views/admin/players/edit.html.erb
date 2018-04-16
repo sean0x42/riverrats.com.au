@@ -2,7 +2,9 @@
 
 <div class="admin-body">
 
-    <p>Update this players details</p>
+    <h1>Hey</h1>
+
+    <p>Update this players details.</p>
 
     <%= form_for @player, url: { action: 'update' } do |form| %>
 
@@ -33,16 +35,28 @@
             <%= form.label :is_admin %>
         </div>
 
-        <div class="actions">
-            <br />
-            <%= form.submit 'Update' %> |
-            <%= link_to 'Cancel', admin_player_path(@player) %>
+        <div class="actions buttons">
+            <%= form.submit value: "Save changes", class: 'button' %>
+            <%= link_to 'Cancel', admin_player_path(@player), class: 'button-tertiary' %>
         </div>
 
-        <%= link_to admin_player_path(@player), method: :delete, class: 'button-secondary danger', data: { confirm: t('player.confirm_delete')} do %>
-            <span>Delete</span>
-        <% end %>
-
     <% end %>
+
+    <div class="danger-zone">
+
+        <h2>
+            <span>Danger zone</span>
+            <i class="material-icons">&#xE002;</i>
+        </h2>
+
+        <p>Be careful! These actions could have unforeseen consequences.</p>
+
+        <div class="buttons">
+            <%= link_to admin_player_path(@player), method: :delete, class: 'button-secondary danger', data: { confirm: t('player.confirm_delete')} do %>
+                Delete @<%= @player.username %>
+            <% end %>
+        </div>
+
+    </div>
 
 </div>

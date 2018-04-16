@@ -1,44 +1,110 @@
-<%= form_for [:admin, @game] do |form| %>
+<%= form_with model: [:admin, @game], data: { remote: false } do |form| %>
 
-    <%= render partial: 'application/form-errors', locals: {object: @game} %>
+    <%= render partial: 'application/form-errors', locals: { object: @game } %>
 
-    <h3>Players</h3>
-    <p><%= link_to 'Create new player', new_admin_player_path, target: '_blank' %> (Opens in a new tab)</p>
-    <ol id="games_players">
-        <%= form.fields_for :games_players do |game_player| %>
-            <%= render 'games_player_fields', f: game_player %>
-        <% end %>
-        <div class="links">
-            <input type="text" class="typeahead" style="width: 270px;"/>
-            <%= link_to_add_association 'Add player', form, :games_players, style: 'display: none' %>
+    <!-- Game information -->
+    <section>
+
+        <div class="section-outline">
+            <h2>About this game</h2>
         </div>
-    </ol>
 
-    <h3>Tournament Directors</h3>
-    <ul id="referees">
-        <%= form.fields_for :referees do |referee| %>
-            <%= render 'referee_fields', f: referee %>
-        <% end %>
-        <div class="links">
-            <input type="text" class="typeahead" style="width: 250px;"/>
-            <%= link_to_add_association 'Add referee', form, :referees, style: 'display: none' %>
+        <div class="section-content">
+
+            <!-- Date played -->
+            <div class="field">
+                <%= form.label :played_on %>
+                <div class="input-wrapper">
+                    <i class="material-icons">&#xE916;</i>
+                    <%= form.text_field :played_on, id: 'game_played_on', class: 'date-input' %>
+                </div>
+            </div>
+
+            <div class="field">
+                <%= form.label :venue_id %><br/>
+                <%= form.collection_select :venue_id, Venue.all, :id, :name %>
+            </div>
+
+            <div class="field">
+                <%= form.label :season_id %><br/>
+                <%= form.collection_select :season_id, Season.all, :id, :name %>
+            </div>
+
         </div>
-    </ul>
 
-    <div class="field">
-        <%= form.label :played_on %>
-        <%= form.date_select :played_on %>
-    </div>
+    </section>
 
-    <div class="field">
-        <%= form.label :venue_id %><br/>
-        <%= form.collection_select :venue_id, Venue.all, :id, :name %>
-    </div>
+    <!-- Game players -->
+    <section>
 
-    <div class="field">
-        <%= form.label :season_id %><br/>
-        <%= form.collection_select :season_id, Season.all, :id, :name %>
-    </div>
+        <div class="section-outline">
+            <h2>Players</h2>
+        </div>
+
+        <div class="section-content">
+
+            <div class="field">
+
+                <p class="tip"><strong>Hint:</strong> Drag and drop players using <i class="material-icons drag-handle">&#xE25D;</i> to reorder them.</p>
+
+                <div id="games_players" class="player-list sortable">
+                    <%= form.fields_for :games_players do |game_player| %>
+                        <%= render 'games_player_fields', f: game_player %>
+                    <% end %>
+                </div>
+
+                <h3>Add Players</h3>
+                <p>Search for players by their username, or full name. Missing someone? <%= link_to 'Create a new player', new_admin_player_path, target: '_blank' %>.</p>
+
+                <div class="player-input-wrapper">
+                    <%= form.text_field :player, class: 'typeahead player-input', name: nil, placeholder: 'Name or username' %>
+                    <%= link_to_add_association 'Add player', form, :games_players, class: 'button-secondary',
+                                                data: {
+                                                    'association-insertion-node': '.player-list#games_players',
+                                                    'association-insertion-method': 'append'
+                                                } %>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Referees -->
+    <section>
+
+        <div class="section-outline">
+            <h2>Tournament directors</h2>
+        </div>
+
+        <div class="section-content">
+
+            <div class="field">
+
+                <div id="referees" class="player-list">
+                    <%= form.fields_for :referees do |referee| %>
+                        <%= render 'referee_fields', f: referee %>
+                    <% end %>
+                </div>
+
+                <h3>Add Directors</h3>
+                <p>Search for players by their username, or full name.</p>
+
+                <div class="player-input-wrapper">
+                    <%= form.text_field :player, class: 'typeahead player-input', name: nil, placeholder: 'Name or username' %>
+                    <%= link_to_add_association 'Add director', form, :referees, class: 'button-secondary',
+                                                data: {
+                                                    'association-insertion-node': '.player-list#referees',
+                                                    'association-insertion-method': 'append'
+                                                } %>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
     <div class="buttons">
         <%= form.submit class: 'button' %>
@@ -46,74 +112,3 @@
     </div>
 
 <% end %>
-
-<script>
-
-    var currentResult = null;
-    var $form = $("form");
-
-    var players = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        remote: {
-            url: '<%= players_auto_complete_path %>?query=%QUERY',
-            wildcard: '%QUERY'
-        }
-    });
-
-    $(".typeahead").typeahead({highlight: true}, {
-        source: players,
-        limit: 10,
-        display: "name",
-        templates: {
-            empty: "<div>No matches.</div>",
-            suggestion: function (data) {
-                return "<div>" + formatResult(data) + "</div>"
-            }
-        }
-    }).bind("typeahead:select", select);
-
-
-    $form.on("cocoon:before-insert", function (event, insertedItem) {
-
-        // Ensure a result was given
-        if (currentResult === null) event.preventDefault();
-
-        insertedItem.children(".player-id").val(currentResult.id);
-        insertedItem.children(".player-label").html(currentResult.username);
-
-        // Clear typeahead
-        $(".typeahead").typeahead("val", "");
-        currentResult = null;
-
-    });
-
-    $form.on("submit", function () {
-        $("#games_players").find(".player-position").each(function (i, element) {
-            $(element).val(i);
-        });
-    });
-
-
-    /**
-     * Handles the typeahead select event.
-     * @param event Event object.
-     * @param result Search result.
-     */
-    function select(event, result) {
-        var link = $(event.target).parent().next("a.add_fields");
-        currentResult = result;
-        link.click();
-    }
-
-
-    /**
-     * Formats a result.
-     * @param result Result to format.
-     * @returns {string} A string representation of this result.
-     */
-    function formatResult(result) {
-        return result.name + " &lt;" + result.username + "&gt;";
-    }
-
-</script>

@@ -3,7 +3,6 @@
  */
 @import "settings/colours";
 
-
 /*
  * Tools
  */
@@ -26,3 +25,5 @@
 @import "components/admin/breakdown";
 @import "components/admin/status-dot";
 @import "components/admin/search";
+@import "components/admin/player-list";
+@import "pikaday";

@@ -16,7 +16,7 @@ class Admin::GamesController < ApplicationController
   # GET /admin/games/new
   def new
     @game = Game.new
-    @names = {}
+    @attrs = Admin::AttributeCollector.empty_attrs
   end
 
   # POST /admin/games
@@ -26,7 +26,7 @@ class Admin::GamesController < ApplicationController
     if @game.save
       redirect_to admin_games_path, notice: t('game.create')  % { game: @game.name }
     else
-      @names = Admin::UsernameCollector.from_params params
+      @attrs = Admin::AttributeCollector.from_params params
       render 'new'
     end
   end
@@ -34,7 +34,7 @@ class Admin::GamesController < ApplicationController
   # GET /admin/games/:id/edit
   def edit
     @game = Game.find params[:id]
-    @names = Admin::UsernameCollector.from_db params[:id]
+    @attrs = Admin::AttributeCollector.from_db params[:id]
   end
 
   # POST /admin/games/:id
@@ -44,7 +44,7 @@ class Admin::GamesController < ApplicationController
     if @game.update games_params
       redirect_to admin_games_path, notice: t('game.update') % { game: @game.name }
     else
-      @names = Admin::UsernameCollector.from_params params
+      @attrs = Admin::AttributeCollector.from_params params
       render 'edit'
     end
   end

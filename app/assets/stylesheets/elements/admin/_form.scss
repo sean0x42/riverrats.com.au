@@ -1,11 +1,24 @@
 form {
+  font-size: 15px;
+
+  h2, h3 {
+    margin: 0 0 1rem;
+    font-size: 15px;
+    font-weight: bold;
+    color: $generic-text-bold;
+  }
+
+  p {
+    margin: 0 0 1rem;
+  }
 
   .field {
-    margin: 1.5rem 0;
+    margin: 0 0 1.5rem;
   }
 
   .buttons {
     margin-top: 2.5rem !important;
+    flex-direction: row-reverse;
   }
 
 }

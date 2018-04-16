@@ -5,6 +5,7 @@
   width: 100vw;
   background: white;
   z-index: 1000;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
 
   ul {
     display: flex;
@@ -17,16 +18,17 @@
       @include no-select;
       display: flex;
       flex-direction: column;
-      font-size: 15px;
+      font-size: 14px;
       color: lighten($generic-text, 15%);
       border-radius: 3px;
       align-items: center;
       padding: 6px 1rem;
-      margin: 3px 0;
+      margin: 3px 3px;
       text-decoration: none;
 
       i {
-        font-size: 28px;
+        padding-top: 6px;
+        font-size: 26px;
         color: lighten($generic-text, 25%);
       }
 
@@ -43,10 +45,26 @@
 
   }
 
-  & > h2, hr, .copyright {
+  & > h2,
+  hr,
+  .copyright,
+  .actions,
+  #regions, #venues {
     display: none;
   }
 
+}
+
+@media (min-width: 410px) {
+  .admin-navigation #venues {
+    display: block;
+  }
+}
+
+@media (min-width: 510px) {
+  .admin-navigation #regions {
+    display: block;
+  }
 }
 
 
@@ -58,6 +76,7 @@
     flex-shrink: 0;
     margin-right: 2rem;
     background: none;
+    box-shadow: none;
 
     & > h2 {
       display: block;
@@ -79,8 +98,10 @@
         flex-direction: row;
         font-size: 16px;
         padding: 6px 12px;
+        margin: 3px 0;
 
         i {
+          padding-top: 0;
           font-size: 22px;
           margin: -3px 0.75rem -3px 0;
         }
@@ -89,6 +110,7 @@
       }
 
       .more { display: none; }
+      &.actions { display: block; }
     }
 
     hr {
