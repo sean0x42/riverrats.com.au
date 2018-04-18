@@ -83,7 +83,8 @@ function onCocoonInsert (event, insertedElement) {
     }
 
     // Update labels
-    insertedElement.children(".player-id").val(currentResult.id);
+    console.log(currentResult);
+    insertedElement.children(".player-id-input").val(currentResult.id);
     insertedElement.children(".player-name").html(currentResult.name);
     insertedElement.children(".player-username").html(currentResult.username);
 

@@ -2,10 +2,7 @@
 
     <div class="admin-breakdown">
 
-        <h2>
-            <span>breakdown</span>
-            <i class="material-icons">&#xE8E5;</i>
-        </h2>
+        <h2><span>breakdown</span><i class="material-icons">&#xE8E5;</i></h2>
 
         <div class="stats">
 
@@ -19,35 +16,21 @@
 
     </div>
 
-    <h2>Upcoming Events</h2>
     <% if @events.empty? %>
         There's nothing here.
     <% else %>
         <table>
             <tr>
+                <th></th>
                 <th>Title</th>
-                <th>Starts at</th>
+                <th class="stretch">Description</th>
+                <th>Start time</th>
+                <th>Venue</th>
             </tr>
             <%= render @events %>
         </table>
 
         <%= paginate @events %>
-    <% end %>
-
-    <h2>Schedulers</h2>
-
-    <% if @recurring_events.empty? %>
-        There's nothing here.
-    <% else %>
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>Starts at</th>
-                <th>Period</th>
-                <th>Interval</th>
-            </tr>
-            <%= render partial: 'recurring_event', collection: @recurring_events %>
-        </table>
     <% end %>
 
 </div>

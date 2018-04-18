@@ -5,7 +5,7 @@ table {
 
   tr {
     border-bottom: 1px solid $border-on-white;
-    &:last-child { border-bottom: none; }
+    //&:last-child { border-bottom: none; }
   }
 
   th, td {
@@ -23,6 +23,15 @@ table {
     &:not(.stretch) {
       width: 1%;
       white-space: nowrap;
+    }
+
+    &.badge-column .badge {
+      color: lighten($generic-text, 8%);
+      background: lighten($border-on-white, 5%);
+      border-radius: 3px;
+      font-size: 13px;
+      padding: 2px;
+      &:before, &:after { content: '\00a0'; }
     }
 
   }

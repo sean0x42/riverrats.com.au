@@ -5,9 +5,8 @@ class Admin::EventsController < ApplicationController
 
   # GET /admin/events
   def index
-    all = Event.where(type: 'Event').order(:start_at)
+    all = SingleEvent.order(start_at: :desc)
     @events = all.page params[:page]
-    @recurring_events = RecurringEvent.all
     @stats = {
       upcoming: all.where('start_at > ? AND start_at < ?', Date.today, Date.today + 2.weeks).count
     }
@@ -57,7 +56,7 @@ class Admin::EventsController < ApplicationController
 
     def event_params
       params.require(:event).permit(
-        :title, :start_at, :venue_id,
+        :title, :description, :start_at, :venue_id,
         :type, :period, :interval, day: []
       )
     end

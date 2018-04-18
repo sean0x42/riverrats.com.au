@@ -1,10 +1,8 @@
 <% content_for :title do %>Edit <%= @game.name %> (Admin)<% end %>
 
-<% content_for :scripts do %>
-    <%= javascript_include_tag 'admin/admin' %>
-<% end %>
-
 <div class="admin-body">
+
+    <h1>Edit <%= @game.name %></h1>
 
     <%= render 'form' %>
 

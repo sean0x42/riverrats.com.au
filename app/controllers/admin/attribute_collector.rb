@@ -42,10 +42,7 @@ class Admin::AttributeCollector
     join = Player.from("(#{players.to_sql} UNION #{referees.to_sql}) AS players")
 
     # Map to attributes array
-    attrs = self.empty_attrs
-    attrs[:names] = join.map { |player| [player.id, player.full_name] }.to_h
-    attrs[:usernames] = join.map { |player| [player.id, "@#{player.username}"] }.to_h
-    return attrs
+    return to_name_hash join
 
   end
 
@@ -62,7 +59,10 @@ class Admin::AttributeCollector
   # @param [Collection] players Collection of players.
   # @return [Hash] A hash in the form { player_id => player_username }
   def self.to_name_hash (players)
-    players.map { |player| [player.id, "@#{player.username}"] }.to_h
+    attrs = self.empty_attrs
+    attrs[:names] = players.map { |player| [player.id, player.full_name] }.to_h
+    attrs[:usernames] = players.map { |player| [player.id, "@#{player.username}"] }.to_h
+    return attrs
   end
 
 end

@@ -39,7 +39,7 @@ class Game < ApplicationRecord
   end
 
   def name
-    "Game ##{self.id}"
+    "##{self.id.to_s.rjust(2, '0')}"
   end
 
 end

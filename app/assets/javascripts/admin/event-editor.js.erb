@@ -1,0 +1,189 @@
+/** @const */
+var timePeriods = {
+    DAILY: {
+        intervalLabel: "day(s)",
+        singular: "day",
+        adverb: "Daily"
+    },
+    WEEKLY: {
+        intervalLabel: "week(s)",
+        singular: "week",
+        adverb: "Weekly"
+    },
+    MONTHLY: {
+        intervalLabel: "month(s)",
+        singular: "month",
+        adverb: "Monthly"
+    },
+    YEARLY: {
+        intervalLabel: "year(s)",
+        singular: "year",
+        adverb: "Yearly"
+    }
+};
+
+
+/**
+ * Updates the recurring summary.
+ */
+function updateSummary () {
+
+    // Collect relevant vars
+    var summary  = "";
+    var period   = timePeriods[$("#event_period").val().toUpperCase()];
+    var interval = parseInt($("#event_interval").val());
+
+    // Handle simple cases
+    if (interval === 1) {
+        summary += period.adverb;
+    } else {
+        summary += "Every " + pluralise(period, interval);
+    }
+
+    // Handle weekly checkboxes
+    if (period === timePeriods.WEEKLY) {
+        summary += " " + generateWeekdaySummary();
+    }
+
+    // Update summary
+    $("#summary").text(summary);
+
+}
+
+
+/**
+ * Generates a summary of the selected weekdays.
+ * @return {string} Summary of weekdays.
+ */
+function generateWeekdaySummary () {
+
+    var value = "";
+    var days = [];
+
+    // Iterate over checkboxes
+    $("#weekday-fields").find("input[type='checkbox']").each(function (count, checkbox) {
+        // Ensure checkbox has been checked
+        var $this = $(checkbox);
+        if ($this.is(":checked")) {
+            days.push($this.val().charAt(0).toUpperCase() + $this.val().slice(1));
+        }
+    });
+
+    // Add string
+    if (days.length === 1) {
+        value += "on " + days[0];
+    } else if (days.length !== 0) {
+
+        // Add each selected day
+        days.forEach(function (day, i) {
+            if (i === 0) {
+                value = "on " + day;
+            } else if (i + 1 === days.length) {
+                value += " and " + day;
+            } else {
+                value += ", " + day;
+            }
+        });
+
+    }
+
+    return value;
+
+}
+
+
+/**
+ * Returns the plural form of the given period.
+ * @param period {Object} Period to pluralise.
+ * @param count {int} Number of periods.
+ */
+function pluralise (period, count) {
+
+    // Check if singular
+    if (count === 1) {
+        return period.singular;
+    }
+
+    var string = count + " ";
+
+    // Ensure key exists
+    if (period.hasOwnProperty("plural")) {
+        string += period.plural;
+    } else {
+        string += period.singular + "s";
+    }
+
+    return string;
+
+}
+
+
+/**
+ * A function which is fired when the period select changes.
+ */
+function onPeriodSelectChange () {
+
+    // Get period
+    var period = timePeriods[$("#event_period").val().toUpperCase()];
+
+    // Update interval label
+    $("#event_interval").children("#interval-label").text(" " + period.intervalLabel + ".");
+
+    // Handle period specific form fields
+    var $weeklyField = $("#weekday-fields");
+    if (period === timePeriods.WEEKLY) {
+        $weeklyField.show();
+    } else {
+        $weeklyField.hide();
+    }
+
+    updateSummary();
+
+}
+
+
+/**
+ * Updates the fields according to the given type
+ */
+function onTypeSelectChange () {
+
+    // Determine whether to show or hide the fields
+    var show = $("#event_type").val() === "<%= RecurringEvent.sti_name %>";
+    var $recurring = $("#recurring-event-fields");
+
+    if (show) {
+        $recurring.show();
+    } else {
+        $recurring.hide();
+    }
+
+}
+
+
+$(document).on("turbolinks:load", function () {
+
+    var $period   = $("#event_period");
+    var $interval = $("#event_interval");
+    var $type     = $("#event_type");
+
+    // Register events
+    $(document).off("change");
+    $(document).on("change", $period,   onPeriodSelectChange);
+    $(document).on("change", $interval, updateSummary);
+    $(document).on("change", $type,     onTypeSelectChange);
+    $(document).on("change", "input[type='checkbox']", updateSummary);
+
+    // Update the existing summary
+    updateSummary();
+
+    // Hide weekly fields if the currently selected period is not weekly
+    if ($period.val() !== "weekly") {
+        $("#weekday-fields").hide();
+    }
+
+    // Hide recurring event fields if necessary
+    if ($type.val() === "<%= SingleEvent.sti_name %>") {
+        $("#recurring-event-fields").hide();
+    }
+
+});

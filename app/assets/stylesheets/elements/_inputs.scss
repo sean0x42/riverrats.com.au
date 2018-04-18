@@ -1,11 +1,15 @@
 body {
 
+  label {
+    margin-bottom: 0.25rem;
+  }
+
   input[type="text"],
   input[type="password"],
   input[type="email"] {
     width: 100%;
     background: $input-background;
-    border: 1px solid $border-on-white;
+    border: 1px solid $input-border;
     border-radius: 2px;
     line-height: 1.0;
     color: $generic-text-bold;

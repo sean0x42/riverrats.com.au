@@ -2,271 +2,138 @@
 
     <%= render partial: 'application/form-errors', locals: { object: @event } %>
 
-    <div class="field">
-        <%= form.label :title %><br />
-        <%= form.text_field :title, autofocus: true, id: 'event_title' %>
-    </div>
-
-    <div class="field">
-        <%= form.label :description %><br />
-        <%= form.text_area :description, id: 'event_description' %>
-    </div>
-
-    <div class="field">
-        <%= form.label :start_at %><br />
-        <%= form.datetime_select :start_at %>
-    </div>
-
-    <br/>
-
-    <div class="field">
-        <%= form.label :type %>
-        <%= form.select :type, options_for_select(
-            [
-                ['One time event',  Event.sti_name],
-                ['Recurring event', RecurringEvent.sti_name]
-            ],
-            @event.type
-        ), {}, id: 'event_type' %>
-    </div>
-
-    <!-- Fields related to a recurring event -->
-    <div id="recurring-event-fields">
-
-        <div class="field">
-            <%= form.label :period, 'Occurs' %>
-            <%= form.select :period, RecurringEvent.periods.keys.to_a, {}, id: 'event_period' %>
+    <!-- Basic event info -->
+    <section>
+        <div class="section-outline">
+            <h2>Basic info</h2>
         </div>
+        <div class="section-content">
 
-        <div class="field">
-            <%= form.label :interval, 'Every' %>
-            <%= form.number_field :interval,
-                                  value: params.has_key?(:interval) ? params[:interval] : 1,
-                                  min: 1, style: 'width: 60px;',
-                                  id: 'event_interval' %>
-            <span id="interval-label">day(s)</span>
+            <!-- Title -->
+            <div class="field">
+                <%= form.label :title %><br/>
+                <%= form.text_field :title, autofocus: true, id: 'event_title' %>
+            </div>
+
+            <!-- Description -->
+            <div class="field">
+                <%= form.label :description %><br/>
+                <%= form.text_area :description, id: 'event_description' %>
+            </div>
+
+            <!-- Event is held at this venue -->
+            <div class="field">
+                <%= form.label :venue_id %><br/>
+                <%= form.collection_select :venue_id, Venue.all, :id, :name %>
+            </div>
+
         </div>
+    </section>
 
-        <div class="field" id="weekday-fields">
-            <%= form.label 'On these days:' %><br/>
-            <%= week_day_checkboxes form, @event %>
+    <!-- Time -->
+    <section>
+        <div class="section-outline">
+            <h2>Occurs at</h2>
         </div>
+        <div class="section-content">
 
-        <p style="font-weight: bold;">Summary: <span id="summary" style="font-weight: normal;"></span></p>
+            <!-- Starts at -->
+            <div class="field">
+                <%= form.label :start_at %><br/>
+                <%= form.datetime_select :start_at %>
+            </div>
 
-    </div>
+            <!-- Recurring or one time -->
+            <div class="field">
+                <%= form.label :type %>
+                <%= form.select :type, options_for_select(
+                    [
+                        ['One time event', SingleEvent.sti_name],
+                        ['Recurring event', RecurringEvent.sti_name]
+                    ],
+                    @event.type
+                ), {}, id: 'event_type' %>
+            </div>
 
-    <br/>
+            <!-- Fields related to a recurring event -->
+            <div id="recurring-event-fields">
 
-    <div class="field">
-        <%= form.label :venue_id %><br />
-        <%= form.collection_select :venue_id, Venue.all, :id, :name %>
-    </div>
+                <!-- Period of time between events -->
+                <div class="field">
+                    <%= form.label :period, 'Occurs' %>
+                    <%= form.select :period, RecurringEvent.periods.keys.to_a, {}, id: 'event_period' %>
+                </div>
 
-    <div class="field">
-        <br />
-        <%= form.submit %> |
-        <%= link_to 'Cancel', admin_events_path %>
+                <!-- Number of periods between events -->
+                <div class="field">
+                    <%= form.label :interval, 'Every' %>
+                    <%= form.number_field :interval,
+                                          value: params.has_key?(:interval) ? params[:interval] : 1,
+                                          min: 1, style: 'width: 60px;',
+                                          id: 'event_interval' %>
+                    <span id="interval-label">day(s)</span>
+                </div>
+
+                <!-- Optional days of the week to perform on -->
+                <div class="field" id="weekday-fields">
+                    <%= form.label 'On these days:' %><br/>
+                    <%= week_day_checkboxes form, @event %>
+                </div>
+
+                <!-- Provides a summary of the recurrence schedule -->
+                <p style="font-weight: bold;">Summary: <span id="summary" style="font-weight: normal;"></span></p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <div class="field buttons">
+        <%= form.submit class: 'button' %>
+        <%= link_to 'Cancel', admin_events_path, class: 'button-tertiary' %>
     </div>
 
 <% end %>
 
 <script>
 
-    var $summary = $("#summary");
-    var $periodField = $("#event_period");
-    var $intervalField = $("#event_interval");
-    var $weeklyField = $("#weekday-fields");
-    var $typeSelect = $("#event_type");
-    var $recurringEventFields = $("#recurring-event-fields");
+//     var $summary = $("#summary");
+//     var $periodField = $("#event_period");
+//     var $intervalField = $("#event_interval");
+//     var $weeklyField = $("#weekday-fields");
+//     var $typeSelect = $("#event_type");
+//     var $recurringEventFields = $("#recurring-event-fields");
 
-    /** @const */
-    var period = {
-        DAILY: {
-            intervalLabel: "day(s)",
-            singular: "day",
-            adverb: "Daily"
-        },
-        WEEKLY: {
-            intervalLabel: "week(s)",
-            singular: "week",
-            adverb: "Weekly"
-        },
-        MONTHLY: {
-            intervalLabel: "month(s)",
-            singular: "month",
-            adverb: "Monthly"
-        },
-        YEARLY: {
-            intervalLabel: "year(s)",
-            singular: "year",
-            adverb: "Yearly"
-        }
-    };
-
-
-    /**
-     * Updates the recurring summary.
-     */
-    function updateSummary () {
-
-        // Collect relevant vars
-        console.debug("Updating summary.");
-        var value         = "";
-        var workingPeriod = period[$periodField.val().toUpperCase()];
-        var interval      = parseInt($intervalField.val());
-
-        // Handle simple cases
-        if (interval === 1) {
-            value += workingPeriod.adverb;
-        } else {
-            value += "Every " + pluralise(workingPeriod, interval);
-        }
-
-        // Handle weekly checkboxes
-        if (workingPeriod === period.WEEKLY) {
-            value += " " + weekdaySummary();
-        }
-
-        // Set text in span
-        $summary.text(value);
-
-    }
-
-
-    /**
-     * Generates a summary of the selected weekdays.
-     * @return {string} Summary of weekdays.
-     */
-    function weekdaySummary () {
-
-        var value = "";
-        var days = [];
-
-        // Iterate over checkboxes
-        $weeklyField.find("input[type='checkbox']").each(function (count, checkbox) {
-            // Ensure checkbox has been checked
-            var $this = $(checkbox);
-            if ($this.is(":checked")) {
-                days.push($this.val().charAt(0).toUpperCase() + $this.val().slice(1));
-            }
-        });
-
-        // Add string
-        if (days.length === 1) {
-            value += "on " + days[0];
-        } else if (days.length !== 0) {
-            days.forEach(function (day, i) {
-                if (i === 0) {
-                    value = "on " + day;
-                } else if (i + 1 === days.length) {
-                    value += " and " + day;
-                } else {
-                    value += ", " + day;
-                }
-            });
-        }
-
-        return value;
-
-    }
-
-
-    /**
-     * Returns the plural form of the given period.
-     * @param period {Object} Period to pluralise.
-     * @param count {int} Number of periods.
-     */
-    function pluralise (period, count) {
-
-        // Check if singular
-        if (count === 1) {
-            return period.singular;
-        }
-
-        var string = count + " ";
-
-        // Ensure key exists
-        if (period.hasOwnProperty("plural")) {
-            string += period.plural;
-        } else {
-            string += period.singular + "s";
-        }
-
-        return string;
-
-    }
-
-
-    /**
-     * A function which is fired when the period select changes.
-     */
-    function onSelectChange () {
-
-        // Get period
-        var workingPeriod = period[$periodField.val().toUpperCase()];
-
-        // Update interval label
-        $intervalField.children("#interval-label").text(" " + workingPeriod.intervalLabel + ".");
-
-        // Handle period specific form fields
-        if (workingPeriod === period.WEEKLY) {
-            $weeklyField.show();
-        } else {
-            $weeklyField.hide();
-        }
-
-        updateSummary();
-
-    }
-
-
-    /**
-     * Updates the fields according to the given type
-     */
-    function updateType () {
-
-        // Determine whether to show or hide the fields
-        var show = $typeSelect.val() === "RecurringEvent";
-
-        if (show) {
-            $recurringEventFields.show();
-        } else {
-            $recurringEventFields.hide();
-        }
-
-    }
-
-
-    // Wait for the DOM to be ready
-    $(document).on("turbolinks:load", function () {
-
-        $summary = $("#summary");
-        $periodField = $("#event_period");
-        $intervalField = $("#event_interval");
-        $weeklyField = $("#weekday-fields");
-        $typeSelect = $("#event_type");
-        $recurringEventFields = $("#recurring-event-fields");
-
-        // Register events
-        $(document).off("change");
-        $(document).on("change", $periodField, onSelectChange);
-        $(document).on("change", $intervalField,  updateSummary);
-        $(document).on("change", "input[type='checkbox']",   updateSummary);
-        $(document).on("change", $typeSelect, updateType);
-
-        updateSummary();
-
-    });
-
-    // Hide weekly fields if the currently selected period is not weekly
-    if ($periodField.val() !== "weekly") {
-        $weeklyField.hide();
-    }
-
-    // Hide recurring event fields if necessary
-    if ($typeSelect.val() === "Event") {
-        $recurringEventFields.hide();
-    }
+    //
+    // // Wait for the DOM to be ready
+    // $(document).on("turbolinks:load", function () {
+    //
+    //     $summary = $("#summary");
+    //     $periodField = $("#event_period");
+    //     $intervalField = $("#event_interval");
+    //     $weeklyField = $("#weekday-fields");
+    //     $typeSelect = $("#event_type");
+    //     $recurringEventFields = $("#recurring-event-fields");
+    //
+    //     // Register events
+    //     $(document).off("change");
+    //     $(document).on("change", $periodField, onSelectChange);
+    //     $(document).on("change", $intervalField,  updateSummary);
+    //     $(document).on("change", "input[type='checkbox']",   updateSummary);
+    //     $(document).on("change", $typeSelect, updateType);
+    //
+    //     updateSummary();
+    //
+    // });
+    //
+    // // Hide weekly fields if the currently selected period is not weekly
+    // if ($periodField.val() !== "weekly") {
+    //     $weeklyField.hide();
+    // }
+    //
+    // // Hide recurring event fields if necessary
+    // if ($typeSelect.val() === "Event") {
+    //     $recurringEventFields.hide();
+    // }
 
 </script>

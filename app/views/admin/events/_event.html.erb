@@ -1,6 +1,13 @@
 <tr>
-    <td><%= event.clean_title %></td>
+    <td class="status">
+        <% if event.has_occurred? %>
+            <div class="status-dot"><i></i></div>
+        <% else %>
+            <div class="status-dot active"><i></i></div>
+        <% end %>
+    </td>
+    <td><%= link_to event.clean_title, edit_admin_event_path(event) %></td>
+    <td class="stretch"><%= event.description.blank? ? 'No description.' : truncate(event.description) %></td>
     <td><%= local_time_ago event.start_at %></td>
-    <td><%= link_to 'view (public)', event_path(event) %></td>
-    <td><%= link_to 'edit', edit_admin_event_path(event) %></td>
+    <td><%= link_to event.venue.name, venue_path(event.venue) %></td>
 </tr>

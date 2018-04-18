@@ -2,10 +2,6 @@ class Event < ApplicationRecord
 
   belongs_to :venue
 
-  default_scope { order(:start_at) }
-
-  paginates_per 50
-
   validates :venue, :start_at,
             presence: true
 
@@ -26,6 +22,10 @@ class Event < ApplicationRecord
       return 'Untitled event'
     end
     title
+  end
+
+  def has_occurred?
+    start_at < Time.now
   end
 
 end

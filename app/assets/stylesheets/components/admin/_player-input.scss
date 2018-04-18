@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 600px;
   background: lighten($input-background, 1%);
-  border: 1px solid $border-on-white;
+  border: 1px solid $input-border;
   border-radius: 2px;
   display: flex;
 
@@ -22,7 +22,7 @@
     border-radius: 0;
     flex-shrink: 0;
     border: none;
-    border-left: 1px solid $border-on-white;
+    border-left: 1px solid $input-border;
   }
 
   .tt-menu {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411132230) do
+ActiveRecord::Schema.define(version: 20180418072826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,13 @@ ActiveRecord::Schema.define(version: 20180411132230) do
     t.datetime "start_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "type", null: false
-    t.integer "period", limit: 2
-    t.integer "interval", limit: 2
+    t.integer "period", limit: 2, default: 1
+    t.integer "interval", limit: 2, default: 1
     t.text "days"
     t.text "description"
+    t.bigint "recurring_event_id"
+    t.string "type", null: false
+    t.index ["recurring_event_id"], name: "index_events_on_recurring_event_id"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
@@ -58,7 +60,7 @@ ActiveRecord::Schema.define(version: 20180411132230) do
     t.bigint "season_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "played_on", default: "2018-04-10", null: false
+    t.date "played_on", default: "2018-04-18", null: false
     t.index ["season_id"], name: "index_games_on_season_id"
     t.index ["venue_id"], name: "index_games_on_venue_id"
   end

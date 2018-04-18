@@ -1,84 +1,59 @@
 
 <div class="admin-body">
 
-    <p>Award a player with an achievement.</p>
+    <h1>Award an Achievement</h1>
 
-    <%= form_for [:admin, @achievement.becomes(Achievement)], html: { multipart: true } do |form| %>
+    <%= form_with model: [:admin, @achievement.becomes(Achievement)], html: { multipart: true }, data: { remote: false } do |form| %>
+
+        <p>Award a player with an achievement.</p>
 
         <%= render partial: 'application/form-errors', locals: { object: @achievement } %>
 
-        <div class="field">
-            <%= form.label :type, 'Achievement' %><br />
-            <%= form.select :type, options_for_select(
-                [
-                    [StraightFlush.title, StraightFlush.sti_name],
-                    [RoyalFlush.title,    RoyalFlush.sti_name]
-                ]
-            ) %>
-        </div>
+        <section>
+            <div class="section-outline">
+                <h2>Basic info</h2>
+            </div>
+            <div class="section-content">
 
-        <div class="field">
-            <%= form.label :player_id %><br/>
-            <%= form.hidden_field :player_id %>
-            <input type="text" class="typeahead" style="width: 250px" value="<%= @player_name %>" />
-        </div>
+                <!-- Achievement -->
+                <div class="field">
+                    <%= form.label :type, 'Achievement' %><br/>
+                    <%= form.select :type, options_for_select(
+                        [
+                            [StraightFlush.title, StraightFlush.sti_name],
+                            [RoyalFlush.title, RoyalFlush.sti_name]
+                        ]
+                    ) %>
+                </div>
 
-        <div class="field">
-            <%= form.label :proof %><br />
-            <%= form.file_field :proof %>
-        </div>
+                <!-- Player -->
+                <div class="field">
+                    <%= form.label :player_id %><br/>
+                    <%= form.hidden_field :player_id %>
+                    <div class="player-input-wrapper">
+                        <%= form.text_field :player,
+                                            class: 'typeahead player-input',
+                                            name: nil,
+                                            placeholder: 'Name or username',
+                                            value: @player_name %>
+                    </div>
+                </div>
 
-        <div class="actions">
-            <br />
-            <%= form.submit 'Award achievement' %> |
-            <%= link_to 'Cancel', admin_players_path %>
+                <!-- Proof -->
+                <div class="field">
+                    <%= form.label :proof %><br/>
+                    <em>Please include a photograph for proof.</em><br/>
+                    <%= form.file_field :proof %>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="actions buttons">
+            <%= form.submit 'Award achievement', class: 'button' %>
+            <%= link_to 'Cancel', admin_players_path, class: 'button-tertiary' %>
         </div>
 
     <% end %>
 
 </div>
-
-<script>
-
-    var players = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        remote: {
-            url: '<%= players_auto_complete_path %>?query=%QUERY',
-            wildcard: '%QUERY'
-        }
-    });
-
-    $(".typeahead").typeahead({ highlight: true }, {
-        source: players,
-        limit: 10,
-        display: "name",
-        templates: {
-            empty: "<div>No matches.</div>",
-            suggestion: function (data) {
-                return "<div>" + formatResult(data) + "</div>"
-            }
-        }
-    }).bind("typeahead:select", select);
-
-
-    /**
-     * Handles the typeahead select event.
-     * @param event Event object.
-     * @param result Search result.
-     */
-    function select (event, result) {
-        $("#achievement_player_id").val(result.id);
-    }
-
-
-    /**
-     * Formats a result.
-     * @param result Result to format.
-     * @returns {string} A string representation of this result.
-     */
-    function formatResult (result) {
-        return result.name + " &lt;" + result.username + "&gt;";
-    }
-
-</script>

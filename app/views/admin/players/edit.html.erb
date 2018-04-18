@@ -2,38 +2,55 @@
 
 <div class="admin-body">
 
-    <h1>Hey</h1>
+    <h1>Edit @<%= @player.username %></h1>
 
-    <p>Update this players details.</p>
 
     <%= form_for @player, url: { action: 'update' } do |form| %>
 
+        <p>Update this players details.</p>
+
         <%= render partial: 'application/form-errors', locals: { object: @player } %>
 
-        <div class="field">
-            <%= form.label :username %><br/>
-            <%= form.text_field :username, spellcheck: false %>
-        </div>
+        <section>
+            <div class="section-outline">
+                <h2>Basic info</h2>
+            </div>
+            <div class="section-content">
+                <div class="field">
+                    <%= form.label :username %><br/>
+                    <%= form.text_field :username, spellcheck: false %>
+                </div>
 
-        <div class="field">
-            <%= form.label :first_name %><br/>
-            <%= form.text_field :first_name, spellcheck: false %>
-        </div>
+                <div class="field">
+                    <%= form.label :first_name %><br/>
+                    <%= form.text_field :first_name, spellcheck: false %>
+                </div>
 
-        <div class="field">
-            <%= form.label :last_name %><br />
-            <%= form.text_field :last_name, spellcheck: false %>
-        </div>
+                <div class="field">
+                    <%= form.label :last_name %><br/>
+                    <%= form.text_field :last_name, spellcheck: false %>
+                </div>
 
-        <div class="field">
-            <%= form.label :email %><br/>
-            <%= form.email_field :email %>
-        </div>
+                <div class="field">
+                    <%= form.label :email %><br/>
+                    <%= form.email_field :email %>
+                </div>
+            </div>
+        </section>
 
-        <div class="field">
-            <%= form.check_box :is_admin %>
-            <%= form.label :is_admin %>
-        </div>
+        <section>
+            <div class="section-outline">
+                <h2>Permissions</h2>
+            </div>
+            <div class="section-content">
+                <div class="field">
+                    <%= form.check_box :is_admin %>
+                    <%= form.label :is_admin %>
+                </div>
+            </div>
+        </section>
+
+
 
         <div class="actions buttons">
             <%= form.submit value: "Save changes", class: 'button' %>
@@ -42,21 +59,21 @@
 
     <% end %>
 
-    <div class="danger-zone">
+</div>
 
-        <h2>
-            <span>Danger zone</span>
-            <i class="material-icons">&#xE002;</i>
-        </h2>
+<div class="danger-zone admin-body">
 
-        <p>Be careful! These actions could have unforeseen consequences.</p>
+    <h2>
+        <span>Danger zone</span>
+        <i class="material-icons">&#xE002;</i>
+    </h2>
 
-        <div class="buttons">
-            <%= link_to admin_player_path(@player), method: :delete, class: 'button-secondary danger', data: { confirm: t('player.confirm_delete')} do %>
-                Delete @<%= @player.username %>
-            <% end %>
-        </div>
+    <p>Be careful! These actions could have unforeseen consequences.</p>
 
+    <div class="buttons">
+        <%= link_to admin_player_path(@player), method: :delete, class: 'button-secondary danger', data: { confirm: t('player.confirm_delete')} do %>
+            Delete @<%= @player.username %>
+        <% end %>
     </div>
 
 </div>

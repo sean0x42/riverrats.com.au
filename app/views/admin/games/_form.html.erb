@@ -1,5 +1,7 @@
 <%= form_with model: [:admin, @game], data: { remote: false } do |form| %>
 
+    <p>Create or update an existing game. Please note that it may take a few seconds, or even minutes, to propagate changes to the players involved.</p>
+
     <%= render partial: 'application/form-errors', locals: { object: @game } %>
 
     <!-- Game information -->

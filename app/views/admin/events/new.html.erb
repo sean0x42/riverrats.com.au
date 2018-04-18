@@ -1,8 +1,14 @@
+<% content_for :title, 'Schedule a new event (Admin)' %>
+
 <% content_for :scripts do %>
     <%= javascript_include_tag 'admin/admin' %>
 <% end %>
 
-<h1>New event</h1>
-<p>Schedule a new event</p>
+<div class="admin-body">
 
-<%= render 'form' %>
+    <h1>New event</h1>
+    <p>Schedule a new event</p>
+
+    <%= render 'form' %>
+
+</div>
