@@ -2,5 +2,30 @@
   position: fixed;
   top: 0;
   right: 0;
-  padding: 1rem;
+  z-index: 10000;
+  padding: 1em;
+  width: 100%;
+  max-width: 400px;
+
+  .flash {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.75em 1.5em;
+    border-radius: 3px;
+    color: $generic-text;
+    background: white;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05),
+    0 5px 15px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid $branding-primary;
+
+    i {
+      color: $branding-primary;
+      font-size: 20px;
+      margin: -0.2rem;
+      margin-right: 0.75rem;
+    }
+
+  }
+
 }

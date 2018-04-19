@@ -21,19 +21,29 @@
                     <%= form.text_field :username, spellcheck: false %>
                 </div>
 
-                <div class="field">
-                    <%= form.label :first_name %><br/>
-                    <%= form.text_field :first_name, spellcheck: false %>
-                </div>
+                <!-- Full name -->
+                <div class="fields">
 
-                <div class="field">
-                    <%= form.label :last_name %><br/>
-                    <%= form.text_field :last_name, spellcheck: false %>
+                    <!-- First name -->
+                    <div class="field">
+                        <%= form.label :first_name %><br/>
+                        <%= form.text_field :first_name, spellcheck: false %>
+                    </div>
+
+                    <!-- Last name -->
+                    <div class="field">
+                        <%= form.label :last_name %><br/>
+                        <%= form.text_field :last_name, spellcheck: false %>
+                    </div>
+
                 </div>
 
                 <div class="field">
                     <%= form.label :email %><br/>
-                    <%= form.email_field :email %>
+                    <div class="input-wrapper">
+                        <i class="material-icons">&#xE0BE;</i>
+                        <%= form.email_field :email %>
+                    </div>
                 </div>
             </div>
         </section>

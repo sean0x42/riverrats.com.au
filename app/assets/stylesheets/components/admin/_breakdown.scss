@@ -1,8 +1,12 @@
 .admin-breakdown {
   margin-bottom: 3rem;
 
-  & > h2 i {
-    color: $breakdown !important;
+  & > h2 {
+    color: $generic-text;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px !important;
+    i { color: $breakdown !important; }
   }
 
   .stats {

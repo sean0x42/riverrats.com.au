@@ -1,45 +1,42 @@
-body {
+label {
+  margin-bottom: 0.25rem;
+}
 
-  label {
-    margin-bottom: 0.25rem;
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  max-width: 320px;
+  background: $input-background;
+  border: 1px solid $input-border;
+  border-radius: 2px;
+  line-height: 1.1;
+  color: $generic-text-bold;
+  padding: 10px 14px;
+  margin-top: 0.25rem;
+}
+
+input[type="password"] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+.input-wrapper {
+  position: relative;
+
+  i {
+    position: absolute;
+    color: lighten($generic-text, 30%);
+    padding: 14px 17px;
+    font-size: 19px;
+    pointer-events: none;
   }
 
-  input[type="text"],
-  input[type="password"],
-  input[type="email"] {
-    width: 100%;
-    background: $input-background;
-    border: 1px solid $input-border;
-    border-radius: 2px;
-    line-height: 1.0;
-    color: $generic-text-bold;
-    padding: 10px 14px;
-    margin-top: 0.25rem;
+  input {
+    padding-left: 48px;
   }
+}
 
-  input[type="password"] {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  }
-
-  .input-wrapper {
-    position: relative;
-
-    i {
-      position: absolute;
-      color: lighten($generic-text, 20%);
-      padding: 13px 17px;
-      font-size: 21px;
-      pointer-events: none;
-    }
-
-    input {
-      padding-left: 48px;
-    }
-  }
-
-  .date-input {
-    max-width: 200px;
-    cursor: pointer;
-  }
-
+.date-input {
+  max-width: 200px;
+  cursor: pointer;
 }

@@ -4,38 +4,8 @@
  */
 
 @import url('https://rsms.me/inter/inter-ui.css');
-
-/*
- * Settings
- */
-@import "settings/fonts";
-@import "settings/colours";
-
-
-/*
- * Tools
- */
-@import "tools/no-select";
-
-
-/*
- * Generic
- */
-@import "generic/hightlight";
-@import "generic/text-rendering";
-
-
-/*
- * Elements
- */
-@import "elements/body";
-@import "elements/headings";
-@import "elements/links";
-@import "elements/inputs";
-
-
-/*
- * Components
- */
-@import "components/button";
-@import "components/flash";
+@import "settings/*";
+@import "tools/*";
+@import "generic/*";
+@import "elements/*";
+@import "components/*";

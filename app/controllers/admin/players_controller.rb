@@ -12,6 +12,7 @@ class Admin::PlayersController < ApplicationController
       new_count: all.where('created_at > ?', Date.today - 30.days).count,
       admin_count: all.where(is_admin: true).count
     }
+    flash[:modal] = Modal.new('Success!', 'You\'ve successfully created a new player! You can view')
   end
 
   # GET /admin/players/:username

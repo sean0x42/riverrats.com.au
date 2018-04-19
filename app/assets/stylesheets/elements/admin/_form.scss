@@ -13,6 +13,12 @@ form {
     max-width: 500px;
   }
 
+  .fields {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .field {
     margin: 0 0 1.5rem;
   }

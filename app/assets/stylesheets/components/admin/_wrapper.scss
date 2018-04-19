@@ -33,10 +33,8 @@
       display: flex;
       align-items: center;
       color: $generic-text-bold;
-      text-transform: uppercase;
-      font-size: 12px;
+      font-size: $font-size;
       font-weight: bold;
-      letter-spacing: 1.5px;
       margin: 0 0 1rem;
 
       i {
@@ -45,7 +43,9 @@
         margin-left: 0.5rem;
         color: $branding-primary;
       }
+
     }
+
   }
 
   .admin-body {
@@ -71,7 +71,7 @@
     display: flex;
     align-items: flex-start;
     border-top: 1px solid $border-on-white;
-    padding: 3rem 0;
+    padding: 4em 0;
   }
 
   .section-outline {

@@ -6,6 +6,10 @@
   border-radius: 2px;
   display: flex;
 
+  input {
+    max-width: none !important;
+  }
+
   .twitter-typeahead {
     flex-grow: 1;
   }

@@ -12,7 +12,10 @@
             <!-- Title -->
             <div class="field">
                 <%= form.label :title %><br/>
-                <%= form.text_field :title, autofocus: true, id: 'event_title' %>
+                <div class="input-wrapper">
+                    <i class="material-icons">&#xE264;</i>
+                    <%= form.text_field :title, autofocus: true, id: 'event_title', placeholder: 'e.g. Mad Monday' %>
+                </div>
             </div>
 
             <!-- Description -->
@@ -94,46 +97,3 @@
     </div>
 
 <% end %>
-
-<script>
-
-//     var $summary = $("#summary");
-//     var $periodField = $("#event_period");
-//     var $intervalField = $("#event_interval");
-//     var $weeklyField = $("#weekday-fields");
-//     var $typeSelect = $("#event_type");
-//     var $recurringEventFields = $("#recurring-event-fields");
-
-    //
-    // // Wait for the DOM to be ready
-    // $(document).on("turbolinks:load", function () {
-    //
-    //     $summary = $("#summary");
-    //     $periodField = $("#event_period");
-    //     $intervalField = $("#event_interval");
-    //     $weeklyField = $("#weekday-fields");
-    //     $typeSelect = $("#event_type");
-    //     $recurringEventFields = $("#recurring-event-fields");
-    //
-    //     // Register events
-    //     $(document).off("change");
-    //     $(document).on("change", $periodField, onSelectChange);
-    //     $(document).on("change", $intervalField,  updateSummary);
-    //     $(document).on("change", "input[type='checkbox']",   updateSummary);
-    //     $(document).on("change", $typeSelect, updateType);
-    //
-    //     updateSummary();
-    //
-    // });
-    //
-    // // Hide weekly fields if the currently selected period is not weekly
-    // if ($periodField.val() !== "weekly") {
-    //     $weeklyField.hide();
-    // }
-    //
-    // // Hide recurring event fields if necessary
-    // if ($typeSelect.val() === "Event") {
-    //     $recurringEventFields.hide();
-    // }
-
-</script>

@@ -1,8 +1,10 @@
-<h1>Edit Region</h1>
-<p>Edit '<%= @region.name %>'.</p>
+<div class="admin-body">
 
-<%= render 'form' %>
+    <h1>Edit Region</h1>
+    <p>Edit '<%= @region.name %>'.</p>
 
-<br />
+    <%= render 'form' %>
+
+</div>
 
 <%= link_to 'Delete', admin_region_path(@region), method: :delete, data: { confirm: t('region.confirm_delete')} %>

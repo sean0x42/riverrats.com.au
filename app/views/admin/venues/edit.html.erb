@@ -1,8 +1,10 @@
-<h1>Edit Venue</h1>
-<p>Edit venue '<%= @venue.name %>'.</p>
+<div class="admin-body">
 
-<%= render 'form' %>
+    <h1>Edit Venue</h1>
+    <p>Edit venue '<%= @venue.name %>'.</p>
 
-<br />
+    <%= render 'form' %>
 
-<%= link_to 'Delete', admin_venue_path(@venue), method: :delete, data: { confirm: t('venue.confirm_delete')} %>
+</div>
+
+<%= link_to 'Delete', admin_venue_path(@venue), method: :delete, data: {confirm: t('venue.confirm_delete')} %>

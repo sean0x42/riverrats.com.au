@@ -1,30 +1,5 @@
-/*
- * Settings
- */
-@import "settings/colours";
-@import "settings/fonts";
-
-/*
- * Tools
- */
+@import "settings/*";
 @import "tools/no-select";
-
-
-/*
- * Elements
- */
-@import "elements/admin/table";
-@import "elements/admin/form";
-
-
-/*
- * Components
- */
-@import "components/admin/navigation";
-@import "components/admin/wrapper";
-@import "components/admin/copyright";
-@import "components/admin/breakdown";
-@import "components/admin/status-dot";
-@import "components/admin/search";
-@import "components/admin/player-list";
+@import "elements/admin/*";
+@import "components/admin/*";
 @import "pikaday";
