@@ -5,6 +5,8 @@ class Game < ApplicationRecord
 
   default_scope { order(id: :desc) }
 
+  searchkick callbacks: :async
+
   has_many :games_players, class_name: 'GamesPlayers', dependent: :nullify, inverse_of: :game
   has_many :players, through: :games_players
 
@@ -38,6 +40,10 @@ class Game < ApplicationRecord
 
   def name
     "##{self.id.to_s.rjust(2, '0')}"
+  end
+
+  def search_data
+    { name: name }
   end
 
 end

@@ -5,7 +5,11 @@ class Admin::VenuesController < ApplicationController
 
   # GET /admin/venues
   def index
-    @venues = Venue.order(:name).page params[:page]
+    if params.has_key? :query
+      @venues = Venue.search params[:query], page: params[:page], per_page: 25
+    else
+      @venues = Venue.page params[:page]
+    end
   end
 
   # GET /admin/venues/new

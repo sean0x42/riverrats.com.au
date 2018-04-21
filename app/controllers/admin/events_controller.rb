@@ -6,12 +6,12 @@ class Admin::EventsController < ApplicationController
   # GET /admin/events
   def index
 
-    all = SingleEvent.order(start_at: :desc)
+    all = SingleEvent.all
 
     if params.has_key? :query
       @events = SingleEvent.search params[:query], page: params[:page], per_page: 25
     else
-      @events = SingleEvent.order(start_at: :desc).where('start_at > ?', Time.now - 2.weeks).page params[:page]
+      @events = SingleEvent.where('start_at > ?', Time.now - 2.weeks).page params[:page]
     end
 
     @stats = {
@@ -56,7 +56,14 @@ class Admin::EventsController < ApplicationController
     @event = Event.find params[:id]
 
     if @event.update event_params
-      redirect_to admin_events_path, notice: t('event.update') % { event: @event.clean_title }
+      flash[:success] = FlashMessage.new(
+        'Success!',
+        t('event.update') % {
+          event: @event.clean_title,
+          link: event_path(@event)
+        }
+      )
+      redirect_to admin_events_path
     else
       render 'edit'
     end

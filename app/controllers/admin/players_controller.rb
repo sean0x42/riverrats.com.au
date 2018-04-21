@@ -6,7 +6,13 @@ class Admin::PlayersController < ApplicationController
   # GET /admin/players
   def index
     all = Player.order(score: :desc)
-    @players      = all.page params[:page]
+
+    if params.has_key? :query
+      @players = Player.search params[:query], page: params[:page], per_page: 25
+    else
+      @players = all.page params[:page]
+    end
+
     @stats = {
       count: all.count,
       new_count: all.where('created_at > ?', Date.today - 30.days).count,

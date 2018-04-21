@@ -5,7 +5,11 @@ class Admin::RegionsController < ApplicationController
 
   # GET /admin/regions
   def index
-    @regions = Region.order(:name).page params[:page]
+    if params.has_key? :query
+      @regions = Region.search params[:query], page: params[:page], per_page: 25
+    else
+      @regions = Region.page params[:page]
+    end
   end
 
   # GET /admin/regions/new
