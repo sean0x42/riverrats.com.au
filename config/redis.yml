@@ -5,5 +5,5 @@ test:
   host: 'localhost'
   port: '6379'
 production:
-  host: 'river-rats-redis.33hoq9.ng.0001.apse2.cache.amazonaws.com'
+  host: 'river-redis.33hoq9.ng.0001.apse2.cache.amazonaws.com'
   port: '6379'
