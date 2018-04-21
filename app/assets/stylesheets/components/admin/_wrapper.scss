@@ -38,7 +38,7 @@
       margin: 0 0 1rem;
 
       i {
-        font-size: 22px;
+        font-size: 19px;
         margin: -0.2rem;
         margin-left: 0.5rem;
         color: $branding-primary;
@@ -55,9 +55,22 @@
     0 5px 15px rgba(0, 0, 0, 0.05);
     & > *:first-child { margin-top:    0; }
     & > *:last-child  { margin-bottom: 0; }
+
     .buttons {
       margin-top: 1.5rem;
       margin-bottom: -0.5rem;
+    }
+
+    .footer {
+      text-align: center;
+      margin: 3rem 0 0;
+
+      p {
+        margin: 1.5rem 0;
+        color: lighten($generic-text, 20%);
+      }
+
+      *:last-child { margin-bottom: 0;}
     }
   }
 

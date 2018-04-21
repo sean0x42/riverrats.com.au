@@ -1,20 +1,32 @@
-<% if flash[:modal] %>
-    <div class="modals">
-        <div class="modal">
-            <%= flash[:modal].title %>
-            <%= flash[:modal].description %>
-        </div>
-    </div>
-<% end %>
+<%# if flash[:modal] %>
+<!--    <div class="modals">-->
+<!--        <div class="modal">-->
+<!--            <h1><%#= flash[:modal].title %></h1>-->
+<!--            <p><%#= flash[:modal].description %></p>-->
+<!--        </div>-->
+<!--    </div>-->
+<%# end %>
 
 <% unless flash.empty? %>
     <div class="flashes">
         <% flash.each do |key, value| %>
-            <% if key != 'modal' %>
+            <% if key != 'success' %>
                 <div class="flash flash-<%= key %>">
-                    <i class="material-icons">&#xE7F4;</i>
-                    <%= value %>
-                    <i class="material-icons">&#xE5CD;</i>
+                    <div class="flash-icon"><i class="material-icons">&#xE88F;</i></div>
+                    <p><%= value %></p>
+                </div>
+            <% else %>
+                <div class="flash flash-success">
+                    <div class="flash-icon">
+                        <i class="material-icons">&#xE88F;</i>
+                    </div>
+
+                    <!-- Flash message -->
+                    <div class="flash-body">
+                        <h1><%= value['title'] %></h1>
+                        <p><%= value['body'] %></p>
+                    </div>
+
                 </div>
             <% end %>
         <% end %>

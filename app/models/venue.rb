@@ -3,8 +3,6 @@ class Venue < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
 
-  paginates_per 50
-
   has_many :players_venues, class_name: 'PlayersVenues', dependent: :nullify
   has_many :players, through: :players_venues
 

@@ -11,7 +11,11 @@
             <%= render @venues %>
         </table>
 
-        <%= paginate @venues %>
+        <div class="footer">
+            <%= paginate @venues %>
+            <p><%= page_entries_info @venues %></p>
+        </div>
+
     <% end %>
 
 </div>

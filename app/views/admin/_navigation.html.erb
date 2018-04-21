@@ -69,7 +69,7 @@
         <!-- Get player emails -->
         <li>
             <%= link_to 'javascript:void(0)' do %>
-                <i class="material-icons">&#xE0E1;</i>
+                <i class="material-icons">&#xE0BE;</i>
                 <span>Generate mailing list</span>
             <% end %>
         </li>
@@ -82,6 +82,18 @@
             <% end %>
         </li>
 
+    </ul>
+
+    <h2>Danger Zone</h2>
+
+    <ul>
+        <!-- Browse job queues -->
+        <li>
+            <%= link_to sidekiq_web_path, data: {confirm: 'Warning! This area is potentially very dangerous! You have been warned.'} do %>
+                <i class="material-icons">&#xE03C;</i>
+                <span>Sidekiq dashboard</span>
+            <% end %>
+        </li>
     </ul>
 
     <hr/>

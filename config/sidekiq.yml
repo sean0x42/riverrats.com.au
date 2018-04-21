@@ -1,5 +1,6 @@
 :concurrency: 5
 :queues:
-  - [searchkick, 2]
-  - mailers
-  - default
+  - [searchkick, 4]
+  - [default, 3]
+  - [mailers, 2]
+  - low_priority

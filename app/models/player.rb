@@ -3,9 +3,8 @@ class Player < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  searchkick callbacks: :async, word_start: [:full_name, :username]
-
-  paginates_per 50
+  searchkick callbacks: :async,
+             word_start: [:full_name, :username]
 
   before_validation :generate_username, on: :create
 

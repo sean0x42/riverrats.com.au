@@ -40,7 +40,10 @@
             <%= render @games %>
         </table>
 
-        <%= paginate @games %>
+        <div class="footer">
+            <%= paginate @games %>
+            <p><%= page_entries_info @games %></p>
+        </div>
     <% end %>
 
 </div>

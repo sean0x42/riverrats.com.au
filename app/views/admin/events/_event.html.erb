@@ -7,7 +7,11 @@
         <% end %>
     </td>
     <td><%= link_to event.clean_title, edit_admin_event_path(event) %></td>
-    <td class="stretch"><%= event.description.blank? ? 'No description.' : truncate(event.description) %></td>
+    <td><%= event.description.blank? ? 'No description.' : truncate(event.description) %></td>
+    <td class="stretch badge-column">
+        <% if event.upcoming? %>
+            <span class="badge">upcoming</span>
+        <% end %>
+    </td>
     <td><%= local_time_ago event.start_at %></td>
-    <td><%= link_to event.venue.name, venue_path(event.venue) %></td>
 </tr>

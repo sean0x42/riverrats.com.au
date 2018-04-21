@@ -12,7 +12,6 @@ class Admin::PlayersController < ApplicationController
       new_count: all.where('created_at > ?', Date.today - 30.days).count,
       admin_count: all.where(is_admin: true).count
     }
-    flash[:modal] = Modal.new('Success!', 'You\'ve successfully created a new player! You can view')
   end
 
   # GET /admin/players/:username
@@ -39,7 +38,16 @@ class Admin::PlayersController < ApplicationController
     end
 
     if @player.save
-      flash[:notice] = t('player.create') % {player: @player.username }
+
+      # Alert player with flash
+      flash[:success] = FlashMessage.new(
+        'Success!',
+        t('player.create') % {
+          player: @player.username,
+          link: player_path(@player)
+        }
+      )
+
       PlayerMailer.welcome(@player, generated_password).deliver_later
       redirect_to admin_players_path
     else

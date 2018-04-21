@@ -48,7 +48,11 @@
             <%= render @players %>
         </table>
 
-        <%= paginate @players %>
+        <div class="footer">
+            <%= paginate @players %>
+            <p><%= page_entries_info @players %></p>
+        </div>
+
     <% end %>
 
 </div>

@@ -1,0 +1,24 @@
+nav.pagination {
+  margin: 2rem 0 0;
+
+  & > div {
+    display: flex;
+    justify-content: center;
+
+    .page {
+      background: $input-background;
+      border-top: 1px solid $border-on-white;
+      border-bottom: 1px solid $border-on-white;
+      line-height: 1;
+
+      a, &.current, &.gap {
+        display: block;
+        padding: 8px 11px;
+        border-right: 1px solid $border-on-white;
+      }
+
+    }
+
+  }
+
+}

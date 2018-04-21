@@ -5,11 +5,21 @@ class Admin::EventsController < ApplicationController
 
   # GET /admin/events
   def index
+
     all = SingleEvent.order(start_at: :desc)
-    @events = all.page params[:page]
+
+    if params.has_key? :query
+      @events = SingleEvent.search params[:query], page: params[:page], per_page: 25
+    else
+      @events = SingleEvent.order(start_at: :desc).where('start_at > ?', Time.now - 2.weeks).page params[:page]
+    end
+
     @stats = {
-      upcoming: all.where('start_at > ? AND start_at < ?', Date.today, Date.today + 2.weeks).count
+      finished: all.where('start_at < ?', Time.now).count,
+      upcoming: all.where('start_at > ? AND start_at < ?', Time.now, Time.now + 2.weeks).count,
+      recurring: RecurringEvent.count
     }
+
   end
 
   # GET /admin/events/new
@@ -18,11 +28,19 @@ class Admin::EventsController < ApplicationController
   end
 
   # POST /admin/events
+  # noinspection RailsChecklist01
   def create
     @event = Event.new event_params
 
     if @event.save
-      redirect_to admin_events_path, notice: t('event.create') % { event: @event.clean_title }
+      flash[:success] = FlashMessage.new(
+        'Success!',
+        t('event.create') % {
+          event: @event.clean_title,
+          link: event_path(@event)
+        }
+      )
+      redirect_to admin_events_path
     else
       render 'new'
     end

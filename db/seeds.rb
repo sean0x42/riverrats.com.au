@@ -21,4 +21,4 @@ if Rails.env.development?
                 ])
 end
 
-SeasonGenJob.perform_now
+SeasonGeneratorJob.perform_now

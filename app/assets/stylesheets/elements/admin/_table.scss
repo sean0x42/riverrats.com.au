@@ -5,7 +5,7 @@ table {
 
   tr {
     border-bottom: 1px solid $border-on-white;
-    //&:last-child { border-bottom: none; }
+    &:last-child { border-bottom: none; }
   }
 
   th, td {

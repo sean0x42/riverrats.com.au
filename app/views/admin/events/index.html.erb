@@ -6,10 +6,22 @@
 
         <div class="stats">
 
+            <!-- Finished events -->
+            <div class="stat">
+                <p class="value"><%= number_with_delimiter @stats[:finished] %></p>
+                <p class="description">events held</p>
+            </div>
+
             <!-- Upcoming events -->
             <div class="stat">
                 <p class="value"><%= number_with_delimiter @stats[:upcoming] %></p>
                 <p class="description">upcoming events</p>
+            </div>
+
+            <!-- Recurring events -->
+            <div class="stat">
+                <p class="value"><%= number_with_delimiter @stats[:recurring] %></p>
+                <p class="description">recurring events</p>
             </div>
 
         </div>
@@ -19,18 +31,23 @@
     <% if @events.empty? %>
         There's nothing here.
     <% else %>
+
         <table>
             <tr>
                 <th></th>
                 <th>Title</th>
-                <th class="stretch">Description</th>
+                <th>Description</th>
+                <th class="stretch"></th>
                 <th>Start time</th>
-                <th>Venue</th>
             </tr>
-            <%= render @events %>
+            <%= render collection: @events, partial: 'admin/events/event' %>
         </table>
 
-        <%= paginate @events %>
+        <div class="footer">
+            <%= paginate @events %>
+            <p><%= page_entries_info @events %></p>
+        </div>
+
     <% end %>
 
 </div>

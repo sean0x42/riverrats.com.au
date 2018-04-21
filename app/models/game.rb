@@ -5,8 +5,6 @@ class Game < ApplicationRecord
 
   default_scope { order(id: :desc) }
 
-  paginates_per 50
-
   has_many :games_players, class_name: 'GamesPlayers', dependent: :nullify, inverse_of: :game
   has_many :players, through: :games_players
 

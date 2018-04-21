@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, @event.becomes(Event)] do |form| %>
+<%= form_with model: [:admin, @event.becomes(Event)], data: { remote: false } do |form| %>
 
     <%= render partial: 'application/form-errors', locals: { object: @event } %>
 
