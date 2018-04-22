@@ -1,3 +1,5 @@
+<% content_for :title, 'All Events (Admin)' %>
+
 <div class="admin-body">
 
     <div class="admin-breakdown">
@@ -29,9 +31,8 @@
     </div>
 
     <% if @events.empty? %>
-        There's nothing here.
+        <%= render partial: 'admin/empty-state', locals: { noun: 'events', link: new_admin_event_path } %>
     <% else %>
-
         <table>
             <tr>
                 <th></th>
@@ -42,12 +43,11 @@
             </tr>
             <%= render collection: @events, partial: 'admin/events/event' %>
         </table>
-
-        <div class="footer">
-            <%= paginate @events %>
-            <p><%= page_entries_info @events %></p>
-        </div>
-
     <% end %>
+
+    <div class="footer">
+        <%= paginate @events %>
+        <p><%= page_entries_info @events %></p>
+    </div>
 
 </div>

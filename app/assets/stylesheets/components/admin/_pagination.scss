@@ -6,15 +6,32 @@ nav.pagination {
     justify-content: center;
 
     .page {
-      background: $input-background;
       border-top: 1px solid $border-on-white;
       border-bottom: 1px solid $border-on-white;
+      border-right: 1px solid $border-on-white;
+      padding-left: 1px;
+
+      &:last-child {
+        border-radius: 0 3px 3px 0;
+      }
+
+      &:first-child {
+        padding-left: 0;
+        border-radius: 3px 0 0 3px;
+        border-left: 1px solid $border-on-white;
+      }
+
       line-height: 1;
 
       a, &.current, &.gap {
         display: block;
         padding: 8px 11px;
-        border-right: 1px solid $border-on-white;
+      }
+
+      &.current {
+        background: $branding-primary;
+        color: $branding-primary-text;
+        border-color: $branding-primary;
       }
 
     }

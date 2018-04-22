@@ -1,7 +1,9 @@
+<% content_for :title, 'All Venues (Admin)' %>
+
 <div class="admin-body">
 
     <% if @venues.empty? %>
-        There's nothing here. <br />
+        <%= render partial: 'admin/empty-state', locals: { noun: 'venues', link: new_admin_venue_path } %>
     <% else %>
         <table>
             <tr>
@@ -10,12 +12,11 @@
             </tr>
             <%= render @venues %>
         </table>
-
-        <div class="footer">
-            <%= paginate @venues %>
-            <p><%= page_entries_info @venues %></p>
-        </div>
-
     <% end %>
+
+    <div class="footer">
+        <%= paginate @venues %>
+        <p><%= page_entries_info @venues %></p>
+    </div>
 
 </div>

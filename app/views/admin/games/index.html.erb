@@ -1,3 +1,5 @@
+<% content_for :title, 'All Games (Admin)' %>
+
 <div class="admin-body">
 
     <div class="admin-breakdown">
@@ -26,7 +28,7 @@
     </div>
 
     <% if @games.empty? %>
-        There's nothing here.<br />
+        <%= render partial: 'admin/empty-state', locals: { noun: 'games', link: new_admin_game_path } %>
     <% else %>
         <table>
             <tr>
@@ -39,11 +41,11 @@
             </tr>
             <%= render @games %>
         </table>
-
-        <div class="footer">
-            <%= paginate @games %>
-            <p><%= page_entries_info @games %></p>
-        </div>
     <% end %>
+
+    <div class="footer">
+        <%= paginate @games %>
+        <p><%= page_entries_info @games %></p>
+    </div>
 
 </div>

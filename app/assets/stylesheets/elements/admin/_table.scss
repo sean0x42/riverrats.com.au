@@ -34,6 +34,21 @@ table {
       &:before, &:after { content: '\00a0'; }
     }
 
+    &.placeholder {
+
+      &.numeric > span {
+        margin-left: auto;
+      }
+
+      & > span {
+        display: block;
+        height: 21px;
+        margin: 2px 0;
+        background: $input-background;
+        border-radius: 3px;
+      }
+    }
+
   }
 
   th {

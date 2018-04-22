@@ -1,4 +1,5 @@
 class RecurringEvent < Event
+  include IceCube
 
   belongs_to :venue
   after_create :on_create

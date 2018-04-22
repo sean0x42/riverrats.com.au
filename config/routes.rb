@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'welcome/index'
-
   require 'sidekiq/web'
   authenticated :player do
     mount Sidekiq::Web => '/sidekiq'
