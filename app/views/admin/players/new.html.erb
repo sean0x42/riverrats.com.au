@@ -1,68 +1,7 @@
 <% content_for :title, 'New player (Admin)' %>
 
 <div class="admin-body">
-
     <h1>Create a player</h1>
-
-
-    <%= form_for @player, url: {action: 'create'} do |form| %>
-
-        <p>Register a new player. The player will be sent a randomly generated password via email.</p>
-
-        <%= render partial: 'application/form-errors', locals: {object: @player} %>
-
-        <section>
-            <div class="section-outline">
-                <h2>Basic Player Info</h2>
-            </div>
-            <div class="section-content">
-
-                <!-- Full name -->
-                <div class="fields">
-
-                    <!-- First name -->
-                    <div class="field">
-                        <%= form.label :first_name %><br/>
-                        <%= form.text_field :first_name, autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
-                    </div>
-
-                    <!-- Last name -->
-                    <div class="field">
-                        <%= form.label :last_name %><br/>
-                        <%= form.text_field :last_name, spellcheck: false, placeholder: 'Surname, family name...' %>
-                    </div>
-
-                </div>
-
-                <!-- Email address -->
-                <div class="field">
-                    <%= form.label :email %><br/>
-                    <div class="input-wrapper">
-                        <i class="material-icons">&#xE0BE;</i>
-                        <%= form.email_field :email, placeholder: 'someone@example.com' %>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section>
-            <div class="section-outline">
-                <h2>Permissions</h2>
-            </div>
-            <div class="section-content">
-                <div class="field">
-                    <%= form.check_box :is_admin %>
-                    <%= form.label :is_admin %>
-                </div>
-            </div>
-        </section>
-
-        <div class="actions buttons">
-            <%= form.submit 'Create new player', class: 'button' %>
-            <%= link_to 'Cancel', admin_players_path, class: 'button-tertiary' %>
-        </div>
-
-    <% end %>
-
+    <p class="form-description">Register a new player. The player will be sent a randomly generated password via email.</p>
+    <%= render 'form' %>
 </div>

@@ -1,14 +1,7 @@
-<% content_for :title, 'Schedule a new event (Admin)' %>
-
-<% content_for :scripts do %>
-    <%= javascript_include_tag 'admin/admin' %>
-<% end %>
+<% content_for :title, 'Schedule an Event (Admin)' %>
 
 <div class="admin-body">
-
     <h1>New event</h1>
-    <p>Schedule a new event</p>
-
+    <p class="form-description">This page allows you to schedule a new event. Note: Recurring events are generated 6 months in advance.</p>
     <%= render 'form' %>
-
 </div>

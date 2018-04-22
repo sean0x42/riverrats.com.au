@@ -1,18 +1,4 @@
-/*
- * Settings
- */
-@import "settings/colours";
-
-
-/*
- * Elements
- */
-@import "elements/authentication/form";
-@import "elements/authentication/headings";
-
-
-/*
- * Components
- */
-@import "components/authentication/logo";
-@import "components/authentication/wrapper";
+@import "settings/*";
+@import "tools/*";
+@import "elements/authentication/*";
+@import "components/authentication/*";

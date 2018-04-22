@@ -2,16 +2,16 @@
 <div class="admin-body">
 
     <h1>Award an Achievement</h1>
+    <p class="form-description">Here you can give some specific achievements to players. Be sure to include a photograph for proof!</p>
 
     <%= form_with model: [:admin, @achievement.becomes(Achievement)], html: { multipart: true }, data: { remote: false } do |form| %>
 
-        <p>Award a player with an achievement.</p>
 
         <%= render partial: 'application/form-errors', locals: { object: @achievement } %>
 
         <section>
             <div class="section-outline">
-                <h2>Basic info</h2>
+                <h2><span>1</span>Achievement details</h2>
             </div>
             <div class="section-content">
 
@@ -29,10 +29,10 @@
                 <!-- Player -->
                 <div class="field">
                     <%= form.label :player_id %><br/>
-                    <%= form.hidden_field :player_id %>
-                    <div class="player-input-wrapper">
+                    <%= form.hidden_field :player_id, id: 'achievement_player_id' %>
+                    <div class="player-input-wrapper" style="max-width: 280px;">
                         <%= form.text_field :player,
-                                            class: 'typeahead player-input',
+                                            class: 'typeahead-achievement player-input',
                                             name: nil,
                                             placeholder: 'Name or username',
                                             value: @player_name %>
@@ -41,9 +41,14 @@
 
                 <!-- Proof -->
                 <div class="field">
-                    <%= form.label :proof %><br/>
-                    <em>Please include a photograph for proof.</em><br/>
-                    <%= form.file_field :proof %>
+                    <label>Proof</label>
+                    <div class="file-button">
+                        <%= form.label :proof, class: 'button-secondary' do %>
+                            <i class="material-icons">&#xE2C6;</i>
+                            <span>No file chosen</span>
+                        <% end %>
+                    </div>
+                    <%= form.file_field :proof, id: 'achievement_proof' %>
                 </div>
 
             </div>

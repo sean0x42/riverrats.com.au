@@ -1,74 +1,9 @@
-<% content_for :title do %>Edit @<%= @player.username %> (Admin)<% end %>
+<% content_for :title, "Edit @#{@player.username} (Admin)" %>
 
 <div class="admin-body">
-
     <h1>Edit @<%= @player.username %></h1>
-
-
-    <%= form_for @player, url: { action: 'update' } do |form| %>
-
-        <p>Update this players details.</p>
-
-        <%= render partial: 'application/form-errors', locals: { object: @player } %>
-
-        <section>
-            <div class="section-outline">
-                <h2>Basic info</h2>
-            </div>
-            <div class="section-content">
-                <div class="field">
-                    <%= form.label :username %><br/>
-                    <%= form.text_field :username, spellcheck: false %>
-                </div>
-
-                <!-- Full name -->
-                <div class="fields">
-
-                    <!-- First name -->
-                    <div class="field">
-                        <%= form.label :first_name %><br/>
-                        <%= form.text_field :first_name, spellcheck: false %>
-                    </div>
-
-                    <!-- Last name -->
-                    <div class="field">
-                        <%= form.label :last_name %><br/>
-                        <%= form.text_field :last_name, spellcheck: false %>
-                    </div>
-
-                </div>
-
-                <div class="field">
-                    <%= form.label :email %><br/>
-                    <div class="input-wrapper">
-                        <i class="material-icons">&#xE0BE;</i>
-                        <%= form.email_field :email %>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-outline">
-                <h2>Permissions</h2>
-            </div>
-            <div class="section-content">
-                <div class="field">
-                    <%= form.check_box :is_admin %>
-                    <%= form.label :is_admin %>
-                </div>
-            </div>
-        </section>
-
-
-
-        <div class="actions buttons">
-            <%= form.submit value: "Save changes", class: 'button' %>
-            <%= link_to 'Cancel', admin_player_path(@player), class: 'button-tertiary' %>
-        </div>
-
-    <% end %>
-
+    <p class="form-description">Update this player. Be careful, this can be dangerous!</p>
+    <%= render 'form' %>
 </div>
 
 <div class="danger-zone admin-body">

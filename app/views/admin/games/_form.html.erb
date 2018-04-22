@@ -1,16 +1,12 @@
 <%= form_with model: [:admin, @game], data: { remote: false } do |form| %>
 
-    <p>Create or update an existing game. Please note that it may take a few seconds, or even minutes, to propagate changes to the players involved.</p>
-
     <%= render partial: 'application/form-errors', locals: { object: @game } %>
 
     <!-- Game information -->
     <section>
-
         <div class="section-outline">
-            <h2>About this game</h2>
+            <h2><span>1</span>Game details</h2>
         </div>
-
         <div class="section-content">
 
             <!-- Date played -->
@@ -18,15 +14,17 @@
                 <%= form.label :played_on %>
                 <div class="input-wrapper">
                     <i class="material-icons">&#xE916;</i>
-                    <%= form.text_field :played_on, id: 'game_played_on', class: 'date-input' %>
+                    <%= form.text_field :played_on, id: 'game_played_on', class: 'date-input', placeholder: 'Click to edit' %>
                 </div>
             </div>
 
+            <!-- Venue -->
             <div class="field">
                 <%= form.label :venue_id %><br/>
                 <%= form.collection_select :venue_id, Venue.all, :id, :name %>
             </div>
 
+            <!-- Season -->
             <div class="field">
                 <%= form.label :season_id %><br/>
                 <%= form.collection_select :season_id, Season.all, :id, :name %>
@@ -38,15 +36,14 @@
 
     <!-- Game players -->
     <section>
-
         <div class="section-outline">
-            <h2>Players</h2>
+            <h2><span>2</span>Players</h2>
         </div>
 
         <div class="section-content">
 
+            <!-- Players -->
             <div class="field">
-
                 <p class="tip"><strong>Hint:</strong> Drag and drop players using <i class="material-icons drag-handle">&#xE25D;</i> to reorder them.</p>
 
                 <div id="games_players" class="player-list sortable">
@@ -77,7 +74,7 @@
     <section>
 
         <div class="section-outline">
-            <h2>Tournament directors</h2>
+            <h2><span>3</span>Tournament directors</h2>
         </div>
 
         <div class="section-content">

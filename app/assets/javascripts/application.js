@@ -11,4 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require turbolinks
 //= require local-time
+//= require_tree ./components/

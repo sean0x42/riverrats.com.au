@@ -71,8 +71,15 @@ class Admin::PlayersController < ApplicationController
     @player = Player.find_by! username: params[:username]
 
     if @player.update edit_params
-      flash[:notice] = t('player.update') % {player: @player.username }
-      redirect_to admin_player_path(@player)
+      # Alert player with flash
+      flash[:success] = FlashMessage.new(
+        'Success!',
+        t('player.update') % {
+          player: @player.username,
+          link: player_path(@player)
+        }
+      )
+      redirect_to admin_players_path
     else
       render 'edit'
     end

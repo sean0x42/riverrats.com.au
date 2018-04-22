@@ -187,9 +187,9 @@ $(document).on("turbolinks:load", function () {
 
     // Register events
     $(document).off("change");
-    $(document).on("change", $period,   onPeriodSelectChange);
+    $(document).on("change", $period, onPeriodSelectChange);
     $(document).on("change", $interval, updateSummary);
-    $(document).on("change", $type,     onTypeSelectChange);
+    $(document).on("change", "#event_type", onTypeSelectChange);
     $(document).on("change", "input[type='checkbox']", updateSummary);
 
     // Update the existing summary

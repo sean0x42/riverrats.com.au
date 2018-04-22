@@ -8,11 +8,6 @@ form {
     color: $generic-text-bold;
   }
 
-  p {
-    margin: 0 0 2rem;
-    max-width: 500px;
-  }
-
   .fields {
     display: grid;
     grid-gap: 2rem;
@@ -28,4 +23,9 @@ form {
     flex-direction: row-reverse;
   }
 
+}
+
+.form-description {
+  margin-bottom: 2rem;
+  max-width: 600px;
 }

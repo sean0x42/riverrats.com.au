@@ -28,12 +28,3 @@ $border-on-grey: hsl(240, 8%, 87%);
 $button-border: hsl(282, 15%, 92%);
 $input-border: darken($border-on-white, 4%);
 $input-background: lighten($border-on-white, 7%);
-
-
-// Pikaday
-$pd-day-selected-bg: $branding-primary;
-$pd-day-selected-color: $branding-primary-text;
-$pd-day-today-color: $branding-primary;
-$pd-day-selected-shadow: transparent;
-$pd-day-hover-color: $branding-secondary-text;
-$pd-day-hover-bg: $branding-secondary;

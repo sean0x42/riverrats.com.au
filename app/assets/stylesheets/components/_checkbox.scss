@@ -1,0 +1,32 @@
+.checkbox {
+  transition: color 300ms;
+
+  input {
+    @include hidden-visually;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+
+    i {
+      @include no-select;
+      color: darken($border-on-white, 10%);
+      cursor: pointer;
+      line-height: 1;
+      vertical-align: middle;
+      margin: -3px;
+      margin-right: 5px;
+    }
+
+    span {
+      vertical-align: middle;
+    }
+
+  }
+
+  &.active {
+    i { color: $branding-primary; }
+  }
+
+}

@@ -1,14 +1,9 @@
-<% content_for :scripts do %>
-    <%= javascript_include_tag 'admin/admin' %>
-<% end %>
+<% content_for :title, 'Edit Event (Admin)' %>
 
 <div class="admin-body">
-
     <h1>Edit <%= @event.clean_title %></h1>
-    <p>Make some changes or something.</p>
-
+    <p class="form-description">Here you can alter the finer details regarding a particular event.</p>
     <%= render 'form' %>
-
 </div>
 
 <br />

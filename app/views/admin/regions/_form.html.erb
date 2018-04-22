@@ -1,16 +1,19 @@
-<%= form_for [:admin, @region] do |form| %>
+<%= form_with model: [:admin, @region], data: { remote: false } do |form| %>
 
     <%= render partial: 'application/form-errors', locals: { object: @region } %>
 
     <section>
         <div class="section-outline">
-            <h2>Region Info</h2>
+            <h2><span>1</span>Region details</h2>
         </div>
         <div class="section-content">
+
+            <!-- Name -->
             <div class="field">
                 <%= form.label :name %><br/>
-                <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Taree' %>
+                <%= form.text_field :name, id: 'region_name', autofocus: true, spellcheck: false, placeholder: 'e.g. Taree' %>
             </div>
+
         </div>
     </section>
 

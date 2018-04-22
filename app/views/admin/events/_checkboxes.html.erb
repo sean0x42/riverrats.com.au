@@ -1,0 +1,9 @@
+<%- week_days.each_with_index do |day, index| %>
+    <div class="checkbox">
+        <%= form.check_box :day, { id: "event_day_#{index}", multiple: true, checked: selected.include?(day) }, day, false %>
+        <%= form.label :day, for: "event_day_#{index}" do %>
+            <i class="material-icons">&#xE835;</i>
+            <span><%= day.titleize %></span>
+        <% end %>
+    </div>
+<%- end %>

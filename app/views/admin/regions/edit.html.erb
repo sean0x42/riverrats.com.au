@@ -1,10 +1,9 @@
+<% content_for :title, "Edit #{@region.name} (Admin)" %>
+
 <div class="admin-body">
-
-    <h1>Edit Region</h1>
-    <p>Edit '<%= @region.name %>'.</p>
-
+    <h1>Edit <%= @region.name %></h1>
+    <p class="form-description">Make some changes to this region.</p>
     <%= render 'form' %>
-
 </div>
 
 <%= link_to 'Delete', admin_region_path(@region), method: :delete, data: { confirm: t('region.confirm_delete')} %>

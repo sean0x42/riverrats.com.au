@@ -5,7 +5,7 @@
     <!-- Basic event info -->
     <section>
         <div class="section-outline">
-            <h2>Basic info</h2>
+            <h2><span>1</span>Event details</h2>
         </div>
         <div class="section-content">
 
@@ -36,57 +36,64 @@
     <!-- Time -->
     <section>
         <div class="section-outline">
-            <h2>Occurs at</h2>
+            <h2><span>2</span>Timing</h2>
         </div>
         <div class="section-content">
 
             <!-- Starts at -->
             <div class="field">
                 <%= form.label :start_at %><br/>
-                <%= form.datetime_select :start_at %>
+                <div class="input-wrapper">
+                    <i class="material-icons">&#xE192;</i>
+                    <%= form.datetime_field :start_at, class: 'date-time-input', placeholder: 'Click to edit' %>
+                </div>
             </div>
 
-            <!-- Recurring or one time -->
-            <div class="field">
-                <%= form.label :type %>
-                <%= form.select :type, options_for_select(
-                    [
-                        ['One time event', SingleEvent.sti_name],
-                        ['Recurring event', RecurringEvent.sti_name]
-                    ],
-                    @event.type
-                ), {}, id: 'event_type' %>
-            </div>
+            <%- unless @event.persisted? %>
 
-            <!-- Fields related to a recurring event -->
-            <div id="recurring-event-fields">
-
-                <!-- Period of time between events -->
+                <!-- Recurring or one time -->
                 <div class="field">
-                    <%= form.label :period, 'Occurs' %>
-                    <%= form.select :period, RecurringEvent.periods.keys.to_a, {}, id: 'event_period' %>
+                    <%= form.label :type %>
+                    <%= form.select :type, options_for_select(
+                        [
+                            ['One time event', SingleEvent.sti_name],
+                            ['Recurring event', RecurringEvent.sti_name]
+                        ],
+                        @event.type
+                    ), {}, id: 'event_type' %>
                 </div>
 
-                <!-- Number of periods between events -->
-                <div class="field">
-                    <%= form.label :interval, 'Every' %>
-                    <%= form.number_field :interval,
-                                          value: params.has_key?(:interval) ? params[:interval] : 1,
-                                          min: 1, style: 'width: 60px;',
-                                          id: 'event_interval' %>
-                    <span id="interval-label">day(s)</span>
+                <!-- Fields related to a recurring event -->
+                <div id="recurring-event-fields">
+
+                    <!-- Period of time between events -->
+                    <div class="field">
+                        <%= form.label :period, 'Occurs' %>
+                        <%= form.select :period, RecurringEvent.periods.keys.to_a, {}, id: 'event_period' %>
+                    </div>
+
+                    <!-- Number of periods between events -->
+                    <div class="field">
+                        <%= form.label :interval, 'Every' %>
+                        <%= form.number_field :interval,
+                                              value: params.has_key?(:interval) ? params[:interval] : 1,
+                                              min: 1, style: 'width: 60px;',
+                                              id: 'event_interval' %>
+                        <span id="interval-label">day(s)</span>
+                    </div>
+
+                    <!-- Optional days of the week to perform on -->
+                    <div class="field" id="weekday-fields">
+                        <%= form.label 'On these days:' %><br/>
+                        <%= week_day_checkboxes form, @event %>
+                    </div>
+
+                    <!-- Provides a summary of the recurrence schedule -->
+                    <p style="font-weight: bold;">Summary: <span id="summary" style="font-weight: normal;"></span></p>
+
                 </div>
 
-                <!-- Optional days of the week to perform on -->
-                <div class="field" id="weekday-fields">
-                    <%= form.label 'On these days:' %><br/>
-                    <%= week_day_checkboxes form, @event %>
-                </div>
-
-                <!-- Provides a summary of the recurrence schedule -->
-                <p style="font-weight: bold;">Summary: <span id="summary" style="font-weight: normal;"></span></p>
-
-            </div>
+            <% end %>
 
         </div>
     </section>

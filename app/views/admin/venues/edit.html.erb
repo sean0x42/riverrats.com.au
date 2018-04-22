@@ -1,10 +1,9 @@
+<% content_for :title, "Edit #{@venue.name} (Admin)" %>
+
 <div class="admin-body">
-
-    <h1>Edit Venue</h1>
-    <p>Edit venue '<%= @venue.name %>'.</p>
-
+    <h1>Edit <%= @venue.name %></h1>
+    <p class="form-description">Make some changes to this venue.</p>
     <%= render 'form' %>
-
 </div>
 
 <%= link_to 'Delete', admin_venue_path(@venue), method: :delete, data: {confirm: t('venue.confirm_delete')} %>

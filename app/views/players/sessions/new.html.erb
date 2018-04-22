@@ -1,30 +1,33 @@
-<% content_for :title do %>Sign in<% end %>
+<% content_for :title, 'Sign in' %>
 <% content_for :description do %><%= t('description.players.sessions.new') %><% end %>
 
-<!--<h1>Welcome back!</h1>-->
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
 
     <div class="field">
-        <%= f.label :login, 'Email or username' %><br/>
-        <%= f.text_field :login, autofocus: true %>
+        <%= form.label :login, 'Email or username' %><br/>
+        <%= form.text_field :login, autofocus: true %>
     </div>
 
     <div class="field">
-        <%= f.label :password %><br/>
-        <%= f.password_field :password, autocomplete: 'off' %>
+        <%= form.label :password %><br/>
+        <%= form.password_field :password, autocomplete: 'off' %>
     </div>
 
     <div class="field remember-and-forget">
         <div class="remember">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
+            <div class="checkbox">
+                <%= form.check_box :remember_me %>
+                <%= form.label :remember_me do %>
+                    <i class="material-icons">&#xE835;</i>
+                    <span>Remember me</span>
+                <% end %>
+            </div>
         </div>
-        <%= link_to 'Forgot your password?', new_password_path(resource_name) %>
+        <%= link_to 'Forgot password?', new_password_path(resource_name) %>
     </div>
 
     <div class="actions">
-        <%= f.submit 'Sign in', class: 'button wide' %>
+        <%= form.submit 'Sign in', class: 'button wide' %>
     </div>
 
     <div class="form-footer">

@@ -1,8 +1,9 @@
-<% content_for :title do %>Edit <%= @game.name %> (Admin)<% end %>
+<% content_for :title, "Edit Game #{@game.name} (Admin)" %>
 
 <div class="admin-body">
 
-    <h1>Edit <%= @game.name %></h1>
+    <h1>Edit Game <%= @game.name %></h1>
+    <p class="form-description">Update an old game. Note: It may take a few minutes for the changes made here to propagate to each of the players involved.</p>
 
     <%= render 'form' %>
 

@@ -4,7 +4,7 @@
 
     <section>
         <div class="section-outline">
-            <h2>Basic Venue Info</h2>
+            <h2><span>1</span>Venue details</h2>
         </div>
         <div class="section-content">
 
@@ -14,10 +14,20 @@
                 <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Nabiac Hotel' %>
             </div>
 
+        </div>
+    </section>
+
+
+    <section>
+        <div class="section-outline">
+            <h2><span>2</span>Location</h2>
+        </div>
+        <div class="section-content">
+
             <!-- Region -->
             <div class="field">
                 <%= form.label :region_id %><br/>
-                <%= form.collection_select(:region_id, Region.all, :id, :name) %>
+                <%= form.collection_select :region_id, Region.all, :id, :name %>
             </div>
 
         </div>

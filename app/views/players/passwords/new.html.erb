@@ -1,13 +1,14 @@
-<% content_for :title do %>Forgot your password?<% end %>
-
-<!--<h1>Forgot your password?</h1>-->
+<% content_for :title, 'Forgot your password?' %>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
     <%= devise_error_messages! %>
 
     <div class="field">
         <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, placeholder: 'someone@example.com' %>
+        <div class="input-wrapper">
+            <i class="material-icons">&#xE0BE;</i>
+            <%= f.email_field :email, autofocus: true, placeholder: 'someone@example.com' %>
+        </div>
     </div>
 
     <div class="actions">

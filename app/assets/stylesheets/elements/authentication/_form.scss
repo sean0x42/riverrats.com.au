@@ -1,58 +1,65 @@
-body.authentication form {
-  background: white;
-  overflow: hidden;
-  padding: calc(1rem + 6px) 2rem 2rem;
-  position: relative;
-  border-radius: 3px;
-  margin: 2rem 0;
-  font-size: 15px;
-  box-shadow:
-          0 15px 35px rgba(0, 0, 0, 0.05),
-          0 5px 15px rgba(0, 0, 0, 0.05);
+body.authentication {
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
-  }
+  form {
+    background: white;
+    overflow: hidden;
+    padding: calc(1rem + 6px) 2rem 2rem;
+    position: relative;
+    border-radius: 3px;
+    margin: 2rem 0;
+    font-size: 15px;
+    box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.05),
+            0 5px 15px rgba(0, 0, 0, 0.05);
 
-  .button {
-    margin-top: 2rem;
-  }
-
-  .field {
-    margin: 1rem 0;
-  }
-
-  .form-footer {
-    border-top: 1px solid hsl(220, 8%, 88%);
-    background: hsl(220, 8%, 98%);
-    padding: 1.5rem 2rem;
-    text-align: center;
-    margin: 2rem -2rem -2rem -2rem;
-
-    p {
-      color: lighten($generic-text, 25%);
-      margin: 0;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
     }
-  }
 
-  .remember-and-forget {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    .remember { margin-right: auto; }
-    margin: 1.5rem 0;
-  }
+    .button {
+      margin-top: 2rem;
+    }
 
-  hr {
-    border: none;
-    border-top: 1px solid hsl(220, 8%, 88%);
-    margin: 2rem 0 1.5rem;
+    .field {
+      margin: 1rem 0;
+    }
+
+    .form-footer {
+      border-top: 1px solid hsl(220, 8%, 88%);
+      background: hsl(220, 8%, 98%);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      margin: 2rem -2rem -2rem -2rem;
+
+      p {
+        color: lighten($generic-text, 25%);
+        margin: 0;
+      }
+    }
+
+    .remember-and-forget {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      .remember { margin-right: auto; }
+      margin: 2rem 0 1.5rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid hsl(220, 8%, 88%);
+      margin: 2rem 0 1.5rem;
+    }
+
+    input {
+      max-width: none;
+    }
   }
 
 }

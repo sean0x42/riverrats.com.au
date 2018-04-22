@@ -11,6 +11,7 @@
 }
 
 .button, .button-secondary, .button-tertiary {
+  @include no-select;
   display: flex;
   align-items: center;
   font-size: $font-size - 1px;
@@ -27,8 +28,8 @@
   & > i {
     font-size: 22px;
     font-weight: normal;
-    margin: -0.25rem;
-    margin-right: 0.75em;
+    margin: -3px -6px;
+    margin-right: 0.5em;
   }
 
   &.wide {

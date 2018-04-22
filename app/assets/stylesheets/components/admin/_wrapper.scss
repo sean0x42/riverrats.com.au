@@ -90,6 +90,20 @@
   .section-outline {
     width: 33%;
     max-width: 33%;
+
+    h2 {
+      & > span {
+        width: 28px;
+        height: 28px;
+        text-align: center;
+        color: $branding-primary;
+        font-size: 14px;
+        font-weight: bold;
+        border: 2px solid $branding-primary;
+        border-radius: 50%;
+        margin-right: 0.75rem;
+      }
+    }
   }
 
   .section-content {
