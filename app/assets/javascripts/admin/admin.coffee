@@ -6,5 +6,5 @@
 #= require_tree .
 
 $(document).on 'turbolinks:load', ->
-  flatpickr ".date-input", { altInput: true }
-  flatpickr ".date-time-input", { enableTime: true, altInput: true }
+  flatpickr ".date-input:not([type='hidden'])", { altInput: true }
+  flatpickr ".date-time-input:not([type='hidden'])", { enableTime: true, altInput: true }

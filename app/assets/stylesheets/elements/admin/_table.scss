@@ -1,4 +1,10 @@
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
 table {
+  display: block;
   width: 100%;
   border-collapse: collapse;
   font-size: 15px;

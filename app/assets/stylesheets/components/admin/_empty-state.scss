@@ -1,5 +1,7 @@
 .empty-wrapper {
   position: relative;
+  width: 100%;
+  overflow: hidden;
 
   .empty-state {
     position: absolute;

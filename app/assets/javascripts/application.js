@@ -14,3 +14,4 @@
 //= require turbolinks
 //= require local-time
 //= require_tree ./components/
+//= require_tree ./util/

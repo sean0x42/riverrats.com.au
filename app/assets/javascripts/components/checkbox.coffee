@@ -2,11 +2,6 @@ iconEntities =
   CHECKED: "&#xE834;"
   UNCHECKED: "&#xE835;"
 
-
-matches = (el, selector) ->
-  (el.matches or el.matchesSelector or el.msMatchesSelector or el.mozMatchesSelector or el.webkitMatchesSelector or el.oMatchesSelector).call el, selector
-
-
 updateCheckbox = (checkbox) ->
   input = checkbox.querySelector "input[type='checkbox']"
   icon  = checkbox.querySelector "i.material-icons"

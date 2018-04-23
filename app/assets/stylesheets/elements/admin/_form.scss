@@ -19,8 +19,35 @@ form {
   }
 
   .buttons {
-    margin-top: 2.5rem !important;
+    margin-top: 0 !important;
     flex-direction: row-reverse;
+  }
+
+  section {
+    border-top: 1px solid $border-on-white;
+    padding: 4em 0;
+  }
+
+  .section-outline {
+    margin-bottom: 2rem;
+
+    h2 > span {
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      color: $branding-primary;
+      font-size: 14px;
+      font-weight: bold;
+      border: 2px solid $branding-primary;
+      border-radius: 50%;
+      margin-right: 0.75rem;
+    }
+
+  }
+
+  .section-content {
+    & > *:first-child { margin-top:    0; }
+    & > *:last-child  { margin-bottom: 0; }
   }
 
 }
@@ -28,4 +55,30 @@ form {
 .form-description {
   margin-bottom: 2rem;
   max-width: 600px;
+}
+
+
+@media (min-width: 800px) {
+
+  form {
+    .buttons {
+      margin-top: 2.5rem !important;
+    }
+  }
+
+  section {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .section-outline {
+    width: 33%;
+    max-width: 33%;
+    margin-bottom: none;
+  }
+
+  .section-content {
+    width: 66%;
+  }
+
 }

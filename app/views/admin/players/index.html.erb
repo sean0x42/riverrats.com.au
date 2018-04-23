@@ -36,17 +36,19 @@
     <%- if @players.empty? %>
         <%= render partial: 'admin/empty-state', locals: { noun: 'players', link: new_admin_player_path } %>
     <%- else %>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Username</th>
-                <th class="badge-column"></th>
-                <th class="numeric stretch">Score</th>
-                <th class="numeric">Played</th>
-                <th class="numeric">Won</th>
-            </tr>
-            <%= render @players %>
-        </table>
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th class="badge-column"></th>
+                    <th class="numeric stretch">Score</th>
+                    <th class="numeric">Played</th>
+                    <th class="numeric">Won</th>
+                </tr>
+                <%= render @players %>
+            </table>
+        </div>
     <%- end %>
 
     <div class="footer">

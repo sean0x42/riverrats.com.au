@@ -17,7 +17,19 @@ input[type="email"] {
   margin-top: 0.25rem;
 }
 
-input[type="password"] { font-family: $font-stack; }
+input[type="password"] { font-family:
+        '-apple-system',
+        'system-ui',
+        'BlinkMacSystemFont',
+        'Segoe UI',
+        'Roboto',
+        'Helvetica Neue',
+        'Arial',
+        'sans-serif',
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol';
+}
 
 .input-wrapper {
   position: relative;

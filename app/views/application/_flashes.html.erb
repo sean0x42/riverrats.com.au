@@ -1,12 +1,3 @@
-<%# if flash[:modal] %>
-<!--    <div class="modals">-->
-<!--        <div class="modal">-->
-<!--            <h1><%#= flash[:modal].title %></h1>-->
-<!--            <p><%#= flash[:modal].description %></p>-->
-<!--        </div>-->
-<!--    </div>-->
-<%# end %>
-
 <% unless flash.empty? %>
     <div class="flashes">
         <% flash.each do |key, value| %>

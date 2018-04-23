@@ -1,8 +1,8 @@
-<div class="admin-navigation">
+<nav class="admin-navigation">
 
     <h2>Navigation</h2>
 
-    <ul>
+    <ul style="margin-bottom: 0">
 
         <!-- Players -->
         <li id="players">
@@ -54,49 +54,104 @@
 
     </ul>
 
-    <h2>Actions</h2>
+    <div class="overflow-navigation">
 
-    <ul class="actions">
+        <div class="normal-nav">
 
-        <!-- Achievements -->
-        <li>
-            <%= link_to new_admin_achievement_path, title: 'Manage Achievements', class: controller_name == 'achievements' ? 'active' : '' do %>
-                <i class="material-icons">&#xE8E6;</i>
-                <span>Award achievements</span>
-            <% end %>
-        </li>
+            <h2>Navigation</h2>
 
-        <!-- Get player emails -->
-        <li>
-            <%= link_to 'javascript:void(0)' do %>
-                <i class="material-icons">&#xE0BE;</i>
-                <span>Generate mailing list</span>
-            <% end %>
-        </li>
+            <ul>
 
-        <!-- Top monthly scores -->
-        <li>
-            <%= link_to 'javascript:void(0)' do %>
-                <i class="material-icons">&#xE8AD;</i>
-                <span>Print monthly scores</span>
-            <% end %>
-        </li>
+                <!-- Players -->
+                <li>
+                    <%= link_to admin_players_path, title: 'Manage Players', class: controller_name == 'players' ? 'active' : '' do %>
+                        <i class="material-icons">&#xE7FB;</i>
+                        <span>Players</span>
+                    <% end %>
+                </li>
 
-    </ul>
+                <!-- Games -->
+                <li>
+                    <%= link_to admin_games_path, title: 'Manage Games', class: controller_name == 'games' ? 'active' : '' do %>
+                        <i class="material-icons">&#xE021;</i>
+                        <span>Games</span>
+                    <% end %>
+                </li>
 
-    <h2>Danger Zone</h2>
+                <!-- Events -->
+                <li>
+                    <%= link_to admin_events_path, title: 'Manage Events', class: controller_name == 'events' ? 'active' : '' do %>
+                        <i class="material-icons">&#xE616;</i>
+                        <span>Events</span>
+                    <% end %>
+                </li>
 
-    <ul>
-        <!-- Browse job queues -->
-        <li>
-            <%= link_to sidekiq_web_path, data: {confirm: 'Warning! This area is potentially very dangerous! You have been warned.'} do %>
-                <i class="material-icons">&#xE03C;</i>
-                <span>Sidekiq dashboard</span>
-            <% end %>
-        </li>
-    </ul>
+                <!-- Venues -->
+                <li>
+                    <%= link_to admin_venues_path, title: 'Manage Venues', class: controller_name == 'venues' ? 'active' : '' do %>
+                        <i class="material-icons">&#xE8F9;</i>
+                        <span>Venues</span>
+                    <% end %>
+                </li>
+
+                <!-- Regions -->
+                <li>
+                    <%= link_to admin_regions_path, title: 'Manage Regions', class: controller_name == 'regions' ? 'active' : '' do %>
+                        <i class="material-icons">&#xE0C8;</i>
+                        <span>Regions</span>
+                    <% end %>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <h2>Actions</h2>
+
+        <ul class="actions">
+
+            <!-- Achievements -->
+            <li>
+                <%= link_to new_admin_achievement_path, title: 'Manage Achievements', class: controller_name == 'achievements' ? 'active' : '' do %>
+                    <i class="material-icons">&#xE8E6;</i>
+                    <span>Award achievements</span>
+                <% end %>
+            </li>
+
+            <!-- Get player emails -->
+            <li>
+                <%= link_to 'javascript:void(0)' do %>
+                    <i class="material-icons">&#xE0BE;</i>
+                    <span>Generate mailing list</span>
+                <% end %>
+            </li>
+
+            <!-- Top monthly scores -->
+            <li>
+                <%= link_to 'javascript:void(0)' do %>
+                    <i class="material-icons">&#xE8AD;</i>
+                    <span>Print monthly scores</span>
+                <% end %>
+            </li>
+
+        </ul>
+
+        <h2>Danger Zone</h2>
+
+        <ul class="danger-zone">
+
+            <!-- Browse job queues -->
+            <li>
+                <%= link_to sidekiq_web_path, data: {confirm: 'Warning! This area is potentially very dangerous! You have been warned.'} do %>
+                    <i class="material-icons">&#xE03C;</i>
+                    <span>Sidekiq dashboard</span>
+                <% end %>
+            </li>
+
+        </ul>
+    </div>
 
     <hr/>
 
     <p class="copyright">River Rats Poker League &copy; <%= Date.today.year %></p>
-</div>
+</nav>

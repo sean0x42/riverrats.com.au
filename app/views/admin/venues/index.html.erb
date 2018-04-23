@@ -5,13 +5,15 @@
     <% if @venues.empty? %>
         <%= render partial: 'admin/empty-state', locals: { noun: 'venues', link: new_admin_venue_path } %>
     <% else %>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th class="stretch">Region</th>
-            </tr>
-            <%= render @venues %>
-        </table>
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th class="stretch">Region</th>
+                </tr>
+                <%= render @venues %>
+            </table>
+        </div>
     <% end %>
 
     <div class="footer">

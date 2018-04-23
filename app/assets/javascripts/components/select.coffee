@@ -2,11 +2,6 @@ icons =
   OPEN: '&#xE5C5;',
   CLOSE: '&#xE5C7;'
 
-
-matches = (el, selector) ->
-  (el.matches or el.matchesSelector or el.msMatchesSelector or el.mozMatchesSelector or el.webkitMatchesSelector or el.oMatchesSelector).call el, selector
-
-
 getValueAsString = (select) ->
   value = select.value
 

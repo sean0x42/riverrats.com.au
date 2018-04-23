@@ -1,0 +1,34 @@
+#buttons-and-search {
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding: 2rem 1rem;
+
+  .search-wrapper {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+}
+
+@media (min-width: 600px) {
+  #buttons-and-search {
+    flex-direction: row;
+    align-items: center;
+    padding: 1.5rem 0;
+
+    .search-wrapper {
+      width: 270px;
+      margin-top: 0;
+      margin-right: auto;
+    }
+  }
+
+}
+
+@media (min-width: 1000px) {
+  #buttons-and-search {
+    border-bottom: 1px solid $border-on-grey;
+    padding: 2.25rem 0;
+  }
+}
