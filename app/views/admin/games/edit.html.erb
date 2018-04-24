@@ -1,32 +1,22 @@
 <% content_for :title, "Edit Game #{@game.name} (Admin)" %>
 
 <div class="admin-body">
-
     <h1>Edit Game <%= @game.name %></h1>
     <p class="form-description">Update an old game. Note: It may take a few minutes for the changes made here to propagate to each of the players involved.</p>
-
     <%= render 'form' %>
+</div>
 
-    <% if false %>
-    <section class="danger-zone">
+<div class="danger-zone admin-body" style="margin-top: 2rem;">
 
-        <div class="section-outline">
-            <h2>
-                <span>Danger zone</span>
-                <i class="material-icons">&#xE002;</i>
-            </h2>
-            <p>Be careful! These actions could have unforeseen consequences.</p>
-        </div>
+    <h1><i class="material-icons">&#xE002;</i>Danger Zone</h1>
+    <p class="form-description">Be careful! These actions could have unforeseen consequences, and cannot be undone.</p>
 
-        <div class="section-content">
-            <div class="buttons">
-                <%= link_to admin_game_path(@game), method: :delete, data: { confirm: t('game.confirm_delete')}, class: 'button-secondary danger' do %>
-                    Delete <%= @game.name %>
-                <% end %>
-            </div>
-        </div>
-
-    </section>
-    <% end %>
+    <h2>Delete game</h2>
+    <p><strong>Permanently</strong> delete Game <%= @game.name %> from the database. You will not be able to recover it. This game's players will lose any points earned in this game.</p>
+    <div class="buttons">
+        <%= link_to admin_game_path(@game), method: :delete, class: 'button danger', data: { confirm: t('game.confirm_delete')} do %>
+            Delete Game <%= @game.name %>
+        <% end %>
+    </div>
 
 </div>

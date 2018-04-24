@@ -46,6 +46,10 @@ Rails.application.routes.draw do
     resources :achievements,
               only: [:new, :create]
 
+
+    get 'mail', to: 'mail#index'
+    post 'mail/players', to: 'mail#show'
+
   end
 
 end

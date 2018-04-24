@@ -45,7 +45,7 @@ form {
 
   }
 
-  .section-content {
+  .section-content, .section-outline {
     & > *:first-child { margin-top:    0; }
     & > *:last-child  { margin-bottom: 0; }
   }

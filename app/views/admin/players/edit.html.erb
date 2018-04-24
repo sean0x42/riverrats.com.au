@@ -6,17 +6,15 @@
     <%= render 'form' %>
 </div>
 
-<div class="danger-zone admin-body">
+<div class="danger-zone admin-body" style="margin-top: 2rem;">
 
-    <h2>
-        <span>Danger zone</span>
-        <i class="material-icons">&#xE002;</i>
-    </h2>
+    <h1><i class="material-icons">&#xE002;</i>Danger Zone</h1>
+    <p class="form-description">Be careful! These actions could have unforeseen consequences, and cannot be undone.</p>
 
-    <p>Be careful! These actions could have unforeseen consequences.</p>
-
+    <h2>Delete player</h2>
+    <p><strong>Permanently</strong> delete @<%= @player.username %> from the database. You will not be able to recover this account, and the user will no longer be able to login.</p>
     <div class="buttons">
-        <%= link_to admin_player_path(@player), method: :delete, class: 'button-secondary danger', data: { confirm: t('player.confirm_delete')} do %>
+        <%= link_to admin_player_path(@player), method: :delete, class: 'button danger', data: {confirm: t('player.confirm_delete')} do %>
             Delete @<%= @player.username %>
         <% end %>
     </div>

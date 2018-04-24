@@ -6,4 +6,17 @@
     <%= render 'form' %>
 </div>
 
-<%= link_to 'Delete', admin_region_path(@region), method: :delete, data: { confirm: t('region.confirm_delete')} %>
+<div class="danger-zone admin-body" style="margin-top: 2rem;">
+
+    <h1><i class="material-icons">&#xE002;</i>Danger Zone</h1>
+    <p class="form-description">Be careful! These actions could have unforeseen consequences, and cannot be undone.</p>
+
+    <h2>Delete region</h2>
+    <p><strong>Permanently</strong> delete <%= @region.name %> from the database. You will not be able to recover it.</p>
+    <div class="buttons">
+        <%= link_to admin_region_path(@region), method: :delete, class: 'button danger', data: { confirm: t('region.confirm_delete')} do %>
+            Delete <%= @region.name %>
+        <% end %>
+    </div>
+
+</div>

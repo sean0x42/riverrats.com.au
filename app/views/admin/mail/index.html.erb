@@ -1,0 +1,36 @@
+<% content_for :title, 'Generate Mail List (Admin)' %>
+
+<div class="admin-body">
+    <h1>Generate Mail List</h1>
+    <p class="form-description">This page allows you to generate a list of all players that have opted to receive promotional mail.</p>
+
+    <%= form_with url: "#{admin_mail_players_path}.csv", data: { remote: false } do |form| %>
+
+        <section>
+            <div class="section-outline">
+                <h2><span>1</span>List details</h2>
+            </div>
+            <div class="section-content">
+
+                <!-- Filter -->
+                <div class="field">
+                    <%= form.label :target %>
+                    <%= form.select :target, options_for_select(
+                        [
+                            ['Receiving promotional mail', 'promotional'],
+                            ['Receiving event mail', 'event'],
+                            ['Everyone', 'all']
+                        ]
+                    ), {}, id: 'target' %>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="field buttons">
+            <%= form.submit 'Generate list', class: 'button' %>
+            <%= link_to 'Cancel', admin_players_path, class: 'button-tertiary' %>
+        </div>
+
+    <% end %>
+</div>

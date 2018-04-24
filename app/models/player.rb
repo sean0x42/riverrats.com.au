@@ -1,3 +1,4 @@
+require 'csv'
 class Player < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
@@ -111,6 +112,17 @@ class Player < ApplicationRecord
 
   def email_changed?
     false
+  end
+
+  def self.to_csv
+    attributes = %w(first_name last_name email)
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      all.each do |player|
+        csv << player.attributes
+      end
+    end
   end
 
 end
