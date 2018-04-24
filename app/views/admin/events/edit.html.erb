@@ -6,6 +6,21 @@
     <%= render 'form' %>
 </div>
 
-<br />
+<div class="danger-zone admin-body" style="margin-top: 2rem;">
 
-<%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: t('event.confirm_delete')} %>
+    <h1><i class="material-icons">&#xE002;</i>Danger Zone</h1>
+    <p class="form-description">Be careful! These actions could have unforeseen consequences, and cannot be undone.</p>
+
+    <h2>Delete event</h2>
+    <p><strong>Permanently</strong> delete <%= @event.clean_title %> from the database. You may also choose to delete all following events.</p>
+    <div class="buttons">
+        <%= link_to admin_event_path(@event), method: :delete, class: 'button danger', data: { confirm: t('event.confirm_delete')} do %>
+            Delete <%= @event.clean_title %>
+        <% end %>
+        <%# TODO Make this delete link work %>
+        <%= link_to admin_event_path(@event.becomes(SingleEvent).recurring_event), method: :delete, class: 'button-secondary danger', data: { confirm: t('event.recurring.confirm_delete')} do %>
+            Delete this and following
+        <% end %>
+    </div>
+
+</div>
