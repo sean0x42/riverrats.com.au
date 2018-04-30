@@ -1,56 +1,68 @@
 .footer {
   position: relative;
   text-align: center;
-  color: $branding-primary-text;
-  background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
   padding: 0 0 4rem;
-  margin: 8rem 0 0;
-
-  .footer-curve {
-    position: relative;
-    top: -1px;
-    line-height: 1;
-    vertical-align: middle;
-    height: 30px;
-    width: 100vw;
-    fill: hsl(220, 1%, 97%);
-    margin: 0 0 4rem;
-  }
+  margin: 5rem 0 0;
 
   .wrapper {
     margin-bottom: 0;
-    max-width: 500px;
+    max-width: 580px;
     width: 100%;
+    border-top: 1px solid $border-on-grey;
   }
 
   .copyright {
-    color: darken($branding-primary-text, 5%);
+    color: lighten($generic-text, 28%);
   }
 
-  .social-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    list-style-type: none;
-    margin: 2rem 0;
-    color: $branding-primary-text;
-    svg { fill: $branding-primary-text; }
+  .nav-columns {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    margin: 4rem 0 4rem;
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+
+    li {
+      margin: 0.75rem 0;
+    }
+
+    a {
+      position: relative;
+      color: lighten($generic-text, 20%);
+      padding: 2px 0;
+      &:hover {
+        text-decoration: none;
+        color: $branding-primary;
+      }
+    }
+
+    li.title {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      color: $branding-primary;
+      font-weight: bold;
+    }
 
     .social-button {
       display: flex;
       align-items: center;
-      color: $branding-primary-text;
-      background: rgba(0, 0, 0, 0.12);
-      border-radius: 3px;
-      padding: 13px 25px;
-      text-decoration: none;
 
       svg {
-        width: 24px;
-        margin: -0.25rem;
-        margin-right: 1rem;
+        flex-shrink: 0;
+        text-decoration: none;
+        width: 20px;
+        margin: -4px 0.75rem -4px 0;
+        fill: lighten($generic-text, 35%);
       }
+
+      &:hover svg { fill: $branding-primary; }
     }
 
   }

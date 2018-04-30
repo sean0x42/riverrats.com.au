@@ -7,4 +7,8 @@ body {
   line-height: 1.75;
   color: $generic-text;
   &.no-scroll { overflow: hidden; }
+
+  &.admin {
+    font-size: $admin-font-size;
+  }
 }
