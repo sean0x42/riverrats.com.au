@@ -18,9 +18,9 @@
             Delete <%= @event.clean_title %>
         <% end %>
         <%# TODO Make this delete link work %>
-        <%= link_to admin_event_path(@event.becomes(SingleEvent).recurring_event), method: :delete, class: 'button-secondary danger', data: { confirm: t('event.recurring.confirm_delete')} do %>
-            Delete this and following
-        <% end %>
+        <%#= link_to admin_event_path(@event.becomes(SingleEvent).recurring_event), method: :delete, class: 'button-secondary danger', data: { confirm: t('event.recurring.confirm_delete')} do %>
+<!--            Delete this and following-->
+        <%# end %>
     </div>
 
 </div>

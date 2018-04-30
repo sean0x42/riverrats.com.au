@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :players,
-            only: :show,
+            only: [:index, :show],
             param: :username
 
   resources :games, :events,

@@ -1,0 +1,33 @@
+.wrapper, .left-right-wrapper {
+  margin: 0 auto 75px;
+  width: 100%;
+  z-index: 10;
+
+  &.over {
+    position: relative;
+    top: -35vh;
+  }
+
+}
+
+.left-right-wrapper {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: 2fr 1fr;
+
+  .left {
+    background: white;
+    border-radius: 4px;
+    padding: 2rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
+    & > *:first-child { margin-top:    0; }
+    & > *:last-child  { margin-bottom: 0; }
+  }
+}
+
+@media (min-width: 1000px) {
+  .wrapper, .left-right-wrapper {
+    max-width: 1250px;
+    margin: 0 auto 4rem;
+  }
+}

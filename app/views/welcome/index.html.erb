@@ -1,9 +1,30 @@
-<h1>Welcome</h1>
-<p>This is the official River Rats Poker League website!</p>
+<%= render 'application/header' %>
+
+<div class="hero">
+
+    <div class="wrapper">
+        <h1>Welcome</h1>
+        <p>This is the official River Rats Poker League website!</p>
+    </div>
+
+    <!-- Curved base -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="none" class="hero-curve">
+        <path d="M 0 200 C 150 0 250 400 400 200 V 401 H-400 Z" />
+    </svg>
+
+</div>
+
+<div class="left-right-wrapper over">
+    <div class="left">
+        <%= render collection: @season.players_seasons, partial: 'welcome/players_seasons' %>
+    </div>
+</div>
 
 <%= link_to 'Admin panel', admin_players_path %> |
 <%- if player_signed_in? %>
-    <%= link_to 'Logout', destroy_player_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' } %>
+    <%= link_to 'Logout', destroy_player_session_path, method: :delete, data: {confirm: 'Are you sure you want to log out?'} %>
 <% else %>
     <%= link_to 'Sign in', new_player_session_path %> | <%= link_to 'Sign up', new_player_registration_path %>
 <% end %>
+
+<%= render 'application/footer' %>

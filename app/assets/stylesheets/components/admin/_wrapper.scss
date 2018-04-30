@@ -1,34 +1,30 @@
-.admin-wrapper {
-  margin: 0 auto 75px;
-  width: 100%;
-
+body.admin {
   h1 { font-size: 24px; }
+}
 
-  .admin-body {
-    background: white;
-    padding: 2rem 1rem 2.5rem;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05),
-    0 5px 15px rgba(0, 0, 0, 0.05);
-    & > *:first-child { margin-top:    0; }
-    & > *:last-child  { margin-bottom: 0; }
+.admin-body {
+  background: white;
+  padding: 2rem 1rem 2.5rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05),
+  0 5px 15px rgba(0, 0, 0, 0.05);
+  & > *:first-child { margin-top:    0; }
+  & > *:last-child  { margin-bottom: 0; }
 
-    .buttons {
-      margin-top: 1.5rem;
-      margin-bottom: -0.5rem;
+  .buttons {
+    margin-top: 1.5rem;
+    margin-bottom: -0.5rem;
+  }
+
+  .footer {
+    text-align: center;
+    margin: 3rem 0 0;
+
+    p {
+      margin: 1.5rem 0;
+      color: lighten($generic-text, 20%);
     }
 
-    .footer {
-      text-align: center;
-      margin: 3rem 0 0;
-
-      p {
-        margin: 1.5rem 0;
-        color: lighten($generic-text, 20%);
-      }
-
-      *:last-child { margin-bottom: 0;}
-    }
-
+    *:last-child { margin-bottom: 0;}
   }
 
 }
@@ -64,11 +60,9 @@
 }
 
 @media (min-width: 600px) {
-  .admin-wrapper {
-    .admin-body {
-      border-radius: 3px;
-      padding: 2rem;
-    }
+  .admin-body {
+    border-radius: 3px;
+    padding: 2rem;
   }
 
   .admin-flexible-wrapper {
@@ -78,10 +72,8 @@
 
 @media (min-width: 1000px) {
 
-  .admin-wrapper {
-    max-width: 1200px;
-    margin: 0 auto 4rem;
-    .admin-body { padding: 2.25rem; }
+  .admin-body {
+    padding: 2.25rem;
   }
 
   .admin-flexible-wrapper {

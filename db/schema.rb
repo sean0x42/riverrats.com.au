@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180418072826) do
+ActiveRecord::Schema.define(version: 20180425160252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20180418072826) do
     t.datetime "updated_at", null: false
     t.boolean "notify_promotional", default: true, null: false
     t.boolean "notify_events", default: true, null: false
+    t.integer "rank"
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
     t.index ["username"], name: "index_players_on_username", unique: true
@@ -112,6 +113,7 @@ ActiveRecord::Schema.define(version: 20180418072826) do
     t.integer "games_won", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rank"
     t.index ["player_id", "region_id"], name: "index_players_regions_on_player_id_and_region_id", unique: true
     t.index ["player_id"], name: "index_players_regions_on_player_id"
     t.index ["region_id"], name: "index_players_regions_on_region_id"
@@ -125,6 +127,7 @@ ActiveRecord::Schema.define(version: 20180418072826) do
     t.integer "games_won", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rank"
     t.index ["player_id", "season_id"], name: "index_players_seasons_on_player_id_and_season_id", unique: true
     t.index ["player_id"], name: "index_players_seasons_on_player_id"
     t.index ["season_id"], name: "index_players_seasons_on_season_id"
@@ -138,6 +141,7 @@ ActiveRecord::Schema.define(version: 20180418072826) do
     t.integer "games_won", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rank"
     t.index ["player_id", "venue_id"], name: "index_players_venues_on_player_id_and_venue_id", unique: true
     t.index ["player_id"], name: "index_players_venues_on_player_id"
     t.index ["venue_id"], name: "index_players_venues_on_venue_id"

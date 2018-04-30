@@ -1,0 +1,58 @@
+.footer {
+  position: relative;
+  text-align: center;
+  color: $branding-primary-text;
+  background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
+  padding: 0 0 4rem;
+  margin: 8rem 0 0;
+
+  .footer-curve {
+    position: relative;
+    top: -1px;
+    line-height: 1;
+    vertical-align: middle;
+    height: 30px;
+    width: 100vw;
+    fill: hsl(220, 1%, 97%);
+    margin: 0 0 4rem;
+  }
+
+  .wrapper {
+    margin-bottom: 0;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .copyright {
+    color: darken($branding-primary-text, 5%);
+  }
+
+  .social-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin: 2rem 0;
+    color: $branding-primary-text;
+    svg { fill: $branding-primary-text; }
+
+    .social-button {
+      display: flex;
+      align-items: center;
+      color: $branding-primary-text;
+      background: rgba(0, 0, 0, 0.12);
+      border-radius: 3px;
+      padding: 13px 25px;
+      text-decoration: none;
+
+      svg {
+        width: 24px;
+        margin: -0.25rem;
+        margin-right: 1rem;
+      }
+    }
+
+  }
+
+}

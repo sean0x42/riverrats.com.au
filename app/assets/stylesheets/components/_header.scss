@@ -1,0 +1,26 @@
+.header {
+  position: absolute;
+  width: 100vw;
+  z-index: 1000;
+  color: $branding-primary-text;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    padding: 2rem 0;
+    margin-bottom: 0;
+  }
+
+  .logo {
+    width: 64px;
+    display: block;
+
+    img {
+      line-height: 1;
+      vertical-align: middle;
+      width: 100%;
+    }
+
+  }
+
+}
