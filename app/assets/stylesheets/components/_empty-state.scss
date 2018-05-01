@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  color: lighten($generic-text, 25%);
 
   .empty-state {
     position: absolute;
@@ -24,7 +25,7 @@
     }
 
     h1 {
-      font-size: 18px;
+      font-size: 16px;
     }
 
     h1, p {

@@ -1,0 +1,10 @@
+.badge {
+  display: inline;
+  background: $branding-primary;
+  color: $branding-primary-text;
+  border-radius: 2px;
+  font-weight: normal;
+  font-size: 14px;
+  vertical-align: middle;
+  &:before, &:after { content: '\00a0'; }
+}

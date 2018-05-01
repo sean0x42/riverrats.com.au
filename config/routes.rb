@@ -17,9 +17,10 @@ Rails.application.routes.draw do
                passwords: 'players/passwords'
              }
 
-  get 'players/auto-complete', to: 'players#auto_complete'
-
   root 'welcome#index'
+
+  get 'players/auto-complete', to: 'players#auto_complete'
+  get 'players/random', to: 'players#random'
 
   resources :players,
             only: [:index, :show],

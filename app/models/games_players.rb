@@ -4,8 +4,6 @@ class GamesPlayers < ApplicationRecord
   belongs_to :game
   belongs_to :player
 
-  default_scope { order(:position) }
-
   validates :game, :player,
             presence: true
 

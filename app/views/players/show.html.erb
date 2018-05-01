@@ -1,42 +1,107 @@
-<h1>@<%= @player.username %></h1>
-<p>Here's some info about <%= @player.full_name %>:</p>
+<%- content_for :title, "#{@player.full_name} (@#{@player.username})" %>
 
-<h2>Stats</h2>
-<table>
-    <tr>
-        <td>Score</td>
-        <td><%= @player.score %></td>
-    </tr>
-    <tr>
-        <td>Games Played</td>
-        <td><%= @player.games_played %></td>
-    </tr>
-    <tr>
-        <td>Games Won</td>
-        <td><%= @player.games_won %></td>
-    </tr>
-    <tr>
-        <td>Venues played at</td>
-        <td><%= @player.venues.count %></td>
-    </tr>
-    <tr>
-        <td>Seasons played in</td>
-        <td><%= @player.seasons.count %></td>
-    </tr>
-</table>
+<div class="wrapper wrapper-header">
+    <h1 class="has-subtitle">
+        <%= @player.full_name %>
+        <%- if @player.is_admin %>
+            <span class="badge">staff member</span>
+        <%- end %>
+    </h1>
+    <p class="subtitle">@<%= @player.username %> &middot; Joined <%= local_time_ago @player.created_at %></p>
+</div>
 
-<div>
-    <h2>Achievements</h2>
-    <% if @player.achievements.empty? %>
-        <p>There's nothing here.</p>
-    <% else %>
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Proof?</th>
-            </tr>
-            <%= render collection: @player.achievements, partial: 'achievement' %>
-        </table>
-    <% end %>
+<div class="column-wrapper">
+
+    <div class="left">
+
+        <!-- Breakdown -->
+        <div class="background breakdown-<%= Random.rand(4) %>">
+            <h2><i class="material-icons">&#xE24B;</i> Breakdown</h2>
+            <div class="stats">
+
+                <!-- Seasonal points -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @player.score %></p>
+                    <p class="label">points (this season)</p>
+                </div>
+
+                <!-- All time points -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @player.score %></p>
+                    <p class="label">points (all time)</p>
+                </div>
+
+                <!-- Seasonal rank -->
+                <div class="stat">
+                    <p class="numeric"><%= "#{number_with_delimiter 1}#{1.ordinal}" %></p>
+                    <p class="label">rank (this season)</p>
+                </div>
+
+                <!-- All time rank -->
+                <div class="stat">
+                    <p class="numeric"><%= "#{number_with_delimiter 4}#{4.ordinal}" %></p>
+                    <p class="label">rank (all time)</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Game History -->
+        <div class="background">
+            <h2><i class="material-icons">&#xE889;</i> History</h2>
+            <%- if @recent_games.empty? %>
+                <%= render partial: 'application/empty-state', locals: { description: 'Get out there and play some games!' } %>
+            <%- else %>
+                <div class="table-wrapper">
+                    <table>
+                        <tr>
+                            <th>Position</th>
+                            <th class="numeric">Points earned</th>
+                            <th class="numeric stretch">Game</th>
+                            <th>Played</th>
+                            <th>Venue</th>
+                        </tr>
+                        <%= render collection: @recent_games, partial: 'players/game' %>
+                    </table>
+                </div>
+            <%- end %>
+        </div>
+
+    </div>
+
+
+    <div class="right">
+
+        <!-- Achievements -->
+        <div class="background">
+
+            <h2><i class="material-icons">&#xE87A;</i> Achievements</h2>
+
+            <% if @player.achievements.empty? %>
+                <p>There's nothing here! Get out there and play some games!</p>
+            <% else %>
+                <table>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Proof?</th>
+                    </tr>
+                    <%= render collection: @player.achievements, partial: 'achievement' %>
+                </table>
+            <% end %>
+
+        </div>
+
+        <div class="buttons">
+
+            <!-- Print -->
+            <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                <i class="material-icons">&#xE8AD;</i>
+                Print this page
+            <% end %>
+
+        </div>
+
+    </div>
+
 </div>

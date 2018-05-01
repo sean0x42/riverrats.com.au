@@ -1,12 +1,65 @@
-<h1><%= @game.name %></h1>
-<p>This game has the following stats: </p>
+<%- content_for :title, "Game #{@game.name} · #{@game.venue.name}" %>
 
-<h2>Leaderboard</h2>
-<table>
-    <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Score</th>
-    </tr>
-    <%= render collection: @game.games_players.first(50), partial: 'players' %>
-</table>
+<div class="wrapper wrapper-header">
+    <h1 class="has-subtitle">Game <%= @game.name %></h1>
+    <p class="subtitle">Played <%= local_time_ago @game.played_on %> &middot; At <%= link_to @game.venue.name, venue_path(@game.venue) %></p>
+</div>
+
+<div class="column-wrapper">
+
+    <div class="left">
+
+        <!-- Breakdown -->
+        <div class="background breakdown-<%= Random.rand(4) %>">
+            <h2><i class="material-icons">&#xE24B;</i> Breakdown</h2>
+            <div class="stats">
+
+                <!-- Seasonal points -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @game.games_players.count %></p>
+                    <p class="label">players</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="background">
+            <h2><i class="material-icons">&#xE242;</i> Leaderboard</h2>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th></th>
+                    <th class="numeric stretch">Score</th>
+                </tr>
+                <%= render collection: @game.games_players.first(50), partial: 'player' %>
+            </table>
+        </div>
+
+    </div>
+
+
+    <div class="right">
+
+        <!-- Referees -->
+        <div class="background">
+            <h2>Tournament Directors</h2>
+            <ul class="thin-player-list">
+                <%= render collection: @game.referees, partial: 'referee' %>
+            </ul>
+        </div>
+
+        <div class="buttons">
+
+            <!-- Print -->
+            <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                <i class="material-icons">&#xE8AD;</i>
+                Print this page
+            <% end %>
+
+        </div>
+
+    </div>
+
+</div>

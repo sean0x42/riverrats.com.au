@@ -125,4 +125,9 @@ class Player < ApplicationRecord
     end
   end
 
+  def recent_games
+    sql = "SELECT g.id, g.venue_id, g.season_id, g.played_on, p.position, p.score FROM games as g INNER JOIN games_players as p ON g.id = p.game_id WHERE player_id = #{id};"
+    ActiveRecord::Base.connection.exec_query(sql)
+  end
+
 end

@@ -1,0 +1,19 @@
+.stats {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  p { margin: 0; }
+
+  .numeric {
+    font-weight: bold;
+    font-size: 30px;
+    color: $branding-primary;
+    line-height: 1;
+  }
+
+  .label {
+    margin-top: 0.4rem;
+    font-size: 15px;
+  }
+
+}

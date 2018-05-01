@@ -1,0 +1,6 @@
+<li>
+    <%= link_to player_path(referee.player) do %>
+        <p class="name"><%= referee.player.full_name %></p>
+        <p class="username">@<%= referee.player.username %></p>
+    <% end %>
+</li>

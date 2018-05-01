@@ -19,7 +19,12 @@
 
     <body class="<%= yield(:body_class) %>">
         <%= render 'flashes' %>
-        <%= content_for?(:body) ? yield(:body) : yield %>
+        <%- if content_for? :body %>
+            <%= yield :body %>
+        <%- else %>
+            <%= yield %>
+            <%= render 'application/footer' %>
+        <%- end %>
     </body>
 
 </html>

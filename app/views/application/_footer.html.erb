@@ -1,25 +1,3 @@
-<%- if player_signed_in? %>
-
-<%- else %>
-    <div class="sign-up-banner">
-        <p>Ready to get started?</p>
-        <div class="buttons">
-
-            <!-- Join -->
-            <%= link_to new_player_registration_path, class: 'button' do %>
-                <span>Create an account</span>
-            <% end %>
-
-            <!-- Secure login -->
-            <%= link_to new_player_session_path, class: 'button-secondary' do %>
-                <i class="material-icons">&#xE88D;</i>
-                <span>Secure login</span>
-            <% end %>
-
-        </div>
-    </div>
-<%- end %>
-
 <div class="footer">
 
     <div class="wrapper">
@@ -34,11 +12,18 @@
             <ul class="column">
                 <li class="title">Account</li>
                 <%- if player_signed_in? %>
-
+                    <li><%= link_to 'View my profile', player_path(current_player) %></li>
+                    <li><%= link_to 'Preferences', root_path %></li>
+                    <%- if current_player.is_admin %>
+                        <li><%= link_to 'Admin panel', admin_root_path %></li>
+                    <%- end %>
+                    <li><%= link_to 'Random profile', players_random_path %></li>
+                    <li><%= link_to 'Logout', destroy_player_session_path, method: :delete, data: {confirm: 'Are you sure you want to log out?'} %></li>
                 <%- else %>
                     <li><%= link_to 'Create an account', new_player_registration_path %></li>
                     <li><%= link_to 'Secure login', new_player_session_path %></li>
                     <li><%= link_to 'Forgot password', new_player_password_path %></li>
+                    <li><%= link_to 'Random profile', players_random_path %></li>
                 <%- end %>
             </ul>
             <ul class="column">

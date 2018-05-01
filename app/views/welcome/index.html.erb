@@ -14,17 +14,47 @@
 
 </div>
 
-<div class="left-right-wrapper over">
+<div class="column-wrapper over">
     <div class="left">
         <%= render collection: @season.players_seasons, partial: 'welcome/players_seasons' %>
     </div>
 </div>
 
-<%= link_to 'Admin panel', admin_players_path %> |
 <%- if player_signed_in? %>
-    <%= link_to 'Logout', destroy_player_session_path, method: :delete, data: {confirm: 'Are you sure you want to log out?'} %>
-<% else %>
-    <%= link_to 'Sign in', new_player_session_path %> | <%= link_to 'Sign up', new_player_registration_path %>
-<% end %>
+    <div class="footer-banner">
+        <h1>Let's dive in</h1>
+        <div class="buttons">
 
-<%= render 'application/footer' %>
+            <!-- Join -->
+            <%= link_to player_path(current_player), class: 'button' do %>
+                <i class="material-icons">&#xE851;</i>
+                <span>View my profile</span>
+            <% end %>
+
+            <!-- Random player -->
+            <%= link_to players_random_path, class: 'button-secondary' do %>
+                <i class="material-icons">&#xEB40;</i>
+                <span>Random profile</span>
+            <% end %>
+
+        </div>
+    </div>
+<%- else %>
+    <div class="footer-banner">
+        <h1>Ready to get started?</h1>
+        <div class="buttons">
+
+            <!-- Join -->
+            <%= link_to new_player_registration_path, class: 'button' do %>
+                <span>Create an account</span>
+            <% end %>
+
+            <!-- Secure login -->
+            <%= link_to new_player_session_path, class: 'button-secondary' do %>
+                <i class="material-icons">&#xE88D;</i>
+                <span>Secure login</span>
+            <% end %>
+
+        </div>
+    </div>
+<%- end %>

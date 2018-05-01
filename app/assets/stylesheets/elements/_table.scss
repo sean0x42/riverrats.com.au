@@ -21,6 +21,10 @@ table {
       text-align: right;
     }
 
+    &.centred {
+      text-align: center;
+    }
+
     &.status {
       text-align: center;
       .status-dot { margin: 0 auto; }
