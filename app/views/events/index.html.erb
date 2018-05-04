@@ -1,2 +1,35 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<%- content_for :title, 'Event schedule' %>
+
+<div class="wrapper wrapper-header submerged">
+    <h1 class="has-subtitle">Event schedule</h1>
+    <p class="subtitle">View all upcoming events. Click on an event for more details.</p>
+</div>
+
+<div class="wrapper">
+    <!-- Event tools -->
+<!--    <div class="background">-->
+        <%#= form_with url: events_path do |form| %>
+
+            <%#= form.label :venue %>
+            <%#= form.collection_select :venue, Venue.all, :id, :name %>
+
+            <%#= form.label :region %>
+            <%#= form.collection_select :region, Region.all, :id, :name %>
+
+        <%# end %>
+<!--    </div>-->
+
+    <!-- Calendar -->
+    <div class="background">
+        <div class="calendar">
+            <p class="title">Sun</p>
+            <p class="title">Mon</p>
+            <p class="title">Tue</p>
+            <p class="title">Wed</p>
+            <p class="title">Thu</p>
+            <p class="title">Fri</p>
+            <p class="title">Sat</p>
+        </div>
+    </div>
+
+</div>

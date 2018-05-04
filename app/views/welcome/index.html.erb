@@ -1,16 +1,9 @@
-<%= render 'application/header' %>
-
 <div class="hero">
 
     <div class="wrapper">
         <h1>Welcome</h1>
         <p>This is the official River Rats Poker League website!</p>
     </div>
-
-    <!-- Curved base -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="none" class="hero-curve">
-        <path d="M 0 200 C 150 0 250 400 400 200 V 401 H-400 Z" />
-    </svg>
 
 </div>
 
@@ -21,40 +14,34 @@
 </div>
 
 <%- if player_signed_in? %>
+
     <div class="footer-banner">
-        <h1>Let's dive in</h1>
-        <div class="buttons">
+        <div class="wrapper">
 
-            <!-- Join -->
-            <%= link_to player_path(current_player), class: 'button' do %>
-                <i class="material-icons">&#xE851;</i>
-                <span>View my profile</span>
-            <% end %>
+            <div class="logo">
+                <%= image_tag 'logo-textless.svg' %>
+            </div>
 
-            <!-- Random player -->
-            <%= link_to players_random_path, class: 'button-secondary' do %>
-                <i class="material-icons">&#xEB40;</i>
-                <span>Random profile</span>
-            <% end %>
+            <div class="info">
+                <h1>Let's dive in</h1>
+                <p>Get involved! Check out your profile, or someone else's...</p>
+            </div>
 
-        </div>
-    </div>
-<%- else %>
-    <div class="footer-banner">
-        <h1>Ready to get started?</h1>
-        <div class="buttons">
+            <div class="buttons">
 
-            <!-- Join -->
-            <%= link_to new_player_registration_path, class: 'button' do %>
-                <span>Create an account</span>
-            <% end %>
+                <!-- Join -->
+                <%= link_to player_path(current_player), class: 'button' do %>
+                    <i class="material-icons">&#xE851;</i>
+                    <span>View my profile</span>
+                <% end %>
 
-            <!-- Secure login -->
-            <%= link_to new_player_session_path, class: 'button-secondary' do %>
-                <i class="material-icons">&#xE88D;</i>
-                <span>Secure login</span>
-            <% end %>
+                <!-- Random player -->
+                <%= link_to players_random_path, class: 'button-secondary' do %>
+                    <i class="material-icons">&#xEB40;</i>
+                    <span>Random profile</span>
+                <% end %>
 
+            </div>
         </div>
     </div>
 <%- end %>

@@ -1,6 +1,6 @@
 <%- content_for :title, "#{@player.full_name} (@#{@player.username})" %>
 
-<div class="wrapper wrapper-header">
+<div class="wrapper wrapper-header submerged">
     <h1 class="has-subtitle">
         <%= @player.full_name %>
         <%- if @player.is_admin %>
@@ -105,3 +105,6 @@
     </div>
 
 </div>
+
+
+<%= render 'application/footer-banner' %>

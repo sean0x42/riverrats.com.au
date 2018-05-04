@@ -1,26 +1,27 @@
+$height: 25px;
+$background-drop: 300px;
+$header-height: 100px;
+
 .header {
-  position: absolute;
+  position: relative;
   width: 100vw;
-  z-index: 1000;
-  color: $branding-primary-text;
+  padding-top: $header-height;
+  padding-bottom: $height + $background-drop;
+  background: linear-gradient(0deg, $branding-primary, $branding-primary-rotated);
+  margin-bottom: -1 * $background-drop;
+  z-index: -1;
 
   .wrapper {
-    display: flex;
-    align-items: center;
-    padding: 2rem 0;
-    margin-bottom: 0;
+    margin: 0;
   }
 
-  .logo {
-    width: 64px;
-    display: block;
-
-    img {
-      line-height: 1;
-      vertical-align: middle;
-      width: 100%;
-    }
-
+  .curve {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: $height;
+    fill: hsl(220, 1%, 97%);
+    line-height: 1.0;
+    vertical-align: middle;
   }
-
 }

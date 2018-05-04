@@ -5,4 +5,7 @@ class WelcomeController < ApplicationController
     @season = Season.where('start_at < ? and end_at > ?', Time.now, Time.now).first
   end
 
+  def privacy_policy
+  end
+
 end

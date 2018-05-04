@@ -1,7 +1,26 @@
-<div class="header">
+<nav class="navigation">
     <div class="wrapper">
-        <%= link_to root_path, title: 'River Rats Poker League', class: 'logo' do %>
-            <%= image_tag 'logo-textless.svg', alt: 'River Rats Poker League' %>
-        <% end %>
+        <div class="logo">
+            <%= image_tag 'logo-textless.svg' %>
+        </div>
+
+        <%- if player_signed_in? %>
+
+        <%- else %>
+            <div class="buttons">
+                <%= link_to 'Sign up', new_player_registration_path, class: 'button-secondary' %>
+                <%= link_to 'Login', new_player_session_path, class: 'button-tertiary' %>
+            </div>
+        <%- end %>
+
     </div>
-</div>
+</nav>
+
+<header class="header">
+
+    <!-- Curved base -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="none" class="curve">
+        <path d="M 0 401 L 400 401 L 400 0 Q 200 600 0 0 Z "/>
+    </svg>
+
+</header>

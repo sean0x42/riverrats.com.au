@@ -22,6 +22,7 @@
         <%- if content_for? :body %>
             <%= yield :body %>
         <%- else %>
+            <%= render 'application/header' %>
             <%= yield %>
             <%= render 'application/footer' %>
         <%- end %>

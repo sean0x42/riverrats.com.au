@@ -18,15 +18,16 @@ Rails.application.routes.draw do
              }
 
   root 'welcome#index'
+  get '/privacy-policy', to: 'welcome#privacy_policy'
 
   get 'players/auto-complete', to: 'players#auto_complete'
   get 'players/random', to: 'players#random'
 
-  resources :players,
+  resources :players, :events,
             only: [:index, :show],
             param: :username
 
-  resources :games, :events,
+  resources :games,
             only: :show
 
   resources :regions, :venues,
