@@ -1,11 +1,26 @@
 <nav class="navigation">
     <div class="wrapper">
-        <div class="logo">
+
+        <!-- Logo -->
+        <%= link_to root_path, class: 'logo' do %>
             <%= image_tag 'logo-textless.svg' %>
-        </div>
+        <% end %>
 
+        <!-- Live player search -->
+        <%= render_search players_path, 'Search players' %>
+
+        <!-- Links -->
+        <ul class="quick-links">
+            <li><%= link_to 'Leaderboards', root_path %></li>
+            <li><%= link_to 'Event schedule', events_path %></li>
+        </ul>
+
+        <!-- Account -->
         <%- if player_signed_in? %>
-
+            <div class="account-wrapper">
+                <p class="player-name"><%= current_player.full_name %></p>
+                <i class="material-icons">&#xE5C5;</i>
+            </div>
         <%- else %>
             <div class="buttons">
                 <%= link_to 'Sign up', new_player_registration_path, class: 'button-secondary' %>

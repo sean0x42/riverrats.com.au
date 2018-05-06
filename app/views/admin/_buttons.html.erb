@@ -9,10 +9,6 @@
     <% end %>
 <% elsif controller_name == 'events' %>
     <%= render_search admin_events_path, 'Search Events' %>
-    <%= link_to new_admin_event_path, class: 'button' do %>
-        <i class="material-icons">&#xE878;</i>
-        <span>Schedule an event</span>
-    <% end %>
 <% elsif controller_name == 'venues' %>
     <%= render_search admin_venues_path, 'Search Venues' %>
     <%= link_to 'Create venue', new_admin_venue_path, class: 'button' %>

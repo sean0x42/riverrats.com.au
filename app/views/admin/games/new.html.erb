@@ -1,7 +1,26 @@
-<% content_for :title, 'New game (Admin)' %>
+<%- content_for :title, 'New game (Admin)' %>
 
-<div class="admin-body">
-    <h1>Record a Game</h1>
-    <p class="form-description">Record a new game. Note: It may take a few minutes for the changes made here to propagate to each of the players involved.</p>
-    <%= render 'form' %>
+<!-- Header -->
+<div class="wrapper-header admin">
+    <h1 class="has-subtitle">Record a Game</h1>
+    <p class="subtitle">Record a new game. Note: It may take a few minutes for the changes made here to propagate to each of the players involved.</p>
+</div>
+
+<div class="column-wrapper small-first">
+
+    <!-- Navigation -->
+    <div class="thin">
+        <%= render 'admin/navigation' %>
+    </div>
+
+    <div class="wide">
+
+        <!-- Form -->
+        <div class="background">
+            <h2>Form</h2>
+            <%= render 'form' %>
+        </div>
+
+    </div>
+
 </div>

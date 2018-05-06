@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
 
   def index
+    models = SingleEvent.all
+    @events =
   end
 
   # GET /events/:id

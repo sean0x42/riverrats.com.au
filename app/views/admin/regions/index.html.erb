@@ -1,23 +1,45 @@
-<% content_for :title, 'All Regions (Admin)' %>
+<%- content_for :title, 'All Regions (Admin)' %>
 
-<div class="admin-body">
+<!-- Header -->
+<div class="wrapper-header admin">
+    <h1 class="has-subtitle">Regions</h1>
+    <p class="subtitle">Here you can view and manage all regions.</p>
+</div>
 
-    <% if @regions.empty? %>
-        <%= render partial: 'admin/empty-state', locals: { noun: 'regions', link: new_admin_region_path } %>
-    <%  else  %>
-        <div class="table-wrapper">
-            <table>
-                <tr>
-                    <th>Name</th>
-                </tr>
-                <%=  render @regions  %>
-            </table>
+<div class="column-wrapper small-first">
+
+    <!-- Navigation -->
+    <div class="thin">
+        <%= render 'admin/navigation' %>
+    </div>
+
+    <div class="wide">
+
+        <!-- Regions list -->
+        <div class="background">
+
+            <h2><i class="material-icons">&#xE0C8;</i> Regions</h2>
+
+            <% if @regions.empty? %>
+                <%= render partial: 'admin/empty-state', locals: {noun: 'regions', link: new_admin_region_path} %>
+            <% else %>
+                <div class="table-wrapper">
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                        </tr>
+                        <%= render @regions %>
+                    </table>
+                </div>
+            <% end %>
+
+            <div class="background-footer">
+                <%= paginate @regions %>
+                <p><%= page_entries_info @regions %></p>
+            </div>
+
         </div>
-    <%  end %>
 
-    <div class="footer">
-        <%= paginate @regions %>
-        <p><%= page_entries_info @regions %></p>
     </div>
 
 </div>

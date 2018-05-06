@@ -1,64 +1,82 @@
+<%- content_for :title, 'Award an achievement' %>
 
-<div class="admin-body">
+<!-- Header -->
+<div class="wrapper-header admin">
+    <h1 class="has-subtitle">Award an achievement</h1>
+    <p class="subtitle">Here you can give some specific achievements to players. Be sure to include a photograph for proof!</p>
+</div>
 
-    <h1>Award an Achievement</h1>
-    <p class="form-description">Here you can give some specific achievements to players. Be sure to include a photograph for proof!</p>
+<div class="column-wrapper small-first">
 
-    <%= form_with model: [:admin, @achievement.becomes(Achievement)], html: { multipart: true }, data: { remote: false } do |form| %>
+    <!-- Navigation -->
+    <div class="thin">
+        <%= render 'admin/navigation' %>
+    </div>
+
+    <div class="wide">
+
+        <!-- Form -->
+        <div class="background">
+
+            <%= form_with model: [:admin, @achievement.becomes(Achievement)], html: {multipart: true}, data: {remote: false} do |form| %>
 
 
-        <%= render partial: 'application/form-errors', locals: { object: @achievement } %>
+                <%= render partial: 'application/form-errors', locals: {object: @achievement} %>
 
-        <section>
-            <div class="section-outline">
-                <h2><span>1</span>Achievement details</h2>
-            </div>
-            <div class="section-content">
-
-                <!-- Achievement -->
-                <div class="field">
-                    <%= form.label :type, 'Achievement' %><br/>
-                    <%= form.select :type, options_for_select(
-                        [
-                            [StraightFlush.title, StraightFlush.sti_name],
-                            [RoyalFlush.title, RoyalFlush.sti_name]
-                        ]
-                    ) %>
-                </div>
-
-                <!-- Player -->
-                <div class="field">
-                    <%= form.label :player_id %><br/>
-                    <%= form.hidden_field :player_id, id: 'achievement_player_id' %>
-                    <div class="player-input-wrapper" style="max-width: 280px;">
-                        <%= form.text_field :player,
-                                            class: 'typeahead-achievement player-input',
-                                            name: nil,
-                                            placeholder: 'Name or username',
-                                            value: @player_name %>
+                <section>
+                    <div class="section-outline">
+                        <h2><span>1</span>Achievement details</h2>
                     </div>
-                </div>
+                    <div class="section-content">
 
-                <!-- Proof -->
-                <div class="field">
-                    <label>Proof</label>
-                    <div class="file-button">
-                        <%= form.label :proof, class: 'button-secondary' do %>
-                            <i class="material-icons">&#xE2C6;</i>
-                            <span>No file chosen</span>
-                        <% end %>
+                        <!-- Achievement -->
+                        <div class="field">
+                            <%= form.label :type, 'Achievement' %><br/>
+                            <%= form.select :type, options_for_select(
+                                [
+                                    [StraightFlush.title, StraightFlush.sti_name],
+                                    [RoyalFlush.title, RoyalFlush.sti_name]
+                                ]
+                            ) %>
+                        </div>
+
+                        <!-- Player -->
+                        <div class="field">
+                            <%= form.label :player_id %><br/>
+                            <%= form.hidden_field :player_id, id: 'achievement_player_id' %>
+                            <div class="player-input-wrapper" style="max-width: 280px;">
+                                <%= form.text_field :player,
+                                                    class: 'typeahead-achievement player-input',
+                                                    name: nil,
+                                                    placeholder: 'Name or username',
+                                                    value: @player_name %>
+                            </div>
+                        </div>
+
+                        <!-- Proof -->
+                        <div class="field">
+                            <label>Proof</label>
+                            <div class="file-button">
+                                <%= form.label :proof, class: 'button-secondary' do %>
+                                    <i class="material-icons">&#xE2C6;</i>
+                                    <span>No file chosen</span>
+                                <% end %>
+                            </div>
+                            <%= form.file_field :proof, id: 'achievement_proof' %>
+                        </div>
+
                     </div>
-                    <%= form.file_field :proof, id: 'achievement_proof' %>
+                </section>
+
+                <div class="actions buttons">
+                    <%= form.submit 'Award achievement', class: 'button' %>
+                    <%= link_to 'Cancel', admin_players_path, class: 'button-tertiary' %>
                 </div>
 
-            </div>
-        </section>
+            <% end %>
 
-        <div class="actions buttons">
-            <%= form.submit 'Award achievement', class: 'button' %>
-            <%= link_to 'Cancel', admin_players_path, class: 'button-tertiary' %>
         </div>
 
-    <% end %>
+    </div>
 
 </div>

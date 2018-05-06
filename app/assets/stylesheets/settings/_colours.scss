@@ -22,9 +22,9 @@ $breakdown-text: hsl(38, 15%, 21%);
 $generic-text: hsl(282, 12%, 18%);
 $generic-text-bold: darken($generic-text, 15%);
 
-$border-on-white: hsl(282, 8%, 90%);
+$border-on-white: hsl(282, 8%, 94%);
 $border-on-grey: hsl(282, 8%, 87%);
 
 $button-border: hsl(282, 15%, 92%);
 $input-border: darken($border-on-white, 4%);
-$input-background: lighten($border-on-white, 7%);
+$input-background: lighten($border-on-white, 3%);

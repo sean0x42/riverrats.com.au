@@ -1,7 +1,26 @@
-<% content_for :title, 'New Region (Admin)' %>
+<%- content_for :title, 'New Region (Admin)' %>
 
-<div class="admin-body">
-    <h1>New Regions</h1>
-    <p class="form-description">Create a new region. Be sure to keep your regions up to date as you expand.</p>
-    <%= render 'form' %>
+<!-- Header -->
+<div class="wrapper-header admin">
+    <h1 class="has-subtitle">New Region</h1>
+    <p class="subtitle">Create a new region. Be sure to keep your regions up to date as you expand.</p>
+</div>
+
+<div class="column-wrapper small-first">
+
+    <!-- Navigation -->
+    <div class="thin">
+        <%= render 'admin/navigation' %>
+    </div>
+
+    <div class="wide">
+
+        <!-- Form -->
+        <div class="background">
+            <h2>Form</h2>
+            <%= render 'form' %>
+        </div>
+
+    </div>
+
 </div>

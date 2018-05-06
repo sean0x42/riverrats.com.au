@@ -1,7 +1,26 @@
-<% content_for :title, 'New player (Admin)' %>
+<%- content_for :title, 'New player (Admin)' %>
 
-<div class="admin-body">
-    <h1>Create a player</h1>
-    <p class="form-description">Register a new player. The player will be sent a randomly generated password via email.</p>
-    <%= render 'form' %>
+<!-- Header -->
+<div class="wrapper-header admin">
+    <h1 class="has-subtitle">Create a player</h1>
+    <p class="subtitle">Register a new player. The player will be sent a randomly generated password via email.</p>
+</div>
+
+<div class="column-wrapper small-first">
+
+    <!-- Navigation -->
+    <div class="thin">
+        <%= render 'admin/navigation' %>
+    </div>
+
+    <div class="wide">
+
+        <!-- Form -->
+        <div class="background">
+            <h2>Form</h2>
+            <%= render 'form' %>
+        </div>
+
+    </div>
+
 </div>

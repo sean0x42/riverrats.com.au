@@ -1,43 +1,137 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%- content_for :title, 'Preferences' %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="wrapper-header submerged">
+    <h1>Player Preferences</h1>
+    <p>Update your preferences.</p>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<div class="column-wrapper small-first">
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <div class="thin">
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+    <div class="wide">
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+        <!-- Forms -->
+        <div class="background">
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+            <h2>Form</h2>
 
-<h3>Cancel my account</h3>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+                <%= devise_error_messages! %>
 
-<%= link_to "Back", :back %>
+                <section>
+                    <div class="section-outline">
+                        <h2><span>1</span> My details</h2>
+                    </div>
+                    <div class="section-content">
+
+                        <!-- Email -->
+                        <div class="field">
+                            <%= f.label :email %>
+                            <div class="input-wrapper">
+                                <i class="material-icons">&#xE0BE;</i>
+                                <%= f.email_field :email, autofocus: true, placeholder: 'someone@example.com' %>
+                            </div>
+                        </div>
+
+                        <% if devise_mapping.confirmable? and resource.pending_reconfirmation? %>
+                            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                        <% end %>
+
+                    </div>
+                </section>
+
+                <section>
+                    <div class="section-outline">
+                        <h2><span>2</span> Account Security</h2>
+                    </div>
+                    <div class="section-content">
+
+                        <!-- Password -->
+                        <div class="field">
+                            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+                            <div class="input-wrapper">
+                                <i class="material-icons">&#xE897;</i>
+                                <%= f.password_field :password, autocomplete: "off" %>
+                            </div>
+                            <% if @minimum_password_length %>
+                                <em><%= @minimum_password_length %> characters minimum</em>
+                            <% end %>
+                        </div>
+
+                        <!-- Password confirmation -->
+                        <div class="field">
+                            <%= f.label :password_confirmation %>
+                            <div class="input-wrapper">
+                                <i class="material-icons">&#xE899;</i>
+                                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                            </div>
+                        </div>
+
+                        <!-- Current password -->
+                        <div class="field">
+                            <%= f.label :current_password %>
+                            <i>(we need your current password to confirm your changes)</i><br/>
+                            <%= f.password_field :current_password, autocomplete: "off" %>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section>
+                    <div class="section-outline">
+                        <h2><span>3</span>Notifications</h2>
+                    </div>
+                    <div class="section-content">
+
+                        <!-- Promotional emails -->
+                        <div class="field checkbox">
+                            <%= f.check_box :notify_promotional %>
+                            <%= f.label :notify_promotional do %>
+                                <i class="material-icons">&#xE835;</i>
+                                <span>Receive promotional emails</span>
+                            <% end %>
+                        </div>
+
+                        <!-- Event emails -->
+                        <div class="field checkbox">
+                            <%= f.check_box :notify_events %>
+                            <%= f.label :notify_events do %>
+                                <i class="material-icons">&#xE835;</i>
+                                <span>Receive upcoming event emails</span>
+                            <% end %>
+                        </div>
+
+                    </div>
+                </section>
+
+                <div class="actions buttons">
+                    <%= f.submit 'Save preferences', class: 'button' %>
+                    <%= link_to 'Cancel', root_path, class: 'button-tertiary' %>
+                </div>
+
+            <% end %>
+
+        </div>
+
+        <div class="background danger-zone">
+            <h2><i class="material-icons">&#xE002;</i>Delete account</h2>
+            <p>Unhappy? Cancel your account here. We'll be sad to see you go.</p>
+
+            <div class="buttons">
+                <%= link_to 'Delete account',
+                            registration_path(resource_name),
+                            data: { confirm: 'Are you sure?' },
+                            method: :delete,
+                            class: 'button danger' %>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<%= render 'application/footer-banner-authenticated' %>

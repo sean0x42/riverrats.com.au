@@ -1,7 +1,7 @@
 .stats {
   display: grid;
   grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, 140px);
   p { margin: 0; }
 
   .numeric {

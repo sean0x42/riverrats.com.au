@@ -1,59 +1,76 @@
-<% content_for :title, 'All Players (Admin)' %>
+<%- content_for :title, 'All Players (Admin)' %>
 
-<div class="admin-body">
+<!-- Header -->
+<div class="wrapper-header admin">
+    <h1 class="has-subtitle">Players</h1>
+    <p class="subtitle">Here you can view and manage all players registered on the website.</p>
+</div>
 
-    <div class="admin-breakdown">
+<div class="column-wrapper small-first">
 
-        <h2>
-            <span>breakdown</span>
-            <i class="material-icons">&#xE8E5;</i>
-        </h2>
-
-        <div class="stats">
-
-            <!-- Registered players -->
-            <div class="stat">
-                <p class="value"><%= number_with_delimiter @stats[:count] %></p>
-                <p class="description">registered players</p>
-            </div>
-
-            <!-- New players -->
-            <div class="stat">
-                <p class="value"><%= number_with_delimiter @stats[:new_count] %></p>
-                <p class="description">in the last 30 days</p>
-            </div>
-
-            <!-- # of admins -->
-            <div class="stat">
-                <p class="value"><%= number_with_delimiter @stats[:admin_count] %></p>
-                <p class="description">administrators</p>
-            </div>
-
-        </div>
-
+    <!-- Navigation -->
+    <div class="thin">
+        <%= render 'admin/navigation' %>
     </div>
 
-    <%- if @players.empty? %>
-        <%= render partial: 'admin/empty-state', locals: { noun: 'players', link: new_admin_player_path } %>
-    <%- else %>
-        <div class="table-wrapper">
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th class="badge-column"></th>
-                    <th class="numeric stretch">Score</th>
-                    <th class="numeric">Played</th>
-                    <th class="numeric">Won</th>
-                </tr>
-                <%= render @players %>
-            </table>
-        </div>
-    <%- end %>
+    <div class="wide">
 
-    <div class="footer">
-        <%= paginate @players %>
-        <p><%= page_entries_info @players %></p>
+        <!-- Breakdown -->
+        <div class="background breakdown-<%= Random.rand(4) %>">
+            <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>
+
+            <div class="stats">
+
+                <!-- Registered players -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @stats[:count] %></p>
+                    <p class="label">registered players</p>
+                </div>
+
+                <!-- New players -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @stats[:new_count] %></p>
+                    <p class="label">in the last 30 days</p>
+                </div>
+
+                <!-- # of admins -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @stats[:admin_count] %></p>
+                    <p class="label">administrators</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="background">
+
+            <h2><i class="material-icons">&#xE7FB;</i> All players</h2>
+
+            <%- if @players.empty? %>
+                <%= render partial: 'admin/empty-state', locals: {noun: 'players', link: new_admin_player_path} %>
+            <%- else %>
+                <div class="table-wrapper">
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th class="badge-column"></th>
+                            <th class="numeric stretch">Score</th>
+                            <th class="numeric">Played</th>
+                            <th class="numeric">Won</th>
+                        </tr>
+                        <%= render @players %>
+                    </table>
+                </div>
+            <%- end %>
+
+            <div class="background-footer">
+                <%= paginate @players %>
+                <p><%= page_entries_info @players %></p>
+            </div>
+
+        </div>
+
     </div>
 
 </div>

@@ -1,11 +1,11 @@
-$height: 25px;
+$height: 20px;
 $background-drop: 300px;
-$header-height: 100px;
+$header-height: 82px;
 
 .header {
   position: relative;
   width: 100vw;
-  padding-top: $header-height;
+  padding-top: $header-height + 46px;
   padding-bottom: $height + $background-drop;
   background: linear-gradient(0deg, $branding-primary, $branding-primary-rotated);
   margin-bottom: -1 * $background-drop;

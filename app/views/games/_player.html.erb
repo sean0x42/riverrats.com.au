@@ -4,7 +4,7 @@
         <% if player.player == nil %>
             [Deleted player]
         <% else %>
-            <%= link_to player.player.full_name, player.player %>
+            <%= link_to player.player.full_name, player.player, data: { player_id: player.player.id, show_profile_preview: true } %>
         <% end %>
     </td>
     <td>@<%= player.player.username %></td>

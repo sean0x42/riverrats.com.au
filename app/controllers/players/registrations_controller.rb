@@ -1,6 +1,6 @@
 class Players::RegistrationsController < Devise::RegistrationsController
 
-  layout 'authentication'
+  layout :resolve_layout
 
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -38,6 +38,19 @@ class Players::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+
+
+  private
+
+  def resolve_layout
+    case action_name
+    when 'edit'
+      'application'
+    else
+      'authentication'
+    end
+  end
+
 
   # protected
 

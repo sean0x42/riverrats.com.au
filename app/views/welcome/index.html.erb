@@ -1,47 +1,14 @@
-<div class="hero">
-
-    <div class="wrapper">
-        <h1>Welcome</h1>
-        <p>This is the official River Rats Poker League website!</p>
-    </div>
-
+<div class="wrapper wrapper-header submerged">
+    <h1>Welcome</h1>
+    <p>This is the official River Rats Poker League website!</p>
 </div>
 
-<div class="column-wrapper over">
+<div class="column-wrapper">
     <div class="left">
-        <%= render collection: @season.players_seasons, partial: 'welcome/players_seasons' %>
-    </div>
-</div>
-
-<%- if player_signed_in? %>
-
-    <div class="footer-banner">
-        <div class="wrapper">
-
-            <div class="logo">
-                <%= image_tag 'logo-textless.svg' %>
-            </div>
-
-            <div class="info">
-                <h1>Let's dive in</h1>
-                <p>Get involved! Check out your profile, or someone else's...</p>
-            </div>
-
-            <div class="buttons">
-
-                <!-- Join -->
-                <%= link_to player_path(current_player), class: 'button' do %>
-                    <i class="material-icons">&#xE851;</i>
-                    <span>View my profile</span>
-                <% end %>
-
-                <!-- Random player -->
-                <%= link_to players_random_path, class: 'button-secondary' do %>
-                    <i class="material-icons">&#xEB40;</i>
-                    <span>Random profile</span>
-                <% end %>
-
-            </div>
+        <div class="background">
+            <%= render collection: @season.players_seasons, partial: 'welcome/players_seasons' %>
         </div>
     </div>
-<%- end %>
+</div>
+
+<%= render 'application/footer-banner-authenticated' %>

@@ -5,6 +5,7 @@
   background: white;
   z-index: 2000;
   padding: 1.25rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.04);
 
   .wrapper {
     display: flex;
@@ -13,9 +14,10 @@
   }
 
   .logo {
-    width: 30px;
+    width: 42px;
     line-height: 1.0;
     vertical-align: middle;
+    margin-right: 1.25rem;
   }
 
   .buttons {
@@ -23,12 +25,57 @@
   }
 
   .button-secondary {
-    padding: 6px 10px;
+    padding: 8px 14px;
   }
 
   .button-tertiary {
-    padding: 6px 10px;
+    padding: 8px 14px;
     border: 2px solid white;
   }
+
+  .search-wrapper {
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.05);
+
+    input {
+      background: transparent;
+      padding: 11px 13px !important;
+    }
+
+    i {
+      display: none;
+    }
+
+  }
+
+  .quick-links {
+    margin: 0 0 0 1.5rem;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    a {
+      color: lighten($generic-text, 25%);
+      margin-right: 1rem;
+      &:hover {
+        color: $branding-primary;
+        text-decoration: none;
+      }
+    }
+
+  }
+
+  .account-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+    padding: 0.25rem;
+    p { margin: 0 0.5rem; }
+    i { margin: -0.25rem 0; }
+
+  }
+
 
 }

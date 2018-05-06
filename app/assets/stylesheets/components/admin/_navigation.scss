@@ -34,7 +34,7 @@
       }
 
       &:hover {
-        background: hsl(220, 8%, 98%);
+        background: hsl(220, 8%, 99%);
       }
 
       &.active {
@@ -129,9 +129,10 @@
     width: 270px;
     flex-shrink: 0;
     margin-right: 2rem;
+    border-radius: 3px;
     border-top: none;
-    background: none;
-    box-shadow: none;
+    background: unset;
+    box-shadow: unset;
 
     h2 {
       display: block;

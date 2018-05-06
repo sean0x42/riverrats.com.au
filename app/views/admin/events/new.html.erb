@@ -1,7 +1,25 @@
-<% content_for :title, 'Schedule an Event (Admin)' %>
+<%- content_for :title, 'Schedule an Event (Admin)' %>
 
-<div class="admin-body">
-    <h1>New event</h1>
-    <p class="form-description">This page allows you to schedule a new event. Note: Recurring events are generated 6 months in advance.</p>
-    <%= render 'form' %>
+<!-- Header -->
+<div class="wrapper-header admin">
+    <h1 class="has-subtitle">Schedule an Event</h1>
+    <p class="subtitle">This page allows you to schedule a new event. Note: Recurring events are generated 6 months in advance.</p>
+</div>
+
+<div class="column-wrapper small-first">
+
+    <!-- Navigation -->
+    <div class="thin">
+        <%= render 'admin/navigation' %>
+    </div>
+
+    <div class="wide">
+
+        <!-- Form -->
+        <div class="background">
+            <%= render 'form' %>
+        </div>
+
+    </div>
+
 </div>

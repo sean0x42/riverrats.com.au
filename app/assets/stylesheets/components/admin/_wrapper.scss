@@ -15,18 +15,6 @@ body.admin {
     margin-bottom: -0.5rem;
   }
 
-  .footer {
-    text-align: center;
-    margin: 3rem 0 0;
-
-    p {
-      margin: 1.5rem 0;
-      color: lighten($generic-text, 20%);
-    }
-
-    *:last-child { margin-bottom: 0;}
-  }
-
 }
 
 .admin-flexible-wrapper {

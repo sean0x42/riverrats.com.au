@@ -1,22 +1,40 @@
-<% content_for :title, "Edit #{@region.name} (Admin)" %>
+<%- content_for :title, "Edit #{@region.name} (Admin)" %>
 
-<div class="admin-body">
-    <h1>Edit <%= @region.name %></h1>
-    <p class="form-description">Make some changes to this region.</p>
-    <%= render 'form' %>
+<!-- Header -->
+<div class="wrapper-header admin">
+    <h1 class="has-subtitle">Edit <%= @region.name %></h1>
+    <p class="subtitle">Make some changes to this region.</p>
 </div>
 
-<div class="danger-zone admin-body" style="margin-top: 2rem;">
+<div class="column-wrapper small-first">
 
-    <h1><i class="material-icons">&#xE002;</i>Danger Zone</h1>
-    <p class="form-description">Be careful! These actions could have unforeseen consequences, and cannot be undone.</p>
+    <!-- Navigation -->
+    <div class="thin">
+        <%= render 'admin/navigation' %>
+    </div>
 
-    <h2>Delete region</h2>
-    <p><strong>Permanently</strong> delete <%= @region.name %> from the database. You will not be able to recover it.</p>
-    <div class="buttons">
-        <%= link_to admin_region_path(@region), method: :delete, class: 'button danger', data: { confirm: t('region.confirm_delete')} do %>
-            Delete <%= @region.name %>
-        <% end %>
+    <div class="wide">
+
+        <!-- Form -->
+        <div class="background">
+            <h2>Form</h2>
+            <%= render 'form' %>
+        </div>
+
+        <!-- Danger zone -->
+        <div class="background danger-zone">
+
+            <h2><i class="material-icons">&#xE002;</i>Delete Region</h2>
+            <p><strong>Permanently</strong> delete <%= @region.name %> from the database. You will not be able to recover it.</p>
+
+            <div class="buttons">
+                <%= link_to admin_region_path(@region), method: :delete, class: 'button danger', data: {confirm: t('region.confirm_delete')} do %>
+                    Delete <%= @region.name %>
+                <% end %>
+            </div>
+
+        </div>
+
     </div>
 
 </div>

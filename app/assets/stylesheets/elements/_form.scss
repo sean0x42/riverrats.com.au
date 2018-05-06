@@ -20,23 +20,33 @@ form {
 
   .buttons {
     margin-top: 0 !important;
+    margin-bottom: 0;
     flex-direction: row-reverse;
   }
 
   section {
-    border-top: 1px solid $border-on-white;
-    padding: 4em 0;
+    border-bottom: 1px solid $border-on-white;
+    padding: 2rem 0 3rem;
+
+    &:first-of-type {
+      padding-top: 1rem;
+    }
   }
 
   .section-outline {
     margin-bottom: 2rem;
 
+    h2 {
+      text-transform: unset;
+      letter-spacing: unset;
+    }
+
     h2 > span {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       text-align: center;
       color: $branding-primary;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: bold;
       border: 2px solid $branding-primary;
       border-radius: 50%;

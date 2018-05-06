@@ -1,22 +1,40 @@
-<% content_for :title, "Edit @#{@player.username} (Admin)" %>
+<%- content_for :title, "Edit @#{@player.username} (Admin)" %>
 
-<div class="admin-body">
-    <h1>Edit @<%= @player.username %></h1>
-    <p class="form-description">Update this player. Be careful, this can be dangerous!</p>
-    <%= render 'form' %>
+<!-- Header -->
+<div class="wrapper-header admin">
+    <h1 class="has-subtitle">Edit @<%= @player.username %></h1>
+    <p class="subtitle">Update this player. Be careful, this can be dangerous!</p>
 </div>
 
-<div class="danger-zone admin-body" style="margin-top: 2rem;">
+<div class="column-wrapper small-first">
 
-    <h1><i class="material-icons">&#xE002;</i>Danger Zone</h1>
-    <p class="form-description">Be careful! These actions could have unforeseen consequences, and cannot be undone.</p>
+    <!-- Navigation -->
+    <div class="thin">
+        <%= render 'admin/navigation' %>
+    </div>
 
-    <h2>Delete player</h2>
-    <p><strong>Permanently</strong> delete @<%= @player.username %> from the database. You will not be able to recover this account, and the user will no longer be able to login.</p>
-    <div class="buttons">
-        <%= link_to admin_player_path(@player), method: :delete, class: 'button danger', data: {confirm: t('player.confirm_delete')} do %>
-            Delete @<%= @player.username %>
-        <% end %>
+    <div class="wide">
+
+        <!-- Form -->
+        <div class="background">
+            <h2>Form</h2>
+            <%= render 'form' %>
+        </div>
+
+        <!-- Danger zone -->
+        <div class="background danger-zone">
+
+            <h2><i class="material-icons">&#xE002;</i> Delete player</h2>
+            <p><strong>Permanently</strong> delete @<%= @player.username %> from the database. You will not be able to recover this account, and the user will no longer be able to login.</p>
+
+            <div class="buttons">
+                <%= link_to admin_player_path(@player), method: :delete, class: 'button danger', data: {confirm: t('player.confirm_delete')} do %>
+                    Delete @<%= @player.username %>
+                <% end %>
+            </div>
+
+        </div>
+
     </div>
 
 </div>

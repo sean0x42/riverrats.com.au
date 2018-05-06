@@ -1,6 +1,6 @@
 <%- content_for :title, "Game #{@game.name} · #{@game.venue.name}" %>
 
-<div class="wrapper wrapper-header">
+<div class="wrapper wrapper-header submerged">
     <h1 class="has-subtitle">Game <%= @game.name %></h1>
     <p class="subtitle">Played <%= local_time_ago @game.played_on %> &middot; At <%= link_to @game.venue.name, venue_path(@game.venue) %></p>
 </div>

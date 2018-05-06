@@ -15,6 +15,8 @@ h1 {
 
 
 h2 {
+  display: flex;
+  align-items: center;
   color: $branding-primary;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -25,6 +27,6 @@ h2 {
     font-size: 21px;
     line-height: 1.0;
     vertical-align: middle;
-    margin: -5px 0 -4px;
+    margin: -5px 0.5rem -4px 0;
   }
 }

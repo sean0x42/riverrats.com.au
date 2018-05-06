@@ -1,55 +1,84 @@
-<% content_for :title, 'All Events (Admin)' %>
+<%- content_for :title, 'All Events (Admin)' %>
 
-<div class="admin-body">
+<!-- Header -->
+<div class="wrapper-header admin">
+    <h1 class="has-subtitle">Events</h1>
+    <p class="subtitle">Here you can view and manage all events.</p>
+</div>
 
-    <div class="admin-breakdown">
+<div class="column-wrapper small-first">
 
-        <h2><span>breakdown</span><i class="material-icons">&#xE8E5;</i></h2>
+    <!-- Navigation -->
+    <div class="thin">
 
-        <div class="stats">
+        <%= link_to new_admin_event_path, class: 'button wide' do %>
+            <i class="material-icons">&#xE878;</i>
+            <span>Schedule an event</span>
+        <% end %>
 
-            <!-- Finished events -->
-            <div class="stat">
-                <p class="value"><%= number_with_delimiter @stats[:finished] %></p>
-                <p class="description">events held</p>
-            </div>
-
-            <!-- Upcoming events -->
-            <div class="stat">
-                <p class="value"><%= number_with_delimiter @stats[:upcoming] %></p>
-                <p class="description">upcoming events</p>
-            </div>
-
-            <!-- Recurring events -->
-            <div class="stat">
-                <p class="value"><%= number_with_delimiter @stats[:recurring] %></p>
-                <p class="description">recurring events</p>
-            </div>
-
-        </div>
+        <%= render 'admin/navigation' %>
 
     </div>
 
-    <% if @events.empty? %>
-        <%= render partial: 'admin/empty-state', locals: {noun: 'events', link: new_admin_event_path} %>
-    <% else %>
-        <div class="table-wrapper">
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th class="stretch"></th>
-                    <th>Start time</th>
-                </tr>
-                <%= render collection: @events, partial: 'admin/events/event' %>
-            </table>
-        </div>
-    <% end %>
+    <div class="wide">
 
-    <div class="footer">
-        <%= paginate @events %>
-        <p><%= page_entries_info @events %></p>
+        <!-- Breakdown -->
+        <div class="background breakdown-<%= Random.rand(4) %>">
+            <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>
+
+            <div class="stats">
+
+                <!-- Finished events -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @stats[:finished] %></p>
+                    <p class="label">events held</p>
+                </div>
+
+                <!-- Upcoming events -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @stats[:upcoming] %></p>
+                    <p class="label">upcoming events</p>
+                </div>
+
+                <!-- Recurring events -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @stats[:recurring] %></p>
+                    <p class="label">recurring events</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Event list -->
+        <div class="background">
+
+            <h2><i class="material-icons">&#xE616;</i> Events</h2>
+
+            <% if @events.empty? %>
+                <%= render partial: 'admin/empty-state', locals: {noun: 'events', link: new_admin_event_path} %>
+            <% else %>
+                <div class="table-wrapper">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th class="stretch"></th>
+                            <th>Start time</th>
+                        </tr>
+                        <%= render collection: @events, partial: 'admin/events/event' %>
+                    </table>
+                </div>
+            <% end %>
+
+            <div class="background-footer">
+                <%= paginate @events %>
+                <p><%= page_entries_info @events %></p>
+            </div>
+
+        </div>
+
     </div>
 
 </div>
