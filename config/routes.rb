@@ -23,12 +23,14 @@ Rails.application.routes.draw do
   get 'players/auto-complete', to: 'players#auto_complete'
   get 'players/random', to: 'players#random'
 
-  resources :players, :events,
+  resources :players,
             only: [:index, :show],
             param: :username
 
-  resources :games,
+  resources :games, :events,
             only: :show
+
+  get '/calender(/:year/:month)', to: 'events#index', as: 'events'
 
   resources :regions, :venues,
             only: :show,

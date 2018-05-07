@@ -1,4 +1,41 @@
-<h1><%= @event.clean_title %></h1>
-<p>This page is for an event that occurs <%= local_time_ago @event.start_at %>.</p>
+<%- content_for :title, "#{@event.title}" %>
 
-<p><%= @event.description %></p>
+<div class="wrapper-header submerged">
+    <h1 class="has-subtitle">
+        <%= @event.clean_title %>
+        <%- unless @event.has_occurred? %>
+            <span class="badge">upcoming</span>
+        <%- end %>
+    </h1>
+    <p class="subtitle">An event hosted by the River Rats Poker League.</p>
+</div>
+
+<div class="column-wrapper">
+
+    <div class="wide">
+
+        <!-- Breakdown -->
+        <div class="background breakdown-<%= Random.rand(4) %>">
+            <h2><i class="material-icons">&#xE24B;</i> Breakdown</h2>
+            <div class="stats-arbitrary">
+
+                <!-- Time -->
+                <div class="stat"><strong>Time: </strong><%= local_time @event.start_at, '%l:%M%P' %></div>
+
+                <!-- Date -->
+                <div class="stat"><strong>Date: </strong><%= local_date @event.start_at %></div>
+
+                <!-- Venue -->
+                <div class="stat"><strong>Venue: </strong><%= link_to @event.venue.name, venue_path(@event.venue) %></div>
+
+            </div>
+        </div>
+
+        <div class="background">
+            <h2><i class="material-icons">&#xE873;</i>Description</h2>
+            <p><%= @event.description.blank? ? 'This event has no description.' : @event.description %></p>
+        </div>
+
+    </div>
+
+</div>

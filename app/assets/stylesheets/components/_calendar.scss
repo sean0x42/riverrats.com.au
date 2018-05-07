@@ -1,4 +1,79 @@
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  border-left: 1px solid $input-border;
+
+  .title {
+    font-size: 15px;
+    line-height: 1.0;
+    color: lighten($generic-text, 20%);
+    margin: 0;
+    padding: 1rem;
+    border-top: 1px solid $input-border;
+    border-bottom: 1px solid $input-border;
+    border-right: 1px solid $input-border;
+  }
+
+  .date {
+    min-height: 150px;
+    border-bottom: 1px solid $input-border;
+    border-right: 1px solid $input-border;
+    padding: 1rem;
+
+    .day {
+      color: $branding-primary;
+      margin: 0;
+    }
+
+    &.disabled {
+      background: $input-background;
+      .day { color: lighten($generic-text, 40%); }
+    }
+
+    &.today {
+      border: 1px solid $branding-primary;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .event {
+      display: flex;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 1.6;
+      color: lighten($generic-text, 15%);
+      padding: 0.25rem 0;
+      span { line-height: inherit; }
+      .status-dot { padding: 6px 0.5rem 6px 0; }
+
+      &:hover {
+        text-decoration: none;
+        color: $branding-primary;
+      }
+    }
+
+  }
+
+}
+
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem 0;
+  padding: 1rem 0;
+
+  p {
+    color: $branding-primary;
+    text-align: center;
+    margin: 0;
+    text-transform: unset;
+    font-size: 16px;
+    letter-spacing: unset;
+  }
+
 }

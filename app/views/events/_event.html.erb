@@ -1,0 +1,10 @@
+<li>
+    <%= link_to event_path(event), class: 'event' do %>
+        <% if event.has_occurred? %>
+            <span class="status-dot"><i></i></span>
+        <% else %>
+            <span class="status-dot active"><i></i></span>
+        <% end %>
+        <span><%= event.title %></span>
+    <% end %>
+</li>

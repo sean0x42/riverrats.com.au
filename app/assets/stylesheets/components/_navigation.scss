@@ -4,7 +4,7 @@
   width: 100%;
   background: white;
   z-index: 2000;
-  padding: 1.25rem;
+  padding: 1rem;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.04);
 
   .wrapper {
@@ -66,14 +66,85 @@
 
   }
 
+  .account {
+    position: relative;
+    margin-left: auto;
+  }
+
   .account-wrapper {
+    @include no-select();
     display: flex;
     align-items: center;
-    margin-left: auto;
     cursor: pointer;
     padding: 0.25rem;
-    p { margin: 0 0.5rem; }
-    i { margin: -0.25rem 0; }
+    color: lighten($branding-primary, 0%);
+
+    p { margin: 0 0.25rem; }
+
+    i {
+      color: $branding-primary;
+      margin: -0.25rem 0;
+    }
+
+  }
+
+  .account-dropdown {
+    display: none;
+    background: white;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 230px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.04);
+    border-radius: 3px;
+    border: 1px solid $input-border;
+    &.active { display: block; }
+
+    ul {
+      margin: 0;
+      padding: 0.5rem 0;
+      list-style-type: none;
+
+      a {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+
+        &:hover {
+          text-decoration: none;
+          background: $input-background;
+        }
+
+      }
+
+      i {
+        font-size: 19px;
+        margin: -0.25rem 0.75rem -0.25rem 0;
+      }
+
+    }
+
+    &:before, &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 100%;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    &:before {
+      right: 19px;
+      border-width: 11px;
+      border-color: transparent transparent $input-border transparent;
+    }
+
+    &:after {
+      right: 20px;
+      border-width: 10px;
+      border-color: transparent transparent white transparent;
+    }
 
   }
 

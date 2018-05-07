@@ -12,14 +12,69 @@
         <!-- Links -->
         <ul class="quick-links">
             <li><%= link_to 'Leaderboards', root_path %></li>
-            <li><%= link_to 'Event schedule', events_path %></li>
+            <li><%= link_to 'Event calendar', events_path %></li>
         </ul>
 
         <!-- Account -->
         <%- if player_signed_in? %>
-            <div class="account-wrapper">
-                <p class="player-name"><%= current_player.full_name %></p>
-                <i class="material-icons">&#xE5C5;</i>
+
+            <div class="account">
+
+                <div class="account-wrapper">
+                    <p class="player-name"><%= current_player.full_name %></p>
+                    <i class="material-icons">&#xE5C5;</i>
+                </div>
+
+                <div class="account-dropdown">
+
+                    <ul>
+
+                        <!-- My profile -->
+                        <li>
+                            <%= link_to player_path(current_player) do %>
+                                <i class="material-icons">&#xE851;</i>
+                                View my profile
+                            <% end %>
+                        </li>
+
+                        <!-- Preferences -->
+                        <li>
+                            <%= link_to edit_player_registration_path do %>
+                                <i class="material-icons">&#xE8B8;</i>
+                                Preferences
+                            <% end %>
+                        </li>
+
+                        <%- if current_player.is_admin %>
+                            <!-- Admin -->
+                            <li>
+                                <%= link_to admin_root_path do %>
+                                    <i class="material-icons">&#xE869;</i>
+                                    Admin panel
+                                <% end %>
+                            </li>
+                        <%- end %>
+
+                        <!-- Random profile -->
+                        <li>
+                            <%= link_to players_random_path do %>
+                                <i class="material-icons">&#xEB40;</i>
+                                Random profile
+                            <% end %>
+                        </li>
+
+                        <!-- Logout -->
+                        <li>
+                            <%= link_to destroy_player_session_path, method: :delete, data: {confirm: 'Are you sure you want to log out?'} do %>
+                                <i class="material-icons">&#xE879;</i>
+                                Logout
+                            <% end %>
+                        </li>
+
+                    </ul>
+
+                </div>
+
             </div>
         <%- else %>
             <div class="buttons">

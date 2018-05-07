@@ -1,8 +1,8 @@
-<%- content_for :title, 'Event schedule' %>
+<%- content_for :title, 'Event Calendar' %>
 
 <div class="wrapper wrapper-header submerged">
-    <h1 class="has-subtitle">Event schedule</h1>
-    <p class="subtitle">View all upcoming events. Click on an event for more details.</p>
+    <h1 class="has-subtitle">Event Calendar</h1>
+    <p class="subtitle">View all upcoming events. Click on an event for more details. <strong>Note:</strong> We only generate events 6 months in advance.</p>
 </div>
 
 <div class="wrapper">
@@ -21,6 +21,10 @@
 
     <!-- Calendar -->
     <div class="background">
+
+        <!-- Calendar controls -->
+        <%= render partial: 'calendar-controls', locals: { date: @date } %>
+
         <div class="calendar">
             <p class="title">Sun</p>
             <p class="title">Mon</p>
@@ -29,7 +33,19 @@
             <p class="title">Thu</p>
             <p class="title">Fri</p>
             <p class="title">Sat</p>
+            <% @events.each do |date, events| %>
+                <div class="date<%= ' disabled' if date.month != @date.month %><%= ' today' if date == Date.today %>">
+                    <p class="day"><span class="inter-ui-ss01"><%= date.day %></span></p>
+                    <ul>
+                        <%= render collection: events, partial: 'event' %>
+                    </ul>
+                </div>
+            <% end %>
         </div>
+
+        <!-- Calendar controls -->
+        <%= render partial: 'calendar-controls', locals: { date: @date } %>
+
     </div>
 
 </div>
