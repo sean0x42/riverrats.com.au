@@ -6,18 +6,13 @@
 
 <% content_for :body do %>
 
+    <%= render 'application/header' %>
+
     <div class="auth-wrapper">
-
-        <!-- Logo linking home -->
-        <%= link_to root_path, class: 'logo' do %>
-            <%= image_tag 'logo-textless.svg' %>
-        <% end %>
-
         <%= yield %>
-
-        <p class="copyright">River Rats Poker League &copy; <%= Date.today.year %></p>
-
     </div>
+
+    <%= render 'application/footer' %>
 
 <% end %>
 

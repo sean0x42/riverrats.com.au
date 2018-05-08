@@ -1,6 +1,6 @@
 body.authentication {
 
-  form {
+  form:not(.search) {
     background: white;
     overflow: hidden;
     padding: calc(1rem + 6px) 2rem 2rem;

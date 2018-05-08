@@ -90,7 +90,7 @@ class Admin::PlayersController < ApplicationController
     @player = Player.find_by! username: params[:username]
     @player.destroy
 
-    flash[:notice] = t('player.destroy') % {player: @player.username }
+    flash[:success] = FlashMessage.new 'Success!', t('player.destroy') % { player: @player.username }
     redirect_to admin_players_path
   end
 

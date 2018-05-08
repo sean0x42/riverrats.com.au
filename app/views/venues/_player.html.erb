@@ -1,0 +1,13 @@
+<tr class="<%= 'first' if player_counter == 0 %>">
+    <td><%= (player_counter + 1).ordinalize %></td>
+    <td class="stretch">
+        <% if player.player == nil %>
+            [Deleted player]
+        <% else %>
+            <%= link_to player.player.full_name, player.player, data: { player_id: player.player.id, show_profile_preview: true } %>
+        <% end %>
+    </td>
+    <td class="numeric"><%= number_with_delimiter player.games_played %></td>
+    <td class="numeric"><%= number_with_delimiter player.games_won %></td>
+    <td class="numeric"><%= number_with_delimiter player.score %></td>
+</tr>

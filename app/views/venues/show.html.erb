@@ -6,19 +6,81 @@
 </div>
 
 <div class="column-wrapper">
-    <div class="left">
-        <div class="background">
-            <h2><i class="material-icons">&#xE242;</i> Leaderboard</h2>
-            <table>
-                <tr>
-                    <th class="stretch">Name</th>
-                    <th class="numeric">Score</th>
-                    <th class="numeric">Played</th>
-                    <th class="numeric">Wins</th>
-                </tr>
-                <%= render collection: @venue.players_venues.first(50), partial: 'players' %>
-            </table>
+
+    <div class="wide">
+
+        <!-- Breakdown -->
+        <div class="background breakdown-<%= Random.rand(4) %>">
+            <h2><i class="material-icons">&#xE24B;</i> Breakdown</h2>
+
+            <div class="stats">
+
+                <!-- Players -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @venue.players.count %></p>
+                    <p class="label">unique players</p>
+                </div>
+
+            </div>
+
         </div>
+
+        <!-- Leaderboard -->
+        <div class="background">
+            <h2><i class="material-icons">&#xE242;</i>Leaderboard</h2>
+
+            <%- if @players.empty? %>
+                <%= render partial: 'application/empty-state', locals: {description: 'No one has played at this venue yet.'} %>
+            <%- else %>
+                <div class="table-wrapper">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th class="stretch">Player</th>
+                            <th class="numeric">Played</th>
+                            <th class="numeric">Wins</th>
+                            <th class="numeric">Score</th>
+                        </tr>
+                        <%= render collection: @players, partial: 'player' %>
+                    </table>
+                </div>
+            <%- end %>
+
+            <div class="background-footer">
+                <%= paginate @players %>
+                <p><%= page_entries_info @players %></p>
+            </div>
+
+        </div>
+
     </div>
+
+    <div class="thin">
+
+        <!-- Location -->
+        <div class="background">
+            <h2><i class="material-icons">&#xE55B;</i>Location</h2>
+            <iframe
+                width="100%"
+                height="450"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY
+                &q=Space+Needle,Seattle+WA" allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <div class="buttons">
+
+            <!-- Print -->
+            <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                <i class="material-icons">&#xE8AD;</i>
+                Print this page
+            <% end %>
+
+        </div>
+
+    </div>
+
 </div>
 

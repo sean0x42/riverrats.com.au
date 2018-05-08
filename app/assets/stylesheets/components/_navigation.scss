@@ -1,11 +1,12 @@
 .navigation {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
   background: white;
   z-index: 2000;
   padding: 1rem;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.04);
+  //box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid $input-border;
 
   .wrapper {
     display: flex;
@@ -35,7 +36,8 @@
 
   .search-wrapper {
     box-shadow: none;
-    background: rgba(0, 0, 0, 0.05);
+    background: transparent;
+    border: 1px solid $input-border;
 
     input {
       background: transparent;
@@ -92,7 +94,7 @@
     display: none;
     background: white;
     position: absolute;
-    top: 40px;
+    top: 45px;
     right: 0;
     width: 230px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.04);
@@ -108,7 +110,8 @@
       a {
         display: flex;
         align-items: center;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1.25rem;
+        color: lighten($generic-text, 15%);
 
         &:hover {
           text-decoration: none;
@@ -120,6 +123,7 @@
       i {
         font-size: 19px;
         margin: -0.25rem 0.75rem -0.25rem 0;
+        color: lighten($branding-primary, 5%);
       }
 
     }

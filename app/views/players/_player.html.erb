@@ -1,0 +1,7 @@
+<tr>
+    <td><%= link_to player.full_name, player, data: { player_id: player.id, show_profile_preview: true } %></td>
+    <td class="stretch">@<%= player.username %></td>
+    <td class="numeric"><%= number_with_delimiter player.games_played %></td>
+    <td class="numeric"><%= number_with_delimiter player.games_won %></td>
+    <td class="numeric"><%= number_with_delimiter player.score %></td>
+</tr>

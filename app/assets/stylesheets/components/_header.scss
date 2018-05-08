@@ -1,27 +1,9 @@
-$height: 20px;
-$background-drop: 300px;
-$header-height: 82px;
-
 .header {
   position: relative;
   width: 100vw;
-  padding-top: $header-height + 46px;
-  padding-bottom: $height + $background-drop;
-  background: linear-gradient(0deg, $branding-primary, $branding-primary-rotated);
-  margin-bottom: -1 * $background-drop;
+  height: 130px;
+  //background: linear-gradient(0deg, $branding-primary, $branding-primary-rotated);
   z-index: -1;
 
-  .wrapper {
-    margin: 0;
-  }
-
-  .curve {
-    position: absolute;
-    bottom: 0;
-    width: 100vw;
-    height: $height;
-    fill: hsl(220, 1%, 97%);
-    line-height: 1.0;
-    vertical-align: middle;
-  }
+  .wrapper { margin: 0; }
 }

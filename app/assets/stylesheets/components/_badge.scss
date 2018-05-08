@@ -8,9 +8,9 @@
   vertical-align: middle;
   &:before, &:after { content: '\00a0'; }
 
-  .submerged & {
-    background: none;
-    border: 1px solid darken($branding-primary-text, 20%);
-    color: $branding-primary-text;
-  }
+  //.submerged & {
+  //  background: none;
+  //  border: 1px solid darken($branding-primary-text, 20%);
+  //  color: $branding-primary-text;
+  //}
 }

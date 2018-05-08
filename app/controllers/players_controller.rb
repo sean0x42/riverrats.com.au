@@ -1,5 +1,14 @@
 class PlayersController < ApplicationController
 
+  # GET /players
+  def index
+    if params.has_key? :query
+      @players = Player.search params[:query], page: params[:page], per_page: 25
+    else
+      @players = Player.all
+    end
+  end
+
   # GET /players/:username
   def show
     @player = Player.find_by! username: params[:username]

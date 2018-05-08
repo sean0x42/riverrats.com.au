@@ -1,14 +1,16 @@
 .footer {
   position: relative;
   text-align: center;
-  padding: 0 0 4rem;
-  margin: 5rem 0 0;
+  padding: 4rem 0;
+  background: white;
+  //background: #ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%239154ab' fill-opacity='0.06'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  margin: 8rem 0 0;
 
   .wrapper {
     margin: 5rem auto 0;
     max-width: 580px;
     width: 100%;
-    border-top: 1px solid $border-on-grey;
+    //border-top: 1px solid $border-on-grey;
   }
 
   .copyright {
@@ -65,6 +67,19 @@
       &:hover svg { fill: $branding-primary; }
     }
 
+  }
+
+  .curve {
+    position: absolute;
+    bottom: calc(100% - 20px);
+    left: 0;
+    right: 0;
+    transform: rotateX(180deg);
+    width: 100vw;
+    height: 20px;
+    fill: hsl(220, 1%, 97%);
+    line-height: 1.0;
+    vertical-align: middle;
   }
 
 }

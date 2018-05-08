@@ -20,16 +20,16 @@
 
             <div class="stats">
 
-                <!-- Seasonal points -->
+                <!-- Seasonal score -->
                 <div class="stat">
                     <p class="numeric"><%= number_with_delimiter @player.score %></p>
-                    <p class="label">points (this season)</p>
+                    <p class="label">score (this season)</p>
                 </div>
 
-                <!-- All time points -->
+                <!-- All time score -->
                 <div class="stat">
                     <p class="numeric"><%= number_with_delimiter @player.score %></p>
-                    <p class="label">points (all time)</p>
+                    <p class="label">score (all time)</p>
                 </div>
 
                 <!-- Seasonal rank -->
@@ -60,7 +60,7 @@
                             <th class="numeric">Game</th>
                             <th>Played</th>
                             <th>Venue</th>
-                            <th class="numeric stretch">Points</th>
+                            <th class="numeric stretch">Score</th>
                         </tr>
                         <%= render collection: @recent_games, partial: 'players/game' %>
                     </table>

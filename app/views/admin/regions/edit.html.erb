@@ -1,11 +1,5 @@
 <%- content_for :title, "Edit #{@region.name} (Admin)" %>
 
-<!-- Header -->
-<div class="wrapper-header admin">
-    <h1 class="has-subtitle">Edit <%= @region.name %></h1>
-    <p class="subtitle">Make some changes to this region.</p>
-</div>
-
 <div class="column-wrapper small-first">
 
     <!-- Navigation -->
@@ -14,6 +8,14 @@
     </div>
 
     <div class="wide">
+
+        <!-- Header -->
+        <div class="wrapper-header admin">
+            <div>
+                <h1 class="has-subtitle">Edit <%= @region.name %></h1>
+                <p class="subtitle">Make some changes to this region.</p>
+            </div>
+        </div>
 
         <!-- Form -->
         <div class="background">

@@ -1,18 +1,86 @@
-<h1><%= @region.name %></h1>
-<p>Here's some info about this region.</p>
+<%- content_for :title, @region.name %>
 
-<h2>Venues</h2>
-<ul>
-    <%= render collection: @region.venues, partial: 'venue' %>
-</ul>
+<div class="wrapper-header submerged">
+    <h1 class="has-subtitle"><%= @region.name %></h1>
+    <p class="subtitle">Region overview &middot; Containing <%= pluralize @region.venues.count, 'venue' %>.</p>
+</div>
 
-<h2>Leaderboard</h2>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Score</th>
-        <th>Games Played</th>
-        <th>Games Won</th>
-    </tr>
-    <%= render collection: @region.players_regions.first(50), partial: 'players' %>
-</table>
+<div class="column-wrapper">
+
+    <div class="wide">
+
+        <!-- Breakdown -->
+        <div class="background breakdown-<%= Random.rand(4) %>">
+            <h2><i class="material-icons">&#xE24B;</i> Breakdown</h2>
+
+            <div class="stats">
+
+                <!-- Players -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @region.players.count %></p>
+                    <p class="label">unique players</p>
+                </div>
+
+                <!-- Venues -->
+                <div class="stat">
+                    <p class="numeric"><%= number_with_delimiter @region.venues.count %></p>
+                    <p class="label">venue(s)</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="background">
+            <h2><i class="material-icons">&#xE242;</i>Leaderboard</h2>
+
+            <%- if @players.empty? %>
+                <%= render partial: 'application/empty-state', locals: { description: 'No one has played at this region yet.'} %>
+            <%- else %>
+                <div class="table-wrapper">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th class="stretch">Player</th>
+                            <th class="numeric">Played</th>
+                            <th class="numeric">Wins</th>
+                            <th class="numeric">Score</th>
+                        </tr>
+                        <%= render collection: @players, partial: 'player' %>
+                    </table>
+                </div>
+            <%- end %>
+
+            <div class="background-footer">
+                <%= paginate @players %>
+                <p><%= page_entries_info @players %></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="thin">
+
+        <!-- Venues -->
+        <div class="background">
+            <h2><i class="material-icons">&#xE563;</i>Venues</h2>
+            <ul>
+                <%= render collection: @region.venues, partial: 'venue' %>
+            </ul>
+        </div>
+
+        <div class="buttons">
+
+            <!-- Print -->
+            <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                <i class="material-icons">&#xE8AD;</i>
+                Print this page
+            <% end %>
+
+        </div>
+
+    </div>
+
+</div>

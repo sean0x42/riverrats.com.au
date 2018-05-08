@@ -1,26 +1,22 @@
 <%- content_for :title, 'All Events (Admin)' %>
 
-<!-- Header -->
-<div class="wrapper-header admin">
-    <h1 class="has-subtitle">Events</h1>
-    <p class="subtitle">Here you can view and manage all events.</p>
-</div>
-
 <div class="column-wrapper small-first">
 
     <!-- Navigation -->
     <div class="thin">
-
-        <%= link_to new_admin_event_path, class: 'button wide' do %>
-            <i class="material-icons">&#xE878;</i>
-            <span>Schedule an event</span>
-        <% end %>
-
         <%= render 'admin/navigation' %>
-
     </div>
 
     <div class="wide">
+
+        <!-- Header -->
+        <div class="wrapper-header admin">
+            <div>
+                <h1 class="has-subtitle">Events</h1>
+                <p class="subtitle">Here you can view and manage all events.</p>
+            </div>
+            <%= render 'admin/buttons' %>
+        </div>
 
         <!-- Breakdown -->
         <div class="background breakdown-<%= Random.rand(4) %>">
