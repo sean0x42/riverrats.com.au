@@ -1,0 +1,15 @@
+.attribution {
+  color: lighten($generic-text, 30%);
+  vertical-align: middle;
+  line-height: 1;
+
+  i {
+    //color: lighten($generic-text, 10%);
+    vertical-align: inherit;
+  }
+
+  a {
+    color: inherit;
+  }
+
+}

@@ -1,0 +1,7 @@
+#= require particles.min
+
+ready = ->
+    particlesJS.load 'particles', '<%= asset_path 'authentication/particles.json' %>', ->
+        console.debug "Particles.JS config loaded successfully!"
+
+document.addEventListener "turbolinks:load", ready

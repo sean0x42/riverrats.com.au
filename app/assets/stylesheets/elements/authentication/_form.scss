@@ -12,15 +12,15 @@ body.authentication {
             0 15px 35px rgba(0, 0, 0, 0.05),
             0 5px 15px rgba(0, 0, 0, 0.05);
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
-    }
+    //&:before {
+    //  content: '';
+    //  position: absolute;
+    //  top: 0;
+    //  left: 0;
+    //  right: 0;
+    //  height: 6px;
+    //  background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
+    //}
 
     .button {
       margin-top: 2rem;

@@ -4,9 +4,18 @@
   width: 100vw;
   background: white;
   z-index: 2000;
-  padding: 1rem;
-  //box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.04);
+  padding: 19px 1rem 1rem;
   border-bottom: 1px solid $input-border;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 3px;
+    background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
+  }
 
   .wrapper {
     display: flex;

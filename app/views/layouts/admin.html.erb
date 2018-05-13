@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :scripts do %>
-    <%= javascript_include_tag 'admin/admin' %>
+    <%= javascript_include_tag 'admin/admin', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
 <% content_for :body_class, 'admin' %>
