@@ -2,14 +2,12 @@
   color: lighten($generic-text, 30%);
   vertical-align: middle;
   line-height: 1;
-
+  margin: 0;
+  a { color: inherit;}
   i {
-    //color: lighten($generic-text, 10%);
+    color: $branding-primary;
+    font-size: 22px;
     vertical-align: inherit;
-  }
-
-  a {
-    color: inherit;
   }
 
 }

@@ -1,4 +1,9 @@
-<% content_for :title, 'Forgot your password?' %>
+<% content_for :title, 'Reset Password' %>
+
+<div class="form-header">
+    <h1>Reset Password</h1>
+    <p>Forgot your password? You can reset it here.</p>
+</div>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
     <%= devise_error_messages! %>
@@ -10,6 +15,8 @@
             <%= f.email_field :email, autofocus: true, placeholder: 'someone@example.com' %>
         </div>
     </div>
+
+    <hr />
 
     <div class="actions">
         <%= f.submit 'Send reset instructions', class: 'button wide' %>
