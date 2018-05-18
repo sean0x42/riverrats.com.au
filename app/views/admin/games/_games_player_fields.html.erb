@@ -5,7 +5,7 @@
     <%= f.hidden_field :position, class: 'player-position-input' %>
 
     <!-- Visual information -->
-    <i class="material-icons drag-handle">&#xE25D;</i>
+    <i class="material-icons drag-handle">drag_indicator</i>
     <p class="player-position"><%= f.object.position.to_i + 1 %>.</p>
     <p class="player-name"><%= @attrs[:names][f.object.player_id] %></p>
     <p class="player-username"><%= @attrs[:usernames][f.object.player_id] %></p>

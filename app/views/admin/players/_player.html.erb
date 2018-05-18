@@ -1,5 +1,5 @@
 <tr>
-    <td><%= link_to player.full_name, edit_admin_player_path(player) %></td>
+    <td><%= link_to player.full_name, edit_admin_player_path(player), data: { player_id: player.id, show_profile_preview: true } %></td>
     <td>@<%= player.username %></td>
     <td class="badge-column">
         <% if player.is_admin %>
