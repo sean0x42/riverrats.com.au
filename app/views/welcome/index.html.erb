@@ -1,86 +1,38 @@
 <%- content_for :title, "Leaderboard - #{@season.name}" %>
 
-<div class="wrapper-header submerged">
-    <h1 class="has-subtitle"><%= @season.name %></h1>
-    <p class="subtitle">View rankings for this season.</p>
-</div>
+<div class="hero">
+    <div class="wrapper">
 
-<div class="column-wrapper">
-
-    <div class="wide">
-
-        <!-- Breakdown -->
-        <div class="background breakdown-<%= Random.rand(4) %>">
-            <h2><i class="material-icons">&#xE24B;</i> Breakdown</h2>
-
-            <div class="stats">
-
-                <!-- Players -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @season.players.count %></p>
-                    <p class="label">unique players</p>
-                </div>
-
-                <!-- Games -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @games_played %></p>
-                    <p class="label">games played</p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Leaderboard -->
-        <div class="background">
-            <h2><i class="material-icons">&#xE242;</i>Leaderboard</h2>
-
-            <%- if @players.empty? %>
-                <%= render partial: 'application/empty-state', locals: { description: 'No one has played in this season yet.'} %>
-            <%- else %>
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th class="stretch">Player</th>
-                            <th class="numeric">Played</th>
-                            <th class="numeric">Wins</th>
-                            <th class="numeric">Score</th>
-                        </tr>
-                        <%= render collection: @players, partial: 'player' %>
-                    </table>
-                </div>
-            <%- end %>
-
-            <div class="background-footer">
-                <%= paginate @players %>
-                <p><%= page_entries_info @players %></p>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="thin">
-
-        <!-- Facebook -->
-        <div class="background">
-            <h2><i class="material-icons">&#xE7FA;</i>Social media</h2>
-            <%= render 'application/facebook' %>
-        </div>
+        <h1><%= @season.name %></h1>
+        <p class="subtitle">Join us from <%= local_date @season.start_at, '%A, %B %e' %> to <%= local_date @season.end_at, '%A, %B %e' %>.</p>
 
         <div class="buttons">
 
-            <!-- Print -->
-            <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
-                <i class="material-icons">&#xE8AD;</i>
-                Print this page
+            <!-- Current leaderboard -->
+            <%= link_to season_path(@season), class: 'button' do %>
+                <i class="material-icons">format_list_numbered</i>
+                <span>Season leaderboard</span>
+            <% end %>
+
+            <!-- Upcoming events -->
+            <%= link_to events_path, class: 'button-secondary' do %>
+                <i class="material-icons">event_note</i>
+                <span>Upcoming events</span>
             <% end %>
 
         </div>
+    </div>
+</div>
 
+
+<div class="wrapper">
+
+    <!-- Recent games -->
+    <div class="recent-games">
+        <h2><i class="material-icons">timer</i>Recent games</h2>
+        <div class="game-grid">
+            <%= render collection: @recent_games, partial: 'game' %>
+        </div>
     </div>
 
 </div>
-
-<%= render 'application/footer-banner-authenticated' %>

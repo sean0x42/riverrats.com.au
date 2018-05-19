@@ -3,12 +3,10 @@ class WelcomeController < ApplicationController
   # GET /
   def index
     @season = Season.where('start_at < ? and end_at > ?', Time.now, Time.now).first
-    @players = @season.players_seasons.order(score: :desc).page(params[:page]).per(25)
-    @games_played = Game.where(season_id: @season.id).count
+    @recent_games = Game.all.first(12)
   end
 
   def privacy_policy
-
   end
 
 end

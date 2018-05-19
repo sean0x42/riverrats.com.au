@@ -1,19 +1,11 @@
 .navigation {
+  position: fixed;
+  top: 0;
+  z-index: 2000;
   width: 100%;
   background: white;
-  padding: 19px 2rem 1rem;
-  border-bottom: 1px solid $input-border;
-  box-shadow: 0 0.5rem rgba(0, 0, 0, 0.03);
-
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 3px;
-    background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
-  }
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0.5rem rgba(0, 0, 0, 0.02);
 
   .wrapper {
     display: flex;
@@ -22,126 +14,50 @@
   }
 
   .logo {
+    position: relative;
     width: 42px;
     flex-shrink: 0;
     line-height: 1.0;
     vertical-align: middle;
     margin-right: 1.25rem;
+
+    //&:after {
+    //  content: '';
+    //  position: absolute;
+    //  bottom: 0;
+    //  left: 0;
+    //  right: 0;
+    //  height: 3px;
+    //  //background-color: $branding-primary;
+    //}
+
   }
 
-  .buttons { display: none; }
-
   .search-wrapper {
+    max-width: unset;
     box-shadow: none;
-    background: transparent;
-    border: 1px solid $input-border;
+    background: darken($input-background, 1%);
 
     input {
       background: transparent;
       padding: 11px 13px !important;
-    }
-
-    i {
-      display: none;
-    }
-
-  }
-
-  .quick-links { display: none; }
-
-  .account {
-    position: relative;
-    margin-left: auto;
-  }
-
-  .account-wrapper {
-    @include no-select();
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 0.25rem;
-    color: lighten($branding-primary, 0%);
-
-    p { margin: 0 0.25rem; }
-
-    i {
-      color: $branding-primary;
-      margin: -0.25rem 0;
-    }
-
-  }
-
-  .account-dropdown {
-    display: none;
-    background: white;
-    position: absolute;
-    top: 45px;
-    right: 0;
-    width: 230px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.04);
-    border-radius: 3px;
-    border: 1px solid $input-border;
-    &.active { display: block; }
-
-    ul {
-      margin: 0;
-      padding: 0.5rem 0;
-      list-style-type: none;
-
-      a {
-        display: flex;
-        align-items: center;
-        padding: 0.5rem 1.25rem;
-        color: lighten($generic-text, 15%);
-
-        &:hover {
-          text-decoration: none;
-          background: $input-background;
-        }
-
+      &::placeholder {
+        color: lighten($generic-text, 25%);
+        opacity: 1;
       }
-
-      i {
-        font-size: 19px;
-        margin: -0.25rem 0.75rem -0.25rem 0;
-        color: lighten($branding-primary, 5%);
-      }
-
     }
 
-    &:before, &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      bottom: 100%;
-      width: 0;
-      height: 0;
-      border-style: solid;
-    }
-
-    &:before {
-      right: 19px;
-      border-width: 11px;
-      border-color: transparent transparent $input-border transparent;
-    }
-
-    &:after {
-      right: 20px;
-      border-width: 10px;
-      border-color: transparent transparent white transparent;
-    }
+    i { display: none; }
 
   }
 
+  .quick-links, .account, .buttons { display: none; }
 
 }
 
 @media (min-width: 800px) {
 
   .navigation {
-    position: fixed;
-    top: 0;
-    z-index: 2000;
 
     .quick-links {
       display: flex;
@@ -163,6 +79,10 @@
 
     }
 
+    .search-wrapper {
+      max-width: 400px;
+    }
+
   }
 
 }
@@ -181,6 +101,91 @@
     .button-tertiary {
       padding: 8px 14px;
       border: 2px solid white;
+    }
+
+    .account {
+      display: block;
+      position: relative;
+      margin-left: auto;
+    }
+
+    .account-wrapper {
+      @include no-select();
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 0.25rem;
+      color: lighten($branding-primary, 0%);
+
+      p { margin: 0 0.25rem; }
+
+      i {
+        color: $branding-primary;
+        margin: -0.25rem 0;
+      }
+
+    }
+
+    .account-dropdown {
+      display: none;
+      background: white;
+      position: absolute;
+      top: 45px;
+      right: 0;
+      width: 230px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.04);
+      border-radius: 3px;
+      border: 1px solid $input-border;
+      &.active { display: block; }
+
+      ul {
+        margin: 0;
+        padding: 0.5rem 0;
+        list-style-type: none;
+
+        a {
+          display: flex;
+          align-items: center;
+          padding: 0.5rem 1.25rem;
+          color: lighten($generic-text, 15%);
+
+          &:hover {
+            text-decoration: none;
+            background: $input-background;
+          }
+
+        }
+
+        i {
+          font-size: 19px;
+          margin: -0.25rem 0.75rem -0.25rem 0;
+          color: lighten($branding-primary, 5%);
+        }
+
+      }
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 100%;
+        width: 0;
+        height: 0;
+        border-style: solid;
+      }
+
+      &:before {
+        right: 19px;
+        border-width: 11px;
+        border-color: transparent transparent $input-border transparent;
+      }
+
+      &:after {
+        right: 20px;
+        border-width: 10px;
+        border-color: transparent transparent white transparent;
+      }
+
     }
 
   }

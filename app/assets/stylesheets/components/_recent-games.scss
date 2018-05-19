@@ -1,0 +1,80 @@
+.recent-games {
+
+  .game-grid {
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    align-items: flex-start;
+
+    .game {
+      color: $generic-text;
+      background: white;
+      border-radius: 3px;
+      padding: 1rem;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
+      &:hover { text-decoration: none; }
+      overflow: hidden;
+
+      .info {
+        color: lighten($generic-text, 15%);
+        p {
+          margin: 0.5rem 0;
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      .info, .counts {
+        i {
+          color: lighten($generic-text, 25%);
+          font-size: 21px;
+          margin: -0.25rem 0.5rem -0.25rem 0;
+          line-height: 1.0;
+          vertical-align: middle;
+        }
+      }
+
+      .counts {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid $input-border;
+        margin: 1rem -1rem 0;
+        padding: 0.75rem 1rem;
+        color: lighten($generic-text, 15%);
+
+        & > div {
+          display: flex;
+          align-items: center;
+          padding: 0;
+        }
+      }
+
+      .referees {
+        background: $input-background;
+        margin: 0 -1rem -1rem;
+        padding: 1rem;
+
+        ul {
+          margin: 0.5rem 0 0;
+          padding: 0;
+          list-style-type: none;
+        }
+      }
+
+    }
+
+    h1 {
+      font-size: 18px;
+      text-align: center;
+      margin: 0.5rem 0 1rem;
+    }
+
+    h2 {
+      color: lighten($generic-text, 20%);
+      font-size: 13px;
+      margin: 0;
+    }
+
+  }
+}
