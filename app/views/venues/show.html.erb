@@ -1,29 +1,15 @@
 <%- content_for :title, @venue.name %>
 
-<div class="wrapper wrapper-header submerged">
-    <h1><%= @venue.name %></h1>
-    <p>Venue overview &middot; <%= link_to @venue.region.name, region_path(@venue.region) %></p>
+<div class="thin-hero">
+    <div class="wrapper">
+        <h1 class="has-subtitle"><%= @venue.name %></h1>
+        <p class="subtitle">A venue located in the <%= link_to @venue.region.name, region_path(@venue.region) %> region.</p>
+    </div>
 </div>
 
 <div class="column-wrapper">
 
     <div class="wide">
-
-        <!-- Breakdown -->
-        <div class="background breakdown-<%= Random.rand(4) %>">
-            <h2><i class="material-icons">&#xE24B;</i> Breakdown</h2>
-
-            <div class="stats">
-
-                <!-- Players -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @venue.players.count %></p>
-                    <p class="label">unique players</p>
-                </div>
-
-            </div>
-
-        </div>
 
         <!-- Leaderboard -->
         <div class="background">
@@ -57,6 +43,27 @@
 
     <div class="thin">
 
+        <!-- Breakdown -->
+        <div class="background">
+            <h2><i class="material-icons">&#xE24B;</i>Breakdown</h2>
+
+            <ul class="info">
+                <li>
+                    <i class="material-icons">person</i>
+                    <%= pluralize @venue.players.count, 'player' %>
+                </li>
+            </ul>
+
+            <div class="buttons">
+                <!-- Print -->
+                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                    <i class="material-icons">&#xE8AD;</i>
+                    Print this page
+                <% end %>
+            </div>
+
+        </div>
+
         <!-- Location -->
         <div class="background">
             <h2><i class="material-icons">&#xE55B;</i>Location</h2>
@@ -67,17 +74,6 @@
                 src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY
                 &q=Space+Needle,Seattle+WA" allowfullscreen>
             </iframe>
-
-        </div>
-
-        <div class="buttons">
-
-            <!-- Print -->
-            <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
-                <i class="material-icons">&#xE8AD;</i>
-                Print this page
-            <% end %>
-
         </div>
 
     </div>

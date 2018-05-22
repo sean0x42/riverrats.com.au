@@ -1,13 +1,15 @@
 <%- content_for :title, "#{@player.full_name} (@#{@player.username})" %>
 
-<div class="wrapper wrapper-header submerged">
-    <h1 class="has-subtitle">
-        <%= @player.full_name %>
-        <%- if @player.is_admin %>
-            <span class="badge">staff member</span>
-        <%- end %>
-    </h1>
-    <p class="subtitle">@<%= @player.username %> &middot; Joined <%= local_time_ago @player.created_at %></p>
+<div class="thin-hero">
+    <div class="wrapper">
+        <h1 class="has-subtitle">
+            <%= @player.full_name %>
+            <%- if @player.is_admin %>
+                <span class="badge">staff member</span>
+            <%- end %>
+        </h1>
+        <p class="subtitle">@<%= @player.username %> &middot; Joined <%= local_time_ago @player.created_at %></p>
+    </div>
 </div>
 
 <div class="column-wrapper">
@@ -91,15 +93,13 @@
                 </table>
             <% end %>
 
-        </div>
-
-        <div class="buttons">
-
-            <!-- Print -->
-            <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
-                <i class="material-icons">&#xE8AD;</i>
-                Print this page
-            <% end %>
+            <div class="buttons">
+                <!-- Print -->
+                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                    <i class="material-icons">&#xE8AD;</i>
+                    Print this page
+                <% end %>
+            </div>
 
         </div>
 

@@ -1,8 +1,10 @@
 <%- content_for :title, "Game #{@game.name} · #{@game.venue.name}" %>
 
-<div class="wrapper wrapper-header submerged">
-    <h1 class="has-subtitle">Game <%= @game.name %></h1>
-    <p class="subtitle">Played <%= local_time_ago @game.played_on %> &middot; At <%= link_to @game.venue.name, venue_path(@game.venue) %></p>
+<div class="thin-hero">
+    <div class="wrapper">
+        <h1 class="has-subtitle">Game <%= @game.name %></h1>
+        <p class="subtitle">Played <%= local_time_ago @game.played_on %> &middot; At <%= link_to @game.venue.name, venue_path(@game.venue) %></p>
+    </div>
 </div>
 
 <div class="column-wrapper">
@@ -48,15 +50,14 @@
             <ul class="thin-player-list">
                 <%= render collection: @game.referees, partial: 'referee' %>
             </ul>
-        </div>
 
-        <div class="buttons">
-
-            <!-- Print -->
-            <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
-                <i class="material-icons">&#xE8AD;</i>
-                Print this page
-            <% end %>
+            <div class="buttons">
+                <!-- Print -->
+                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                    <i class="material-icons">&#xE8AD;</i>
+                    Print this page
+                <% end %>
+            </div>
 
         </div>
 

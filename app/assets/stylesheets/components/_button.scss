@@ -74,4 +74,8 @@
 .button-tertiary {
   margin: 0.5rem -0.25rem !important;
   color: lighten($generic-text, 25%);
+
+  &:hover {
+    color: darken($branding-primary, 3%);
+  }
 }

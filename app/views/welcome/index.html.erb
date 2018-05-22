@@ -1,6 +1,5 @@
-<%- content_for :title, "Leaderboard - #{@season.name}" %>
-
 <div class="hero">
+
     <div class="wrapper">
 
         <h1><%= @season.name %></h1>
@@ -21,7 +20,15 @@
             <% end %>
 
         </div>
+
+<!--        <div class="photos">-->
+            <%# @images['data'].each do |image| %>
+                <%#= render partial: 'image', locals: { image: image } %>
+            <%# end %>
+<!--        </div>-->
+
     </div>
+
 </div>
 
 

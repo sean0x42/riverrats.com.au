@@ -7,7 +7,7 @@
     height: $size;
     width: $size;
     border-radius: 50%;
-    background: $border-on-white;
+    background: darken($border-on-white, 8%);
   }
 
   &.active i {

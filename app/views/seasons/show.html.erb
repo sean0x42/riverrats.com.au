@@ -1,39 +1,19 @@
-<%- content_for :title, "Leaderboard - #{@season.name}" %>
+<%- content_for :title do %>Leaderboard &middot; <%= @season.name %><% end %>
 
-<div class="wrapper-header submerged">
-    <h1 class="has-subtitle"><%= @season.name %></h1>
-    <p class="subtitle">View rankings for this season.</p>
+<div class="thin-hero">
+    <div class="wrapper">
+        <h1 class="has-subtitle"><%= @season.name %></h1>
+        <p class="subtitle">Held from <%= local_date @season.start_at, '%A, %B %e' %> to <%= local_date @season.end_at, '%A, %B %e' %>.</p>
+    </div>
 </div>
 
 <div class="column-wrapper">
 
     <div class="wide">
 
-        <!-- Breakdown -->
-        <div class="background breakdown-<%= Random.rand(4) %>">
-            <h2><i class="material-icons">&#xE24B;</i> Breakdown</h2>
-
-            <div class="stats">
-
-                <!-- Players -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @season.players.count %></p>
-                    <p class="label">unique players</p>
-                </div>
-
-                <!-- Games -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @games_played %></p>
-                    <p class="label">games played</p>
-                </div>
-
-            </div>
-
-        </div>
-
         <!-- Leaderboard -->
         <div class="background">
-            <h2><i class="material-icons">&#xE242;</i>Leaderboard</h2>
+            <h2>Leaderboard</h2>
 
             <%- if @players.empty? %>
                 <%= render partial: 'application/empty-state', locals: { description: 'No one has played in this season yet.'} %>
@@ -65,17 +45,37 @@
 
         <!-- Facebook -->
         <div class="background">
-            <h2><i class="material-icons">&#xE7FA;</i>Social media</h2>
-            <%= render 'application/facebook' %>
-        </div>
+            <h2>About this season</h2>
 
-        <div class="buttons">
+            <ul class="info">
 
-            <!-- Print -->
-            <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
-                <i class="material-icons">&#xE8AD;</i>
-                Print this page
-            <% end %>
+                <!-- Duration -->
+                <li>
+                    <i class="material-icons">date_range</i>
+                    <%= local_date @season.start_at, '%B' %> - <%= local_date @season.end_at, '%B' %>
+                </li>
+
+                <!-- Players -->
+                <li>
+                    <i class="material-icons">person</i>
+                    <%= pluralize @season.players.count, 'player' %>
+                </li>
+
+                <!-- Games -->
+                <li>
+                    <i class="material-icons">casino</i>
+                    <%= pluralize @games_played, 'game' %>
+                </li>
+
+            </ul>
+
+            <div class="buttons">
+                <!-- Print -->
+                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                    <i class="material-icons">&#xE8AD;</i>
+                    Print this page
+                <% end %>
+            </div>
 
         </div>
 

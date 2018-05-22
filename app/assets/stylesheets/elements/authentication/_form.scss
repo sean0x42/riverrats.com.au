@@ -2,17 +2,20 @@ body.authentication {
 
   .form-header {
     text-align: center;
-    margin: 1rem 0 2.5rem;
+    margin: 0 0 3rem;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
 
     h1 {
       color: hsl(220, 15%, 94%);
-      margin: 0.5rem 0;
+      margin: 0;
+      font-size: 24px;
     }
 
     p {
       color: hsl(220, 15%, 94%);
-      margin: 0;
+      margin-top: 0.7rem;
+      margin-bottom: 0;
+      max-width: 60ch;
     }
   }
 

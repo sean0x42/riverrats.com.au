@@ -1,12 +1,14 @@
-<%- content_for :body_class, 'diamonds' %>
 <%- content_for :title, 'Event Calendar' %>
 
-<div class="wrapper wrapper-header submerged">
-    <h1 class="has-subtitle">Event Calendar</h1>
-    <p class="subtitle">View all upcoming events. Click on an event for more details. <strong>Note:</strong> Events are generated 6 months in advance.</p>
+<div class="thin-hero">
+    <div class="wrapper">
+        <h1 class="has-subtitle"><%= local_date @date, '%B, %Y' %></h1>
+        <p class="subtitle">View all upcoming events. Click on an event for more details. <strong>Note:</strong> Events are generated 6 months in advance.</p>
+    </div>
 </div>
 
-<div class="wrapper">
+<div class="wrapper" style="margin-top: 0;">
+
     <!-- Event tools -->
 <!--    <div class="background">-->
         <%#= form_with url: events_path do |form| %>

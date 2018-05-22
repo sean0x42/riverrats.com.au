@@ -1,0 +1,28 @@
+.photos {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin: 6rem 0 0;
+  padding: 0 1rem;
+
+  .photo-placeholder {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+
+  .image {
+    height: 200px;
+    overflow: hidden;
+
+    img {
+      display: block;
+      height: 100%;
+      border-radius: 4px;
+    }
+  }
+}

@@ -2,8 +2,8 @@
 <% content_for :description do %><%= t('description.players.sessions.new') %><% end %>
 
 <div class="form-header">
-    <h1>Secure Login</h1>
-    <p>Welcome back! Please enter your details.</p>
+    <h1 class="has-subtitle">Secure Login</h1>
+    <p class="subtitle">Welcome back! Please enter your details.</p>
 </div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>

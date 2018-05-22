@@ -1,8 +1,10 @@
 <%- content_for :title, @region.name %>
 
-<div class="wrapper-header submerged">
-    <h1 class="has-subtitle"><%= @region.name %></h1>
-    <p class="subtitle">Region overview &middot; Containing <%= pluralize @region.venues.count, 'venue' %>.</p>
+<div class="thin-hero">
+    <div class="wrapper">
+        <h1 class="has-subtitle"><%= @region.name %></h1>
+        <p class="subtitle">Region containing <%= pluralize @region.venues.count, 'venue' %>.</p>
+    </div>
 </div>
 
 <div class="column-wrapper">
@@ -69,15 +71,14 @@
             <ul>
                 <%= render collection: @region.venues, partial: 'venue' %>
             </ul>
-        </div>
 
-        <div class="buttons">
-
-            <!-- Print -->
-            <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
-                <i class="material-icons">&#xE8AD;</i>
-                Print this page
-            <% end %>
+            <div class="buttons">
+                <!-- Print -->
+                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                    <i class="material-icons">&#xE8AD;</i>
+                    Print this page
+                <% end %>
+            </div>
 
         </div>
 

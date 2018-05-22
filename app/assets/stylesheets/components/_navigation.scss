@@ -11,6 +11,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 0;
+    margin-top: 0;
   }
 
   .logo {
@@ -20,17 +21,6 @@
     line-height: 1.0;
     vertical-align: middle;
     margin-right: 1.25rem;
-
-    //&:after {
-    //  content: '';
-    //  position: absolute;
-    //  bottom: 0;
-    //  left: 0;
-    //  right: 0;
-    //  height: 3px;
-    //  //background-color: $branding-primary;
-    //}
-
   }
 
   .search-wrapper {
