@@ -23,36 +23,40 @@
 
     </div>
 
-    <!-- Breakdown -->
-    <div class="background">
-        <h2><i class="material-icons">&#xE24B;</i>Breakdown</h2>
-        <ul class="info">
+    <div class="thin">
 
-            <!-- Time -->
-            <li>
-                <i class="material-icons">access_time</i>
-                <%= local_time @event.start_at, '%l:%M%P' %>
-            </li>
+        <!-- Breakdown -->
+        <div class="background">
+            <h2><i class="material-icons">&#xE24B;</i>Breakdown</h2>
+            <ul class="info">
 
-            <!-- Date -->
-            <li>
-                <i class="material-icons">calendar_today</i>
-                <%= local_date @event.start_at %>
-            </li>
+                <!-- Time -->
+                <li>
+                    <i class="material-icons">access_time</i>
+                    <%= local_time @event.start_at, '%l:%M%P' %>
+                </li>
 
-            <!-- Venue -->
-            <li>
-                <i class="material-icons">store</i>
-                <%= link_to @event.venue.name, venue_path(@event.venue) %>
-            </li>
+                <!-- Date -->
+                <li>
+                    <i class="material-icons">calendar_today</i>
+                    <%= local_date @event.start_at %>
+                </li>
 
-            <!-- Region -->
-            <li>
-                <i class="material-icons">terrain</i>
-                <%= link_to @event.venue.region.name, region_path(@event.venue.region) %>
-            </li>
+                <!-- Venue -->
+                <li>
+                    <i class="material-icons">store</i>
+                    <%= link_to @event.venue.name, venue_path(@event.venue) %>
+                </li>
 
-        </ul>
+                <!-- Region -->
+                <li>
+                    <i class="material-icons">terrain</i>
+                    <%= link_to @event.venue.region.name, region_path(@event.venue.region) %>
+                </li>
+
+            </ul>
+        </div>
+
     </div>
 
 </div>

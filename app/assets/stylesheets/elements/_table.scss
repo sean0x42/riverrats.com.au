@@ -7,7 +7,6 @@ table {
   display: block;
   width: 100%;
   border-collapse: collapse;
-  //font-size: 15px;
 
   tr {
     border-bottom: 1px solid $border-on-white;
@@ -22,6 +21,7 @@ table {
 
   th, td {
     padding: 7px 10px;
+    white-space: nowrap;
 
     &.numeric {
       text-align: right;

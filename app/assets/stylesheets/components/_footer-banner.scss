@@ -1,8 +1,9 @@
 .footer-banner {
+  padding: 0 1.5rem;
 
   .wrapper {
     text-align: center;
-    margin: 8rem auto;
+    margin: 5rem auto;
   }
 
   .info {
@@ -29,4 +30,10 @@
     color: lighten($generic-text, 15%);
   }
 
+}
+
+@media (min-width: 900px) {
+  .footer-banner .wrapper {
+    margin: 8rem auto;
+  }
 }
