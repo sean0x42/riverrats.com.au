@@ -100,14 +100,15 @@
     }
 
     .account-wrapper {
-      @include no-select();
       display: flex;
       align-items: center;
       cursor: pointer;
-      padding: 0.25rem;
       color: lighten($branding-primary, 0%);
+      @include no-select();
 
-      p { margin: 0 0.25rem; }
+      p {
+        margin: 0 0.25rem;
+      }
 
       i {
         color: $branding-primary;

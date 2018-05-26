@@ -31,15 +31,16 @@
 
 </div>
 
+<div class="recent-games-wrapper">
+    <div class="wrapper">
 
-<div class="wrapper">
-
-    <!-- Recent games -->
-    <div class="recent-games">
-        <h2><i class="material-icons">timer</i>Recent games</h2>
-        <div class="game-grid">
-            <%= render collection: @recent_games, partial: 'game' %>
+        <!-- Recent games -->
+        <div class="recent-games">
+            <h2><i class="material-icons">timer</i>Recent games</h2>
+            <div class="game-grid">
+                <%= render collection: @recent_games, partial: 'game' %>
+            </div>
         </div>
-    </div>
 
+    </div>
 </div>

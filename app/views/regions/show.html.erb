@@ -11,28 +11,6 @@
 
     <div class="wide">
 
-        <!-- Breakdown -->
-        <div class="background breakdown-<%= Random.rand(4) %>">
-            <h2><i class="material-icons">&#xE24B;</i> Breakdown</h2>
-
-            <div class="stats">
-
-                <!-- Players -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @region.players.count %></p>
-                    <p class="label">unique players</p>
-                </div>
-
-                <!-- Venues -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @region.venues.count %></p>
-                    <p class="label">venue(s)</p>
-                </div>
-
-            </div>
-
-        </div>
-
         <!-- Leaderboard -->
         <div class="background">
             <h2><i class="material-icons">&#xE242;</i>Leaderboard</h2>
@@ -67,7 +45,24 @@
 
         <!-- Venues -->
         <div class="background">
-            <h2><i class="material-icons">&#xE563;</i>Venues</h2>
+            <h2><i class="material-icons">&#xE24B;</i>Breakdown</h2>
+
+            <ul class="info">
+
+                <!-- Players -->
+                <li>
+                    <i class="material-icons">person</i>
+                    <%= pluralize @region.players.count, 'player' %>
+                </li>
+
+                <!-- Venues -->
+                <li>
+                    <i class="material-icons">store</i>
+                    <%= pluralize @region.venues.count, 'venue' %>
+                </li>
+
+            </ul>
+
             <ul>
                 <%= render collection: @region.venues, partial: 'venue' %>
             </ul>

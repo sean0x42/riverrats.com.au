@@ -4,12 +4,13 @@
   padding: 4rem 0 3rem;
   background: white;
   margin: 0;
+  z-index: 1;
 
   .wrapper {
     margin: 0 auto;
     max-width: 680px;
     width: 100%;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
 
   .copyright {
@@ -75,7 +76,7 @@
   .footer {
     .nav-columns {
       grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      margin: 0 0 4rem;
+      margin: 0 0 3rem;
     }
   }
 
@@ -84,7 +85,7 @@
 @media (min-width: 800px) {
 
   .footer {
-    padding: 6rem 0;
+    padding: 4rem 0;
   }
 
 }
