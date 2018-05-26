@@ -1,10 +1,6 @@
 <li>
-    <%= link_to event_path(event), class: 'event' do %>
-        <% if event.has_occurred? %>
-            <span class="status-dot"><i></i></span>
-        <% else %>
-            <span class="status-dot active"><i></i></span>
-        <% end %>
-        <span><%= event.title %></span>
+    <%= link_to event_path(event), class: "event #{'active' unless event.has_occurred?}" do %>
+        <p><%= event.title %></p>
+        <p class="starts"><%= event.start_at.strftime '%l:%M%p' %></p>
     <% end %>
 </li>

@@ -1,8 +1,10 @@
 <%- content_for :title, 'Preferences' %>
 
-<div class="wrapper-header submerged">
-    <h1>Player Preferences</h1>
-    <p>Update your preferences.</p>
+<div class="thin-hero">
+    <div class="wrapper">
+        <h1 class="has-subtitle">Player Preferences</h1>
+        <p class="subtitle">Update your preferences.</p>
+    </div>
 </div>
 
 <div class="column-wrapper">
@@ -113,6 +115,11 @@
 
         </div>
 
+    </div>
+
+    <div class="thin">
+
+        <!-- Cancel account -->
         <div class="background danger-zone">
             <h2><i class="material-icons">&#xE002;</i>Delete account</h2>
             <p>Unhappy? Cancel your account here. We'll be sad to see you go.</p>
@@ -129,5 +136,3 @@
     </div>
 
 </div>
-
-<%= render 'application/footer-banner-authenticated' %>
