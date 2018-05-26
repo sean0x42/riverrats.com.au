@@ -22,7 +22,7 @@
 
             <h2>Form</h2>
 
-            <%= form_with url: "#{admin_mail_players_path}.csv", data: {remote: false} do |form| %>
+            <%= form_with url: "#{admin_mail_players_path}.csv", local: true do |form| %>
 
                 <section>
                     <div class="section-outline">

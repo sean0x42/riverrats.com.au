@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20180425160252) do
     t.bigint "season_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "played_on", default: "2018-04-18", null: false
+    t.date "played_on", default: "2018-05-04", null: false
     t.index ["season_id"], name: "index_games_on_season_id"
     t.index ["venue_id"], name: "index_games_on_venue_id"
   end

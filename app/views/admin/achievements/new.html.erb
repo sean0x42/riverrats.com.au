@@ -22,7 +22,7 @@
         <!-- Form -->
         <div class="background">
 
-            <%= form_with model: [:admin, @achievement.becomes(Achievement)], html: {multipart: true}, data: {remote: false} do |form| %>
+            <%= form_with model: [:admin, @achievement.becomes(Achievement)], html: {multipart: true}, local: true do |form| %>
 
 
                 <%= render partial: 'application/form-errors', locals: {object: @achievement} %>
@@ -47,7 +47,7 @@
                         <!-- Player -->
                         <div class="field">
                             <%= form.label :player_id %><br/>
-                            <%= form.hidden_field :player_id, id: 'achievement_player_id' %>
+                            <%= form.hidden_field :player_id %>
                             <div class="player-input-wrapper" style="max-width: 280px;">
                                 <%= form.text_field :player,
                                                     class: 'typeahead-achievement player-input',
@@ -66,7 +66,7 @@
                                     <span>No file chosen</span>
                                 <% end %>
                             </div>
-                            <%= form.file_field :proof, id: 'achievement_proof' %>
+                            <%= form.file_field :proof %>
                         </div>
 
                     </div>

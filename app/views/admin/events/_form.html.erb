@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, @event.becomes(Event)], data: { remote: false } do |form| %>
+<%= form_with model: [:admin, @event.becomes(Event)], local: true do |form| %>
 
     <%= render partial: 'application/form-errors', locals: { object: @event } %>
 
@@ -14,14 +14,14 @@
                 <%= form.label :title %><br/>
                 <div class="input-wrapper">
                     <i class="material-icons">&#xE264;</i>
-                    <%= form.text_field :title, autofocus: true, id: 'event_title', placeholder: 'e.g. Mad Monday' %>
+                    <%= form.text_field :title, autofocus: true, placeholder: 'e.g. Mad Monday' %>
                 </div>
             </div>
 
             <!-- Description -->
             <div class="field">
                 <%= form.label :description %><br/>
-                <%= form.text_area :description, id: 'event_description' %>
+                <%= form.text_area :description %>
             </div>
 
             <!-- Event is held at this venue -->
@@ -60,7 +60,7 @@
                             ['Recurring event', RecurringEvent.sti_name]
                         ],
                         @event.type
-                    ), {}, id: 'event_type' %>
+                    ), {} %>
                 </div>
 
                 <!-- Fields related to a recurring event -->
@@ -69,7 +69,7 @@
                     <!-- Period of time between events -->
                     <div class="field">
                         <%= form.label :period, 'Occurs' %>
-                        <%= form.select :period, RecurringEvent.periods.keys.to_a, {}, id: 'event_period' %>
+                        <%= form.select :period, RecurringEvent.periods.keys.to_a, {} %>
                     </div>
 
                     <!-- Number of periods between events -->
@@ -77,8 +77,7 @@
                         <%= form.label :interval, 'Every' %>
                         <%= form.number_field :interval,
                                               value: params.has_key?(:interval) ? params[:interval] : 1,
-                                              min: 1, style: 'width: 60px;',
-                                              id: 'event_interval' %>
+                                              min: 1, style: 'width: 60px;' %>
                         <span id="interval-label">day(s)</span>
                     </div>
 

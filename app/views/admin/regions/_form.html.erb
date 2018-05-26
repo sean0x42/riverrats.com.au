@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, @region], data: { remote: false } do |form| %>
+<%= form_with model: [:admin, @region], local: true do |form| %>
 
     <%= render partial: 'application/form-errors', locals: { object: @region } %>
 
@@ -11,7 +11,7 @@
             <!-- Name -->
             <div class="field">
                 <%= form.label :name %><br/>
-                <%= form.text_field :name, id: 'region_name', autofocus: true, spellcheck: false, placeholder: 'e.g. Taree' %>
+                <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Taree' %>
             </div>
 
         </div>
