@@ -11,7 +11,7 @@
 
         <!-- Links -->
         <ul class="quick-links">
-            <li><%= link_to 'Leaderboard', seasons_path %></li>
+            <li><%= link_to 'Leaderboard', players_path %></li>
             <li><%= link_to 'Event calendar', events_path %></li>
         </ul>
 
@@ -20,9 +20,11 @@
 
             <div class="account">
 
-                <div class="account-wrapper button-secondary">
-                    <p class="player-name"><%= current_player.full_name %></p>
-                    <i class="material-icons">&#xE5C5;</i>
+                <div class="buttons">
+                    <div class="account-wrapper button-secondary">
+                        <span class="player-name"><%= current_player.full_name %></span>
+                        <i class="material-icons">&#xE5C5;</i>
+                    </div>
                 </div>
 
                 <div class="account-dropdown">

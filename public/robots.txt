@@ -1,1 +1,4 @@
 # See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+user-agent: *
+disallow: /calendar/
+sitemap: https://www.riverrats.com.au/sitemap.xml

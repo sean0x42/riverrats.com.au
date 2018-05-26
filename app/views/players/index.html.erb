@@ -1,8 +1,17 @@
-<%- content_for :title, "Search '#{params[:query]}'" %>
+<%- content_for :title, t('view.players.index.title') %>
+<%- content_for :description, t('view.players.index.description') %>
+<%- content_for :canonical_url, players_path %>
 
-<div class="wrapper-header submerged">
-    <h1 class="has-subtitle">Search results</h1>
-    <p class="subtitle">We found <%= pluralize @players.count, 'result' %> for the query '<%= params[:query] %>'.</p>
+<div class="thin-hero">
+    <div class="wrapper">
+        <%- if params.has_key? :query %>
+            <h1 class="has-subtitle"><%= t('view.players.search.title') %></h1>
+            <p class="subtitle">Your search returned <%= pluralize @players.count, 'result' %>.</p>
+        <%- else %>
+            <h1 class="has-subtitle"><%= t('view.players.index.title') %></h1>
+            <p class="subtitle">Here's the best of the best. The highest ranking players since this website was built.</p>
+        <%- end %>
+    </div>
 </div>
 
 <div class="column-wrapper">
@@ -11,7 +20,11 @@
 
         <!-- Search results -->
         <div class="background">
-            <h2><i class="material-icons">&#xE8B6;</i>Results</h2>
+            <%- if params.has_key? :query %>
+                <h2><i class="material-icons">&#xE8B6;</i>Results</h2>
+            <%- else %>
+                <h2><i class="material-icons">&#xE242;</i>Leaderboard</h2>
+            <%- end %>
 
             <%- if @players.empty? %>
                 <%= render partial: 'application/empty-state', locals: { description: 'This search returned no results.'} %>
@@ -33,6 +46,34 @@
             <div class="background-footer">
                 <%= paginate @players %>
                 <p><%= page_entries_info @players %></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="thin">
+
+        <div class="background">
+
+            <h2>Metadata</h2>
+
+            <ul class="info">
+
+                <!-- Players -->
+                <li>
+                    <i class="material-icons">person</i>
+                    <%= pluralize @players.count, 'player' %>
+                </li>
+
+            </ul>
+
+            <div class="buttons">
+                <!-- Print -->
+                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                    <i class="material-icons">&#xE8AD;</i>
+                    Print this page
+                <% end %>
             </div>
 
         </div>

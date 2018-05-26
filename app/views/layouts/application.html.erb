@@ -9,6 +9,7 @@
         <meta name="msapplication-navbutton-color" content="hsl(282, 34%, 48%)" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1, maximum-scale: 1.0" />
         <meta name="description" content="<%= yield(:description) %>"/>
+        <link rel="canonical" href="<%= yield(:canonical_url) %>">
         <%= render 'favicons' %>
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

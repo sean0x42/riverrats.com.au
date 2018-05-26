@@ -53,7 +53,28 @@ en:
   description:
     players:
       registrations:
-        new: "Join the River Rats Poker League official website. Here you can track your scores, games, achievements and more!"
+        new: "Join the River Rats Poker League official website. Start tracking your scores, games, achievements and more!"
       sessions:
         new: "Login to access your River Rats Poker League account. You can use either your email address or your username."
+      passwords:
+        new: "If you forgot your account password, then this page allows you to send a password reset email."
+    events:
+      index: "The events calendar allows you to view every upcoming and historical event. Note: upcoming events are generated 6 months in advance."
   empty_state: "There's nothing here..."
+  view:
+    welcome:
+      index:
+        description: "Welcome to the River Rats Poker League official website! Here you can track your scores, games, achievements and more."
+      privacy_policy:
+        title: "Privacy Policy"
+        description: "Want to know more about what we do with your data? This page will break down exactly which data points we collect, and how we use them."
+    seasons:
+      show:
+        title: "%{season}"
+        description: "This page contains complete leaderboards, start and end dates, and some other metadata for %{season}."
+    players:
+      index:
+        title: "Leaderboards (All Time)"
+        description: "View the best players that the River Rats Poker League has to offer!"
+      search:
+        title: "Search results"

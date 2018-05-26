@@ -133,6 +133,7 @@
         font-size: unset;
         font-weight: unset;
         line-height: unset;
+        margin: 0;
       }
 
       .weekday {
@@ -153,13 +154,12 @@
       }
 
       .event {
-        display: flex;
-        align-items: flex-start;
         font-size: 14px;
         line-height: 1.6;
         color: lighten($generic-text, 15%);
         padding: 0.25rem 0.5rem;
       }
+
     }
   }
 }

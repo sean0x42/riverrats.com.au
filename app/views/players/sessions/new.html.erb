@@ -1,5 +1,6 @@
-<% content_for :title, 'Secure Login' %>
-<% content_for :description do %><%= t('description.players.sessions.new') %><% end %>
+<%- content_for :title, 'Secure Login' %>
+<%- content_for :description, t('description.players.sessions.new') %>
+<%- content_for :canonical_url, new_player_session_path %>
 
 <div class="form-header">
     <h1 class="has-subtitle">Secure Login</h1>

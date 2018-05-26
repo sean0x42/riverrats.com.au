@@ -1,3 +1,6 @@
+<%- content_for :description, t('view.welcome.index.description') %>
+<%- content_for :canonical_url, root_path %>
+
 <div class="hero">
 
     <div class="wrapper">
@@ -20,12 +23,6 @@
             <% end %>
 
         </div>
-
-<!--        <div class="photos">-->
-            <%# @images['data'].each do |image| %>
-                <%#= render partial: 'image', locals: { image: image } %>
-            <%# end %>
-<!--        </div>-->
 
     </div>
 

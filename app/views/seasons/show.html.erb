@@ -1,4 +1,6 @@
-<%- content_for :title do %>Leaderboard &middot; <%= @season.name %><% end %>
+<%- content_for :title, t('view.seasons.show.title') % { season: @season.name } %>
+<%- content_for :description, t('view.seasons.show.description') % { season: @season.name } %>
+<%- content_for :canonical_url, seasons_path %>
 
 <div class="thin-hero">
     <div class="wrapper">

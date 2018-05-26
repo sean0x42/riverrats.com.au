@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
     if params.has_key? :query
       @players = Player.search params[:query], page: params[:page], per_page: 25
     else
-      @players = Player.all
+      @players = Player.page params[:page]
     end
   end
 

@@ -1,6 +1,8 @@
 require 'csv'
 class Player < ApplicationRecord
 
+  default_scope { order(score: :desc) }
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
