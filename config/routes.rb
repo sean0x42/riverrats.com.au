@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :seasons,
             only: [:index, :show]
 
-  get '/calender(/:year/:month)', to: 'events#index', as: 'events'
+  get '/calendar(/:year/:month)', to: 'events#index', as: 'events'
 
   resources :regions, :venues,
             only: :show,
