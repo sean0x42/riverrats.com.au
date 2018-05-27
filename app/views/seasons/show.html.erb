@@ -24,10 +24,10 @@
                     <table>
                         <tr>
                             <th></th>
-                            <th class="stretch">Player</th>
-                            <th class="numeric">Played</th>
-                            <th class="numeric">Wins</th>
+                            <th class="stretch">Name</th>
                             <th class="numeric">Score</th>
+                            <th class="numeric">P</th>
+                            <th class="numeric">W</th>
                         </tr>
                         <%= render collection: @players, partial: 'player' %>
                     </table>
@@ -54,7 +54,7 @@
                 <!-- Duration -->
                 <li>
                     <i class="material-icons">date_range</i>
-                    <%= local_date @season.start_at, '%B' %> - <%= local_date @season.end_at, '%B' %>
+                    <%= @season.start_at.strftime '%B' %> - <%= @season.end_at.strftime '%B' %>
                 </li>
 
                 <!-- Players -->

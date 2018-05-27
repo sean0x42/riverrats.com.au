@@ -1,9 +1,11 @@
-<%- content_for :title, "Game #{@game.name} · #{@game.venue.name}" %>
+<%- content_for :title, t('view.games.show.title') % { game: @game.name } %>
+<%- content_for :description, t('view.games.show.description') % { game: @game.name } %>
+<%- content_for :canonical_url, games_path %>
 
 <div class="thin-hero">
     <div class="wrapper">
         <h1 class="has-subtitle">Game <%= @game.name %></h1>
-        <p class="subtitle">Played <%= local_time_ago @game.played_on %> &middot; At <%= link_to @game.venue.name, venue_path(@game.venue) %></p>
+        <p class="subtitle">View a detailed breakdown and leaderboard of this game.</p>
     </div>
 </div>
 
@@ -11,38 +13,68 @@
 
     <div class="wide">
 
-        <!-- Breakdown -->
-        <div class="background breakdown-<%= Random.rand(4) %>">
-            <h2><i class="material-icons">&#xE24B;</i> Breakdown</h2>
-            <div class="stats">
-
-                <!-- Seasonal points -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @game.games_players.count %></p>
-                    <p class="label">players</p>
-                </div>
-
-            </div>
-        </div>
-
         <!-- Leaderboard -->
         <div class="background">
-            <h2><i class="material-icons">&#xE242;</i>Leaderboard</h2>
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th></th>
-                    <th class="numeric stretch">Score</th>
-                </tr>
-                <%= render collection: @game.games_players.first(50), partial: 'player' %>
-            </table>
+            <h2>Leaderboard</h2>
+            <%- if @players.empty? %>
+                <%= render partial: 'application/empty-state', locals: { description: 'No one has played in this game yet.'} %>
+            <%- else %>
+                <div class="table-wrapper">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th class="stretch">Name</th>
+                            <th class="numeric">Score</th>
+                        </tr>
+                        <%= render collection: @players, partial: 'player' %>
+                    </table>
+                </div>
+            <%- end %>
+
+            <div class="background-footer">
+                <%= paginate @players %>
+                <p><%= page_entries_info @players %></p>
+            </div>
         </div>
 
     </div>
 
 
     <div class="thin">
+
+        <!-- Breakdown -->
+        <div class="background">
+            <h2>About this game</h2>
+
+            <ul class="info">
+
+                <!-- Played -->
+                <li>
+                    <i class="material-icons">date_range</i>
+                    <%= @game.played_on.strftime '%A, %B %d %Y' %>
+                </li>
+
+                <!-- Venue -->
+                <li>
+                    <i class="material-icons">store</i>
+                    <% venue = @game.venue %>
+                    <%= link_to venue.name, venue_path(venue) %>
+                </li>
+
+                <!-- Players -->
+                <li>
+                    <i class="material-icons">person</i>
+                    <%= pluralize @game.games_players.count, 'player' %>
+                </li>
+
+                <!-- Tournament Directions -->
+                <li>
+                    <i class="material-icons">account_box</i>
+                    <%= pluralize @game.referees.count, 'tourament director' %>
+                </li>
+
+            </ul>
+        </div>
 
         <!-- Referees -->
         <div class="background">

@@ -63,4 +63,4 @@ ready = ->
   links.forEach (link) ->
     link.addEventListener "mouseover", previewHover
 
-document.addEventListener "turbolinks:load", ready
+#document.addEventListener "turbolinks:load", ready

@@ -23,36 +23,19 @@ Rails.application.routes.draw do
   get 'players/auto-complete', to: 'players#auto_complete'
   get 'players/random', to: 'players#random'
 
-  resources :players,
-            only: [:index, :show],
-            param: :username
-
-  resources :games, :events,
-            only: :show
-
-  resources :seasons,
-            only: [:index, :show]
-
+  resources :players, only: [:index, :show], param: :username
+  resources :events, only: :show
+  resources :games, :seasons, only: [:index, :show]
   get '/calendar(/:year/:month)', to: 'events#index', as: 'events'
-
-  resources :regions, :venues,
-            only: :show,
-            param: :slug
+  resources :regions, :venues, only: :show, param: :slug
 
   namespace :admin do
 
     root to: redirect('/admin/players')
 
-    resources :players,
-              except: :show,
-              param: :username
-
-    resources :games, :events, :regions, :venues,
-              except: :show
-
-    resources :achievements,
-              only: [:new, :create]
-
+    resources :players, except: :show, param: :username
+    resources :games, :events, :regions, :venues, except: :show
+    resources :achievements, only: [:new, :create]
 
     get 'mail', to: 'mail#index'
     post 'mail/players', to: 'mail#show'

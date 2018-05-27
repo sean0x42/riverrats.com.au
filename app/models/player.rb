@@ -1,7 +1,7 @@
 require 'csv'
 class Player < ApplicationRecord
 
-  default_scope { order(score: :desc) }
+  default_scope { order(rank: :asc) }
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -68,7 +68,11 @@ class Player < ApplicationRecord
   # All data to be indexed by Elasticsearch/Searchkick
   # @return [Hash] Data to be indexed.
   def search_data
-    { full_name: self.full_name, username: "@#{self.username}" }
+    {
+      full_name: self.full_name,
+      username: "@#{self.username}",
+      rank: self.rank
+    }
   end
 
 
@@ -128,7 +132,7 @@ class Player < ApplicationRecord
   end
 
   def recent_games
-    sql = "SELECT g.id, g.venue_id, g.season_id, g.played_on, p.position, p.score FROM games as g INNER JOIN games_players as p ON g.id = p.game_id WHERE player_id = #{id};"
+    sql = "SELECT g.id, g.venue_id, g.season_id, g.played_on, p.position, p.score FROM games as g INNER JOIN games_players as p ON g.id = p.game_id WHERE player_id = #{id} LIMIT 25;"
     ActiveRecord::Base.connection.exec_query(sql)
   end
 

@@ -78,3 +78,16 @@ en:
         description: "View the best players that the River Rats Poker League has to offer!"
       search:
         title: "Search results"
+      show:
+        title: "%{name} (%{username})"
+        description: "View %{name}'s player profile, including a brief game history, achievements, and rankings!"
+    games:
+      show:
+        title: "Game %{game}"
+        description: "View a detailed breakdown and leaderboard of Game %{game}"
+      index:
+        title: "All Games"
+        description: "View every held by the River Rats Poker League."
+    venues:
+      show:
+        description: "Learn more about %{venue}! See full venue leaderboards, as well as the venue location."

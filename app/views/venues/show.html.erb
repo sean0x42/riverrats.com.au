@@ -1,4 +1,6 @@
 <%- content_for :title, @venue.name %>
+<%- content_for :description, t('view.venues.show.description') % { venue: @venue.name } %>
+<%- content_for :canonical_url, venue_path(@venue) %>
 
 <div class="thin-hero">
     <div class="wrapper">
@@ -13,19 +15,19 @@
 
         <!-- Leaderboard -->
         <div class="background">
-            <h2><i class="material-icons">&#xE242;</i>Leaderboard</h2>
+            <h2>Leaderboard</h2>
 
             <%- if @players.empty? %>
-                <%= render partial: 'application/empty-state', locals: {description: 'No one has played at this venue yet.'} %>
+                <%= render partial: 'application/empty-state', locals: { description: 'No one has played at this venue yet.'} %>
             <%- else %>
                 <div class="table-wrapper">
                     <table>
                         <tr>
                             <th></th>
-                            <th class="stretch">Player</th>
-                            <th class="numeric">Played</th>
-                            <th class="numeric">Wins</th>
+                            <th class="stretch">Name</th>
                             <th class="numeric">Score</th>
+                            <th class="numeric">P</th>
+                            <th class="numeric">W</th>
                         </tr>
                         <%= render collection: @players, partial: 'player' %>
                     </table>
@@ -48,10 +50,19 @@
             <h2><i class="material-icons">&#xE24B;</i>Breakdown</h2>
 
             <ul class="info">
+
+                <!-- Players -->
                 <li>
                     <i class="material-icons">person</i>
                     <%= pluralize @venue.players.count, 'player' %>
                 </li>
+
+                <!-- Region -->
+                <li>
+                    <i class="material-icons">terrain</i>
+                    <%= link_to @venue.region.name, region_path(@venue.region) %>
+                </li>
+
             </ul>
 
             <div class="buttons">

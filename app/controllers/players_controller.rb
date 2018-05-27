@@ -12,7 +12,9 @@ class PlayersController < ApplicationController
   # GET /players/:username
   def show
     @player = Player.find_by! username: params[:username]
-    @recent_games = @player.recent_games
+    @games = @player.recent_games
+    current_season = Season.where('start_at < ? and end_at > ?', Time.now, Time.now).first
+    @season_player = PlayersSeasons.where(player_id: @player.id).where(season_id: current_season.id).first
   end
 
   # GET /players/auto-complete

@@ -37,6 +37,14 @@
             <div class="game-grid">
                 <%= render collection: @recent_games, partial: 'game' %>
             </div>
+
+            <%- if player_signed_in? %>
+                <div class="buttons">
+                    <%= link_to games_path, class: 'button' do %>
+                        View all games
+                    <% end %>
+                </div>
+            <%- end %>
         </div>
 
     </div>

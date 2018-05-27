@@ -33,8 +33,6 @@ class GamesPlayersObserver < ActiveRecord::Observer
       UpdateVenueJob.perform_later  player, changes, game_player.game.venue
       UpdateRegionJob.perform_later player, changes, game_player.game.venue.region
       UpdateSeasonJob.perform_later player, changes, game_player.game.season
-
-
     end
 
   end

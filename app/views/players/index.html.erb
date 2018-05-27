@@ -23,7 +23,7 @@
             <%- if params.has_key? :query %>
                 <h2><i class="material-icons">&#xE8B6;</i>Results</h2>
             <%- else %>
-                <h2><i class="material-icons">&#xE242;</i>Leaderboard</h2>
+                <h2>Leaderboard</h2>
             <%- end %>
 
             <%- if @players.empty? %>
@@ -32,11 +32,11 @@
                 <div class="table-wrapper">
                     <table>
                         <tr>
-                            <th>Name</th>
-                            <th class="stretch">Username</th>
-                            <th class="numeric">Played</th>
-                            <th class="numeric">Wins</th>
+                            <th></th>
+                            <th class="stretch">Name</th>
                             <th class="numeric">Score</th>
+                            <th class="numeric">P</th>
+                            <th class="numeric">W</th>
                         </tr>
                         <%= render collection: @players, partial: 'player' %>
                     </table>
@@ -64,6 +64,12 @@
                 <li>
                     <i class="material-icons">person</i>
                     <%= pluralize @players.count, 'player' %>
+                </li>
+
+                <!-- Tracking since -->
+                <li>
+                    <i class="material-icons">date_range</i>
+                    Tracking started&nbsp;<%= local_time_ago Date.parse('2018-05-27') %>
                 </li>
 
             </ul>

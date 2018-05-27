@@ -13,7 +13,7 @@
 
         <!-- Leaderboard -->
         <div class="background">
-            <h2><i class="material-icons">&#xE242;</i>Leaderboard</h2>
+            <h2>Leaderboard</h2>
 
             <%- if @players.empty? %>
                 <%= render partial: 'application/empty-state', locals: { description: 'No one has played at this region yet.'} %>
@@ -22,10 +22,10 @@
                     <table>
                         <tr>
                             <th></th>
-                            <th class="stretch">Player</th>
-                            <th class="numeric">Played</th>
-                            <th class="numeric">Wins</th>
+                            <th class="stretch">Name</th>
                             <th class="numeric">Score</th>
+                            <th class="numeric">P</th>
+                            <th class="numeric">W</th>
                         </tr>
                         <%= render collection: @players, partial: 'player' %>
                     </table>
