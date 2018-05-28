@@ -2,6 +2,7 @@ class Admin::GamesController < ApplicationController
 
   layout 'admin'
   before_action :authenticate_player!
+  before_action :require_admin
 
   # GET /admin/games
   def index
@@ -48,6 +49,7 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
 
     if @game.update games_params
+      @game.update_ranks
       redirect_to admin_games_path, notice: t('game.update') % { game: @game.name }
     else
       @attrs = Admin::AttributeCollector.from_params params
@@ -71,6 +73,13 @@ class Admin::GamesController < ApplicationController
       games_players_attributes: [:id, :player_id, :position, :_destroy],
       referees_attributes: [:id, :player_id, :_destroy]
     )
+  end
+
+  def require_admin
+    unless current_player.is_admin
+      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
+      redirect_to root_path
+    end
   end
 
 end

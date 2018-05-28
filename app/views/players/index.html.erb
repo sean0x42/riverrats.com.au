@@ -2,6 +2,8 @@
 <%- content_for :description, t('view.players.index.description') %>
 <%- content_for :canonical_url, players_path %>
 
+<div id="print">
+
 <div class="thin-hero">
     <div class="wrapper">
         <%- if params.has_key? :query %>
@@ -19,7 +21,7 @@
     <div class="wide">
 
         <!-- Search results -->
-        <div class="background">
+        <div class="background" id="leaderboard">
             <%- if params.has_key? :query %>
                 <h2><i class="material-icons">&#xE8B6;</i>Results</h2>
             <%- else %>
@@ -76,7 +78,7 @@
 
             <div class="buttons">
                 <!-- Print -->
-                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
                     <i class="material-icons">&#xE8AD;</i>
                     Print this page
                 <% end %>
@@ -86,4 +88,5 @@
 
     </div>
 
+</div>
 </div>

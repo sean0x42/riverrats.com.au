@@ -2,81 +2,85 @@
 <%- content_for :description, t('view.seasons.show.description') % { season: @season.name } %>
 <%- content_for :canonical_url, seasons_path %>
 
-<div class="thin-hero">
-    <div class="wrapper">
-        <h1 class="has-subtitle"><%= @season.name %></h1>
-        <p class="subtitle">Held from <%= local_date @season.start_at, '%A, %B %e' %> to <%= local_date @season.end_at, '%A, %B %e' %>.</p>
+<div id="print">
+
+    <div class="thin-hero">
+        <div class="wrapper">
+            <h1 class="has-subtitle"><%= @season.name %></h1>
+            <p class="subtitle">Held from <%= local_date @season.start_at, '%A, %B %e' %> to <%= local_date @season.end_at, '%A, %B %e' %>.</p>
+        </div>
     </div>
-</div>
 
-<div class="column-wrapper">
+    <div class="column-wrapper">
 
-    <div class="wide">
+        <div class="wide">
 
-        <!-- Leaderboard -->
-        <div class="background">
-            <h2>Leaderboard</h2>
+            <!-- Leaderboard -->
+            <div class="background">
+                <h2>Leaderboard</h2>
 
-            <%- if @players.empty? %>
-                <%= render partial: 'application/empty-state', locals: { description: 'No one has played in this season yet.'} %>
-            <%- else %>
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th class="stretch">Name</th>
-                            <th class="numeric">Score</th>
-                            <th class="numeric">P</th>
-                            <th class="numeric">W</th>
-                        </tr>
-                        <%= render collection: @players, partial: 'player' %>
-                    </table>
+                <%- if @players.empty? %>
+                    <%= render partial: 'application/empty-state', locals: { description: 'No one has played in this season yet.'} %>
+                <%- else %>
+                    <div class="table-wrapper">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th class="stretch">Name</th>
+                                <th class="numeric">Score</th>
+                                <th class="numeric">P</th>
+                                <th class="numeric">W</th>
+                            </tr>
+                            <%= render collection: @players, partial: 'player' %>
+                        </table>
+                    </div>
+                <%- end %>
+
+                <div class="background-footer">
+                    <%= paginate @players %>
+                    <p><%= page_entries_info @players %></p>
                 </div>
-            <%- end %>
 
-            <div class="background-footer">
-                <%= paginate @players %>
-                <p><%= page_entries_info @players %></p>
             </div>
 
         </div>
 
-    </div>
+        <div class="thin">
 
-    <div class="thin">
+            <!-- Facebook -->
+            <div class="background">
+                <h2>About this season</h2>
 
-        <!-- Facebook -->
-        <div class="background">
-            <h2>About this season</h2>
+                <ul class="info">
 
-            <ul class="info">
+                    <!-- Duration -->
+                    <li>
+                        <i class="material-icons">date_range</i>
+                        <%= @season.start_at.strftime '%B' %> - <%= @season.end_at.strftime '%B' %>
+                    </li>
 
-                <!-- Duration -->
-                <li>
-                    <i class="material-icons">date_range</i>
-                    <%= @season.start_at.strftime '%B' %> - <%= @season.end_at.strftime '%B' %>
-                </li>
+                    <!-- Players -->
+                    <li>
+                        <i class="material-icons">person</i>
+                        <%= pluralize @season.players.count, 'player' %>
+                    </li>
 
-                <!-- Players -->
-                <li>
-                    <i class="material-icons">person</i>
-                    <%= pluralize @season.players.count, 'player' %>
-                </li>
+                    <!-- Games -->
+                    <li>
+                        <i class="material-icons">casino</i>
+                        <%= pluralize @games_played, 'game' %>
+                    </li>
 
-                <!-- Games -->
-                <li>
-                    <i class="material-icons">casino</i>
-                    <%= pluralize @games_played, 'game' %>
-                </li>
+                </ul>
 
-            </ul>
+                <div class="buttons">
+                    <!-- Print -->
+                    <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
+                        <i class="material-icons">&#xE8AD;</i>
+                        Print this page
+                    <% end %>
+                </div>
 
-            <div class="buttons">
-                <!-- Print -->
-                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
-                    <i class="material-icons">&#xE8AD;</i>
-                    Print this page
-                <% end %>
             </div>
 
         </div>

@@ -13,7 +13,7 @@ onInputChange = (event) ->
 
   input
     .previousElementSibling
-    .querySelector "label > span"
+    .querySelector "span"
     .innerHTML = if file? then file else "No file chosen"
 
 document.addEventListener "change", onInputChange

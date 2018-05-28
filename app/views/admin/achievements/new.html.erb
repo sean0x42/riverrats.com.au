@@ -61,12 +61,12 @@
                         <div class="field">
                             <label>Proof</label>
                             <div class="file-button">
-                                <%= form.label :proof, class: 'button-secondary' do %>
+                                <%= form.label :proof, for: 'achievement_proof', class: 'button-secondary' do %>
                                     <i class="material-icons">&#xE2C6;</i>
                                     <span>No file chosen</span>
                                 <% end %>
                             </div>
-                            <%= form.file_field :proof %>
+                            <%= form.file_field :proof, id: 'achievement_proof' %>
                         </div>
 
                     </div>

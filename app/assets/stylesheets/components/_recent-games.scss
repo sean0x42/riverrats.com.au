@@ -12,16 +12,20 @@
 
     .game {
       color: $generic-text;
-      max-width: 340px;
+      max-width: 360px;
       background: white;
       border-radius: 3px;
       padding: 1rem;
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
-      &:hover { text-decoration: none; }
       overflow: hidden;
+
+      &:hover {
+        text-decoration: none;
+      }
 
       .info {
         color: lighten($generic-text, 15%);
+
         p {
           margin: 0.5rem 0;
           display: flex;

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'scores/index'
+  end
   require 'sidekiq/web'
   authenticated :player do
     mount Sidekiq::Web => '/sidekiq'
@@ -39,6 +42,7 @@ Rails.application.routes.draw do
 
     get 'mail', to: 'mail#index'
     post 'mail/players', to: 'mail#show'
+    get 'scores', to: 'scores#index'
 
   end
 

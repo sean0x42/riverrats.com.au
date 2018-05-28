@@ -2,6 +2,7 @@ class Admin::VenuesController < ApplicationController
 
   layout 'admin'
   before_action :authenticate_player!
+  before_action :require_admin
 
   # GET /admin/venues
   def index
@@ -54,8 +55,15 @@ class Admin::VenuesController < ApplicationController
 
   private
 
-    def venue_params
-      params.require(:venue).permit(:name, :region_id, :address, :suburb, :state)
+  def venue_params
+    params.require(:venue).permit(:name, :region_id, :address, :suburb, :state)
+  end
+
+  def require_admin
+    unless current_player.is_admin
+      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
+      redirect_to root_path
     end
+  end
 
 end

@@ -4,12 +4,7 @@ class GameObserver < ActiveRecord::Observer
     UpdateGlobalRanksJob.perform_later
     UpdateSeasonRanksJob.perform_later game.season
     UpdateVenueRanksJob.perform_later game.venue
-  end
-
-  def after_update (game)
-    UpdateGlobalRanksJob.perform_later
-    UpdateSeasonRanksJob.perform_later game.season
-    UpdateVenueRanksJob.perform_later game.venue
+    UpdateRegionRanksJob.perform_later game.venue.region
   end
 
 end

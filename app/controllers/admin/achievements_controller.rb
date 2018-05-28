@@ -2,6 +2,7 @@ class Admin::AchievementsController < ApplicationController
 
   layout 'admin'
   before_action :authenticate_player!
+  before_action :require_admin
 
   # GET /admin/achievements/new
   def new
@@ -30,6 +31,13 @@ class Admin::AchievementsController < ApplicationController
 
     def achievement_params
       params.require(:achievement).permit(:type, :player_id, :proof)
+    end
+
+    def require_admin
+      unless current_player.is_admin
+        flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
+        redirect_to root_path
+      end
     end
 
 end

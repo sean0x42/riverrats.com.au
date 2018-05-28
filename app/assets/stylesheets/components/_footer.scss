@@ -50,6 +50,9 @@
       font-size: 14px;
       color: $branding-primary;
       font-weight: bold;
+      &:not(:first-child) {
+        margin-top: 1.5rem;
+      }
     }
 
     .social-button {

@@ -91,3 +91,7 @@ en:
     venues:
       show:
         description: "Learn more about %{venue}! See full venue leaderboards, as well as the venue location."
+    region:
+      show:
+        description: "View the region: %{region}"
+        title: "%{region}"

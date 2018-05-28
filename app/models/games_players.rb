@@ -1,6 +1,8 @@
 class GamesPlayers < ApplicationRecord
   include ActiveModel::Dirty
 
+  default_scope { order(position: :asc)}
+
   belongs_to :game
   belongs_to :player
 

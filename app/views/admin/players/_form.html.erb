@@ -1,5 +1,4 @@
-<%= form_for @player, url: {action: 'create'} do |form| %>
-
+<%= form_with model: [:admin, @player], local: true do |form| %>
 
     <%= render partial: 'application/form-errors', locals: {object: @player} %>
 
@@ -12,8 +11,8 @@
             <!-- Username -->
             <%- if @player.persisted? %>
                 <div class="field">
-                    <%= form.label :username %><br/>
-                    <%= form.text_field :username, spellcheck: false %>
+                    <%= form.label :username, for: 'player_username' %><br/>
+                    <%= form.text_field :username, id: 'player_username', spellcheck: false %>
                 </div>
             <%- end %>
 
@@ -22,24 +21,24 @@
 
                 <!-- First name -->
                 <div class="field">
-                    <%= form.label :first_name %><br/>
-                    <%= form.text_field :first_name, autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
+                    <%= form.label :first_name, for: 'player_first_name' %><br/>
+                    <%= form.text_field :first_name, id: 'player_first_name', autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
                 </div>
 
                 <!-- Last name -->
                 <div class="field">
-                    <%= form.label :last_name %><br/>
-                    <%= form.text_field :last_name, spellcheck: false, placeholder: 'Surname, family name...' %>
+                    <%= form.label :last_name, for: 'player_last_name' %><br/>
+                    <%= form.text_field :last_name, id: 'player_last_name', spellcheck: false, placeholder: 'Surname, family name...' %>
                 </div>
 
             </div>
 
             <!-- Email address -->
             <div class="field">
-                <%= form.label :email %><br/>
+                <%= form.label :email, for: 'player_email' %><br/>
                 <div class="input-wrapper">
                     <i class="material-icons">&#xE0BE;</i>
-                    <%= form.email_field :email, placeholder: 'someone@example.com' %>
+                    <%= form.email_field :email, id: 'player_email', placeholder: 'someone@example.com' %>
                 </div>
             </div>
 
@@ -52,8 +51,8 @@
         </div>
         <div class="section-content">
             <div class="field checkbox">
-                <%= form.check_box :is_admin %>
-                <%= form.label :is_admin do %>
+                <%= form.check_box :is_admin, id: 'player_is_admin' %>
+                <%= form.label :is_admin, for: 'player_is_admin' do %>
                     <i class="material-icons">&#xE835;</i>
                     <span>Administrative privileges</span>
                 <% end %>

@@ -2,92 +2,95 @@
 <%- content_for :description, t('view.venues.show.description') % { venue: @venue.name } %>
 <%- content_for :canonical_url, venue_path(@venue) %>
 
-<div class="thin-hero">
-    <div class="wrapper">
-        <h1 class="has-subtitle"><%= @venue.name %></h1>
-        <p class="subtitle">A venue located in the <%= link_to @venue.region.name, region_path(@venue.region) %> region.</p>
+<div id="print">
+
+    <div class="thin-hero">
+        <div class="wrapper">
+            <h1 class="has-subtitle"><%= @venue.name %></h1>
+            <p class="subtitle">A venue located in the <%= link_to @venue.region.name, region_path(@venue.region) %> region.</p>
+        </div>
     </div>
-</div>
 
-<div class="column-wrapper">
+    <div class="column-wrapper">
 
-    <div class="wide">
+        <div class="wide">
 
-        <!-- Leaderboard -->
-        <div class="background">
-            <h2>Leaderboard</h2>
+            <!-- Leaderboard -->
+            <div class="background" id="leaderboard">
+                <h2>Leaderboard</h2>
 
-            <%- if @players.empty? %>
-                <%= render partial: 'application/empty-state', locals: { description: 'No one has played at this venue yet.'} %>
-            <%- else %>
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th class="stretch">Name</th>
-                            <th class="numeric">Score</th>
-                            <th class="numeric">P</th>
-                            <th class="numeric">W</th>
-                        </tr>
-                        <%= render collection: @players, partial: 'player' %>
-                    </table>
+                <%- if @players.empty? %>
+                    <%= render partial: 'application/empty-state', locals: { description: 'No one has played at this venue yet.'} %>
+                <%- else %>
+                    <div class="table-wrapper">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th class="stretch">Name</th>
+                                <th class="numeric">Score</th>
+                                <th class="numeric">P</th>
+                                <th class="numeric">W</th>
+                            </tr>
+                            <%= render collection: @players, partial: 'player' %>
+                        </table>
+                    </div>
+                <%- end %>
+
+                <div class="background-footer">
+                    <%= paginate @players %>
+                    <p><%= page_entries_info @players %></p>
                 </div>
-            <%- end %>
 
-            <div class="background-footer">
-                <%= paginate @players %>
-                <p><%= page_entries_info @players %></p>
             </div>
 
         </div>
 
-    </div>
+        <div class="thin">
 
-    <div class="thin">
+            <!-- Breakdown -->
+            <div class="background">
+                <h2><i class="material-icons">&#xE24B;</i>Breakdown</h2>
 
-        <!-- Breakdown -->
-        <div class="background">
-            <h2><i class="material-icons">&#xE24B;</i>Breakdown</h2>
+                <ul class="info">
 
-            <ul class="info">
+                    <!-- Players -->
+                    <li>
+                        <i class="material-icons">person</i>
+                        <%= pluralize @venue.players.count, 'player' %>
+                    </li>
 
-                <!-- Players -->
-                <li>
-                    <i class="material-icons">person</i>
-                    <%= pluralize @venue.players.count, 'player' %>
-                </li>
+                    <!-- Region -->
+                    <li>
+                        <i class="material-icons">terrain</i>
+                        <%= link_to @venue.region.name, region_path(@venue.region) %>
+                    </li>
 
-                <!-- Region -->
-                <li>
-                    <i class="material-icons">terrain</i>
-                    <%= link_to @venue.region.name, region_path(@venue.region) %>
-                </li>
+                </ul>
 
-            </ul>
+                <div class="buttons">
+                    <!-- Print -->
+                    <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
+                        <i class="material-icons">&#xE8AD;</i>
+                        Print this page
+                    <% end %>
+                </div>
 
-            <div class="buttons">
-                <!-- Print -->
-                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
-                    <i class="material-icons">&#xE8AD;</i>
-                    Print this page
-                <% end %>
             </div>
 
-        </div>
+            <!-- Location -->
+            <div class="background no-print">
+                <h2><i class="material-icons">&#xE55B;</i>Location</h2>
+                <iframe
+                    width="100%"
+                    height="450"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY
+                    &q=Space+Needle,Seattle+WA" allowfullscreen>
+                </iframe>
+            </div>
 
-        <!-- Location -->
-        <div class="background">
-            <h2><i class="material-icons">&#xE55B;</i>Location</h2>
-            <iframe
-                width="100%"
-                height="450"
-                frameborder="0" style="border:0"
-                src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY
-                &q=Space+Needle,Seattle+WA" allowfullscreen>
-            </iframe>
         </div>
 
     </div>
 
 </div>
-

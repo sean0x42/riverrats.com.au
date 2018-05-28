@@ -2,6 +2,7 @@ class Admin::PlayersController < ApplicationController
 
   layout 'admin'
   before_action :authenticate_player!
+  before_action :require_admin
 
   # GET /admin/players
   def index
@@ -96,12 +97,19 @@ class Admin::PlayersController < ApplicationController
 
   private
 
-    def auth_params
-      params.require(:player).permit(:first_name, :last_name, :email, :is_admin)
-    end
+  def auth_params
+    params.require(:player).permit(:first_name, :last_name, :email, :is_admin)
+  end
 
-    def edit_params
-      params.require(:player).permit(:username, :first_name, :last_name, :email, :is_admin)
+  def edit_params
+    params.require(:player).permit(:username, :first_name, :last_name, :email, :is_admin)
+  end
+
+  def require_admin
+    unless current_player.is_admin
+      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
+      redirect_to root_path
     end
+  end
 
 end

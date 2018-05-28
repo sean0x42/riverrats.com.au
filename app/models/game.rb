@@ -46,4 +46,12 @@ class Game < ApplicationRecord
     { name: name }
   end
 
+  def update_ranks
+    region = self.venue
+    UpdateGlobalRanksJob.perform_later
+    UpdateSeasonRanksJob.perform_later self.season
+    UpdateVenueRanksJob.perform_later region
+    UpdateRegionRanksJob.perform_later region.region
+  end
+
 end

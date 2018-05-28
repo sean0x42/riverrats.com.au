@@ -2,6 +2,7 @@ class Admin::RegionsController < ApplicationController
 
   layout 'admin'
   before_action :authenticate_player!
+  before_action :require_admin
 
   # GET /admin/regions
   def index
@@ -57,7 +58,14 @@ class Admin::RegionsController < ApplicationController
 
   private
 
-    def region_params
-      params.require(:region).permit(:name)
+  def region_params
+    params.require(:region).permit(:name)
+  end
+
+  def require_admin
+    unless current_player.is_admin
+      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
+      redirect_to root_path
     end
+  end
 end

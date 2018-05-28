@@ -10,8 +10,8 @@
 
             <!-- Name -->
             <div class="field">
-                <%= form.label :name %><br/>
-                <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Taree' %>
+                <%= form.label :name, for: 'region_name' %><br/>
+                <%= form.text_field :name, id: 'region_name', autofocus: true, spellcheck: false, placeholder: 'e.g. Taree' %>
             </div>
 
         </div>

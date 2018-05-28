@@ -2,56 +2,60 @@
 <%- content_for :description, t('view.welcome.privacy_policy.description') %>
 <%- content_for :canonical_url, privacy_policy_path %>
 
-<div class="thin-hero">
-    <div class="wrapper">
-        <h1 class="has-subtitle">Privacy policy</h1>
-        <p class="subtitle">Want to know more about what we do with your data? This page will explain it for you.</p>
+<div id="print">
+
+    <div class="thin-hero">
+        <div class="wrapper">
+            <h1 class="has-subtitle">Privacy policy</h1>
+            <p class="subtitle">Want to know more about what we do with your data? This page will explain it for you.</p>
+        </div>
     </div>
-</div>
 
-<div class="column-wrapper">
+    <div class="column-wrapper">
 
-    <article class="background">
+        <article class="background">
 
-        <h2>Information you provide us directly</h2>
-        <p>We ask for certain information such as your real name and email address when you register for a River Rats Poker League account. This may also occur if you play a game at any one of our events. We use this information to operate, maintain, and provide to you the features and functionality of this service. Your real name and scores will be published publicly.</p>
+            <h2>Information you provide us directly</h2>
+            <p>We ask for certain information such as your real name and email address when you register for a River Rats Poker League account. This may also occur if you play a game at any one of our events. We use this information to operate, maintain, and provide to you the features and functionality of this service. Your real name and scores will be published publicly.</p>
 
-        <h2>Cookies</h2>
-        <p>When you visit the website, we may send one or more cookies to your browser (strings of text containing alphanumeric characters). These cookies will be used to uniquely identify your browser, letting you log in to your account. We may also use cookies to log you in faster, if you select the 'Remember me' option on login. You may choose to disable cookies in your browser's settings, however some features will cease to function correctly.</p>
+            <h2>Cookies</h2>
+            <p>When you visit the website, we may send one or more cookies to your browser (strings of text containing alphanumeric characters). These cookies will be used to uniquely identify your browser, letting you log in to your account. We may also use cookies to log you in faster, if you select the 'Remember me' option on login. You may choose to disable cookies in your browser's settings, however some features will cease to function correctly.</p>
 
-        <h2>Commercial and marketing data</h2>
-        <p>We use the information given to us by you, such as your email address and real name, to communicate directly to you. We may send you emails containing newsletters, promotions, and special offers. If you do not want to receive such emails, you may opt out in your <%= link_to 'account\'s settings', edit_player_registration_path %>.</p>
-        <p>We also use your email address and real name to send emails regarding upcoming events. This service is automatic, and if you wish you may opt out in your <%= link_to 'account\'s settings', edit_player_registration_path %>.</p>
-        <p>We also use this information to send service related emails (e.g. account verification, changes/updates to features, technical and security notes, and password resets). You may not opt out of such emails, as they are essential to the functions of this service.</p>
+            <h2>Commercial and marketing data</h2>
+            <p>We use the information given to us by you, such as your email address and real name, to communicate directly to you. We may send you emails containing newsletters, promotions, and special offers. If you do not want to receive such emails, you may opt out in your <%= link_to 'account\'s settings', edit_player_registration_path %>.</p>
+            <p>We also use your email address and real name to send emails regarding upcoming events. This service is automatic, and if you wish you may opt out in your <%= link_to 'account\'s settings', edit_player_registration_path %>.</p>
+            <p>We also use this information to send service related emails (e.g. account verification, changes/updates to features, technical and security notes, and password resets). You may not opt out of such emails, as they are essential to the functions of this service.</p>
 
-        <h2>Sharing your information</h2>
-        <p>We will never rent or sell your information to third parties without your consent, except as noted below:</p>
-        <ul>
-            <li><p>We may share your information with third-party business partners and trusted users for the purpose of providing the service to you. Third parties will be given limited access to your information as is necessary to deliver the service, and we will require that such third parties comply with this privacy policy, or operate under a similar privacy policy.</p></li>
-            <li><p>Your username and real name will be published publicly. If you do not wish for this information to be available to the public please do not use this service.</p></li>
-        </ul>
+            <h2>Sharing your information</h2>
+            <p>We will never rent or sell your information to third parties without your consent, except as noted below:</p>
+            <ul>
+                <li><p>We may share your information with third-party business partners and trusted users for the purpose of providing the service to you. Third parties will be given limited access to your information as is necessary to deliver the service, and we will require that such third parties comply with this privacy policy, or operate under a similar privacy policy.</p></li>
+                <li><p>Your username and real name will be published publicly. If you do not wish for this information to be available to the public please do not use this service.</p></li>
+            </ul>
 
-        <h2>Instances where we are required to share your information</h2>
-        <p>We will disclose your information where required to do so by law or subpoena or if we reasonably believe that such action is necessary to (a) comply with the law and the reasonable requests of law enforcement; (b) to ensure the security, quality or integrity of this service; and/or (c) to exercise or protect the rights, property, or personal safety of the River Rats Poker League, our users, or others.</p>
+            <h2>Instances where we are required to share your information</h2>
+            <p>We will disclose your information where required to do so by law or subpoena or if we reasonably believe that such action is necessary to (a) comply with the law and the reasonable requests of law enforcement; (b) to ensure the security, quality or integrity of this service; and/or (c) to exercise or protect the rights, property, or personal safety of the River Rats Poker League, our users, or others.</p>
 
-    </article>
+        </article>
 
-    <div class="thin">
+        <div class="thin">
 
-        <!-- Metadata -->
-        <div class="background">
-            <h2><i class="material-icons">&#xE88F;</i> Metadata</h2>
-            <p>This document was last updated <%= local_date Date.parse('2018-05-04'), '%B %e, %Y' %>.</p>
+            <!-- Metadata -->
+            <div class="background">
+                <h2><i class="material-icons">&#xE88F;</i> Metadata</h2>
+                <p>This document was last updated <%= local_date Date.parse('2018-05-04'), '%B %e, %Y' %>.</p>
 
-            <div class="buttons">
+                <div class="buttons">
 
-                <!-- Print -->
-                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
-                    <i class="material-icons">&#xE8AD;</i>
-                    Print this page
-                <% end %>
+                    <!-- Print -->
+                    <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
+                        <i class="material-icons">&#xE8AD;</i>
+                        Print this page
+                    <% end %>
 
+                </div>
             </div>
+
         </div>
 
     </div>

@@ -2,6 +2,7 @@ class Admin::EventsController < ApplicationController
 
   layout 'admin'
   before_action :authenticate_player!
+  before_action :require_admin
 
   # GET /admin/events
   def index
@@ -79,11 +80,18 @@ class Admin::EventsController < ApplicationController
 
   private
 
-    def event_params
-      params.require(:event).permit(
-        :title, :description, :start_at, :venue_id,
-        :type, :period, :interval, day: []
-      )
+  def event_params
+    params.require(:event).permit(
+      :title, :description, :start_at, :venue_id,
+      :type, :period, :interval, day: []
+    )
+  end
+
+  def require_admin
+    unless current_player.is_admin
+      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
+      redirect_to root_path
     end
+  end
 
 end

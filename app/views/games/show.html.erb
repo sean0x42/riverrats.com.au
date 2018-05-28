@@ -2,6 +2,8 @@
 <%- content_for :description, t('view.games.show.description') % { game: @game.name } %>
 <%- content_for :canonical_url, games_path %>
 
+<div id="print">
+
 <div class="thin-hero">
     <div class="wrapper">
         <h1 class="has-subtitle">Game <%= @game.name %></h1>
@@ -14,7 +16,7 @@
     <div class="wide">
 
         <!-- Leaderboard -->
-        <div class="background">
+        <div class="background" id="leaderboard">
             <h2>Leaderboard</h2>
             <%- if @players.empty? %>
                 <%= render partial: 'application/empty-state', locals: { description: 'No one has played in this game yet.'} %>
@@ -85,7 +87,7 @@
 
             <div class="buttons">
                 <!-- Print -->
-                <%= link_to 'javascript:void(0)', class: 'button-secondary' do %>
+                <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
                     <i class="material-icons">&#xE8AD;</i>
                     Print this page
                 <% end %>
@@ -95,4 +97,5 @@
 
     </div>
 
+</div>
 </div>

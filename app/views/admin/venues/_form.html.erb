@@ -10,8 +10,8 @@
 
             <!-- Name -->
             <div class="field">
-                <%= form.label :name %><br/>
-                <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Nabiac Hotel' %>
+                <%= form.label :name, for: 'venue_name' %><br/>
+                <%= form.text_field :name, id: 'venue_name', autofocus: true, spellcheck: false, placeholder: 'e.g. Nabiac Hotel' %>
             </div>
 
         </div>
@@ -26,8 +26,8 @@
 
             <!-- Region -->
             <div class="field">
-                <%= form.label :region_id %><br/>
-                <%= form.collection_select :region_id, Region.all, :id, :name %>
+                <%= form.label :region_id, for: 'venue_region_id' %><br/>
+                <%= form.collection_select :region_id, Region.all, :id, :name, {}, { id: 'venue_region_id' } %>
             </div>
 
         </div>

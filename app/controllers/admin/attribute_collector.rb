@@ -35,8 +35,8 @@ class Admin::AttributeCollector
   def self.from_db (game_id)
 
     # Get all players and referees
-    players = Player.joins(:games_players).where(games_players: { game_id: game_id })
-    referees = Player.joins(:referees).where(referees: { game_id: game_id })
+    players = Player.joins(:games_players).where(games_players: { game_id: game_id }).reorder('')
+    referees = Player.joins(:referees).where(referees: { game_id: game_id }).reorder('')
 
     # Join using an SQL union
     join = Player.from("(#{players.to_sql} UNION #{referees.to_sql}) AS players")
