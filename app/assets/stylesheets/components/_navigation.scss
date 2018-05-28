@@ -1,3 +1,140 @@
+body.admin .responsive-navigation,
+body.admin .overflow-nav {
+  display: none;
+}
+
+body:not(.admin) .responsive-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1900;
+  background: white;
+  border-top: 1px solid $branding-primary;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    a {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      color: lighten($generic-text, 15%);
+      border-radius: 3px;
+      align-items: center;
+      padding: 6px 0.5rem;
+      margin: 3px 0;
+      text-decoration: none;
+      @include no-select;
+
+      i {
+        padding-top: 6px;
+        font-size: 26px;
+        color: lighten($generic-text, 25%);
+      }
+
+      &:hover {
+        background: hsl(220, 8%, 99%);
+      }
+
+      &.active {
+        color: darken($branding-primary, 5%);
+        i { color: $branding-primary; }
+      }
+
+    }
+
+  }
+
+  #login,
+  #register,
+  #games {
+    display: none;
+  }
+
+}
+
+body:not(.admin) .overflow-nav {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 75px;
+  background: white;
+  overflow-y: auto;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 100ms;
+  z-index: 200;
+
+  h2 {
+    display: block;
+    color: lighten($generic-text-bold, 30%);
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin: 2rem 0 0;
+    padding-left: 12px;
+  }
+
+  ul {
+    margin: 0.5rem 0 1rem;
+    padding: 0;
+    list-style-type: none;
+
+    a {
+      color: lighten($generic-text, 15%);
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      font-size: $font-size;
+      padding: 6px 12px;
+      margin: 3px 0;
+      text-decoration: none;
+
+      i {
+        padding-top: 0;
+        font-size: 21px;
+        margin: -3px 0.75rem -3px 0;
+      }
+
+      &.active {
+        background: white;
+        color: $branding-primary;
+      }
+
+      &:hover {
+        background: hsl(220, 8%, 99%);
+      }
+
+    }
+
+    .more {
+      display: none;
+    }
+
+    &.actions,
+    &.danger-zone {
+      display: block;
+    }
+
+  }
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+}
+
 .navigation {
   position: fixed;
   top: 0;
@@ -6,10 +143,12 @@
   background: white;
   padding: 1rem 1.5rem;
   box-shadow: 0 0.5rem rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid $branding-primary;
 
   .wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 0;
     margin-top: 0;
   }
@@ -24,30 +163,60 @@
   }
 
   .search-wrapper {
-    max-width: unset;
     box-shadow: none;
     background: darken($input-background, 1%);
+    max-width: 400px;
 
     input {
       background: transparent;
       padding: 11px 13px !important;
+
       &::placeholder {
         color: lighten($generic-text, 25%);
         opacity: 1;
       }
     }
 
-    i { display: none; }
+    i {
+      display: none;
+    }
 
   }
 
-  .quick-links, .account, .buttons { display: none; }
+  .quick-links,
+  .account,
+  .buttons {
+    display: none;
+  }
 
 }
 
-@media (min-width: 800px) {
+@media (min-width: 380px) {
+
+  body:not(.admin) .responsive-navigation {
+
+    #more {
+      display: none;
+    }
+
+    #login,
+    #register,
+    #games {
+      display: block;
+    }
+
+  }
+}
+
+@media (min-width: 1000px) {
+
+  .responsive-navigation,
+  .overflow-nav {
+    display: none;
+  }
 
   .navigation {
+    border: none;
 
     .quick-links {
       display: flex;
@@ -69,24 +238,18 @@
 
     }
 
-    .search-wrapper {
-      max-width: 400px;
+    .wrapper {
+      justify-content: flex-start;
     }
-
-  }
-
-}
-
-@media (min-width: 1000px) {
-
-  .navigation {
 
     .buttons {
       display: flex;
       margin: -0.5rem 0 -0.5rem auto;
     }
 
-    .button-secondary { padding: 8px 14px; }
+    .button-secondary {
+      padding: 8px 14px;
+    }
 
     .button-tertiary {
       padding: 8px 14px;

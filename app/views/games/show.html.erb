@@ -52,13 +52,13 @@
 
                 <!-- Played -->
                 <li>
-                    <i class="material-icons">date_range</i>
+                    <i class="material-icons">event_note</i>
                     <%= @game.played_on.strftime '%A, %B %d %Y' %>
                 </li>
 
                 <!-- Venue -->
                 <li>
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">&#xE8F9;</i>
                     <% venue = @game.venue %>
                     <%= link_to venue.name, venue_path(venue) %>
                 </li>

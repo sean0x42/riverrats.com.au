@@ -1,6 +1,7 @@
 .raised {
   background: white;
   padding: 8rem 0;
+
   .wrapper {
     margin: 0 auto;
   }
@@ -8,12 +9,20 @@
 
 .wrapper-header {
   margin: 6rem auto 3rem !important;
-  h1 { font-size: 22px; }
-  .has-subtitle { margin: 0; }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .has-subtitle {
+    margin: 0;
+  }
+
   .subtitle {
     margin-top: 1rem;
     max-width: 60ch;
   }
+
 }
 
 .wrapper, .column-wrapper, .wrapper-header {
@@ -82,7 +91,7 @@
   padding: 0 0.5rem;
 
   &.small-first {
-    margin: 6rem auto;
+    margin: 3rem auto 2rem;
   }
 
   .thin {
@@ -95,6 +104,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin-top: 0 !important;
   margin-bottom: 2.5rem !important;
 
@@ -125,6 +135,7 @@
 
     &.small-first {
       grid-template-columns: 270px 1fr;
+      margin: 6rem auto;
     }
 
     .thin {

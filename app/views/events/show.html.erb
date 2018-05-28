@@ -17,7 +17,7 @@
     <div class="wide">
 
         <div class="background">
-            <h2><i class="material-icons">&#xE873;</i>Description</h2>
+            <h2>Description</h2>
             <p><%= @event.description.blank? ? 'This event has no description.' : @event.description %></p>
         </div>
 
@@ -38,19 +38,19 @@
 
                 <!-- Date -->
                 <li>
-                    <i class="material-icons">calendar_today</i>
+                    <i class="material-icons">event_note</i>
                     <%= local_date @event.start_at %>
                 </li>
 
                 <!-- Venue -->
                 <li>
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">&#xE8F9;</i>
                     <%= link_to @event.venue.name, venue_path(@event.venue) %>
                 </li>
 
                 <!-- Region -->
                 <li>
-                    <i class="material-icons">terrain</i>
+                    <i class="material-icons">&#xE0C8;</i>
                     <%= link_to @event.venue.region.name, region_path(@event.venue.region) %>
                 </li>
 

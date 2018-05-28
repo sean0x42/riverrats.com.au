@@ -89,3 +89,185 @@
 </nav>
 
 <div class="header-placeholder"></div>
+
+<div class="responsive-navigation">
+
+    <ul>
+
+        <!-- Leaderboards -->
+        <li>
+            <%= link_to players_path do %>
+                <i class="material-icons">timeline</i>
+                Scores
+            <% end %>
+        </li>
+
+        <!-- Season -->
+        <li>
+            <%= link_to seasons_path do %>
+                <i class="material-icons">explore</i>
+                Season
+            <% end %>
+        </li>
+
+        <%- if player_signed_in? %>
+
+            <!-- Games -->
+            <li id="games">
+                <%= link_to games_path do %>
+                    <i class="material-icons">&#xE021;</i>
+                    Games
+                <% end %>
+            </li>
+
+        <%- end %>
+
+        <!-- Calendar -->
+        <li>
+            <%= link_to events_path do %>
+                <i class="material-icons">event_note</i>
+                Events
+            <% end %>
+        </li>
+
+        <%- if player_signed_in? %>
+
+            <!-- Account -->
+            <li>
+                <%= link_to 'javascript:void(0)', class: 'js-more' do %>
+                    <i class="material-icons">person</i>
+                    Account
+                <% end %>
+            </li>
+
+        <%- else %>
+
+            <!-- Login -->
+            <li id="login">
+                <%= link_to new_player_session_path do %>
+                    <i class="material-icons">person</i>
+                    Login
+                <% end %>
+            </li>
+
+            <!-- Register -->
+            <li id="register">
+                <%= link_to new_player_registration_path do %>
+                    <i class="material-icons">accessibility_new</i>
+                    Sign up
+                <% end %>
+            </li>
+
+            <!-- Optional more -->
+            <li id="more">
+                <%= link_to 'javascript:void(0)', class: 'js-more' do %>
+                    <i class="material-icons">more_horiz</i>
+                    More
+                <% end %>
+            </li>
+
+        <%- end %>
+
+    </ul>
+
+</div>
+
+<%- if player_signed_in? %>
+
+    <div class="overflow-nav js-more-overflow">
+
+        <h2>Account</h2>
+
+        <ul class="actions">
+
+            <!-- My profile -->
+            <li>
+                <%= link_to player_path(current_player) do %>
+                    <i class="material-icons">&#xE851;</i>
+                    View my profile
+                <% end %>
+            </li>
+
+            <!-- Preferences -->
+            <li>
+                <%= link_to edit_player_registration_path do %>
+                    <i class="material-icons">&#xE8B8;</i>
+                    Preferences
+                <% end %>
+            </li>
+
+            <%- if current_player.is_admin %>
+                <!-- Admin -->
+                <li>
+                    <%= link_to admin_root_path do %>
+                        <i class="material-icons">&#xE869;</i>
+                        Admin panel
+                    <% end %>
+                </li>
+            <%- end %>
+
+            <!-- Random profile -->
+            <li>
+                <%= link_to players_random_path do %>
+                    <i class="material-icons">&#xEB40;</i>
+                    Random profile
+                <% end %>
+            </li>
+
+            <!-- Logout -->
+            <li>
+                <%= link_to destroy_player_session_path, method: :delete, data: {confirm: 'Are you sure you want to log out?'} do %>
+                    <i class="material-icons">&#xE879;</i>
+                    Logout
+                <% end %>
+            </li>
+
+        </ul>
+
+    </div>
+
+<%- else %>
+
+    <div class="overflow-nav js-more-overflow">
+
+        <h2>More links</h2>
+
+        <ul class="actions">
+
+            <!-- Games -->
+            <li id="games">
+                <%= link_to games_path do %>
+                    <i class="material-icons">&#xE021;</i>
+                    Games
+                <% end %>
+            </li>
+
+            <!-- Login -->
+            <li id="login">
+                <%= link_to new_player_session_path do %>
+                    <i class="material-icons">person</i>
+                    Login
+                <% end %>
+            </li>
+
+            <!-- Register -->
+            <li id="register">
+                <%= link_to new_player_registration_path do %>
+                    <i class="material-icons">accessibility_new</i>
+                    Sign up
+                <% end %>
+            </li>
+
+            <!-- Random profile -->
+            <li>
+                <%= link_to players_random_path do %>
+                    <i class="material-icons">&#xEB40;</i>
+                    Random profile
+                <% end %>
+            </li>
+
+        </ul>
+
+    </div>
+
+<%- end %>
