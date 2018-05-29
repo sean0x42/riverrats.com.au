@@ -33,7 +33,8 @@ function print(selector) {
             ".button-tertiary," +
             ".material-icons," +
             ".pagination," +
-            ".no-print{display:none;}" +
+            ".no-print," +
+            ".achievement img{display:none;}" +
             "body{font-family:'-apple-system','system-ui','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica Neue','Arial','sans-serif','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'}" +
             ".stat .numeric,.stat .label{display:inline;}" +
         "</style>"
@@ -45,7 +46,7 @@ function print(selector) {
     printWindow.document.write("</body></html>");
     printWindow.document.close();
 
-    printWindow.print();
-    printWindow.close();
+    // printWindow.print();
+    // printWindow.close();
 
 }

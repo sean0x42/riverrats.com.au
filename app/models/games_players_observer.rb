@@ -7,7 +7,7 @@ class GamesPlayersObserver < ActiveRecord::Observer
 
     if game_player.position_changed?
 
-      changes = { score: 0, plays: 0, wins: 0 }
+      changes = { score: 0, plays: 0, wins: 0, second_places: 0, wooden_spoons: 0 }
       player = game_player.player
 
       # Calculate new score
@@ -28,19 +28,36 @@ class GamesPlayersObserver < ActiveRecord::Observer
         changes[:wins] = -1
       end
 
+      # Update change in second places
+      if game_player.position == 1
+        changes[:second_places] = 1
+      elsif game_player.position_was == 1
+        changes[:second_places] = -1
+      end
+
+      # Wooden spoons
+      if game_player.position == 9
+        changes[:wooden_spoons] = 1
+      elsif game_player.position_was == 9
+        changes[:wooden_spoons] = -1
+      end
+
       # Queue up extended updates
       UpdatePlayerJob.perform_later player, changes
       UpdateVenueJob.perform_later  player, changes, game_player.game.venue
       UpdateRegionJob.perform_later player, changes, game_player.game.venue.region
       UpdateSeasonJob.perform_later player, changes, game_player.game.season
+
     end
+
+    GameAchievementsJob.perform_later game_player.player
 
   end
 
 
   def before_destroy (game_player)
 
-    changes = { score: (-1 * game_player.score), plays: -1, wins: 0 }
+    changes = { score: (-1 * game_player.score), plays: -1, wins: 0, second_places: 0, wooden_spoons: 0 }
     player = game_player.player
 
     # These are extracted to reduce line width
@@ -48,7 +65,7 @@ class GamesPlayersObserver < ActiveRecord::Observer
     was_first  =     (game_player.position_changed? and game_player.was_first_place?)
 
     # Update change in wins
-    if is_first or was_first
+    if is_first || was_first
       changes[:wins] = -1
     end
 

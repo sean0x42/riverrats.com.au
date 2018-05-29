@@ -29,7 +29,7 @@
 
                 <section>
                     <div class="section-outline">
-                        <h2><span>1</span>Achievement details</h2>
+                        <h2><span>I</span>Achievement details</h2>
                     </div>
                     <div class="section-content">
 
@@ -39,15 +39,16 @@
                             <%= form.select :type, options_for_select(
                                 [
                                     [StraightFlush.title, StraightFlush.sti_name],
-                                    [RoyalFlush.title, RoyalFlush.sti_name]
+                                    [RoyalFlush.title, RoyalFlush.sti_name],
+                                    [KingOfTheWorld.title, KingOfTheWorld.sti_name]
                                 ]
                             ) %>
                         </div>
 
                         <!-- Player -->
                         <div class="field">
-                            <%= form.label :player_id %><br/>
-                            <%= form.hidden_field :player_id %>
+                            <%= form.label :player_id, for: 'achievement_player_id' %><br/>
+                            <%= form.hidden_field :player_id, id: 'achievement_player_id' %>
                             <div class="player-input-wrapper" style="max-width: 280px;">
                                 <%= form.text_field :player,
                                                     class: 'typeahead-achievement player-input',

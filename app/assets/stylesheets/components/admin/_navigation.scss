@@ -199,6 +199,8 @@
     .overflow-navigation {
       position: relative;
       background: none;
+      top: unset;
+      bottom: unset;
       padding: 0;
       opacity: 1;
       pointer-events: all;

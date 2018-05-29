@@ -7,7 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Region.create([{ name: 'Taree' }, { name: 'Forster' }])
-Venue.create([{ name: 'Nabiac Hotel', region_id: 1 }])
+Venue.create([{ name: 'The Nabiac Hotel', region_id: 1 }])
+
+Player.create({first_name: 'Sean', last_name: 'Bailey', email: 'sean@seanbailey.io', is_admin: true, password: 'password' })
 
 if Rails.env.development?
   Player.create([
@@ -16,7 +18,6 @@ if Rails.env.development?
                   { first_name: 'Morgan', last_name: 'Wade', email: 'morgan@seanbailey.io', password: 'password' },
                   { first_name: 'Eehan', last_name: 'Scerri', email: 'eehan@seanbailey.io', is_admin: true, password: 'password' },
                   { first_name: 'Vince', last_name: 'Cassar', email: 'vince@seanbailey.io', is_admin: true, password: 'password' },
-                  { first_name: 'Sean', last_name: 'Bailey', email: 'sean@seanbailey.io', is_admin: true, password: 'password' },
                   { first_name: 'Jared', last_name: 'Barrie', email: 'jared@seanbailey.io', password: 'password' }
                 ])
 end

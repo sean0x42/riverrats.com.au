@@ -55,10 +55,10 @@
 
                 <!-- All time rank -->
                 <div class="stat">
-                    <%- global_rank = @player.rank + 1 %>
-                    <%- if global_rank.nil? %>
+                    <%- if @player.rank.nil? %>
                         <p class="numeric">-</p>
                     <%- else %>
+                        <%- global_rank = @player.rank + 1 %>
                         <p class="numeric"><%= "#{number_with_delimiter global_rank}#{global_rank.ordinal}" %></p>
                     <%- end %>
                     <p class="label">rank (all time)</p>
@@ -123,19 +123,15 @@
         <!-- Achievements -->
         <div class="background">
 
-            <h2><i class="material-icons">&#xE87A;</i> Achievements</h2>
+            <h2><i class="material-icons">&#xE87A;</i>Achievements</h2>
 
             <% if @player.achievements.empty? %>
                 <p>There's nothing here! Get out there and play some games!</p>
             <% else %>
-                <table>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Proof?</th>
-                    </tr>
-                    <%= render collection: @player.achievements, partial: 'achievement' %>
-                </table>
+                <ul class="achievements">
+                    <%= render collection: @achievements, partial: 'achievement' %>
+                </ul>
+                <%= paginate @achievements, param_name: :achievements %>
             <% end %>
 
             <div class="buttons">

@@ -22,7 +22,7 @@
 
                 <section>
                     <div class="section-outline">
-                        <h2><span>1</span> My details</h2>
+                        <h2><span>I</span>My details</h2>
                     </div>
                     <div class="section-content">
 
@@ -44,7 +44,7 @@
 
                 <section>
                     <div class="section-outline">
-                        <h2><span>2</span> Account Security</h2>
+                        <h2><span>II</span>Account Security</h2>
                     </div>
                     <div class="section-content">
 
@@ -55,9 +55,6 @@
                                 <i class="material-icons">&#xE897;</i>
                                 <%= f.password_field :password, autocomplete: "off" %>
                             </div>
-                            <% if @minimum_password_length %>
-                                <em><%= @minimum_password_length %> characters minimum</em>
-                            <% end %>
                         </div>
 
                         <!-- Password confirmation -->
@@ -80,7 +77,7 @@
 
                 <section>
                     <div class="section-outline">
-                        <h2><span>3</span>Notifications</h2>
+                        <h2><span>III</span>Notifications</h2>
                     </div>
                     <div class="section-content">
 
@@ -121,7 +118,7 @@
         <!-- Cancel account -->
         <div class="background danger-zone">
             <h2><i class="material-icons">&#xE002;</i>Delete account</h2>
-            <p>Unhappy? Cancel your account here. We'll be sad to see you go.</p>
+            <p><strong>Warning! This action cannot be undone.</strong> Unhappy? Cancel your account here. We'll be sad to see you go.</p>
 
             <div class="buttons">
                 <%= link_to 'Delete account',

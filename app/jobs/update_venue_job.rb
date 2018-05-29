@@ -18,6 +18,8 @@ class UpdateVenueJob < ApplicationJob
     venue.score += changes[:score]
     venue.games_played += changes[:plays]
     venue.games_won += changes[:wins]
+    venue.second_places += changes[:second_places]
+    venue.wooden_spoons += changes[:wooden_spoons]
     venue.save
 
   end

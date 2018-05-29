@@ -73,6 +73,12 @@ class Admin::EventsController < ApplicationController
   # DELETE /admin/events/:id
   def destroy
     @event = Event.find params[:id]
+
+    if params.has_key? :from
+      @events = SingleEvent.where(recurring_event_id: @event.id).where(['id >= ?', params[:from]])
+      @events.destroy_all
+    end
+
     @event.destroy
 
     redirect_to admin_events_path, notice: t('event.destroy') % { event: @event.clean_title }

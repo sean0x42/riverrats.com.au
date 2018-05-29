@@ -13,6 +13,7 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find_by! username: params[:username]
     @games = @player.recent_games
+    @achievements = @player.achievements.page(params[:achievements]).per(6)
     current_season = Season.where('start_at < ? and end_at > ?', Time.now, Time.now).first
     @season_player = PlayersSeasons.where(player_id: @player.id).where(season_id: current_season.id).first
   end

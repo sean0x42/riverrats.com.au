@@ -9,6 +9,8 @@ class UpdatePlayerJob < ApplicationJob
     player.score += changes[:score]
     player.games_played += changes[:plays]
     player.games_won += changes[:wins]
+    player.second_places += changes[:second_places]
+    player.wooden_spoons += changes[:wooden_spoons]
     player.save
   end
 

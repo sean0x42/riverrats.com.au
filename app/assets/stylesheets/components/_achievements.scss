@@ -1,0 +1,29 @@
+.achievements {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  .achievement {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    align-items: center;
+    grid-gap: 1rem;
+    margin-bottom: 1.25rem;
+    margin-left: -3px;
+
+    img {
+      width: 50px;
+    }
+
+    p {
+      margin: 0;
+      font-size: $font-size - 1px;
+      line-height: 1.8;
+    }
+
+    .title {
+      font-weight: bold;
+    }
+
+  }
+}

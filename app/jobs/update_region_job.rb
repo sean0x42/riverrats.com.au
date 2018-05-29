@@ -17,6 +17,8 @@ class UpdateRegionJob < ApplicationJob
     region.score += changes[:score]
     region.games_played += changes[:plays]
     region.games_won += changes[:wins]
+    region.second_places += changes[:second_places]
+    region.wooden_spoons += changes[:wooden_spoons]
     region.save
 
   end

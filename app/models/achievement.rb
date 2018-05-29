@@ -6,12 +6,16 @@ class Achievement < ApplicationRecord
   validates_attachment_content_type :proof,
                                     content_type: /\Aimage\/.*\z/
 
-  def self.title
+  def title
     raise 'System Error: method missing (title)'
   end
 
-  def self.description
+  def description
     raise 'System Error: method missing (description)'
+  end
+
+  def self.type
+    raise 'System Error: method missing (type)'
   end
 
 end

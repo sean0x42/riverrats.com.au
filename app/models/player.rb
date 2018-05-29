@@ -100,12 +100,23 @@ class Player < ApplicationRecord
   end
 
 
-  def award (achievement)
-    base.achievements << achievement.new
+  ###
+  # Award this player with a particular +achievement+.
+  def award (achievement, level=0)
+    if awarded? achievement
+      a = achievements.find_by type: achievement.sti_name
+      a.level = level
+      a.save
+    else
+      self.achievements << achievement.new(level: level)
+    end
   end
 
-  def awarded? (achievement)
-    achievements.exists?(type: achievement.sti_name)
+
+  ##
+  # Check whether this player has been awarded a particular achievement
+  def awarded?(achievement)
+    achievements.exists? type: achievement.sti_name
   end
 
   def generate_username

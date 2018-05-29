@@ -31,8 +31,8 @@
                     Delete <%= @event.clean_title %>
                 <% end %>
 
-                <% if @event.becomes(SingleEvent).recurring_event != nil %>
-                    <%= link_to admin_event_path(@event.becomes(SingleEvent).recurring_event), method: :delete, class: 'button-secondary danger', data: { confirm: t('event.recurring.confirm_delete')} do %>
+                <% unless @event.becomes(SingleEvent).recurring_event.nil? %>
+                    <%= link_to admin_event_path(@event.becomes(SingleEvent).recurring_event, from: @event.id), method: :delete, class: 'button-secondary danger', data: { confirm: t('event.recurring.confirm_delete')} do %>
                             Delete this and following
                     <% end %>
                 <% end %>

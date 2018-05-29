@@ -42,15 +42,12 @@ form {
     }
 
     h2 > span {
-      width: 24px;
-      height: 24px;
-      text-align: center;
       color: $branding-primary;
-      font-size: 13px;
       font-weight: bold;
-      border: 2px solid $branding-primary;
-      border-radius: 50%;
-      margin-right: 0.75rem;
+
+      &:after {
+        content: '.\00a0';
+      }
     }
 
   }
