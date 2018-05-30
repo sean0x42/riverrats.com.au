@@ -1,6 +1,6 @@
 <%- content_for :title, @venue.name %>
 <%- content_for :description, t('view.venues.show.description') % { venue: @venue.name } %>
-<%- content_for :canonical_url, venue_path(@venue) %>
+<%- content_for :canonical_url, venue_url(@venue) %>
 
 <div id="print">
 

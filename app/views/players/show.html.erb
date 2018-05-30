@@ -1,6 +1,6 @@
 <%- content_for :title, t('view.players.show.title') % { name: @player.full_name, username: "@#{@player.username}" } %>
 <%- content_for :description, t('view.players.show.description') % { name: @player.full_name } %>
-<%- content_for :canonical_url, players_path %>
+<%- content_for :canonical_url, players_url %>
 
 <div id="print">
 

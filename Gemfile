@@ -30,9 +30,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', platform: :ruby
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -49,6 +46,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener'
+  gem 'capistrano', '~> 3.10', require: false
+  gem 'capistrano-rails', '~> 1.3', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

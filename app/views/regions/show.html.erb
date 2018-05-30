@@ -1,6 +1,6 @@
 <%- content_for :title, t('view.region.show.title') % { region: @region.name } %>
 <%- content_for :description, t('view.region.show.description') % { region: @region.name } %>
-<%- content_for :canonical_url, region_path(@region) %>
+<%- content_for :canonical_url, region_url(@region) %>
 
 <div id="print">
 

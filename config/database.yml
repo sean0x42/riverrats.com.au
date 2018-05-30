@@ -20,12 +20,12 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  port: 5432
 
 development:
   <<: *default
   database: riverrats_com_au_development
-  host: localhost
-  port: 5432
   username: rails_dev
   password: aqwe123
 
@@ -62,8 +62,6 @@ development:
 test:
   <<: *default
   database: riverrats_com_au_test
-  host: localhost
-  port: 5432
   username: rails_dev
   password: aqwe123
 
@@ -88,8 +86,6 @@ test:
 #
 production:
   <<: *default
-  database: river_rats
+  database: riverrats_com_au_production
   username: rails
-  password: aqwe1234
-  host: localhost
-  port: 5432
+  password: <%= ENV['RAIL_RAIL_POSTGRESS_PASS'] %>
