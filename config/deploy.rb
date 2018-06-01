@@ -4,6 +4,7 @@ lock '~> 3.10.2'
 set :application, 'river_rats'
 set :repo_url, 'git@github.com:LuckehPickle/riverrats.com.au.git'
 set :branch, 'master'
+set :domain, 'riverrats.com.au'
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"

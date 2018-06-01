@@ -4,14 +4,14 @@ namespace :install do
   task :ruby do
     on roles(:install) do |host|
       execute 'apt-get', :update
-      execute 'apt-get', :install, '-y', 'ruby-full'
+      execute 'apt-get', :install, '-y', 'ruby-full', 'ruby-dev', 'build-essential', 'patch', 'zlib1g-dev', 'liblzma-dev', 'libpq-dev'
       info "Installing Ruby on #{host}"
     end
   end
 
   desc "Installs bundler"
   task :bundler do
-    on roles(:install) do |host|
+    on roles(:app) do |host|
       execute 'gem install bundler --no-rdoc --no-ri'
     end
   end
@@ -42,7 +42,7 @@ namespace :install do
   desc "Copies the sample Nginx config file"
   task :copy_nginx_config do
     on roles(:install) do
-      upload! 'config/remote/river_rats.conf', "/etc/nginx/sites-available/#{retrieve(:application)}.conf"
+      upload! 'config/remote/river_rats.conf', "/etc/nginx/sites-available/#{fetch(:application)}.conf"
       info "Copied nginx config files to #{host}"
     end
   end
@@ -77,16 +77,13 @@ namespace :install do
       execute 'add-apt-repository', 'ppa:certbot/certbot'
       execute 'apt-get', :update
       execute 'apt-get', :install, '-y', 'python-certbot-nginx'
-      execute :certbot, '--nginx', interaction_handler: {
-        "Enter email address (used for urgent renewal and security notices) (Enter 'c' to cancel):
-" => "sean@seanbailey.io"
-      }
+      execute :certbot, '--nginx', '--noninteractive', '-m sean@seanbailey.io', '--agree-tos', "-d #{fetch(:domain)}"
       info "Installed Certbot on #{host}"
     end
   end
 
   desc "Installs Elasticsearch"
-  task :elastic_search do
+  task :elasticsearch do
     on roles(:install) do
       execute :wget, '-q', 'https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.1/elasticsearch-2.3.1.deb'
       execute :dpkg, '-i', 'elasticsearch-2.3.1.deb'
