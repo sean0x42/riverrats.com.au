@@ -9,10 +9,9 @@ set :stage, :production
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-# server '2604:a880:2:d0::1205:8001',
-#        user: 'deploy',
-#        roles: %w{app db web},
-#        primary: true
+server '159.89.139.38',
+       user: 'rails',
+       roles: %w{app db web}
 
 
 # role-based syntax
@@ -27,10 +26,6 @@ set :stage, :production
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-role :app, %w(deploy@159.89.156.83)
-role :web, %w(deploy@159.89.156.83)
-role :db, %w(deploy@159.89.156.83)
-role :install, %w(root@159.89.156.83)
 
 
 # Configuration
