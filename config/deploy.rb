@@ -9,7 +9,7 @@ set :rvm_ruby_version, '2.4.0'
 set :rails_env, 'production'
 
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, "/var/www/my_app_name"
+set :deploy_to, "/home/rails/#{fetch(:application)}"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
