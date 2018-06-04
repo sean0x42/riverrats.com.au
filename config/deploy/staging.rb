@@ -9,7 +9,7 @@ set :stage, :production
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-server '206.189.221.190',
+server '167.99.165.98',
        user: 'rails',
        roles: %w{app db web}
 
