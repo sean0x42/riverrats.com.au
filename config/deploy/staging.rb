@@ -9,7 +9,7 @@ set :stage, :production
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-server '206.189.222.105',
+server '206.189.221.190',
        user: 'rails',
        roles: %w{app db web}
 
@@ -35,7 +35,6 @@ server '206.189.222.105',
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
 
 
 # Custom SSH Options
