@@ -46,7 +46,7 @@ function print(selector) {
     printWindow.document.write("</body></html>");
     printWindow.document.close();
 
-    // printWindow.print();
-    // printWindow.close();
+    printWindow.print();
+    printWindow.close();
 
 }

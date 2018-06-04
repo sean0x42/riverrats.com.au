@@ -20,6 +20,15 @@ namespace :deploy do
   task :restart do
     invoke 'unicorn:reload'
   end
+
+  desc "reload the database with seed data"
+  task :seed do
+    on roles(:all) do
+      within "#{fetch(:deploy_to)}/current" do
+        execute :bundle, :exec, :rake, "db:seed RAILS_ENV=#{fetch(:rails_env)}"
+      end
+    end
+  end
 end
 
 

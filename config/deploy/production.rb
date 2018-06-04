@@ -6,9 +6,9 @@
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-server '104.236.48.70',
+server '159.65.104.90',
        user: 'rails',
-       password: 'kF39fso10sd3#2!dk',
+       password: 'kF39fs',
        roles: %w(app db web)
 
 # role-based syntax
