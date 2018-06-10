@@ -1,13 +1,21 @@
 .attribution {
-  color: lighten($generic-text, 30%);
+  color: lighten($generic-text, 40%);
   vertical-align: middle;
   line-height: 1;
   margin: 0;
-  a { color: inherit;}
+
+  a {
+    color: lighten($generic-text, 25%);
+  }
+
   i {
-    color: $branding-primary;
-    font-size: 22px;
+    color: lighten($generic-text, 25%);
+    font-size: 19px;
     vertical-align: inherit;
+
+    &.code {
+      font-size: 21px;
+    }
   }
 
 }
