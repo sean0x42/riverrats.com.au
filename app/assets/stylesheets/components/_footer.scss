@@ -1,7 +1,7 @@
 .footer {
   position: relative;
   text-align: center;
-  padding: 4rem 0 3rem;
+  padding: 4rem 0 8rem;
   background: white;
   margin: 0;
   z-index: 1;
@@ -88,7 +88,13 @@
 @media (min-width: 800px) {
 
   .footer {
-    padding: 4rem 0;
+    padding: 4rem 0 8rem;
   }
 
+}
+
+@media (min-width: 1000px) {
+  .footer {
+    padding: 4rem 0;
+  }
 }

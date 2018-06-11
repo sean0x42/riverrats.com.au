@@ -17,10 +17,6 @@ set :deploy_via, :remote_cache
 after 'deploy:publishing', 'deploy:restart'
 
 namespace :deploy do
-  task :restart do
-    invoke 'unicorn:reload'
-  end
-
   desc "reload the database with seed data"
   task :seed do
     on roles(:all) do
