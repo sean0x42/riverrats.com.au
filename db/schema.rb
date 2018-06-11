@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_29_100521) do
+ActiveRecord::Schema.define(version: 2018_06_11_080358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_100521) do
     t.bigint "season_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "played_on", default: "2018-05-04", null: false
+    t.date "played_on", null: false
     t.index ["season_id"], name: "index_games_on_season_id"
     t.index ["venue_id"], name: "index_games_on_venue_id"
   end
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_100521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "score", default: 0, null: false
-    t.index ["game_id", "player_id"], name: "index_games_players_on_game_id_and_player_id", unique: true
+    t.index ["game_id", "player_id"], name: "index_games_players_on_game_id_and_player_id"
     t.index ["game_id"], name: "index_games_players_on_game_id"
     t.index ["player_id"], name: "index_games_players_on_player_id"
   end
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_100521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "rank"
-    t.index ["player_id", "region_id"], name: "index_players_regions_on_player_id_and_region_id", unique: true
+    t.index ["player_id", "region_id"], name: "index_players_regions_on_player_id_and_region_id"
     t.index ["player_id"], name: "index_players_regions_on_player_id"
     t.index ["region_id"], name: "index_players_regions_on_region_id"
   end
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_100521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "rank"
-    t.index ["player_id", "season_id"], name: "index_players_seasons_on_player_id_and_season_id", unique: true
+    t.index ["player_id", "season_id"], name: "index_players_seasons_on_player_id_and_season_id"
     t.index ["player_id"], name: "index_players_seasons_on_player_id"
     t.index ["season_id"], name: "index_players_seasons_on_season_id"
   end
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_100521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "rank"
-    t.index ["player_id", "venue_id"], name: "index_players_venues_on_player_id_and_venue_id", unique: true
+    t.index ["player_id", "venue_id"], name: "index_players_venues_on_player_id_and_venue_id"
     t.index ["player_id"], name: "index_players_venues_on_player_id"
     t.index ["venue_id"], name: "index_players_venues_on_venue_id"
   end
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_100521) do
     t.bigint "player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id", "player_id"], name: "index_referees_on_game_id_and_player_id", unique: true
+    t.index ["game_id", "player_id"], name: "index_referees_on_game_id_and_player_id"
     t.index ["game_id"], name: "index_referees_on_game_id"
     t.index ["player_id"], name: "index_referees_on_player_id"
   end

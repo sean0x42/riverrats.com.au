@@ -29,7 +29,7 @@ module RiverratsComAu
     ]
 
     # Register observers
-    config.active_record.observers = [:games_players_observer]
+    config.active_record.observers = [:games_players_observer, :game_observer]
 
     # Set default time zone
     config.time_zone = "Sydney"

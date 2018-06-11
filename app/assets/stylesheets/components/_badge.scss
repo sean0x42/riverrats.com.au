@@ -1,16 +1,10 @@
 .badge {
   display: inline;
-  background: $branding-primary;
+  background: lighten($branding-primary, 5%);
   color: $branding-primary-text;
   border-radius: 2px;
   font-weight: normal;
   font-size: 14px;
   vertical-align: middle;
   &:before, &:after { content: '\00a0'; }
-
-  //.submerged & {
-  //  background: none;
-  //  border: 1px solid darken($branding-primary-text, 20%);
-  //  color: $branding-primary-text;
-  //}
 }

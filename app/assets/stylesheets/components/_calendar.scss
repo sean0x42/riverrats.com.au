@@ -55,7 +55,7 @@
       margin-bottom: 0.5rem;
 
       &.active {
-        border-left: 3px solid $branding-secondary-rotated;
+        border-left: 3px solid lighten($branding-primary, 5%);
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         padding-left: 9px;

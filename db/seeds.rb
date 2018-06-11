@@ -13,7 +13,7 @@ Player.create({first_name: 'Sean', last_name: 'Bailey', email: 'sean@seanbailey.
 
 if Rails.env.development?
   Player.create([
-                  { first_name: 'Lewis', last_name: 'Cosh', email: 'lewis@seanbailey.io', password: 'password' },
+                  { first_name: 'Suzy', last_name: 'Merrit', email: 'lewis@seanbailey.io', password: 'password' },
                   { first_name: 'Jack', last_name: 'Kalchbauer', email: 'jack@seanbailey.io', password: 'password' },
                   { first_name: 'Morgan', last_name: 'Wade', email: 'morgan@seanbailey.io', password: 'password' },
                   { first_name: 'Eehan', last_name: 'Scerri', email: 'eehan@seanbailey.io', is_admin: true, password: 'password' },

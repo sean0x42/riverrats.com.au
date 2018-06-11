@@ -59,6 +59,9 @@ class Player < ApplicationRecord
   validates :notify_promotional, :notify_events,
             presence: true
 
+  validates :email,
+            format: { with: URI::MailTo::EMAIL_REGEXP }
+
   def to_param
     username
   end
@@ -143,7 +146,7 @@ class Player < ApplicationRecord
   end
 
   def recent_games
-    sql = "SELECT g.id, g.venue_id, g.season_id, g.played_on, p.position, p.score FROM games as g INNER JOIN games_players as p ON g.id = p.game_id WHERE player_id = #{id} ORDER BY g.created_at DESC LIMIT 25;"
+    sql = "SELECT g.id, g.venue_id, g.season_id, g.played_on, p.position, p.score FROM games as g INNER JOIN games_players as p ON g.id = p.game_id WHERE player_id = #{id} ORDER BY g.played_on DESC, g.created_at DESC LIMIT 25;"
     ActiveRecord::Base.connection.exec_query(sql)
   end
 

@@ -16,7 +16,7 @@ class GamesPlayers < ApplicationRecord
               greater_than_or_equal_to: 0
             }
 
-  validates_uniqueness_of :game_id, scope: [:player_id]
+  # validates_uniqueness_of :game_id, scope: [:player_id]
 
   ###
   # Returns whether this player is in first place.

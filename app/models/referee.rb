@@ -5,6 +5,6 @@ class Referee < ApplicationRecord
 
   validates :game, :player, presence: true
 
-  validates_uniqueness_of :game_id, scope: [:player_id]
+  # validates_uniqueness_of :game_id, scope: [:player_id]
 
 end

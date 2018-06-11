@@ -18,8 +18,6 @@ class UpdateSeasonJob < ApplicationJob
     season.score += changes[:score]
     season.games_played += changes[:plays]
     season.games_won += changes[:wins]
-    season.second_places += changes[:second_places]
-    season.wooden_spoons += changes[:wooden_spoons]
     season.save
 
   end

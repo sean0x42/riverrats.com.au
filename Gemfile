@@ -71,5 +71,5 @@ gem 'paperclip', '~> 6.0.0'
 gem 'rails-observers'
 gem 'searchkick'
 gem 'sidekiq'
-gem 'unicorn'
+gem 'unicorn', platform: :ruby
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
