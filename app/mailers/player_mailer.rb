@@ -10,7 +10,7 @@ class PlayerMailer < ApplicationMailer
     email_with_name = %("#{@player.full_name}" <#{@player.email}>)
     mail(
       to: email_with_name,
-      from: 'welcome@riverrats.com.au',
+      from: 'no-reply@riverrats.com.au',
       subject: 'Welcome to the River Rats Poker League!'
     )
   end
