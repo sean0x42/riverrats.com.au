@@ -70,7 +70,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    username: 'riverratspl@gmail.com',
+    user_name: 'riverratspl@gmail.com',
     password: 'metahan8773',
     authentication: 'plain',
     enable_starttls_auto: true
