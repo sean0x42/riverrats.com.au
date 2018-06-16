@@ -11,7 +11,7 @@ class Event < ApplicationRecord
             allow_nil: true
 
   validates :description,
-            length: { maximum: 128 },
+            length: { maximum: 1024 },
             allow_blank: true,
             allow_nil: true
 
