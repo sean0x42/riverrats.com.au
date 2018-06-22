@@ -14,6 +14,41 @@
                 <%= form.text_field :name, id: 'venue_name', autofocus: true, spellcheck: false, placeholder: 'e.g. Nabiac Hotel' %>
             </div>
 
+            <!-- Phone -->
+            <div class="field">
+                <%= form.label :phone_number %><br/>
+                <%= form.telephone_field :phone_number %>
+            </div>
+
+            <!-- URLS -->
+            <div class="fields">
+
+                <!-- Website -->
+                <div class="field">
+                    <%= form.label :website %><br />
+                    <%= form.text_field :website %>
+                </div>
+
+                <!-- Facebook -->
+                <div class="field">
+                    <%= form.label :facebook, 'Facebook URL' %><br />
+                    <%= form.text_field :facebook, placeholder: 'https://www.facebook.com/...' %>
+                </div>
+
+            </div>
+
+            <!-- Image -->
+            <div class="field">
+                <label>Image</label>
+                <div class="file-button">
+                    <%= form.label :image, class: 'button-secondary' do %>
+                        <i class="material-icons">&#xE2C6;</i>
+                        <span>No file chosen</span>
+                    <% end %>
+                </div>
+                <%= form.file_field :image %>
+            </div>
+
         </div>
     </section>
 
@@ -23,6 +58,35 @@
             <h2><span>II</span>Location</h2>
         </div>
         <div class="section-content">
+
+            <!-- Address -->
+            <div class="field">
+                <%= form.label :address_line_one, 'Address' %><br />
+                <%= form.text_field :address_line_one, placeholder: 'Line 1' %>
+                <%= form.text_field :address_line_two, placeholder: 'Line 2 (Optional)' %>
+            </div>
+
+            <div class="fields">
+
+                <!-- Suburb -->
+                <div class="field">
+                    <%= form.label :suburb, 'City/Suburb' %><br/>
+                    <%= form.text_field :suburb %>
+                </div>
+
+                <!-- Post Code -->
+                <div class="field">
+                    <%= form.label :post_code %><br/>
+                    <%= form.number_field :post_code %>
+                </div>
+
+            </div>
+
+            <!-- State -->
+            <div class="field">
+                <%= form.label :state %><br/>
+                <%= form.select :state, Venue.states.keys.map { |state| [state.titleize, state] } %>
+            </div>
 
             <!-- Region -->
             <div class="field">

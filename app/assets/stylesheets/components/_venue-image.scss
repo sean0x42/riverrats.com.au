@@ -1,0 +1,18 @@
+.venue-image {
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 0 0 1rem;
+
+  img {
+    display: block;
+    width: 100%;
+    line-height: 1.0;
+    vertical-align: middle;
+  }
+}
+
+@media (min-width: 1245px) {
+  .venue-image {
+    margin-bottom: 2.5rem;
+  }
+}

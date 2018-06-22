@@ -56,7 +56,7 @@ class Admin::VenuesController < ApplicationController
   private
 
   def venue_params
-    params.require(:venue).permit(:name, :region_id, :address, :suburb, :state)
+    params.require(:venue).permit(:name, :region_id, :address_line_one, :address_line_two, :suburb, :post_code, :state, :website, :facebook, :phone_number, :image)
   end
 
   def require_admin

@@ -37,5 +37,7 @@ module RiverratsComAu
     # Set default time zone
     config.time_zone = "Sydney"
 
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+
   end
 end

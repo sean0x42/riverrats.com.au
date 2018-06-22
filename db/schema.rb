@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_11_080358) do
+ActiveRecord::Schema.define(version: 2018_06_22_055114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,13 +177,20 @@ ActiveRecord::Schema.define(version: 2018_06_11_080358) do
     t.string "slug", null: false
     t.string "name", null: false
     t.bigint "region_id", null: false
-    t.decimal "latitude", precision: 10, scale: 6
-    t.decimal "longitude", precision: 10, scale: 6
-    t.string "address"
-    t.string "suburb"
-    t.integer "state", limit: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "facebook"
+    t.string "website"
+    t.string "phone_number"
+    t.string "address_line_one"
+    t.string "address_line_two"
+    t.string "suburb"
+    t.integer "post_code"
+    t.integer "state", limit: 2, default: 1
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["region_id"], name: "index_venues_on_region_id"
     t.index ["slug"], name: "index_venues_on_slug", unique: true
   end

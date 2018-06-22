@@ -38,6 +38,7 @@
       position: relative;
       color: lighten($generic-text, 20%);
       padding: 2px 0;
+
       &:hover {
         text-decoration: none;
         color: $branding-primary;

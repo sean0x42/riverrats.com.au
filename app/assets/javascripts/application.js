@@ -34,7 +34,8 @@ function print(selector) {
             ".material-icons," +
             ".pagination," +
             ".no-print," +
-            ".achievement img{display:none;}" +
+            ".achievement img," +
+            "svg {display:none;}" +
             "body{font-family:'-apple-system','system-ui','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica Neue','Arial','sans-serif','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'}" +
             ".stat .numeric,.stat .label{display:inline;}" +
         "</style>"
