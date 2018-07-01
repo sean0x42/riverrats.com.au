@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
 
   # GET /
   def index
-    @season = Season.where('start_at < ? and end_at > ?', Time.now, Time.now).first
+    @season = Season.where('start_at <= ? and end_at >= ?', Date.today, Date.today).first
     @recent_games = Game.all.first(12)
 
     # Get facebook images

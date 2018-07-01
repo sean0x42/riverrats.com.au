@@ -11,7 +11,7 @@ class Season < ApplicationRecord
   end
 
   def quarter
-    (Date.today.month / 3.0).ceil
+    (start_at.month / 3.0).ceil
   end
 
 end
