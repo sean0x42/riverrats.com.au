@@ -39,7 +39,7 @@ class Admin::PlayersController < ApplicationController
     @player = Player.new do |player|
       player.first_name = auth_params[:first_name]
       player.last_name = auth_params[:last_name]
-      player.email = auth_params[:email]
+      player.email = auth_params[:email].blank? ? nil : auth_params[:email]
       player.is_admin = auth_params[:is_admin]
       player.password = generated_password
     end
@@ -102,6 +102,9 @@ class Admin::PlayersController < ApplicationController
   end
 
   def edit_params
+    if params.has_key? :email && params[:email].blank?
+      params[:email] = nil
+    end
     params.require(:player).permit(:username, :first_name, :last_name, :email, :is_admin)
   end
 

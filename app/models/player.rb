@@ -3,11 +3,9 @@ class Player < ApplicationRecord
 
   default_scope { order(rank: :asc) }
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  searchkick callbacks: :async,
-             word_start: [:full_name, :username]
+  searchkick callbacks: :async, word_start: [:full_name, :username]
 
   before_validation :generate_username, on: :create
 
@@ -60,7 +58,10 @@ class Player < ApplicationRecord
             presence: true
 
   validates :email,
-            format: { with: URI::MailTo::EMAIL_REGEXP }
+            format: { with: URI::MailTo::EMAIL_REGEXP },
+            allow_nil: true,
+            allow_blank: true
+
 
   def to_param
     username
