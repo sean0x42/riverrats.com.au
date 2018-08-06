@@ -27,7 +27,7 @@
             <!-- Season -->
             <div class="field">
                 <%= form.label :season_id, for: 'game_season_id' %><br/>
-                <%= form.collection_select :season_id, Season.all, :id, :name, {}, { id: 'game_season_id' } %>
+                <%= form.collection_select :season_id, Season.all.order(start_at: :desc).limit(10), :id, :name, {}, { id: 'game_season_id' } %>
             </div>
 
         </div>

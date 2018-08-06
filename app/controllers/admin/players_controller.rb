@@ -32,7 +32,6 @@ class Admin::PlayersController < ApplicationController
   end
 
   # POST /admin/players
-  # TODO Handle case where no email has been provided.
   def create
     generated_password = Devise.friendly_token(8)
 
@@ -82,6 +81,9 @@ class Admin::PlayersController < ApplicationController
       )
       redirect_to admin_players_path
     else
+      if @player.username_changed?
+        @player.username = @player.username_was
+      end
       render 'edit'
     end
   end
