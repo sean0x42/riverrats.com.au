@@ -7,7 +7,7 @@ class PlayerMailer < ApplicationMailer
   def welcome (player, password)
     @player = player
     @password = password
-    email = @player.email.nil? ? 'riverratspl@gmail.com' : @player.email
+    email = @player.email.nil? || @player.email.blank? ? 'riverratspl@gmail.com' : @player.email
     email_with_name = "#{@player.full_name} <#{email}>"
     mail(
       to: email_with_name,
