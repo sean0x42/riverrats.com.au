@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'no-reply@riverrats.com.au'
+  default from: 'River Rats Poker League <riverratspl@gmail.com>'
   layout 'mailer'
 end

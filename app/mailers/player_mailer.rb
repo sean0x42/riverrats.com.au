@@ -8,10 +8,9 @@ class PlayerMailer < ApplicationMailer
     @player = player
     @password = password
     email = @player.email.nil? ? 'riverratspl@gmail.com' : @player.email
-    email_with_name = %(#{@player.full_name} <#{email}>)
+    email_with_name = "#{@player.full_name} <#{email}>"
     mail(
       to: email_with_name,
-      from: 'no-reply@riverrats.com.au',
       subject: 'Welcome to the River Rats Poker League!'
     )
   end
