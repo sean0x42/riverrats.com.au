@@ -54,7 +54,7 @@ class Admin::PlayersController < ApplicationController
         }
       )
 
-      PlayerMailer.welcome(@player, generated_password).deliver_later
+      PlayerMailer.welcome(@player.id, generated_password).deliver_later
       redirect_to admin_players_path
     else
       render 'new'
