@@ -72,4 +72,5 @@ gem 'rails-observers'
 gem 'searchkick'
 gem 'sidekiq'
 gem 'unicorn', platform: :ruby
+gem 'webpacker', '~> 3.5'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?

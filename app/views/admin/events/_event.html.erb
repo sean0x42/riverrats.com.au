@@ -1,17 +1,17 @@
 <tr>
-    <td class="status">
-        <% if event.has_occurred? %>
-            <div class="status-dot"><i></i></div>
-        <% else %>
-            <div class="status-dot active"><i></i></div>
-        <% end %>
-    </td>
-    <td><%= link_to event.clean_title, edit_admin_event_path(event) %></td>
-    <td><%= event.description.blank? ? 'No description.' : truncate(event.description) %></td>
-    <td class="stretch badge-column">
-        <% if event.upcoming? %>
-            <span class="badge">upcoming</span>
-        <% end %>
-    </td>
-    <td><%= local_time_ago event.start_at %></td>
+  <td class="status">
+    <% if event.has_occurred? %>
+      <div class="status-dot"><i></i></div>
+    <% else %>
+      <div class="status-dot active"><i></i></div>
+    <% end %>
+  </td>
+  <td><%= link_to event.clean_title, edit_admin_event_path(event) %></td>
+  <td><%= event.description.blank? ? 'No description.' : truncate(event.description) %></td>
+  <td class="stretch badge-column">
+    <% if event.upcoming? %>
+      <span class="badge">upcoming</span>
+    <% end %>
+  </td>
+  <td><%= local_time_ago event.start_at %></td>
 </tr>

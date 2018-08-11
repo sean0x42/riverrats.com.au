@@ -3,49 +3,50 @@
 
 <div class="hero">
 
-    <div class="wrapper">
+  <div class="wrapper">
 
-        <h1><%= @season.name %></h1>
-        <p class="subtitle">Join us from <%= local_date @season.start_at, '%A, %B %e' %> to <%= local_date @season.end_at, '%A, %B %e' %>.</p>
+    <h1><%= @season.name %></h1>
+    <p class="subtitle">Join us from <%= local_date @season.start_at, '%A, %B %e' %>
+      to <%= local_date @season.end_at, '%A, %B %e' %>.</p>
 
-        <div class="buttons">
+    <div class="buttons">
 
-            <!-- Current leaderboard -->
-            <%= link_to season_path(@season), class: 'button' do %>
-                <i class="material-icons">format_list_numbered</i>
-                <span>Season leaderboard</span>
-            <% end %>
+      <!-- Current leaderboard -->
+      <%= link_to season_path(@season), class: 'button' do %>
+        <i class="material-icons">format_list_numbered</i>
+        <span>Season leaderboard</span>
+      <% end %>
 
-            <!-- Upcoming events -->
-            <%= link_to events_path, class: 'button-secondary' do %>
-                <i class="material-icons">event_note</i>
-                <span>Upcoming events</span>
-            <% end %>
-
-        </div>
+      <!-- Upcoming events -->
+      <%= link_to events_path, class: 'button-secondary' do %>
+        <i class="material-icons">event_note</i>
+        <span>Upcoming events</span>
+      <% end %>
 
     </div>
+
+  </div>
 
 </div>
 
 <div class="recent-games-wrapper">
-    <div class="wrapper">
+  <div class="wrapper">
 
-        <!-- Recent games -->
-        <div class="recent-games">
-            <h2><i class="material-icons">timer</i>Recent games</h2>
-            <div class="game-grid">
-                <%= render collection: @recent_games, partial: 'game' %>
-            </div>
+    <!-- Recent games -->
+    <div class="recent-games">
+      <h2><i class="material-icons">timer</i>Recent games</h2>
+      <div class="game-grid">
+        <%= render collection: @recent_games, partial: 'game' %>
+      </div>
 
-            <%- if player_signed_in? %>
-                <div class="buttons">
-                    <%= link_to games_path, class: 'button' do %>
-                        View all games
-                    <% end %>
-                </div>
-            <%- end %>
+      <%- if player_signed_in? %>
+        <div class="buttons">
+          <%= link_to games_path, class: 'button' do %>
+            View all games
+          <% end %>
         </div>
-
+      <%- end %>
     </div>
+
+  </div>
 </div>

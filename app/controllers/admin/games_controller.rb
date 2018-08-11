@@ -1,5 +1,6 @@
-class Admin::GamesController < ApplicationController
+require 'flash_message'
 
+class Admin::GamesController < ApplicationController
   layout 'admin'
   before_action :authenticate_player!
   before_action :require_admin
@@ -31,7 +32,8 @@ class Admin::GamesController < ApplicationController
     @game = Game.new games_params
 
     if @game.save
-      redirect_to admin_games_path, notice: t('game.create')  % { game: @game.name }
+      flash[:success] = Struct::Flash.new t('admin.game.create.title'), t('admin.game.create.body')  % { game: @game.name }
+      redirect_to admin_games_path
     else
       @attrs = Admin::AttributeCollector.from_params params
       render 'new'
@@ -50,7 +52,8 @@ class Admin::GamesController < ApplicationController
 
     if @game.update games_params
       @game.update_ranks
-      redirect_to admin_games_path, notice: t('game.update') % { game: @game.name }
+      flash[:success] = Struct::Flash.new t('admin.game.update.title'), t('admin.game.update.body') % { game: @game.name }
+      redirect_to admin_games_path
     else
       @attrs = Admin::AttributeCollector.from_params params
       render 'edit'
@@ -62,7 +65,8 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
     @game.destroy
 
-    redirect_to admin_games_path, notice: t('game.destroy')  % { game: @game.name }
+    flash[:success] = Struct::Flash.new t('admin.game.destroy.title'), t('admin.game.destroy.body')  % { game: @game.name }
+    redirect_to admin_games_path
   end
 
   private
@@ -74,12 +78,4 @@ class Admin::GamesController < ApplicationController
       referees_attributes: [:id, :player_id, :_destroy]
     )
   end
-
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
-  end
-
 end

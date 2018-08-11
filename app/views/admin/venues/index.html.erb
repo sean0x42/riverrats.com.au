@@ -2,48 +2,48 @@
 
 <div class="column-wrapper small-first">
 
-    <!-- Navigation -->
-    <div class="thin">
-        <%= render 'admin/navigation' %>
+  <!-- Navigation -->
+  <div class="thin">
+    <%= render 'admin/navigation' %>
+  </div>
+
+  <div class="wide">
+
+    <!-- Header -->
+    <div class="wrapper-header admin">
+      <div>
+        <h1 class="has-subtitle">Venues</h1>
+        <p class="subtitle">Here you can view and manage all venues.</p>
+      </div>
+      <%= render 'admin/buttons' %>
     </div>
 
-    <div class="wide">
+    <!-- Venue list -->
+    <div class="background">
 
-        <!-- Header -->
-        <div class="wrapper-header admin">
-            <div>
-                <h1 class="has-subtitle">Venues</h1>
-                <p class="subtitle">Here you can view and manage all venues.</p>
-            </div>
-            <%= render 'admin/buttons' %>
+      <h2><i class="material-icons">&#xE8F9;</i> Venues</h2>
+
+      <% if @venues.empty? %>
+        <%= render partial: 'admin/empty_state', locals: { noun: 'venues', link: new_admin_venue_path } %>
+      <% else %>
+        <div class="table-wrapper">
+          <table>
+            <tr>
+              <th>Name</th>
+              <th class="stretch">Region</th>
+            </tr>
+            <%= render @venues %>
+          </table>
         </div>
+      <% end %>
 
-        <!-- Venue list -->
-        <div class="background">
-
-            <h2><i class="material-icons">&#xE8F9;</i> Venues</h2>
-
-            <% if @venues.empty? %>
-                <%= render partial: 'admin/empty-state', locals: {noun: 'venues', link: new_admin_venue_path} %>
-            <% else %>
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th class="stretch">Region</th>
-                        </tr>
-                        <%= render @venues %>
-                    </table>
-                </div>
-            <% end %>
-
-            <div class="background-footer">
-                <%= paginate @venues %>
-                <p><%= page_entries_info @venues %></p>
-            </div>
-
-        </div>
+      <div class="background-footer">
+        <%= paginate @venues %>
+        <p><%= page_entries_info @venues %></p>
+      </div>
 
     </div>
+
+  </div>
 
 </div>

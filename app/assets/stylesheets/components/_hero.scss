@@ -2,7 +2,7 @@
   position: relative;
   padding: 0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  background: $branding-primary url(asset-path('trianglify.png'));
+  background: $zurple url(asset-path('trianglify.png'));
   background-size: cover;
 
   h1 {
@@ -11,7 +11,7 @@
   }
 
   .subtitle {
-    time { color: darken($branding-primary-text, 4%); }
+    time { color: darken($zurple-inverted, 4%); }
   }
 
   .buttons {
@@ -19,24 +19,24 @@
     text-shadow: none;
 
     .button {
-      background: darken($branding-primary-text, 2%);
-      color: $branding-primary;
+      background: darken($zurple-inverted, 2%);
+      color: $zurple;
     }
 
     .button-secondary, .button-tertiary {
-      color: darken($branding-primary-text, 7%);
+      color: darken($zurple-inverted, 7%);
       i { color: inherit; }
     }
 
   }
 
   .badge {
-    background: darken($branding-primary, 4%);
+    background: darken($zurple, 4%);
     text-shadow: none;
   }
 
   a:not(.button):not(.button-secondary):not(.button-tertiary) {
-    color: $branding-primary-text;
+    color: $zurple-inverted;
     text-decoration: underline;
   }
 
@@ -51,7 +51,7 @@
   margin: 0 0 -10rem;
   z-index: 0;
   padding: 0 1.5rem;
-  color: darken($branding-primary-text, 5%);
+  color: darken($zurple-inverted, 5%);
 
   .wrapper {
     padding: 4rem 0 12rem;
@@ -73,7 +73,7 @@
   align-items: center;
   height: calc(100vh - 72px);
   text-align: center;
-  color: darken($branding-primary-text, 8%);
+  color: darken($zurple-inverted, 8%);
 
   .wrapper {
     padding: 2rem;

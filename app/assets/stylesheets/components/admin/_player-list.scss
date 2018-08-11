@@ -43,7 +43,7 @@ form .player-list {
         vertical-align: middle;
       }
 
-      &:hover i { color: $danger-red; }
+      &:hover i { color: $danger; }
 
     }
 
@@ -59,7 +59,7 @@ form .player-list {
 form .drag-handle {
   @include no-select;
   padding: 10px 1.25rem;
-  color: lighten($branding-primary, 10%);
+  color: lighten($zurple, 10%);
   cursor: move;
   cursor: grab;
 }

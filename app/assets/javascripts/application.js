@@ -18,36 +18,36 @@
 
 function print(selector) {
 
-    var printWindow = window.open();
-    var css = document.querySelectorAll("link");
-    var title = document.title;
+  var printWindow = window.open();
+  var css = document.querySelectorAll("link");
+  var title = document.title;
 
-    // Add document head
-    printWindow.document.write("<!DOCTYPE html><html><head><title>" + title + "</title>");
+  // Add document head
+  printWindow.document.write("<!DOCTYPE html><html><head><title>" + title + "</title>");
 
-    // Add CSS
-    printWindow.document.write(
-        "<style>" +
-            ".button," +
-            ".button-secondary," +
-            ".button-tertiary," +
-            ".material-icons," +
-            ".pagination," +
-            ".no-print," +
-            ".achievement img," +
-            "svg {display:none;}" +
-            "body{font-family:'-apple-system','system-ui','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica Neue','Arial','sans-serif','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'}" +
-            ".stat .numeric,.stat .label{display:inline;}" +
-        "</style>"
-    );
+  // Add CSS
+  printWindow.document.write(
+      "<style>" +
+      ".button," +
+      ".button-secondary," +
+      ".button-tertiary," +
+      ".material-icons," +
+      ".pagination," +
+      ".no-print," +
+      ".achievement img," +
+      "svg {display:none;}" +
+      "body{font-family:'-apple-system','system-ui','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica Neue','Arial','sans-serif','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'}" +
+      ".stat .numeric,.stat .label{display:inline;}" +
+      "</style>"
+  );
 
-    // Close head
-    printWindow.document.write("</head><body>");
-    printWindow.document.write(document.querySelector(selector).innerHTML);
-    printWindow.document.write("</body></html>");
-    printWindow.document.close();
+  // Close head
+  printWindow.document.write("</head><body>");
+  printWindow.document.write(document.querySelector(selector).innerHTML);
+  printWindow.document.write("</body></html>");
+  printWindow.document.close();
 
-    printWindow.print();
-    printWindow.close();
+  printWindow.print();
+  printWindow.close();
 
 }

@@ -1,20 +1,22 @@
-// Branding colours
-$branding-primary: hsl(282, 34%, 45%);
-$branding-primary-rotated: adjust-hue($branding-primary, 20deg);
-$branding-primary-text: hsl(282, 10%, 99%);
+// Zurple
+$zurple-dark: hsl(282, 34%, 45%);
+$zurple-dark-inverted: hsl(282, 10%, 99%);
+$zurple: hsl(282, 34%, 47%);
+$zurple-inverted: hsl(282, 10%, 99%);
+$branding-primary-rotated: adjust-hue($zurple, 20deg);
 
 $branding-secondary: hsl(88, 50%, 53%);
 $branding-secondary-rotated: adjust_hue($branding-secondary, 14deg);
 $branding-secondary-text: hsl(88, 10%, 96%);
 
 // Interface colours
-$danger-red: hsl(11, 70%, 57%);
-$danger-red-rotated: adjust-hue($danger-red, 4deg);
-$danger-text: hsl(11, 15%, 97%);
+$danger: hsl(11, 70%, 57%);
+$danger-inverted: hsl(11, 15%, 97%);
+$danger-red-rotated: adjust-hue($danger, 4deg);
 
 $acceptance-green: hsl(145, 67%, 45%);
 
-$breakdown: $branding-primary; // hsl(38, 90%, 51%);
+$breakdown: $zurple; // hsl(38, 90%, 51%);
 $breakdown-rotated: adjust_hue($breakdown, 8deg);
 $breakdown-text: hsl(38, 15%, 21%);
 
@@ -28,3 +30,5 @@ $border-on-grey: hsl(282, 15%, 87%);
 $button-border: hsl(282, 15%, 92%);
 $input-border: darken($border-on-white, 4%);
 $input-background: lighten($border-on-white, 3%);
+
+$grey: hsl(282, 15%, 91%);

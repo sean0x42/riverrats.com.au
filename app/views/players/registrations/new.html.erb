@@ -3,48 +3,48 @@
 <%- content_for :canonical_url, new_player_registration_url %>
 
 <div class="form-header">
-    <h1>Create an account</h1>
-    <p>Join Australia's favourite Poker League. </p>
+  <h1>Create an account</h1>
+  <p>Join Australia's favourite Poker League. </p>
 </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
+  <%= devise_error_messages! %>
 
-    <div class="field">
-        <%= f.label :first_name %><br/>
-        <%= f.text_field :first_name, autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
-    </div>
+  <div class="field">
+    <%= f.label :first_name %><br/>
+    <%= f.text_field :first_name, autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
+  </div>
 
-    <div class="field">
-        <%= f.label :last_name %><br/>
-        <%= f.text_field :last_name, spellcheck: false, placeholder: 'Surname, family name...' %>
-    </div>
+  <div class="field">
+    <%= f.label :last_name %><br/>
+    <%= f.text_field :last_name, spellcheck: false, placeholder: 'Surname, family name...' %>
+  </div>
 
-    <hr/>
+  <hr/>
 
-    <div class="field">
-        <%= f.label :email %><br/>
-        <%= f.email_field :email, placeholder: 'someone@example.com' %>
-    </div>
+  <div class="field">
+    <%= f.label :email %><br/>
+    <%= f.email_field :email, placeholder: 'someone@example.com' %>
+  </div>
 
-    <div class="field">
-        <%= f.label :password %><br/>
-        <%= f.password_field :password, autocomplete: 'off', placeholder: '6 characters minimum' %>
-    </div>
+  <div class="field">
+    <%= f.label :password %><br/>
+    <%= f.password_field :password, autocomplete: 'off', placeholder: '6 characters minimum' %>
+  </div>
 
-    <div class="field">
-        <%= f.label :password_confirmation %><br/>
-        <%= f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Retype your password' %>
-    </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br/>
+    <%= f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Retype your password' %>
+  </div>
 
-    <hr/>
+  <hr/>
 
-    <div class="actions">
-        <%= f.submit 'Sign up', class: 'button wide' %>
-    </div>
+  <div class="actions">
+    <%= f.submit 'Sign up', class: 'button wide' %>
+  </div>
 
-    <div class="form-footer">
-        <p>Already have an account? <%= link_to 'Log in', new_session_path(resource_name) %>.</p>
-    </div>
+  <div class="form-footer">
+    <p>Already have an account? <%= link_to 'Log in', new_session_path(resource_name) %>.</p>
+  </div>
 
 <% end %>

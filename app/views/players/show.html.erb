@@ -4,148 +4,148 @@
 
 <div id="print">
 
-<div class="thin-hero">
+  <div class="thin-hero">
     <div class="wrapper">
-        <h1 class="has-subtitle">
-            <%= @player.full_name %>
-            <%- if @player.is_admin %>
-                <span class="badge">staff member</span>
-            <%- end %>
-        </h1>
-        <p class="subtitle">@<%= @player.username %>'s player profile.</p>
+      <h1 class="has-subtitle">
+        <%= @player.full_name %>
+        <%- if @player.is_admin %>
+          <span class="badge">staff member</span>
+        <%- end %>
+      </h1>
+      <p class="subtitle">@<%= @player.username %>'s player profile.</p>
     </div>
-</div>
+  </div>
 
-<div class="column-wrapper">
+  <div class="column-wrapper">
 
     <div class="wide">
 
-        <!-- Breakdown -->
-        <div class="background">
-            <h2><i class="material-icons">&#xE24B;</i>Breakdown</h2>
+      <!-- Breakdown -->
+      <div class="background">
+        <h2><i class="material-icons">&#xE24B;</i>Breakdown</h2>
 
-            <div class="stats">
+        <div class="stats">
 
-                <!-- Seasonal score -->
-                <div class="stat">
-                    <%- if @season_player.nil? %>
-                        <p class="numeric">-</p>
-                    <%- else %>
-                        <p class="numeric"><%= number_with_delimiter @season_player.score %></p>
-                    <%- end %>
-                    <p class="label">score (this season)</p>
-                </div>
-
-                <!-- All time score -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @player.score %></p>
-                    <p class="label">score (all time)</p>
-                </div>
-
-                <!-- Seasonal rank -->
-                <div class="stat">
-                    <%- if @season_player.nil? || @season_player.rank.nil? %>
-                        <p class="numeric">-</p>
-                    <%- else %>
-                        <%- season_rank = @season_player.rank + 1 %>
-                        <p class="numeric"><%= "#{number_with_delimiter season_rank}#{season_rank.ordinal}" %></p>
-                    <%- end %>
-                    <p class="label">rank (this season)</p>
-                </div>
-
-                <!-- All time rank -->
-                <div class="stat">
-                    <%- if @player.rank.nil? %>
-                        <p class="numeric">-</p>
-                    <%- else %>
-                        <%- global_rank = @player.rank + 1 %>
-                        <p class="numeric"><%= "#{number_with_delimiter global_rank}#{global_rank.ordinal}" %></p>
-                    <%- end %>
-                    <p class="label">rank (all time)</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Game History -->
-        <div class="background">
-            <h2><i class="material-icons">&#xE889;</i> History</h2>
-            <%- if @games.empty? %>
-                <%= render partial: 'application/empty-state', locals: { description: 'Get out there and play some games!' } %>
+          <!-- Seasonal score -->
+          <div class="stat">
+            <%- if @season_player.nil? %>
+              <p class="numeric">-</p>
             <%- else %>
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th>Game</th>
-                            <th>Played</th>
-                            <th>Venue</th>
-                            <th class="numeric stretch">Score</th>
-                        </tr>
-                        <%= render collection: @games, partial: 'players/game' %>
-                    </table>
-                </div>
+              <p class="numeric"><%= number_with_delimiter @season_player.score %></p>
             <%- end %>
+            <p class="label">score (this season)</p>
+          </div>
+
+          <!-- All time score -->
+          <div class="stat">
+            <p class="numeric"><%= number_with_delimiter @player.score %></p>
+            <p class="label">score (all time)</p>
+          </div>
+
+          <!-- Seasonal rank -->
+          <div class="stat">
+            <%- if @season_player.nil? || @season_player.rank.nil? %>
+              <p class="numeric">-</p>
+            <%- else %>
+              <%- season_rank = @season_player.rank + 1 %>
+              <p class="numeric"><%= "#{number_with_delimiter season_rank}#{season_rank.ordinal}" %></p>
+            <%- end %>
+            <p class="label">rank (this season)</p>
+          </div>
+
+          <!-- All time rank -->
+          <div class="stat">
+            <%- if @player.rank.nil? %>
+              <p class="numeric">-</p>
+            <%- else %>
+              <%- global_rank = @player.rank + 1 %>
+              <p class="numeric"><%= "#{number_with_delimiter global_rank}#{global_rank.ordinal}" %></p>
+            <%- end %>
+            <p class="label">rank (all time)</p>
+          </div>
+
         </div>
+      </div>
+
+      <!-- Game History -->
+      <div class="background">
+        <h2><i class="material-icons">&#xE889;</i> History</h2>
+        <%- if @games.empty? %>
+          <%= render partial: 'application/empty_state', locals: { description: 'Get out there and play some games!' } %>
+        <%- else %>
+          <div class="table-wrapper">
+            <table>
+              <tr>
+                <th></th>
+                <th>Game</th>
+                <th>Played</th>
+                <th>Venue</th>
+                <th class="numeric stretch">Score</th>
+              </tr>
+              <%= render collection: @games, partial: 'players/game' %>
+            </table>
+          </div>
+        <%- end %>
+      </div>
 
     </div>
 
 
     <div class="thin">
 
-        <!-- Stats -->
-        <div class="background">
-            <h2>Statistics</h2>
+      <!-- Stats -->
+      <div class="background">
+        <h2>Statistics</h2>
 
-            <ul class="info">
+        <ul class="info">
 
-                <!-- Joined -->
-                <li>
-                    <i class="material-icons">event_note</i>
-                    Joined&nbsp;<%= local_time_ago @player.created_at %>
-                </li>
+          <!-- Joined -->
+          <li>
+            <i class="material-icons">event_note</i>
+            Joined&nbsp;<%= local_time_ago @player.created_at %>
+          </li>
 
-                <!-- Games Played -->
-                <li>
-                    <i class="material-icons">casino</i>
-                    <%= pluralize @player.games_played, 'game' %> played
-                </li>
+          <!-- Games Played -->
+          <li>
+            <i class="material-icons">casino</i>
+            <%= pluralize @player.games_played, 'game' %> played
+          </li>
 
-                <!-- Games Won -->
-                <li>
-                    <i class="material-icons">new_releases</i>
-                    <%= pluralize @player.games_won, 'game' %> won
-                </li>
+          <!-- Games Won -->
+          <li>
+            <i class="material-icons">new_releases</i>
+            <%= pluralize @player.games_won, 'game' %> won
+          </li>
 
-            </ul>
+        </ul>
+      </div>
+
+      <!-- Achievements -->
+      <div class="background">
+
+        <h2><i class="material-icons">&#xE87A;</i>Achievements</h2>
+
+        <% if @player.achievements.empty? %>
+          <p>There's nothing here! Get out there and play some games!</p>
+        <% else %>
+          <ul class="achievements">
+            <%= render collection: @achievements, partial: 'achievement' %>
+          </ul>
+          <%= paginate @achievements, param_name: :achievements %>
+        <% end %>
+
+        <div class="buttons">
+          <!-- Print -->
+          <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
+            <i class="material-icons">&#xE8AD;</i>
+            Print this page
+          <% end %>
         </div>
 
-        <!-- Achievements -->
-        <div class="background">
-
-            <h2><i class="material-icons">&#xE87A;</i>Achievements</h2>
-
-            <% if @player.achievements.empty? %>
-                <p>There's nothing here! Get out there and play some games!</p>
-            <% else %>
-                <ul class="achievements">
-                    <%= render collection: @achievements, partial: 'achievement' %>
-                </ul>
-                <%= paginate @achievements, param_name: :achievements %>
-            <% end %>
-
-            <div class="buttons">
-                <!-- Print -->
-                <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
-                    <i class="material-icons">&#xE8AD;</i>
-                    Print this page
-                <% end %>
-            </div>
-
-        </div>
+      </div>
 
     </div>
 
-</div>
+  </div>
 
 </div>

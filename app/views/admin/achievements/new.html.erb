@@ -2,86 +2,86 @@
 
 <div class="column-wrapper small-first">
 
-    <!-- Navigation -->
-    <div class="thin">
-        <%= render 'admin/navigation' %>
+  <!-- Navigation -->
+  <div class="thin">
+    <%= render 'admin/navigation' %>
+  </div>
+
+  <div class="wide">
+
+    <!-- Header -->
+    <div class="wrapper-header admin">
+      <div>
+        <h1 class="has-subtitle">Award an achievement</h1>
+        <p class="subtitle">Here you can give some specific achievements to players. Be sure to include a photograph
+          for proof!</p>
+      </div>
+      <%= render 'admin/buttons' %>
     </div>
 
-    <div class="wide">
+    <!-- Form -->
+    <div class="background">
 
-        <!-- Header -->
-        <div class="wrapper-header admin">
-            <div>
-                <h1 class="has-subtitle">Award an achievement</h1>
-                <p class="subtitle">Here you can give some specific achievements to players. Be sure to include a photograph
-                    for proof!</p>
+      <%= form_with model: [:admin, @achievement.becomes(Achievement)], html: { multipart: true }, local: true do |form| %>
+
+
+        <%= render partial: 'application/form_errors', locals: { object: @achievement } %>
+
+        <section>
+          <div class="section-outline">
+            <h2><span>I</span>Achievement details</h2>
+          </div>
+          <div class="section-content">
+
+            <!-- Achievement -->
+            <div class="field">
+              <%= form.label :type, 'Achievement' %><br/>
+              <%= form.select :type, options_for_select(
+                  [
+                      [StraightFlush.title, StraightFlush.sti_name],
+                      [RoyalFlush.title, RoyalFlush.sti_name],
+                      [KingOfTheWorld.title, KingOfTheWorld.sti_name]
+                  ]
+              ) %>
             </div>
-            <%= render 'admin/buttons' %>
+
+            <!-- Player -->
+            <div class="field">
+              <%= form.label :player_id, for: 'achievement_player_id' %><br/>
+              <%= form.hidden_field :player_id, id: 'achievement_player_id' %>
+              <div class="player-input-wrapper" style="max-width: 280px;">
+                <%= form.text_field :player,
+                                    class: 'typeahead-achievement player-input',
+                                    name: nil,
+                                    placeholder: 'Name or username',
+                                    value: @player_name %>
+              </div>
+            </div>
+
+            <!-- Proof -->
+            <div class="field">
+              <label>Proof</label>
+              <div class="file-button">
+                <%= form.label :proof, for: 'achievement_proof', class: 'button-secondary' do %>
+                  <i class="material-icons">&#xE2C6;</i>
+                  <span>No file chosen</span>
+                <% end %>
+              </div>
+              <%= form.file_field :proof, id: 'achievement_proof' %>
+            </div>
+
+          </div>
+        </section>
+
+        <div class="actions buttons">
+          <%= form.submit 'Award achievement', class: 'button' %>
+          <%= link_to 'Cancel', admin_players_path, class: 'button-tertiary' %>
         </div>
 
-        <!-- Form -->
-        <div class="background">
-
-            <%= form_with model: [:admin, @achievement.becomes(Achievement)], html: {multipart: true}, local: true do |form| %>
-
-
-                <%= render partial: 'application/form-errors', locals: {object: @achievement} %>
-
-                <section>
-                    <div class="section-outline">
-                        <h2><span>I</span>Achievement details</h2>
-                    </div>
-                    <div class="section-content">
-
-                        <!-- Achievement -->
-                        <div class="field">
-                            <%= form.label :type, 'Achievement' %><br/>
-                            <%= form.select :type, options_for_select(
-                                [
-                                    [StraightFlush.title, StraightFlush.sti_name],
-                                    [RoyalFlush.title, RoyalFlush.sti_name],
-                                    [KingOfTheWorld.title, KingOfTheWorld.sti_name]
-                                ]
-                            ) %>
-                        </div>
-
-                        <!-- Player -->
-                        <div class="field">
-                            <%= form.label :player_id, for: 'achievement_player_id' %><br/>
-                            <%= form.hidden_field :player_id, id: 'achievement_player_id' %>
-                            <div class="player-input-wrapper" style="max-width: 280px;">
-                                <%= form.text_field :player,
-                                                    class: 'typeahead-achievement player-input',
-                                                    name: nil,
-                                                    placeholder: 'Name or username',
-                                                    value: @player_name %>
-                            </div>
-                        </div>
-
-                        <!-- Proof -->
-                        <div class="field">
-                            <label>Proof</label>
-                            <div class="file-button">
-                                <%= form.label :proof, for: 'achievement_proof', class: 'button-secondary' do %>
-                                    <i class="material-icons">&#xE2C6;</i>
-                                    <span>No file chosen</span>
-                                <% end %>
-                            </div>
-                            <%= form.file_field :proof, id: 'achievement_proof' %>
-                        </div>
-
-                    </div>
-                </section>
-
-                <div class="actions buttons">
-                    <%= form.submit 'Award achievement', class: 'button' %>
-                    <%= link_to 'Cancel', admin_players_path, class: 'button-tertiary' %>
-                </div>
-
-            <% end %>
-
-        </div>
+      <% end %>
 
     </div>
+
+  </div>
 
 </div>

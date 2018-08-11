@@ -1,16 +1,16 @@
 <tr class="inter-ui-ss01<%= ' first' if (!player.rank.nil?) && player.rank == 0 %>">
-    <td class="quiet"><%= player.rank.nil? ? '-' : (player.rank + 1).ordinalize %></td>
-    <td class="stretch">
-        <% if player.player.nil? %>
-            [Deleted player]
-        <% else %>
-            <%= link_to player.player, data: { player_id: player.player.id, show_profile_preview: true} do %>
-                <%= player.player.full_name %>
-                <span class="quiet">@<%= player.player.username %></span>
-            <%- end %>
-        <% end %>
-    </td>
-    <td class="numeric score"><%= number_with_delimiter player.score %></td>
-    <td class="numeric quiet"><%= player.games_played %></td>
-    <td class="numeric quiet"><%= player.games_won %></td>
+  <td class="quiet"><%= player.rank.nil? ? '-' : (player.rank + 1).ordinalize %></td>
+  <td class="stretch">
+    <% if player.player.nil? %>
+      [Deleted player]
+    <% else %>
+      <%= link_to player.player, data: { player_id: player.player.id, show_profile_preview: true } do %>
+        <%= player.player.full_name %>
+        <span class="quiet">@<%= player.player.username %></span>
+      <%- end %>
+    <% end %>
+  </td>
+  <td class="numeric score"><%= number_with_delimiter player.score %></td>
+  <td class="numeric quiet"><%= player.games_played %></td>
+  <td class="numeric quiet"><%= player.games_won %></td>
 </tr>

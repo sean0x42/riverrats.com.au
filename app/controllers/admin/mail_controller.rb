@@ -1,5 +1,6 @@
-class Admin::MailController < ApplicationController
+require 'flash_message'
 
+class Admin::MailController < ApplicationController
   layout 'admin'
   before_action :authenticate_player!
   before_action :require_admin
@@ -27,14 +28,4 @@ class Admin::MailController < ApplicationController
       format.csv { send_data @players.to_csv }
     end
   end
-
-  private
-
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
-  end
-
 end

@@ -4,98 +4,98 @@
 
 <div id="print">
 
-<div class="thin-hero">
+  <div class="thin-hero">
     <div class="wrapper">
-        <h1 class="has-subtitle">Game <%= @game.name %></h1>
-        <p class="subtitle">View a detailed breakdown and leaderboard of this game.</p>
+      <h1 class="has-subtitle">Game <%= @game.name %></h1>
+      <p class="subtitle">View a detailed breakdown and leaderboard of this game.</p>
     </div>
-</div>
+  </div>
 
-<div class="column-wrapper">
+  <div class="column-wrapper">
 
     <div class="wide">
 
-        <!-- Leaderboard -->
-        <div class="background" id="leaderboard">
-            <h2>Leaderboard</h2>
-            <%- if @players.empty? %>
-                <%= render partial: 'application/empty-state', locals: { description: 'No one has played in this game yet.'} %>
-            <%- else %>
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th class="stretch">Name</th>
-                            <th class="numeric">Score</th>
-                        </tr>
-                        <%= render collection: @players, partial: 'player' %>
-                    </table>
-                </div>
-            <%- end %>
+      <!-- Leaderboard -->
+      <div class="background" id="leaderboard">
+        <h2>Leaderboard</h2>
+        <%- if @players.empty? %>
+          <%= render partial: 'application/empty_state', locals: { description: 'No one has played in this game yet.' } %>
+        <%- else %>
+          <div class="table-wrapper">
+            <table>
+              <tr>
+                <th></th>
+                <th class="stretch">Name</th>
+                <th class="numeric">Score</th>
+              </tr>
+              <%= render collection: @players, partial: 'player' %>
+            </table>
+          </div>
+        <%- end %>
 
-            <div class="background-footer">
-                <%= paginate @players %>
-                <p><%= page_entries_info @players %></p>
-            </div>
+        <div class="background-footer">
+          <%= paginate @players %>
+          <p><%= page_entries_info @players %></p>
         </div>
+      </div>
 
     </div>
 
 
     <div class="thin">
 
-        <!-- Breakdown -->
-        <div class="background">
-            <h2>About this game</h2>
+      <!-- Breakdown -->
+      <div class="background">
+        <h2>About this game</h2>
 
-            <ul class="info">
+        <ul class="info">
 
-                <!-- Played -->
-                <li>
-                    <i class="material-icons">event_note</i>
-                    <%= @game.played_on.strftime '%A, %B %d %Y' %>
-                </li>
+          <!-- Played -->
+          <li>
+            <i class="material-icons">event_note</i>
+            <%= @game.played_on.strftime '%A, %B %d %Y' %>
+          </li>
 
-                <!-- Venue -->
-                <li>
-                    <i class="material-icons">&#xE8F9;</i>
-                    <% venue = @game.venue %>
-                    <%= link_to venue.name, venue_path(venue) %>
-                </li>
+          <!-- Venue -->
+          <li>
+            <i class="material-icons">&#xE8F9;</i>
+            <% venue = @game.venue %>
+            <%= link_to venue.name, venue_path(venue) %>
+          </li>
 
-                <!-- Players -->
-                <li>
-                    <i class="material-icons">person</i>
-                    <%= pluralize @game.games_players.count, 'player' %>
-                </li>
+          <!-- Players -->
+          <li>
+            <i class="material-icons">person</i>
+            <%= pluralize @game.games_players.count, 'player' %>
+          </li>
 
-                <!-- Tournament Directions -->
-                <li>
-                    <i class="material-icons">account_box</i>
-                    <%= pluralize @game.referees.count, 'tourament director' %>
-                </li>
+          <!-- Tournament Directions -->
+          <li>
+            <i class="material-icons">account_box</i>
+            <%= pluralize @game.referees.count, 'tourament director' %>
+          </li>
 
-            </ul>
+        </ul>
+      </div>
+
+      <!-- Referees -->
+      <div class="background">
+        <h2>Tournament Directors</h2>
+        <ul class="thin-player-list">
+          <%= render collection: @game.referees, partial: 'referee' %>
+        </ul>
+
+        <div class="buttons">
+          <!-- Print -->
+          <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
+            <i class="material-icons">&#xE8AD;</i>
+            Print this page
+          <% end %>
         </div>
 
-        <!-- Referees -->
-        <div class="background">
-            <h2>Tournament Directors</h2>
-            <ul class="thin-player-list">
-                <%= render collection: @game.referees, partial: 'referee' %>
-            </ul>
-
-            <div class="buttons">
-                <!-- Print -->
-                <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
-                    <i class="material-icons">&#xE8AD;</i>
-                    Print this page
-                <% end %>
-            </div>
-
-        </div>
+      </div>
 
     </div>
 
-</div>
+  </div>
 </div>

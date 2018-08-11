@@ -1,11 +1,7 @@
 class EventsController < ApplicationController
 
-  helper_method :next_month
-  helper_method :previous_month
-
   # GET /calendar(/:year/:month)
   def index
-
     @date = Date.today
 
     if params.has_key? :year
@@ -29,22 +25,11 @@ class EventsController < ApplicationController
     events.each do |event|
       @events[event.start_at.to_date].push event
     end
-
   end
 
   # GET /events/:id
   def show
     @event = Event.find params[:id]
-  end
-
-  private
-
-  def next_month(date)
-    date + 1.month
-  end
-
-  def previous_month(date)
-    date - 1.month
   end
 
 end

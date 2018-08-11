@@ -1,12 +1,12 @@
 <li>
-    <%- if referee.player.nil? %>
-        <div>
-            <p class="username">[Deleted player]</p>
-        </div>
-    <%- else %>
-        <%= link_to player_path(referee.player) do %>
-            <p class="name"><%= referee.player.full_name %></p>
-            <p class="username">@<%= referee.player.username %></p>
-        <% end %>
-    <%- end %>
+  <%- if referee.player.nil? %>
+    <div>
+      <p class="username">[Deleted player]</p>
+    </div>
+  <%- else %>
+    <%= link_to player_path(referee.player) do %>
+      <p class="name"><%= referee.player.full_name %></p>
+      <p class="username">@<%= referee.player.username %></p>
+    <% end %>
+  <%- end %>
 </li>

@@ -41,7 +41,7 @@
 
       &:hover {
         text-decoration: none;
-        color: $branding-primary;
+        color: $zurple;
       }
     }
 
@@ -49,7 +49,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       font-size: 14px;
-      color: $branding-primary;
+      color: $zurple;
       font-weight: bold;
       &:not(:first-child) {
         margin-top: 1.5rem;
@@ -68,7 +68,7 @@
         fill: lighten($generic-text, 35%);
       }
 
-      &:hover svg { fill: $branding-primary; }
+      &:hover svg { fill: $zurple; }
     }
 
   }

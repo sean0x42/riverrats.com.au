@@ -35,12 +35,14 @@
     width: 100%;
   }
 
-  &:hover { text-decoration: none; }
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .button {
-  color: $branding-primary-text;
-  background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
+  color: $zurple-inverted;
+  background: $zurple;
   transition: all 300ms;
   transform: translateY(0px);
 
@@ -50,23 +52,23 @@
   }
 
   &.danger {
-    color: $danger-text;
-    background: linear-gradient(90deg, $danger-red, $danger-red-rotated);
+    color: $danger-inverted;
+    background: linear-gradient(90deg, $danger, $danger-red-rotated);
   }
 }
 
 .button-secondary {
   position: relative;
-  color: darken($branding-primary, 3%);
+  color: darken($zurple, 3%);
   background: none;
   border: 2px solid $button-border;
   padding: 14px 24px;
 
-  i { color: lighten($branding-primary, 10%); }
+  i { color: lighten($zurple, 10%); }
 
   &.danger {
-    color: darken($danger-red, 10%);
-    i { color: lighten($danger-red, 0%); }
+    color: darken($danger, 10%);
+    i { color: lighten($danger, 0%); }
   }
 
 }
@@ -76,6 +78,6 @@
   color: lighten($generic-text, 25%);
 
   &:hover {
-    color: darken($branding-primary, 3%);
+    color: darken($zurple, 3%);
   }
 }

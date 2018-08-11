@@ -1,68 +1,67 @@
 <%= form_with model: [:admin, @player], local: true do |form| %>
 
-    <%= render partial: 'application/form-errors', locals: {object: @player} %>
+  <%= render partial: 'application/form_errors', locals: { object: @player } %>
 
-    <section>
-        <div class="section-outline">
-            <h2><span>I</span>Player details</h2>
-        </div>
-        <div class="section-content">
-
-            <!-- Username -->
-            <%- if @player.persisted? %>
-                <div class="field">
-                    <%= form.label :username, for: 'player_username' %><br/>
-                    <%= form.text_field :username, id: 'player_username', spellcheck: false %>
-                </div>
-            <%- end %>
-
-            <!-- Full name -->
-            <div class="fields">
-
-                <!-- First name -->
-                <div class="field">
-                    <%= form.label :first_name, for: 'player_first_name' %><br/>
-                    <%= form.text_field :first_name, id: 'player_first_name', autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
-                </div>
-
-                <!-- Last name -->
-                <div class="field">
-                    <%= form.label :last_name, for: 'player_last_name' %><br/>
-                    <%= form.text_field :last_name, id: 'player_last_name', spellcheck: false, placeholder: 'Surname, family name...' %>
-                </div>
-
-            </div>
-
-            <!-- Email address -->
-            <div class="field">
-                <%= form.label :email, for: 'player_email' %> (Optional)<br/>
-                <div class="input-wrapper">
-                    <i class="material-icons">&#xE0BE;</i>
-                    <%= form.email_field :email, id: 'player_email', placeholder: 'someone@example.com' %>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section>
-        <div class="section-outline">
-            <h2><span>II</span>Permissions</h2>
-        </div>
-        <div class="section-content">
-            <div class="field checkbox">
-                <%= form.check_box :is_admin, id: 'player_is_admin' %>
-                <%= form.label :is_admin, for: 'player_is_admin' do %>
-                    <i class="material-icons">&#xE835;</i>
-                    <span>Administrative privileges</span>
-                <% end %>
-            </div>
-        </div>
-    </section>
-
-    <div class="actions buttons">
-        <%= form.submit class: 'button' %>
-        <%= link_to 'Cancel', admin_players_path, class: 'button-tertiary' %>
+  <section>
+    <div class="section-outline">
+      <h2><span>I</span>Player details</h2>
     </div>
+    <div class="section-content">
+
+      <!-- Username -->
+      <%- if @player.persisted? %>
+        <div class="field">
+          <%= form.label :username, for: 'player_username' %><br/>
+          <%= form.text_field :username, id: 'player_username', spellcheck: false %>
+        </div>
+      <%- end %>
+
+      <!-- Full name -->
+      <div class="fields">
+
+        <!-- First name -->
+        <div class="field">
+          <%= form.label :first_name, for: 'player_first_name' %><br/>
+          <%= form.text_field :first_name, id: 'player_first_name', autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
+        </div>
+
+        <!-- Last name -->
+        <div class="field">
+          <%= form.label :last_name, for: 'player_last_name' %><br/>
+          <%= form.text_field :last_name, id: 'player_last_name', spellcheck: false, placeholder: 'Surname, family name...' %>
+        </div>
+
+      </div>
+
+      <!-- Email address -->
+      <div class="field">
+        <%= form.label :email, for: 'player_email' %> (Optional)<br/>
+        <div class="input-wrapper">
+          <i class="material-icons">&#xE0BE;</i>
+          <%= form.email_field :email, id: 'player_email', placeholder: 'someone@example.com' %>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-outline">
+      <h2><span>II</span>Permissions</h2>
+    </div>
+    <div class="section-content">
+      <div class="field">
+        <div class="checkbox">
+          <%= form.check_box :is_admin, id: 'player_is_admin' %>
+          <%= form.label :is_admin, 'Administrative privileges', for: 'player_is_admin' %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="actions buttons">
+    <%= form.submit class: 'button' %>
+    <%= link_to 'Cancel', admin_players_path, class: 'button-tertiary' %>
+  </div>
 
 <% end %>

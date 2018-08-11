@@ -3,59 +3,44 @@
 <%- content_for :canonical_url, events_url %>
 
 <div class="thin-hero">
-    <div class="wrapper">
-        <h1 class="has-subtitle"><%= @date.strftime '%B, %Y' %></h1>
-        <p class="subtitle">View all events in the month of <%= @date.strftime '%B' %>. Click on an event for more details.</p>
-    </div>
+  <div class="wrapper">
+    <h1 class="has-subtitle"><%= @date.strftime '%B, %Y' %></h1>
+    <p class="subtitle">View all events in the month of <%= @date.strftime '%B' %>. Click on an event for more
+      details.</p>
+  </div>
 </div>
 
 <div class="wrapper" style="margin-top: 0; padding: 0 0.5rem;">
 
-    <!-- Event tools -->
-<!--    <div class="background">-->
-        <%#= form_with url: events_path do |form| %>
+  <!-- Calendar -->
+  <div class="background">
 
-            <%#= form.label :venue %>
-            <%#= form.collection_select :venue, Venue.all, :id, :name %>
+    <h2><i class="material-icons">event</i>Calendar</h2>
 
-            <%#= form.label :region %>
-            <%#= form.collection_select :region, Region.all, :id, :name %>
-
-        <%# end %>
-<!--    </div>-->
-
-    <!-- Calendar -->
-    <div class="background">
-
-        <h2><i class="material-icons">event</i>Calendar</h2>
-
-        <!-- Calendar controls -->
-        <%#= render partial: 'calendar-controls', locals: { date: @date } %>
-
-        <div class="calendar">
-            <p class="weekday-title">Sun</p>
-            <p class="weekday-title">Mon</p>
-            <p class="weekday-title">Tue</p>
-            <p class="weekday-title">Wed</p>
-            <p class="weekday-title">Thu</p>
-            <p class="weekday-title">Fri</p>
-            <p class="weekday-title">Sat</p>
-            <% @events.each do |date, events| %>
-                <div class="date<%= ' disabled' if date.month != @date.month %><%= ' today' if date == Date.today %><%= ' empty' if events.empty? %>">
-                    <div>
-                        <p class="day"><%= date.day.to_s.rjust(2, '0') %></p>
-                        <p class="weekday"><%= date.strftime '%a' %></p>
-                    </div>
-                    <ul>
-                        <%= render collection: events, partial: 'event' %>
-                    </ul>
-                </div>
-            <% end %>
+    <div class="calendar">
+      <p class="weekday-title">Sun</p>
+      <p class="weekday-title">Mon</p>
+      <p class="weekday-title">Tue</p>
+      <p class="weekday-title">Wed</p>
+      <p class="weekday-title">Thu</p>
+      <p class="weekday-title">Fri</p>
+      <p class="weekday-title">Sat</p>
+      <% @events.each do |date, events| %>
+        <div class="date<%= ' disabled' if date.month != @date.month %><%= ' today' if date == Date.today %><%= ' empty' if events.empty? %>">
+          <div>
+            <p class="day"><%= date.day.to_s.rjust(2, '0') %></p>
+            <p class="weekday"><%= date.strftime '%a' %></p>
+          </div>
+          <ul>
+            <%= render collection: events, partial: 'event' %>
+          </ul>
         </div>
-
-        <!-- Calendar controls -->
-        <%= render partial: 'calendar-controls', locals: { date: @date } %>
-
+      <% end %>
     </div>
+
+    <!-- Calendar controls -->
+    <%= render partial: 'calendar-controls', locals: { date: @date } %>
+
+  </div>
 
 </div>

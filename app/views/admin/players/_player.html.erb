@@ -1,12 +1,12 @@
 <tr>
-    <td><%= link_to player.full_name, edit_admin_player_path(player), data: { player_id: player.id, show_profile_preview: true } %></td>
-    <td>@<%= player.username %></td>
-    <td class="badge-column">
-        <% if player.is_admin %>
-            <span class="badge">administrator</span>
-        <% end %>
-    </td>
-    <td class="numeric stretch"><%= player.score %></td>
-    <td class="numeric"><%= player.games_played %></td>
-    <td class="numeric"><%= player.games_won %></td>
+  <td><%= link_to player.full_name, edit_admin_player_path(player), data: { player_id: player.id, show_profile_preview: true } %></td>
+  <td>@<%= player.username %></td>
+  <td class="badge-column">
+    <% if player.is_admin %>
+      <span class="badge">administrator</span>
+    <% end %>
+  </td>
+  <td class="numeric stretch"><%= player.score %></td>
+  <td class="numeric"><%= player.games_played %></td>
+  <td class="numeric"><%= player.games_won %></td>
 </tr>

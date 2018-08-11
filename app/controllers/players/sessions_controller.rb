@@ -1,5 +1,4 @@
 class Players::SessionsController < Devise::SessionsController
-
   layout 'authentication'
   before_action :configure_sign_in_params, only: [:create]
 
@@ -24,5 +23,4 @@ class Players::SessionsController < Devise::SessionsController
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:login])
   end
-
 end

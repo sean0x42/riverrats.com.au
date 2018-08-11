@@ -1,8 +1,8 @@
 <tr>
-    <td class="numeric"><%= link_to game.name, edit_admin_game_path(game) %></td>
-    <td><%= local_time game.played_on, '%B %e, %Y' %></td>
-    <td><%= link_to game.venue.name, venue_path(game.venue) %></td>
-    <td class="stretch"><%= game.season.name %></td>
-    <td class="numeric"><%= game.games_players.count %></td>
-    <td class="numeric"><%= game.referees.count %></td>
+  <td class="numeric"><%= link_to game.name, edit_admin_game_path(game) %></td>
+  <td><%= local_time game.played_on, '%B %e, %Y' %></td>
+  <td><%= link_to game.venue.name, venue_path(game.venue) %></td>
+  <td class="stretch"><%= game.season.name %></td>
+  <td class="numeric"><%= game.games_players.count %></td>
+  <td class="numeric"><%= game.referees.count %></td>
 </tr>

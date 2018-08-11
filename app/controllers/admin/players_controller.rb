@@ -1,5 +1,6 @@
-class Admin::PlayersController < ApplicationController
+require 'flash_message'
 
+class Admin::PlayersController < ApplicationController
   layout 'admin'
   before_action :authenticate_player!
   before_action :require_admin
@@ -44,16 +45,7 @@ class Admin::PlayersController < ApplicationController
     end
 
     if @player.save
-
-      # Alert player with flash
-      flash[:success] = FlashMessage.new(
-        'Success!',
-        t('player.create') % {
-          player: @player.username,
-          link: player_path(@player)
-        }
-      )
-
+      flash[:success] = Struct::Flash.new t('admin.player.create.title'), t('admin.player.create.body') % { player: @player.username }
       PlayerMailer.welcome(@player.id, generated_password).deliver_later
       redirect_to admin_players_path
     else
@@ -71,14 +63,7 @@ class Admin::PlayersController < ApplicationController
     @player = Player.find_by! username: params[:username]
 
     if @player.update edit_params
-      # Alert player with flash
-      flash[:success] = FlashMessage.new(
-        'Success!',
-        t('player.update') % {
-          player: @player.username,
-          link: player_path(@player)
-        }
-      )
+      flash[:success] = Struct::Flash.new t('admin.player.update.title'), t('admin.player.update.body') % { player: @player.username }
       redirect_to admin_players_path
     else
       if @player.username_changed?
@@ -93,7 +78,7 @@ class Admin::PlayersController < ApplicationController
     @player = Player.find_by! username: params[:username]
     @player.destroy
 
-    flash[:success] = FlashMessage.new 'Success!', t('player.destroy') % { player: @player.username }
+    flash[:success] = Struct::Flash.new t('admin.player.destroy.title'), t('admin.player.destroy.body') % { player: @player.username }
     redirect_to admin_players_path
   end
 
@@ -109,12 +94,4 @@ class Admin::PlayersController < ApplicationController
     end
     params.require(:player).permit(:username, :first_name, :last_name, :email, :is_admin)
   end
-
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
-  end
-
 end

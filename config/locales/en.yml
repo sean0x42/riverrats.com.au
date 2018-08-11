@@ -6,33 +6,66 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  player:
-    create: "You've successfully created the player @%{player}. You can view their public profile at %{link}."
-    update: "You've successfully updated the player @%{player}. You can view their public profile at %{link}."
-    destroy: "Successfully deleted @%{player}."
-    confirm_delete: "Are you sure you want to delete this user? This is very dangerous, and should only be done in very specific circumstances."
-  region:
-    create: "Successfully created region '%{region}'."
-    update: "Successfully updated region '%{region}'."
-    destroy: "Successfully deleted region '%{region}'."
-    confirm_delete: "Are you sure you want to delete this region?"
-  venue:
-    confirm_delete: "Are you sure you want to delete this venue?"
-    create: "Successfully created venue '%{venue}'."
-    update: "Successfully updated a venue '%{venue}'."
-    destroy: "Successfully deleted venue '%{venue}'."
-  game:
-    confirm_delete: "Are you sure you want to delete this game?"
-    create: "Successfully created %{game}."
-    update: "Successfully updated %{game}."
-    destroy: "Successfully deleted %{game}."
-  event:
-    confirm_delete: "Are you sure you want to delete this event?"
-    create: "You've successfully created an event: %{event}. You can view this event publicly at %{link}."
-    update: "Successfully updated an event: %{event}."
-    destroy: "Successfully deleted event: %{event}."
-    recurring:
-      confirm_delete: "Are you sure you want to delete this event, and all following events? You cannot undo this action."
+  admin:
+    player:
+      create:
+        title: 'Player created'
+        body: "You have successfully created @%{player}."
+      update:
+        title: 'Player updated'
+        body: "You have successfully updated @%{player}."
+      destroy:
+        title: 'Player deleted'
+        body: "You have successfully deleted @%{player}."
+      confirm_delete: "Are you sure you want to delete this user? This action cannot be undone."
+    game:
+      create:
+        title: 'Game created'
+        body: "You have successfully created the game '%{game}'."
+      update:
+        title: 'Game updated'
+        body: "You have successfully updated the game '%{game}'."
+      destroy:
+        title: 'Game deleted'
+        body: "You have successfully deleted the game '%{game}'."
+      confirm_delete: "Are you sure you want to delete this game? This action cannot be undone."
+    event:
+      create:
+        title: 'Event created'
+        body: "You have successfully created an event titled '%{event}'."
+      update:
+        title: 'Event updated'
+        body: "You have successfully updated an event titled '%{event}'."
+      destroy:
+        title: 'Event deleted'
+        body: "You have successfully deleted an event titled '%{event}'."
+      confirm_delete: "Are you sure you want to delete this event? This action cannot be undone."
+      recurring:
+        confirm_delete: "Are you sure you want to delete this event, and all following events? This action cannot be undone."
+    venue:
+      create:
+        title: 'Venue created'
+        body: "You have successfully created venue '%{venue}'."
+      update:
+        title: 'Venue updated'
+        body: "You have successfully updated venue '%{venue}'."
+      destroy:
+        title: 'Venue deleted'
+        body: "You have successfully deleted venue '%{venue}'."
+      confirm_delete: "Are you sure you want to delete this venue? This action cannot be undone."
+    region:
+      create:
+        title: 'Region created'
+        body: "You have successfully created region '%{region}'."
+      update:
+        title: 'Region updated'
+        body: "You have successfully updated region '%{region}'."
+      destroy:
+        title: 'Region deleted'
+        body: "You have successfully deleted region '%{region}'."
+      confirm_delete: "Are you sure you want to delete this region? This action cannot be undone."
+    achievement:
+      award: "You've successfully awarded an achievement to %{player}."
   achievement:
     wins:
       title: "Winner Winner Chicken Dinner %{level}"
@@ -43,7 +76,6 @@ en:
     participation:
       title: "I Got This %{level}"
       description: "Play %{count}."
-    award: "Successfully awarded %{type} to %{player}."
     royal_flush:
       title: "Get Flushed!"
       description: "Get a Royal Flush"
@@ -113,3 +145,7 @@ en:
       show:
         description: "View the region: %{region}"
         title: "%{region}"
+  error:
+    insufficient_permission:
+      title: "Permission denied"
+      description: "You do not have permission to access this page."

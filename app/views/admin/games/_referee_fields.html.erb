@@ -1,15 +1,15 @@
 <div class="player">
 
-    <!-- Hidden from fields -->
-    <%= f.hidden_field :player_id, class: 'player-id-input' %>
+  <!-- Hidden from fields -->
+  <%= f.hidden_field :player_id, class: 'player-id-input' %>
 
-    <!-- Visual information -->
-    <p class="player-name"><%= @attrs[:names][f.object.player_id] %></p>
-    <p class="player-username"><%= @attrs[:usernames][f.object.player_id] %></p>
+  <!-- Visual information -->
+  <p class="player-name"><%= @attrs[:names][f.object.player_id] %></p>
+  <p class="player-username"><%= @attrs[:usernames][f.object.player_id] %></p>
 
-    <!-- Remove button -->
-    <%= link_to_remove_association f, wrapper_class: 'player' do %>
-        <i class="material-icons">&#xE5CD;</i>
-    <% end %>
+  <!-- Remove button -->
+  <%= link_to_remove_association f, wrapper_class: 'player' do %>
+    <i class="material-icons">&#xE5CD;</i>
+  <% end %>
 
 </div>

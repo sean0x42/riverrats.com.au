@@ -2,79 +2,79 @@
 
 <div class="column-wrapper small-first">
 
-    <!-- Navigation -->
-    <div class="thin">
-        <%= render 'admin/navigation' %>
+  <!-- Navigation -->
+  <div class="thin">
+    <%= render 'admin/navigation' %>
+  </div>
+
+  <div class="wide">
+
+    <!-- Header -->
+    <div class="wrapper-header admin">
+      <div>
+        <h1 class="has-subtitle">Events</h1>
+        <p class="subtitle">Here you can view and manage all events.</p>
+      </div>
+      <%= render 'admin/buttons' %>
     </div>
 
-    <div class="wide">
+    <!-- Breakdown -->
+    <div class="background">
+      <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>
 
-        <!-- Header -->
-        <div class="wrapper-header admin">
-            <div>
-                <h1 class="has-subtitle">Events</h1>
-                <p class="subtitle">Here you can view and manage all events.</p>
-            </div>
-            <%= render 'admin/buttons' %>
+      <div class="stats">
+
+        <!-- Finished events -->
+        <div class="stat">
+          <p class="numeric"><%= number_with_delimiter @stats[:finished] %></p>
+          <p class="label">events held</p>
         </div>
 
-        <!-- Breakdown -->
-        <div class="background">
-            <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>
-
-            <div class="stats">
-
-                <!-- Finished events -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @stats[:finished] %></p>
-                    <p class="label">events held</p>
-                </div>
-
-                <!-- Upcoming events -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @stats[:upcoming] %></p>
-                    <p class="label">upcoming events</p>
-                </div>
-
-                <!-- Recurring events -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @stats[:recurring] %></p>
-                    <p class="label">recurring events</p>
-                </div>
-
-            </div>
-
+        <!-- Upcoming events -->
+        <div class="stat">
+          <p class="numeric"><%= number_with_delimiter @stats[:upcoming] %></p>
+          <p class="label">upcoming events</p>
         </div>
 
-        <!-- Event list -->
-        <div class="background">
-
-            <h2><i class="material-icons">&#xE616;</i> Events</h2>
-
-            <% if @events.empty? %>
-                <%= render partial: 'admin/empty-state', locals: {noun: 'events', link: new_admin_event_path} %>
-            <% else %>
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th class="stretch"></th>
-                            <th>Start time</th>
-                        </tr>
-                        <%= render collection: @events, partial: 'admin/events/event' %>
-                    </table>
-                </div>
-            <% end %>
-
-            <div class="background-footer">
-                <%= paginate @events %>
-                <p><%= page_entries_info @events %></p>
-            </div>
-
+        <!-- Recurring events -->
+        <div class="stat">
+          <p class="numeric"><%= number_with_delimiter @stats[:recurring] %></p>
+          <p class="label">recurring events</p>
         </div>
+
+      </div>
 
     </div>
+
+    <!-- Event list -->
+    <div class="background">
+
+      <h2><i class="material-icons">&#xE616;</i> Events</h2>
+
+      <% if @events.empty? %>
+        <%= render partial: 'admin/empty_state', locals: { noun: 'events', link: new_admin_event_path } %>
+      <% else %>
+        <div class="table-wrapper">
+          <table>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Description</th>
+              <th class="stretch"></th>
+              <th>Start time</th>
+            </tr>
+            <%= render collection: @events, partial: 'admin/events/event' %>
+          </table>
+        </div>
+      <% end %>
+
+      <div class="background-footer">
+        <%= paginate @events %>
+        <p><%= page_entries_info @events %></p>
+      </div>
+
+    </div>
+
+  </div>
 
 </div>

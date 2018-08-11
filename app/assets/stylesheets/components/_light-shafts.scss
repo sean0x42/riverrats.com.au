@@ -7,14 +7,14 @@
   transform: rotateZ(-10deg);
 
   .light {
-    background: lighten($branding-primary, 3%);
+    background: lighten($zurple, 3%);
     height: 1000px;
     &:nth-child(1) {
       grid-column: 1 / 4;
       grid-row: 1;
     }
     &:nth-child(2) {
-      background: lighten($branding-primary, 6%);
+      background: lighten($zurple, 6%);
       grid-column: 2;
       grid-row: 1;
     }

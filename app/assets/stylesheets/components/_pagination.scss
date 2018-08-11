@@ -29,9 +29,9 @@ nav.pagination {
       }
 
       &.current {
-        background: $branding-primary;
-        color: $branding-primary-text;
-        border-color: $branding-primary;
+        background: $zurple;
+        color: $zurple-inverted;
+        border-color: $zurple;
       }
 
     }

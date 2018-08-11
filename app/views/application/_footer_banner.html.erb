@@ -1,0 +1,31 @@
+<%- unless player_signed_in? %>
+
+  <div class="footer-banner">
+
+    <div class="wrapper">
+
+      <div class="info">
+        <h1>Ready to get started?</h1>
+        <p>Join the River Rats Poker League. It's free and easy!</p>
+      </div>
+
+      <div class="buttons">
+
+        <!-- Join -->
+        <%= link_to new_player_registration_path, class: 'button' do %>
+          <span>Create an account</span>
+        <% end %>
+
+        <!-- Secure login -->
+        <%= link_to new_player_session_path, class: 'button-secondary' do %>
+          <i class="material-icons">&#xE88D;</i>
+          <span>Secure login</span>
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<%- end %>

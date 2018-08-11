@@ -24,7 +24,7 @@
 
     i {
       margin: -0.25rem;
-      color: $branding-primary;
+      color: $zurple;
     }
 
   }
@@ -56,9 +56,9 @@
       border-right: 1px solid $input-border;
 
       &:hover {
-        color: $branding-primary-text;
-        background: $branding-primary;
-        border-color: $branding-primary;
+        color: $zurple-inverted;
+        background: $zurple;
+        border-color: $zurple;
       }
 
       &:last-child {
