@@ -1,8 +1,12 @@
 # Changelog v1.1: Technical Update
 
-This update, I've focused on improving the website from a technical perspective. You can expect greatly improved reliability, performance, and speed.
+This update introduces a number of new changes. Firstly, I rebuilt much of the site from a visual perspective. The foundation is much better now, and should allow us to continue to improve the aesthetics as time goes by. 
+
+I also spent some time fixing the site from a technical perspective. You can expect greatly improved reliability, performance, and speed.
 
 Features: 
- * Improved the appearance and functionality of flash messages.
- * Improved the appearance of checkboxes.
- * Lots of code refactoring. You should see some performance improvements throughout the site.
+ * Improved the appearance of just about everything.
+    * New checkboxes.
+    * New flash messages.
+    * New header and footer.
+    * Reworked calendar.

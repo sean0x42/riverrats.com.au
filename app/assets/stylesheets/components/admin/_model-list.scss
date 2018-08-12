@@ -1,0 +1,61 @@
+.model-list {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  margin: 2rem 0;
+  border-radius: $border-radius;
+
+  table {
+    border: 1px solid $grey;
+    border-radius: $border-radius;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  tr:not(:last-child) td {
+    border-bottom: 2px solid $grey-light;
+  }
+
+  td {
+    white-space: nowrap;
+    padding: 0.5rem;
+    text-align: left;
+    line-height: $body-line-height;
+
+    &:first-child {
+      padding-left: 1.5rem;
+    }
+
+    &:last-child {
+      padding-right: 1.5rem;
+    }
+  }
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: $zurple-dark;
+    }
+
+    &:hover .highlight {
+      color: $zurple-dark;
+    }
+  }
+
+  .stretch {
+    width: 100%;
+  }
+
+  .highlight {
+    color: $text;
+  }
+
+  td:not(.highlight) {
+    color: lighten($text, 25%);
+  }
+
+  .numeric {
+    text-align: right;
+  }
+}

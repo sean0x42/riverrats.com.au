@@ -17,13 +17,9 @@
 </head>
 <body class="<%= yield(:body_class) %>">
   <%= render 'flash_messages' %>
-  <%- if content_for? :body %>
-    <%= yield :body %>
-  <%- else %>
-    <%= render 'application/header' %>
-    <%= yield %>
-    <%= render 'application/footer_banner' %>
-    <%= render 'application/footer' %>
-  <%- end %>
+  <%= render 'application/header' %>
+  <%= content_for?(:body) ? yield(:body) : yield %>
+  <%= render 'application/footer' %>
+  <div class="modal-overlay"></div>
 </body>
 </html>

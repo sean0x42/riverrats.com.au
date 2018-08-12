@@ -1,9 +1,20 @@
 // Zurple
-$zurple-dark: hsl(282, 34%, 45%);
-$zurple-dark-inverted: hsl(282, 10%, 99%);
-$zurple: hsl(282, 34%, 47%);
-$zurple-inverted: hsl(282, 10%, 99%);
-$branding-primary-rotated: adjust-hue($zurple, 20deg);
+$zurple-dark: hsl(278, 42%, 51%);
+$zurple-dark-inverted: hsl(278, 14%, 97%);
+$zurple: hsl(278, 50%, 55%);
+$zurple-inverted: hsl(278, 14%, 99%);
+$zurple-light: hsl(278, 51%, 61%);
+$zurple-light-inverted: hsl(278, 14%, 95%);
+$zurple-lighter: hsl(278, 51%, 71%);
+$zurple-lighter-inverted: hsl(278, 14%, 95%);
+
+// Darcula
+$darcula-dark: hsl(270, 21%, 13%);
+$darcula-dark-inverted: hsl(270, 20%, 90%);
+$darcula: hsl(273, 21%, 14%);
+$darcula-inverted: hsl(273, 20%, 90%);
+$darcula-light: hsl(270, 13%, 22%);
+$darcula-light-inverted: hsl(270, 20%, 90%);
 
 $branding-secondary: hsl(88, 50%, 53%);
 $branding-secondary-rotated: adjust_hue($branding-secondary, 14deg);
@@ -21,8 +32,8 @@ $breakdown-rotated: adjust_hue($breakdown, 8deg);
 $breakdown-text: hsl(38, 15%, 21%);
 
 // Default text colours
-$generic-text: hsl(282, 15%, 25%);
-$generic-text-bold: darken($generic-text, 15%);
+$text: hsl(278, 15%, 33%);
+$text-bold: hsl(278, 15%, 28%);
 
 $border-on-white: hsl(282, 15%, 94%);
 $border-on-grey: hsl(282, 15%, 87%);
@@ -31,4 +42,10 @@ $button-border: hsl(282, 15%, 92%);
 $input-border: darken($border-on-white, 4%);
 $input-background: lighten($border-on-white, 3%);
 
-$grey: hsl(282, 15%, 91%);
+// Grey
+$grey-darker: hsl(278, 20%, 50%);
+$grey-dark: hsl(278, 20%, 91%);
+$grey: hsl(278, 20%, 94%);
+$grey-inverted: hsl(278, 21%, 55%);
+$grey-light: hsl(278, 20%, 97%);
+$grey-lighter: hsl(278, 18%, 98%);

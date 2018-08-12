@@ -1,30 +1,27 @@
-.recent-games-wrapper {
-  padding: 0 1.5rem;
-}
-
 .recent-games {
 
   .game-grid {
+    margin-top: 3rem;
     display: grid;
     grid-gap: 1.5rem;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     align-items: flex-start;
+    line-height: $body-line-height;
 
     .game {
-      color: $generic-text;
+      color: $text;
       max-width: 360px;
-      background: white;
       border-radius: 3px;
       padding: 1rem;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
       overflow: hidden;
+      border: 1px solid $grey;
 
       &:hover {
         text-decoration: none;
       }
 
       .info {
-        color: lighten($generic-text, 15%);
+        color: lighten($text, 15%);
 
         p {
           margin: 0.5rem 0;
@@ -35,7 +32,7 @@
 
       .info, .counts {
         i {
-          color: lighten($generic-text, 25%);
+          color: lighten($text, 25%);
           font-size: 21px;
           margin: -0.25rem 0.5rem -0.25rem 0;
           line-height: 1.0;
@@ -47,10 +44,10 @@
         display: grid;
         grid-gap: 1rem;
         grid-template-columns: 1fr 1fr;
-        border-top: 1px solid $input-border;
+        border-top: 1px solid $grey;
         margin: 1rem -1rem 0;
         padding: 0.75rem 1rem;
-        color: lighten($generic-text, 15%);
+        color: lighten($text, 15%);
 
         & > div {
           display: flex;
@@ -80,7 +77,7 @@
     }
 
     h2 {
-      color: lighten($generic-text, 20%);
+      color: lighten($text, 20%);
       font-size: 13px;
       margin: 0;
     }

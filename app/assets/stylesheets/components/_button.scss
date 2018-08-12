@@ -21,7 +21,7 @@
   border-radius: 3px;
   cursor: pointer;
   text-decoration: none;
-  padding: 16px 26px;
+  padding: 14px 22px;
 
   & > i {
     font-size: 22px;
@@ -53,29 +53,34 @@
 
   &.danger {
     color: $danger-inverted;
-    background: linear-gradient(90deg, $danger, $danger-red-rotated);
+    background: $danger;
   }
 }
 
 .button-secondary {
   position: relative;
-  color: darken($zurple, 3%);
-  background: none;
-  border: 2px solid $button-border;
-  padding: 14px 24px;
+  color: $zurple;
+  background: white;
+  border: 2px solid $grey;
+  padding: 13px 21px;
 
-  i { color: lighten($zurple, 10%); }
+  i {
+    color: $zurple-light;
+  }
 
   &.danger {
-    color: darken($danger, 10%);
-    i { color: lighten($danger, 0%); }
+    color: $danger;
+
+    i {
+      color: $danger;
+    }
   }
 
 }
 
 .button-tertiary {
   margin: 0.5rem -0.25rem !important;
-  color: lighten($generic-text, 25%);
+  color: lighten($text, 25%);
 
   &:hover {
     color: darken($zurple, 3%);

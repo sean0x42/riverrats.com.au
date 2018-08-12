@@ -2,17 +2,8 @@
   position: relative;
   padding: 0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  background: $zurple url(asset-path('trianglify.png'));
+  background: $zurple url(asset-path('trianglify.svg'));
   background-size: cover;
-
-  h1 {
-    color: white;
-    margin: 0 0 1rem;
-  }
-
-  .subtitle {
-    time { color: darken($zurple-inverted, 4%); }
-  }
 
   .buttons {
     justify-content: center;
@@ -58,14 +49,6 @@
     margin: 0 auto;
   }
 
-  h1 { font-size: 24px; }
-  .has-subtitle { margin: 0; }
-  .subtitle {
-    margin-top: 0.7rem;
-    margin-bottom: 0;
-    max-width: 60ch;
-  }
-
 }
 
 .hero {
@@ -80,14 +63,6 @@
     margin: 0 auto;
   }
 
-  h1 {
-    font-size: 32px;
-  }
-
-  .subtitle {
-    font-size: 18px;
-  }
-
 }
 
 @media (min-width: 800px) {
@@ -96,7 +71,7 @@
     height: unset;
 
     .wrapper {
-      padding: 7rem 2rem;
+      padding: 200px 0 8rem;
     }
   }
 }
@@ -106,7 +81,7 @@
     margin: 0 0 -9rem;
 
     .wrapper {
-      padding: 6rem 0 12rem;
+      padding: 10rem 0 12rem;
     }
   }
 }

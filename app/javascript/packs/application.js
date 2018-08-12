@@ -8,3 +8,4 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import "./flashes/flash_controller"
+import "./modals/modal_controller"

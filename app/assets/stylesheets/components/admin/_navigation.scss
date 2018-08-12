@@ -5,7 +5,7 @@
   width: 100vw;
   background: white;
   border-top: 1px solid $zurple;
-  z-index: 20000;
+  line-height: $body-line-height;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
 
   ul {
@@ -20,7 +20,7 @@
       display: flex;
       flex-direction: column;
       font-size: 14px;
-      color: lighten($generic-text, 15%);
+      color: lighten($text, 15%);
       border-radius: 3px;
       align-items: center;
       padding: 6px 0.5rem;
@@ -30,7 +30,7 @@
       i {
         padding-top: 6px;
         font-size: 26px;
-        color: lighten($generic-text, 25%);
+        color: $grey-darker;
       }
 
       &:hover {
@@ -38,8 +38,11 @@
       }
 
       &.active {
-        color: darken($zurple, 5%);
-        i { color: $zurple; }
+        color: $zurple-dark;
+
+        i {
+          color: $zurple-light;
+        }
       }
 
     }
@@ -69,7 +72,7 @@
 
     h2 {
       display: block;
-      color: lighten($generic-text-bold, 30%);
+      color: lighten($text-bold, 30%);
       text-transform: uppercase;
       font-size: 12px;
       font-weight: bold;
@@ -147,7 +150,7 @@
 
     h2 {
       display: block;
-      color: lighten($generic-text-bold, 30%);
+      color: lighten($text-bold, 30%);
       text-transform: uppercase;
       font-size: 12px;
       font-weight: bold;
@@ -174,7 +177,9 @@
           margin: -3px 0.75rem -3px 0;
         }
 
-        &.active { background: white; }
+        &.active {
+          background: white;
+        }
       }
 
       .more { display: none; }
@@ -193,7 +198,7 @@
       font-size: 15px;
       margin: 2rem 0 0;
       padding-left: 12px;
-      color: lighten($generic-text, 28%);
+      color: lighten($text, 28%);
     }
 
     .overflow-navigation {

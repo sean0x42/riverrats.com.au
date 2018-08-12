@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   private
   
   def require_admin
-    unless current_player.is_admin
+    unless current_player.is_admin || current_player.is_developer
       flash[:error] = Struct::Flash.new t('error.insufficient_permission.title'), t('error.insufficient_permission.description')
       redirect_to root_path
     end

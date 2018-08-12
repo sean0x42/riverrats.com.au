@@ -1,6 +1,112 @@
-.header-placeholder {
-  display: block;
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 2000;
   width: 100%;
-  height: 72px;
-  z-index: -1;
+  color: $darcula-inverted;
+  background: transparentize($darcula, 0.1);
+  padding: 0.75rem 1.5rem;
+  border-top: 4px solid $zurple;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .logo {
+    position: relative;
+    width: 72px;
+    flex-shrink: 0;
+    line-height: 1.0;
+    vertical-align: middle;
+    margin-right: 1.25rem;
+  }
+
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    fill: $darcula-inverted;
+    cursor: pointer;
+  }
+
+  a:not(.logo),
+  .header-dropdown-trigger {
+    padding: 0.5rem;
+
+    &:hover {
+      $hover-color: lighten($darcula-inverted, 8%);
+      fill: $hover-color;
+      color: $hover-color;
+      text-decoration: none;
+    }
+  }
+
+  a:not(.logo) {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .account {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    .account-dropdown svg:first-child {
+      fill: lighten($zurple-lighter, 4%);
+      width: 22px;
+      height: 22px;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .notifications {
+    cursor: pointer;
+
+    &:hover svg {
+      fill: $darcula-inverted;
+    }
+
+    svg {
+      fill: darken($darcula-inverted, 8%);
+      height: 22px;
+      width: 22px;
+    }
+
+    span {
+      font-size: 90%;
+      background: $darcula-dark;
+      color: darken($darcula-dark-inverted, 8%);
+      border-radius: $border-radius - 1px;
+      padding: 0.1rem 0;
+      margin-left: 0.25rem;
+
+      &:before,
+      &:after {
+        content: '\00a0';
+      }
+    }
+
+    &.active span {
+      color: $zurple-inverted;
+      background: $zurple;
+    }
+  }
+
+  a.register {
+    color: lighten($zurple-lighter, 8%);
+
+    &:hover {
+      color: lighten($zurple-lighter, 18%);
+    }
+  }
 }

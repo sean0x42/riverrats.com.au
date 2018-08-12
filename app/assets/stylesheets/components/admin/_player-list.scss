@@ -23,7 +23,7 @@ form .player-list {
     }
 
     .player-username {
-      color: lighten($generic-text, 40%);
+      color: lighten($text, 40%);
       &:before { content: '\00a0'; }
     }
 
@@ -39,7 +39,7 @@ form .player-list {
 
       i {
         font-size: 18px;
-        color: $generic-text;
+        color: $text;
         vertical-align: middle;
       }
 

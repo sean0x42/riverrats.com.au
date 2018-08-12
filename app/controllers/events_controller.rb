@@ -21,9 +21,9 @@ class EventsController < ApplicationController
                 .where('start_at < ?', @finish)
 
     # Take our events and bundle them into a hash
-    @events = (@start..@finish).map{ |date| [date, []] }.to_h
+    @dates = (@start..@finish).map{ |date| [date, []] }.to_h
     events.each do |event|
-      @events[event.start_at.to_date].push event
+      @dates[event.start_at.to_date].push event
     end
   end
 

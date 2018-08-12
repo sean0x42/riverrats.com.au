@@ -4,11 +4,10 @@
 
 <div id="print">
 
-  <div class="thin-hero">
+  <div class="thin-hero inverted">
     <div class="wrapper">
-      <h1 class="has-subtitle"><%= @season.name %></h1>
-      <p class="subtitle">Held from <%= local_date @season.start_at, '%A, %B %e' %>
-        to <%= local_date @season.end_at, '%A, %B %e' %>.</p>
+      <span class="subheading">Season Leaderboard</span>
+      <h1><%= @season.name %></h1>
     </div>
   </div>
 

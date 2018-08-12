@@ -6,12 +6,13 @@
   <%= javascript_include_tag 'admin/admin', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-<% content_for :body_class, 'admin' %>
-
 <% content_for :body do %>
-  <%= render 'application/header' %>
-  <%= yield %>
-  <%= render 'application/footer' %>
+  <div class="admin">
+    <%= render 'admin/navigation' %>
+    <div class="wrapper">
+      <%= yield %>
+    </div>
+  </div>
 <% end %>
 
 <%= render template: 'layouts/application' %>

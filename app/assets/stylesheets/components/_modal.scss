@@ -1,32 +1,45 @@
-.modals {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.modal-overlay {
   position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.15);
-  z-index: 2000;
+  bottom: 0;
+  opacity: 0;
+  background: $darcula;
+  z-index: 10000;
+  pointer-events: none;
+  transition: opacity 300ms;
+
+  &[active] {
+    opacity: 0.6;
+    pointer-events: all;
+  }
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 10001;
+
+  .wrapper {
+    max-width: $modal-width;
+    margin: 8rem auto;
+  }
 
   .modal {
-    position: relative;
     background: white;
-    width: 400px;
-    padding: 21px 1rem 1rem;
-    border-radius: 3px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow-x: hidden;
+    padding: 1.75rem;
+    border-radius: $border-radius;
+  }
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, $zurple, $branding-primary-rotated);
-      border-radius: 3px 3px 0 0;
-    }
+  .danger-zone {
+    border-top: 2px dashed $danger;
+    margin-top: 2rem;
+    padding-top: 2rem;
   }
 }

@@ -1,79 +1,84 @@
-<%- content_for :title, 'All Players (Admin)' %>
+<%- content_for :title, 'Players (Admin Panel)' %>
 
-<div class="column-wrapper small-first">
-
-  <!-- Navigation -->
-  <div class="thin">
-    <%= render 'admin/navigation' %>
+<div class="heading-and-button">
+  <div>
+    <span class="subheading">Admin Tools</span>
+    <h1>Players</h1>
   </div>
+  <div>
+    <%= link_to 'Create player', new_admin_player_path, class: 'button' %>
+  </div>
+</div>
 
-  <div class="wide">
+<div class="breakdown">
+  
+</div>
 
-    <!-- Header -->
-    <div class="wrapper-header admin">
-      <div>
-        <h1 class="has-subtitle">All Players</h1>
-        <p class="subtitle">Here you can view and manage all players registered on the website.</p>
-      </div>
-      <%= render 'admin/buttons' %>
-    </div>
+<div class="players-list model-list">
+  <table>
+    <%= render @players %>
+  </table>
+</div>
+
+<!-- Pagination -->
+<%= paginate @players %>
+<p><%= page_entries_info @players %></p>
+
 
     <!-- Breakdown -->
-    <div class="background">
-      <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>
+<!--    <div class="background">-->
+<!--      <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>-->
 
-      <div class="stats">
+<!--      <div class="stats">-->
 
-        <!-- Registered players -->
-        <div class="stat">
-          <p class="numeric"><%= number_with_delimiter @stats[:count] %></p>
-          <p class="label">registered players</p>
-        </div>
+<!--        <!-- Registered players -->
+<!--        <div class="stat">-->
+<!--          <p class="numeric"><%#= number_with_delimiter @stats[:count] %></p>-->
+<!--          <p class="label">registered players</p>-->
+<!--        </div>-->
 
-        <!-- New players -->
-        <div class="stat">
-          <p class="numeric"><%= number_with_delimiter @stats[:new_count] %></p>
-          <p class="label">in the last 30 days</p>
-        </div>
+<!--        <!-- New players -->
+<!--        <div class="stat">-->
+<!--          <p class="numeric"><%#= number_with_delimiter @stats[:new_count] %></p>-->
+<!--          <p class="label">in the last 30 days</p>-->
+<!--        </div>-->
 
-        <!-- # of admins -->
-        <div class="stat">
-          <p class="numeric"><%= number_with_delimiter @stats[:admin_count] %></p>
-          <p class="label">administrators</p>
-        </div>
+<!--        <!-- # of admins -->
+<!--        <div class="stat">-->
+<!--          <p class="numeric"><%#= number_with_delimiter @stats[:admin_count] %></p>-->
+<!--          <p class="label">administrators</p>-->
+<!--        </div>-->
 
-      </div>
-    </div>
+<!--      </div>-->
+<!--    </div>-->
 
-    <div class="background">
+<!--    <div class="background">-->
 
-      <h2><i class="material-icons">&#xE7FB;</i> All players</h2>
+<!--      <h2><i class="material-icons">&#xE7FB;</i> All players</h2>-->
 
-      <%- if @players.empty? %>
-        <%= render partial: 'admin/empty_state', locals: { noun: 'players', link: new_admin_player_path } %>
-      <%- else %>
-        <div class="table-wrapper">
-          <table>
-            <tr>
-              <th>Name</th>
-              <th>Username</th>
-              <th class="badge-column"></th>
-              <th class="numeric stretch">Score</th>
-              <th class="numeric">Played</th>
-              <th class="numeric">Won</th>
-            </tr>
-            <%= render @players %>
-          </table>
-        </div>
-      <%- end %>
+      <%#- if @players.empty? %>
+        <%#= render partial: 'admin/empty_state', locals: { noun: 'players', link: new_admin_player_path } %>
+      <%#- else %>
+<!--        <div class="table-wrapper">-->
+<!--          <table>-->
+<!--            <tr>-->
+<!--              <th>Name</th>-->
+<!--              <th>Username</th>-->
+<!--              <th class="badge-column"></th>-->
+<!--              <th class="numeric stretch">Score</th>-->
+<!--              <th class="numeric">Played</th>-->
+<!--              <th class="numeric">Won</th>-->
+<!--            </tr>-->
+            <%#= render @players %>
+<!--          </table>-->
+<!--        </div>-->
+      <%#- end %>
 
-      <div class="background-footer">
-        <%= paginate @players %>
-        <p><%= page_entries_info @players %></p>
-      </div>
+<!--      <div class="background-footer">-->
+        <%#= paginate @players %>
+<!--        <p><%#= page_entries_info @players %></p>-->
+<!--      </div>-->
 
-    </div>
+<!--    </div>-->
 
-  </div>
-
-</div>
+<!--  </div>-->

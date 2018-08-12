@@ -1,0 +1,15 @@
+<% attributes = [] %>
+<% attributes.push('disabled') if date.month != @date.month %>
+<% attributes.push('today') if date == @date %>
+<% attributes.push('empty') if events.empty? %>
+<div class="date <%= attributes.join ' ' %>">
+  <div>
+    <p class="day inter-ui-ss01"><%= date.day.to_s.rjust(2, '0') %></p>
+    <p class="weekday"><%= date.strftime '%a' %></p>
+  </div>
+
+  <!-- Events -->
+  <ul>
+    <%= render collection: events, partial: 'event' %>
+  </ul>
+</div>

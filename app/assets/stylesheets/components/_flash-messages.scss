@@ -18,9 +18,15 @@
     margin-bottom: 1rem;
     border: 2px solid $zurple;
     background: white;
+    line-height: $body-line-height;
 
     &.flash-error {
       border-color: $danger;
+
+      .flash-icon {
+        background: $danger;
+      }
+
       .flash-close svg.material-icons {
         fill: $danger;
       }

@@ -29,24 +29,17 @@
 
 </div>
 
-<div class="recent-games-wrapper">
+<!-- Recent Games -->
+<div class="recent-games">
   <div class="wrapper">
 
-    <!-- Recent games -->
-    <div class="recent-games">
-      <h2><i class="material-icons">timer</i>Recent games</h2>
-      <div class="game-grid">
-        <%= render collection: @recent_games, partial: 'game' %>
-      </div>
+    <!-- Header -->
+    <span class="subheading">Alphabet Soup</span>
+    <h1>Recent Games</h1>
 
-      <%- if player_signed_in? %>
-        <div class="buttons">
-          <%= link_to games_path, class: 'button' do %>
-            View all games
-          <% end %>
-        </div>
-      <%- end %>
+    <!-- Grid of recent games -->
+    <div class="game-grid">
+      <%= render collection: @recent_games, partial: 'game' %>
     </div>
-
   </div>
 </div>

@@ -1,8 +1,7 @@
-a {
+a.anchor {
   color: $zurple;
-  text-decoration: none;
+}
 
-  &:hover {
-    text-decoration: underline;
-  }
+a:not(.anchor) {
+  text-decoration: none;
 }

@@ -11,7 +11,6 @@ body:not(.admin) .responsive-navigation {
   z-index: 1900;
   background: white;
   border-top: 1px solid $zurple;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
 
   ul {
     display: grid;
@@ -25,7 +24,7 @@ body:not(.admin) .responsive-navigation {
       display: flex;
       flex-direction: column;
       font-size: 14px;
-      color: lighten($generic-text, 15%);
+      color: lighten($text, 15%);
       border-radius: 3px;
       align-items: center;
       padding: 6px 0.5rem;
@@ -36,7 +35,7 @@ body:not(.admin) .responsive-navigation {
       i {
         padding-top: 6px;
         font-size: 26px;
-        color: lighten($generic-text, 25%);
+        color: lighten($text, 25%);
       }
 
       &:hover {
@@ -76,7 +75,7 @@ body:not(.admin) .overflow-nav {
 
   h2 {
     display: block;
-    color: lighten($generic-text-bold, 30%);
+    color: lighten($text-bold, 30%);
     text-transform: uppercase;
     font-size: 12px;
     font-weight: bold;
@@ -91,7 +90,7 @@ body:not(.admin) .overflow-nav {
     list-style-type: none;
 
     a {
-      color: lighten($generic-text, 15%);
+      color: lighten($text, 15%);
       display: flex;
       align-items: center;
       flex-direction: row;
@@ -136,14 +135,15 @@ body:not(.admin) .overflow-nav {
 }
 
 .navigation {
+  display: none;
   position: fixed;
   top: 0;
   z-index: 2000;
   width: 100%;
-  background: white;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 0.5rem rgba(0, 0, 0, 0.02);
-  border-bottom: 1px solid $zurple;
+  color: $darcula-inverted;
+  background: transparentize($darcula, 0.05);
+  padding: 0.75rem 1.5rem;
+  border-top: 4px solid $zurple;
 
   .wrapper {
     display: flex;
@@ -164,7 +164,7 @@ body:not(.admin) .overflow-nav {
 
   .search-wrapper {
     box-shadow: none;
-    background: darken($input-background, 1%);
+    background: $grey;
     max-width: 400px;
 
     input {
@@ -172,7 +172,7 @@ body:not(.admin) .overflow-nav {
       padding: 11px 13px !important;
 
       &::placeholder {
-        color: lighten($generic-text, 25%);
+        color: lighten($text, 25%);
         opacity: 1;
       }
     }
@@ -216,7 +216,6 @@ body:not(.admin) .overflow-nav {
   }
 
   .navigation {
-    border: none;
 
     .quick-links {
       display: flex;
@@ -226,7 +225,7 @@ body:not(.admin) .overflow-nav {
       padding: 0;
 
       a {
-        color: lighten($generic-text, 25%);
+        color: lighten($text, 25%);
         margin-right: 1rem;
 
         &:hover {
@@ -288,7 +287,7 @@ body:not(.admin) .overflow-nav {
           display: flex;
           align-items: center;
           padding: 0.5rem 1.25rem;
-          color: lighten($generic-text, 15%);
+          color: lighten($text, 15%);
 
           &:hover {
             text-decoration: none;
