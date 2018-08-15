@@ -4,11 +4,13 @@
   align-items: flex-start;
   grid-gap: 2rem;
   margin: 170px auto 8rem;
+  padding: 0 1.5rem;
   max-width: $wrapper-width;
   width: 100%;
 
   .wrapper {
     margin: 0 auto;
+    padding: 0;
   }
 
   .heading-and-button {

@@ -20,6 +20,6 @@
   <%= render 'application/header' %>
   <%= content_for?(:body) ? yield(:body) : yield %>
   <%= render 'application/footer' %>
-  <div class="modal-overlay"></div>
+  <%= render 'modals' %>
 </body>
 </html>

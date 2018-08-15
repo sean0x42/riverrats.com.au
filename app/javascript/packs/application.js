@@ -9,3 +9,4 @@
 
 import "./flashes/flash_controller"
 import "./modals/modal_controller"
+import "./navigation"

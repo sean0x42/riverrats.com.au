@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-
-  namespace :admin do
-    get 'scores/index'
-  end
   require 'sidekiq/web'
   authenticated :player do
     mount Sidekiq::Web => '/sidekiq'
@@ -12,7 +8,7 @@ Rails.application.routes.draw do
              path_names: {
                sign_in: 'login',
                sign_out: 'logout',
-               sign_up: 'join'
+               sign_up: 'register'
              },
              controllers: {
                registrations: 'players/registrations',

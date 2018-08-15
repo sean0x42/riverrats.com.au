@@ -30,22 +30,20 @@
   <!-- Email address -->
   <div class="field">
     <%= form.label :email, for: 'player_email' %> (Optional)<br/>
-    <div class="input-wrapper">
-      <i class="material-icons">&#xE0BE;</i>
-      <%= form.email_field :email, id: 'player_email', placeholder: 'someone@example.com' %>
-    </div>
+    <%= form.email_field :email, id: 'player_email', placeholder: 'someone@example.com' %>
   </div>
+
+  <hr/>
+
+  <h2>Permissions</h2>
 
   <div class="field">
     <div class="checkbox">
       <%= form.check_box :is_admin, id: 'player_is_admin' %>
-      <%= form.label :is_admin, 'Administrative privileges', for: 'player_is_admin' %>
+      <%= form.label :is_admin, 'Access admin panel', for: 'player_is_admin' %>
     </div>
   </div>
 
-  <div class="actions buttons">
-    <%= form.submit class: 'button wide' %>
-    <%#= link_to 'Cancel', admin_players_path, class: 'button-tertiary' %>
-  </div>
+  <%= form.submit class: 'button wide', remote: true, data: { disable_with: 'Please wait...' } %>
 
 <% end %>

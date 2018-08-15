@@ -1,5 +1,5 @@
 label {
-  margin-bottom: 0.25rem;
+  line-height: $body-line-height;
 }
 
 input[type="text"],
@@ -10,13 +10,12 @@ input[type="tel"] {
   position: relative;
   width: 100%;
   max-width: 320px;
-  background: $input-background;
-  border: 1px solid $input-border;
+  background: $grey-light;
+  border: 1px solid $grey-dark;
   border-radius: 2px;
   line-height: 1.1;
-  color: $text;
+  color: $grey-light-inverted;
   padding: 10px 14px;
-  margin-top: 0.25rem;
 }
 
 input[type="number"] {
@@ -25,20 +24,6 @@ input[type="number"] {
 
 input[type="tel"] {
   max-width: 240px;
-}
-
-input[type="password"] { font-family:
-        '-apple-system',
-        'system-ui',
-        'BlinkMacSystemFont',
-        'Segoe UI',
-        'Roboto',
-        'Helvetica Neue',
-        'Arial',
-        'sans-serif',
-        'Apple Color Emoji',
-        'Segoe UI Emoji',
-        'Segoe UI Symbol';
 }
 
 .input-wrapper {
@@ -56,10 +41,10 @@ input[type="password"] { font-family:
   input {
     padding-left: 48px;
   }
-
 }
 
-.date-input, .date-time-input {
+.date-input,
+.date-time-input {
   max-width: 260px !important;
   cursor: pointer;
 }

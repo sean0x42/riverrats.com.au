@@ -5,12 +5,12 @@
       <%- if !player_signed_in? || true %>
 
         <!-- Join -->
-        <%= link_to new_player_registration_path, class: 'button' do %>
+        <%= link_to new_player_registration_path, class: 'button', remote: true, data: { expects_modal: true, disable: true } do %>
           <span>Create an account</span>
         <% end %>
 
         <!-- Secure login -->
-        <%= link_to new_player_session_path, class: 'button-secondary' do %>
+        <%= link_to new_player_session_path, class: 'button-secondary', remote: true, data: { expects_modal: true, disable: true } do %>
           <i class="material-icons">&#xE88D;</i>
           <span>Secure login</span>
         <% end %>

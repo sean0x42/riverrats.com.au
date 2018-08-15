@@ -1,75 +1,83 @@
-<%- content_for :title, 'All Games (Admin)' %>
+<%- content_for :title, 'Games (Admin Panel)' %>
 
-<div class="column-wrapper small-first">
-
-  <!-- Navigation -->
-  <div class="thin">
-    <%= render 'admin/navigation' %>
+<div class="heading-and-button">
+  <div>
+    <span class="subheading">Admin Tools</span>
+    <h1>Games</h1>
   </div>
-
-  <div class="wide">
-
-    <!-- Header -->
-    <div class="wrapper-header admin">
-      <div>
-        <h1 class="has-subtitle">Games</h1>
-        <p class="subtitle">Here you can view and manage all games.</p>
-      </div>
-      <%= render 'admin/buttons' %>
-    </div>
-
-    <!-- Breakdown -->
-    <div class="background">
-      <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>
-
-      <div class="stats">
-
-        <!-- Registered players -->
-        <div class="stat">
-          <p class="numeric"><%= number_with_delimiter @stats[:count] %></p>
-          <p class="label">games played</p>
-        </div>
-
-        <!-- New players -->
-        <div class="stat">
-          <p class="numeric"><%= number_with_delimiter @stats[:new_count] %></p>
-          <p class="label">in the last 30 days</p>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- Games list -->
-    <div class="background">
-
-      <h2><i class="material-icons">&#xE021;</i> Games</h2>
-
-      <% if @games.empty? %>
-        <%= render partial: 'admin/empty_state', locals: { noun: 'games', link: new_admin_game_path } %>
-      <% else %>
-        <div class="table-wrapper">
-          <table>
-            <tr>
-              <th></th>
-              <th>Played</th>
-              <th>Venue</th>
-              <th class="stretch">Season</th>
-              <th class="numeric">Players</th>
-              <th class="numeric">Referees</th>
-            </tr>
-            <%= render @games %>
-          </table>
-        </div>
-      <% end %>
-
-      <div class="background-footer">
-        <%= paginate @games %>
-        <p><%= page_entries_info @games %></p>
-      </div>
-
-    </div>
-
+  <div>
+    <%= link_to new_admin_game_path, class: 'button' do %>
+      <i class="material-icons">&#xE150;</i>
+      <span>Record a game</span>
+    <%- end %>
   </div>
+</div>
+
+<div class="breakdown">
 
 </div>
+
+<div class="games-list model-list">
+  <table>
+    <%= render @games %>
+  </table>
+</div>
+
+<!-- Pagination -->
+<%= paginate @games %>
+<p><%= page_entries_info @games %></p>
+
+
+    <!-- Breakdown -->
+<!--    <div class="background">-->
+<!--      <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>-->
+
+<!--      <div class="stats">-->
+
+<!--        <!-- Registered players -->
+<!--        <div class="stat">-->
+<!--          <p class="numeric"><%#= number_with_delimiter @stats[:count] %></p>-->
+<!--          <p class="label">games played</p>-->
+<!--        </div>-->
+
+<!--        <!-- New players -->
+<!--        <div class="stat">-->
+<!--          <p class="numeric"><%#= number_with_delimiter @stats[:new_count] %></p>-->
+<!--          <p class="label">in the last 30 days</p>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--    <!-- Games list -->
+<!--    <div class="background">-->
+
+<!--      <h2><i class="material-icons">&#xE021;</i> Games</h2>-->
+
+      <%# if @games.empty? %>
+        <%#= render partial: 'admin/empty_state', locals: { noun: 'games', link: new_admin_game_path } %>
+      <%# else %>
+<!--        <div class="table-wrapper">-->
+<!--          <table>-->
+<!--            <tr>-->
+<!--              <th></th>-->
+<!--              <th>Played</th>-->
+<!--              <th>Venue</th>-->
+<!--              <th class="stretch">Season</th>-->
+<!--              <th class="numeric">Players</th>-->
+<!--              <th class="numeric">Referees</th>-->
+<!--            </tr>-->
+            <%#= render @games %>
+<!--          </table>-->
+<!--        </div>-->
+      <%# end %>
+
+<!--      <div class="background-footer">-->
+        <%#= paginate @games %>
+<!--        <p><%#= page_entries_info @games %></p>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--  </div>-->

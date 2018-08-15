@@ -10,3 +10,4 @@ Features:
     * New flash messages.
     * New header and footer.
     * Reworked calendar.
+    * More modals!

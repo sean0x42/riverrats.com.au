@@ -1,0 +1,15 @@
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |form| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= form.label :email %><br/>
+    <%= form.email_field :email, autofocus: true, placeholder: 'someone@example.com' %>
+  </div>
+
+  <%= form.submit 'Send reset instructions', class: 'button wide', data: { disable_with: 'Please wait...' } %>
+
+  <div class="modal-footer">
+    <p><%= link_to 'Sign in', new_player_session_path, class: 'anchor', remote: true, data: { expects_modal: true, disable: true } %>
+      or <%= link_to 'sign up!', new_player_registration_path, class: 'anchor', remote: true, data: { expects_modal: true, disable: true } %></p>
+  </div>
+<% end %>

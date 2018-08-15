@@ -1,0 +1,29 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
+
+  <div class="field">
+    <%= form.label :login, 'Email or username' %><br/>
+    <%= form.text_field :login, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %><br/>
+    <%= form.password_field :password, autocomplete: 'off' %>
+  </div>
+
+  <div class="field remember-and-forget">
+    <div class="remember">
+      <div class="checkbox">
+        <%= form.check_box :remember_me %>
+        <%= form.label :remember_me %>
+      </div>
+    </div>
+    <%= link_to 'Forgot password?', new_player_password_path, class: 'anchor', remote: true, data: { expects_modal: true, disable: true } %>
+  </div>
+
+  <%= form.submit 'Sign me in', class: 'button wide', name: nil, data: { disable_with: 'Please wait...' } %>
+
+  <div class="modal-footer">
+    <p>Don't have an account? <%= link_to 'Create one!', new_player_registration_path, class: 'anchor', remote: true, data: { expects_modal: true, disable: true } %></p>
+  </div>
+
+<% end %>

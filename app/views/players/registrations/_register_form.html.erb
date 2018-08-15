@@ -1,0 +1,37 @@
+<%= form_with model: resource do |form| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= form.label :first_name %><br/>
+    <%= form.text_field :first_name, autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %><br/>
+    <%= form.text_field :last_name, spellcheck: false, placeholder: 'Surname, family name...' %>
+  </div>
+
+  <hr/>
+
+  <div class="field">
+    <%= form.label :email %><br/>
+    <%= form.email_field :email, placeholder: 'someone@example.com' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %><br/>
+    <%= form.password_field :password, autocomplete: 'off', placeholder: '6 characters minimum' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %><br/>
+    <%= form.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Retype your password' %>
+  </div>
+
+  <%= form.submit 'Create my account', class: 'button wide', name: nil, data: { disable_with: 'Please wait...' } %>
+
+  <div class="modal-footer">
+    <p>Already have an account? <%= link_to 'Log in', new_player_session_path, class: 'anchor', remote: true, data: { expects_modal: true, disable: true } %>.</p>
+  </div>
+
+<% end %>

@@ -11,9 +11,33 @@
   transition: opacity 300ms;
 
   &[active] {
-    opacity: 0.6;
+    opacity: 0.75;
     pointer-events: all;
   }
+}
+
+.modal-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10001;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 100ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &[active] {
+    opacity: 1;
+  }
+
+  &[active] .sk-folding-cube .sk-cube:before {
+    animation: sk-foldCubeAngle 2.4s infinite linear both;
+  }
+
 }
 
 .modal-wrapper {
@@ -23,23 +47,64 @@
   right: 0;
   bottom: 0;
   overflow-y: auto;
-  z-index: 10001;
+  z-index: 10002;
 
   .wrapper {
     max-width: $modal-width;
-    margin: 8rem auto;
+    margin: 6rem auto 4rem;
   }
 
   .modal {
     background: white;
     overflow-x: hidden;
-    padding: 1.75rem;
+    padding: 2rem;
     border-radius: $border-radius;
   }
 
-  .danger-zone {
-    border-top: 2px dashed $danger;
+  hr {
+    border: none;
+    border-bottom: 2px dashed $grey;
+    margin: 1.7rem 0 1.3rem;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1em;
     margin-top: 2rem;
-    padding-top: 2rem;
+  }
+
+  .button.wide {
+    margin-top: 2rem;
+  }
+
+  .modal-footer {
+    background: $grey;
+    color: $grey-inverted;
+    text-align: center;
+    padding: 1rem;
+    margin: 2rem -2rem -2rem;
+    border-top: 1px solid $grey-dark;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  input {
+    max-width: unset;
+  }
+}
+
+.remember-and-forget {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 2rem 0 0.5rem;
+
+  .remember {
+    margin-right: auto;
   }
 }

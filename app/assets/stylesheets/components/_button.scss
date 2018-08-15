@@ -14,7 +14,7 @@
   align-items: center;
   font-size: $font-size - 1px;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  //letter-spacing: 0.5px;
   line-height: 1.1;
   vertical-align: middle;
   border: none;
@@ -43,10 +43,10 @@
 .button {
   color: $zurple-inverted;
   background: $zurple;
-  transition: all 300ms;
   transform: translateY(0px);
+  transition: transform 300ms, box-shadow 300ms;
 
-  &:hover {
+  &:not([disabled]):hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
@@ -54,6 +54,12 @@
   &.danger {
     color: $danger-inverted;
     background: $danger;
+  }
+
+  &[disabled] {
+    background: $grey-dark;
+    color: $grey-dark-inverted;
+    fill: $grey-dark-inverted;
   }
 }
 

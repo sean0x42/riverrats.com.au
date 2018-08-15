@@ -1,0 +1,31 @@
+.update-banner {
+  display: none;
+  width: 100%;
+  background: $zurple;
+  color: $zurple-inverted;
+  line-height: $body-line-height;
+  margin-top: -4px;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding: 1rem 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+
+  svg {
+    fill: $zurple-inverted;
+    width: 22px;
+    height: 22px;
+    margin-right: 0.5rem;
+  }
+}
