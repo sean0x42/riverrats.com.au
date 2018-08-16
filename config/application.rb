@@ -31,6 +31,9 @@ module RiverratsComAu
       "#{config.root}/app/models/achievements/wins"
     ]
 
+    # Action View
+    config.action_view.form_with_generates_ids = true
+
     # Register observers
     config.active_record.observers = [:games_players_observer, :game_observer]
 

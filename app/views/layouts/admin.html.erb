@@ -6,6 +6,8 @@
   <%= javascript_include_tag 'admin/admin', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
+<% content_for :title_suffix, ' (Admin Panel)' %>
+
 <% content_for :body do %>
   <div class="admin">
     <%= render 'admin/navigation' %>

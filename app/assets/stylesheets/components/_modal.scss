@@ -60,42 +60,6 @@
     padding: 2rem;
     border-radius: $border-radius;
   }
-
-  hr {
-    border: none;
-    border-bottom: 2px dashed $grey;
-    margin: 1.7rem 0 1.3rem;
-  }
-
-  h1 {
-    margin-bottom: 2rem;
-  }
-
-  h2 {
-    font-size: 1em;
-    margin-top: 2rem;
-  }
-
-  .button.wide {
-    margin-top: 2rem;
-  }
-
-  .modal-footer {
-    background: $grey;
-    color: $grey-inverted;
-    text-align: center;
-    padding: 1rem;
-    margin: 2rem -2rem -2rem;
-    border-top: 1px solid $grey-dark;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  input {
-    max-width: unset;
-  }
 }
 
 .remember-and-forget {

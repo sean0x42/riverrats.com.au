@@ -1,25 +1,6 @@
-<%- content_for :title, "Edit @#{@player.username} (Admin)" %>
+<%- content_for :title, t('admin.players.edit.title') %>
 
 <span class="subheading">Admin Tools</span>
-<h1>Edit @<%= @player.username %></h1>
+<h1><%= t('admin.players.edit.title') %></h1>
 
-<!-- Form -->
-<div class="background">
-  <h2>Form</h2>
-  <%= render 'form' %>
-</div>
-
-<!-- Danger zone -->
-<div class="background danger-zone">
-
-  <h2><i class="material-icons">&#xE002;</i> Delete player</h2>
-  <p><strong>Permanently</strong> delete @<%= @player.username %> from the database. You will not be able to recover
-    this account, and the user will no longer be able to login.</p>
-
-  <div class="buttons">
-    <%= link_to admin_player_path(@player), method: :delete, class: 'button danger', data: { confirm: t('player.confirm_delete') } do %>
-      Delete @<%= @player.username %>
-    <% end %>
-  </div>
-
-</div>
+<%= render 'form' %>

@@ -1,12 +1,12 @@
-<%- content_for :title, 'Players (Admin Panel)' %>
+<%- content_for :title, t('admin.players.index.title') %>
 
 <div class="heading-and-button">
   <div>
     <span class="subheading">Admin Tools</span>
-    <h1>Players</h1>
+    <h1><%= t('admin.players.index.title') %></h1>
   </div>
   <div>
-    <%= link_to 'Create Player', new_admin_player_path, class: 'button', remote: true, data: { expects_modal: true } %>
+    <%= link_to t('admin.players.new.title'), new_admin_player_path, class: 'button', remote: true, data: { expects_modal: true } %>
   </div>
 </div>
 

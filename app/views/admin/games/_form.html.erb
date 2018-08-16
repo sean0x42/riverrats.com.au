@@ -1,115 +1,80 @@
-<%= form_with model: [:admin, @game], local: true do |form| %>
+<%= form_with model: [:admin, @game], class: 'modal-form' do |form| %>
 
   <%= render partial: 'application/form_errors', locals: { object: @game } %>
 
-  <!-- Game information -->
-  <section>
-    <div class="section-outline">
-      <h2><span>I</span>Game details</h2>
-    </div>
-    <div class="section-content">
-
-      <!-- Date played -->
-      <div class="field">
-        <%= form.label :played_on, for: 'game_played_on' %>
-        <div class="input-wrapper">
-          <i class="material-icons">&#xE916;</i>
-          <%= form.text_field :played_on, id: 'game_played_on', class: 'date-input', placeholder: 'Click to edit' %>
-        </div>
-      </div>
-
-      <!-- Venue -->
-      <div class="field">
-        <%= form.label :venue_id, for: 'game_venue_id' %><br/>
-        <%= form.collection_select :venue_id, Venue.all, :id, :name, {}, { id: 'game_venue_id' } %>
-      </div>
-
-      <!-- Season -->
-      <div class="field">
-        <%= form.label :season_id, for: 'game_season_id' %><br/>
-        <%= form.collection_select :season_id, Season.all.order(start_at: :desc).limit(10), :id, :name, {}, { id: 'game_season_id' } %>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- Game players -->
-  <section>
-    <div class="section-outline">
-      <h2><span>II</span>Players</h2>
-    </div>
-
-    <div class="section-content">
-
-      <!-- Players -->
-      <div class="field">
-        <p class="tip"><strong>Hint:</strong> Drag and drop players using
-          <i class="material-icons drag-handle">drag_indicator</i> to reorder them.</p>
-
-        <div id="games_players" class="player-list sortable">
-          <%= form.fields_for :games_players do |game_player| %>
-            <%= render 'games_player_fields', f: game_player %>
-          <% end %>
-        </div>
-
-        <h3>Add Players</h3>
-        <p>Search for players by their username, or full name. Missing
-          someone? <%= link_to 'Create a new player', new_admin_player_path, target: '_blank' %>.</p>
-
-        <div class="player-input-wrapper">
-          <%= form.text_field :player, class: 'typeahead player-input', name: nil, placeholder: 'Name or username' %>
-          <%= link_to_add_association 'Add player', form, :games_players, class: 'button-secondary',
-                                      data: {
-                                          'association-insertion-node': '.player-list#games_players',
-                                          'association-insertion-method': 'append'
-                                      } %>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- Referees -->
-  <section>
-
-    <div class="section-outline">
-      <h2><span>III</span>Tournament directors</h2>
-    </div>
-
-    <div class="section-content">
-
-      <div class="field">
-
-        <div id="referees" class="player-list">
-          <%= form.fields_for :referees do |referee| %>
-            <%= render 'referee_fields', f: referee %>
-          <% end %>
-        </div>
-
-        <h3>Add Directors</h3>
-        <p>Search for players by their username, or full name.</p>
-
-        <div class="player-input-wrapper">
-          <%= form.text_field :player, class: 'typeahead player-input', name: nil, placeholder: 'Name or username' %>
-          <%= link_to_add_association 'Add director', form, :referees, class: 'button-secondary',
-                                      data: {
-                                          'association-insertion-node': '.player-list#referees',
-                                          'association-insertion-method': 'append'
-                                      } %>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <div class="buttons">
-    <%= form.submit class: 'button' %>
-    <%= link_to 'Cancel', admin_games_path, class: 'button-tertiary' %>
+  <!-- Date played -->
+  <div class="field">
+    <%= form.label :played_on, for: 'game_played_on' %><br/>
+    <%= form.text_field :played_on, id: 'game_played_on', class: 'date-input', placeholder: 'Click to edit' %>
   </div>
 
+  <!-- Venue -->
+  <div class="field">
+    <%= form.label :venue_id, for: 'game_venue_id' %><br/>
+    <%= form.collection_select :venue_id, Venue.all, :id, :name, {}, { id: 'game_venue_id' } %>
+  </div>
+
+  <!-- Season -->
+  <div class="field">
+    <%= form.label :season_id, for: 'game_season_id' %><br/>
+    <%= form.collection_select :season_id, Season.all.order(start_at: :desc).limit(10), :id, :name, {}, { id: 'game_season_id' } %>
+  </div>
+
+  <hr/>
+
+  <h2>Players</h2>
+
+  <!-- Players -->
+  <div class="field">
+    <p class="tip"><strong>Hint:</strong> Drag and drop players using
+      <i class="material-icons drag-handle">drag_indicator</i> to reorder them.</p>
+
+    <div id="games_players" class="player-list sortable">
+      <%= form.fields_for :games_players do |game_player| %>
+        <%= render 'games_player_fields', f: game_player %>
+      <% end %>
+    </div>
+
+    <h2>Add Players</h2>
+    <p>Search for players by their username, or full name. Missing
+      someone? <%= link_to 'Create a new player', new_admin_player_path, target: '_blank' %>.</p>
+
+    <div class="player-input-wrapper">
+      <%= form.text_field :player, class: 'typeahead player-input', name: nil, placeholder: 'Name or username' %>
+      <%= link_to_add_association 'Add player', form, :games_players, class: 'button-secondary',
+                                  data: {
+                                      'association-insertion-node': '.player-list#games_players',
+                                      'association-insertion-method': 'append'
+                                  } %>
+    </div>
+
+  </div>
+
+  <hr/>
+
+  <h2>Tournament Directors</h2>
+
+  <div class="field">
+
+    <div id="referees" class="player-list">
+      <%= form.fields_for :referees do |referee| %>
+        <%= render 'referee_fields', f: referee %>
+      <% end %>
+    </div>
+
+    <h2>Add Directors</h2>
+    <p>Search for players by their username, or full name.</p>
+
+    <div class="player-input-wrapper">
+      <%= form.text_field :player, class: 'typeahead player-input', name: nil, placeholder: 'Name or username' %>
+      <%= link_to_add_association 'Add director', form, :referees, class: 'button-secondary',
+                                  data: {
+                                      'association-insertion-node': '.player-list#referees',
+                                      'association-insertion-method': 'append'
+                                  } %>
+    </div>
+
+  </div>
+
+  <%= form.submit class: 'button wide', name: nil, data: { disable_with: 'Please wait...' } %>
 <% end %>

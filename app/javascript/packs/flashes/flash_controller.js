@@ -1,5 +1,7 @@
 "use strict";
 
+import { Flash } from "./flash";
+
 /**
  * Constructs a new flash element.
  * @param flash Flash object.
@@ -41,7 +43,7 @@ function createFlash(flash) {
  * @param flash Flash message to display.
  */
 export function renderFlashMessage(flash) {
-  const flashes = document.querySelector(".flashes");
+  const flashes = document.querySelector(".flash-messages");
   flashes.appendChild(createFlash(flash));
 }
 
@@ -53,3 +55,12 @@ addEventListener("click", event => {
   const flash = target.closest(".flash");
   flash.parentNode.removeChild(flash);
 });
+
+/**
+ * This is a very simple interface for creating a new flash message.
+ * @param title Flash title.
+ * @param body Flash body.
+ */
+window.createFlash = (title, body) => {
+  new Flash("info", title, body).show();
+};

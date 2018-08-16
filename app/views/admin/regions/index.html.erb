@@ -1,12 +1,12 @@
-<%- content_for :title, 'Regions (Admin Panel)' %>
+<%- content_for :title, t('admin.regions.index.title') %>
 
 <div class="heading-and-button">
   <div>
     <span class="subheading">Admin Tools</span>
-    <h1>Regions</h1>
+    <h1><%= t('admin.regions.index.title') %></h1>
   </div>
   <div>
-    <%= link_to 'Create region', new_admin_region_path, class: 'button' %>
+    <%= link_to t('admin.regions.new.title'), new_admin_region_path, class: 'button', remote: true, data: { expects_modal: true, disable: true } %>
   </div>
 </div>
 
@@ -20,20 +20,3 @@
 
 <%= paginate @regions %>
 <p><%= page_entries_info @regions %></p>
-
-<!--    <div class="background">-->
-
-<!--      <h2><i class="material-icons">&#xE0C8;</i> Regions</h2>-->
-
-      <%# if @regions.empty? %>
-        <%#= render partial: 'admin/empty_state', locals: { noun: 'regions', link: new_admin_region_path } %>
-      <%# else %>
-<!--        <div class="table-wrapper">-->
-<!--          <table>-->
-<!--            <tr>-->
-<!--              <th>Name</th>-->
-<!--            </tr>-->
-            <%#= render @regions %>
-<!--          </table>-->
-<!--        </div>-->
-      <%# end %>

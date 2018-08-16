@@ -4,59 +4,48 @@
 
   <!-- Email -->
   <div class="field">
-    <%= f.label :email %>
-    <div class="input-wrapper">
-      <i class="material-icons">&#xE0BE;</i>
-      <%= f.email_field :email, autofocus: true, placeholder: 'someone@example.com' %>
-    </div>
+    <%= f.label :email %><br/>
+    <%= f.email_field :email, autofocus: true, placeholder: 'someone@example.com' %>
   </div>
-
-  <% if devise_mapping.confirmable? and resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
   <!-- Password -->
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
-    <div class="input-wrapper">
-      <i class="material-icons">&#xE897;</i>
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
+    <%= f.label :password %> <i>(optional)</i><br/>
+    <%= f.password_field :password, autocomplete: 'off' %>
   </div>
 
   <!-- Password confirmation -->
   <div class="field">
-    <%= f.label :password_confirmation %>
-    <div class="input-wrapper">
-      <i class="material-icons">&#xE899;</i>
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
+    <%= f.label :password_confirmation %><br/>
+    <%= f.password_field :password_confirmation, autocomplete: 'off' %>
   </div>
 
   <!-- Current password -->
   <div class="field">
-    <%= f.label :current_password %><br/>
-    <%= f.password_field :current_password, autocomplete: "off" %>
+    <%= f.label :current_password %> <i>(required)</i><br/>
+    <%= f.password_field :current_password, autocomplete: 'off' %>
   </div>
 
-  <!-- Promotional emails -->
+  <hr/>
+
+  <h2>Notification Settings</h2>
+
   <div class="field">
+
+    <!-- Promotional emails -->
     <div class="checkbox">
       <%= f.check_box :notify_promotional %>
       <%= f.label :notify_promotional, 'Recive promotional emails' %>
     </div>
-  </div>
 
-  <!-- Event emails -->
-  <div class="field">
+    <!-- Event emails -->
     <div class="checkbox">
       <%= f.check_box :notify_events %>
       <%= f.label :notify_events, 'Receive upcoming event emails' %>
     </div>
+
   </div>
 
-  <div class="actions buttons">
-    <%= f.submit 'Save settings', class: 'button wide' %>
-  </div>
+  <%= f.submit 'Save settings', class: 'button wide', remote: true, data: { disable_with: 'Please wait...' } %>
 
 <% end %>
