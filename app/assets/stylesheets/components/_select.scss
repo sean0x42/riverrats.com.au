@@ -14,12 +14,12 @@
     letter-spacing: 0.5px;
     line-height: 1.1;
     vertical-align: middle;
-    border: 1px solid $input-border;
+    border: 1px solid $grey-dark;
     border-radius: 2px;
     cursor: pointer;
     position: relative;
     color: $text;
-    background: $input-background;
+    background: $grey-light;
     padding: 10px 14px;
 
     i {
@@ -52,8 +52,8 @@
       @include no-select;
       padding: 7px 14px;
       cursor: pointer;
-      border-left: 1px solid $input-border;
-      border-right: 1px solid $input-border;
+      border-left: 1px solid $grey-dark;
+      border-right: 1px solid $grey-dark;
 
       &:hover {
         color: $zurple-inverted;
@@ -62,7 +62,7 @@
       }
 
       &:last-child {
-        border-bottom: 1px solid $input-border;
+        border-bottom: 1px solid $grey-dark;
         border-radius: 0 0 2px 2px;
       }
 

@@ -10,13 +10,14 @@
   </div>
 </div>
 
-<div class="breakdown"></div>
-
 <div class="regions-list model-list">
   <table>
     <%= render @regions %>
   </table>
 </div>
 
-<%= paginate @regions %>
-<p><%= page_entries_info @regions %></p>
+<div class="model-list-footer">
+  <%= paginate @regions %>
+  <p><%= page_entries_info @regions %></p>
+</div>
+

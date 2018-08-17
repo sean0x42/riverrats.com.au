@@ -34,10 +34,6 @@
     opacity: 1;
   }
 
-  &[active] .sk-folding-cube .sk-cube:before {
-    animation: sk-foldCubeAngle 2.4s infinite linear both;
-  }
-
 }
 
 .modal-wrapper {
@@ -66,7 +62,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin: 2rem 0 0.5rem;
+  margin: 2rem 0 0;
 
   .remember {
     margin-right: auto;

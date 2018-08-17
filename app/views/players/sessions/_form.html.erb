@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
+<%= form_with model: resource, url: player_session_path, class: 'modal-form' do |form| %>
 
   <div class="field">
     <%= form.label :login, 'Email or username' %><br/>

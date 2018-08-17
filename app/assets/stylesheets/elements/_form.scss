@@ -11,6 +11,11 @@ form {
     .checkbox {
       margin-bottom: 0.5rem;
     }
+
+    .field-descriptor {
+      margin: 0.25rem 0;
+      color: lighten($text, 30%);
+    }
   }
 
   .buttons {

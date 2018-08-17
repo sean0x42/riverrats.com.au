@@ -70,7 +70,9 @@ const closeCurrentModal = () => {
   const wrapper = document.querySelector(".modal-wrapper");
   document.body.classList.remove("no-scroll");
   overlay.removeAttribute("active");
-  wrapper.parentNode.removeChild(wrapper);
+
+  if (wrapper !== null)
+    wrapper.parentNode.removeChild(wrapper);
 
   // Update state
   state = State.NONE;

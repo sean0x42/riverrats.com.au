@@ -81,7 +81,7 @@
 
     <!-- Achievements -->
     <li>
-      <%= link_to new_admin_achievement_path, class: controller_name == 'achievements' ? 'active' : '', remote: true, data: { expects_modal: true, disable: true } do %>
+      <%= link_to new_admin_achievement_path, remote: true, data: { expects_modal: true, disable: true } do %>
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
              height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" class="material-icons">
           <path d="M12,17.27l4.15,2.51c0.76,0.46,1.69-0.22,1.49-1.08l-1.1-4.72l3.67-3.18c0.67-0.58,0.31-1.68-0.57-1.75l-4.83-0.41
@@ -94,7 +94,7 @@
 
     <!-- Get player emails -->
     <li>
-      <%= link_to admin_mail_path do %>
+      <%= link_to admin_mail_path, remote: true, data: { expects_modal: true, disable: true } do %>
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
              height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" class="material-icons">
           <path fill-opacity="0.9" d="M12.72,2.03C6.63,1.6,1.6,6.63,2.03,12.72C2.39,18.01,7.01,22,12.31,22L16,22c0.55,0,1-0.45,1-1v0
@@ -103,7 +103,7 @@
 		c0.34,1.91,1.83,3.49,3.72,3.94c1.84,0.43,3.59-0.16,4.74-1.33c0.89,1.22,2.67,1.86,4.3,1.21c1.34-0.53,2.16-1.9,2.16-3.34
 		c0-0.33,0-0.7,0-1.09C22,7.01,18.01,2.39,12.72,2.03z M12,15c-1.66,0-3-1.34-3-3s1.34-3,3-3s3,1.34,3,3S13.66,15,12,15z"></path>
         </svg>
-        <span>Generate mail list</span>
+        <span><%= t('admin.mail.new.title').downcase.capitalize %></span>
       <% end %>
     </li>
 

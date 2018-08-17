@@ -68,9 +68,6 @@ class Player < ApplicationRecord
   end
 
 
-  ###
-  # All data to be indexed by Elasticsearch/Searchkick
-  # @return [Hash] Data to be indexed.
   def search_data
     {
       full_name: self.full_name,
@@ -79,21 +76,14 @@ class Player < ApplicationRecord
     }
   end
 
-
   def full_name
     "#{first_name} #{last_name}"
   end
 
-  ###
-  # Allows the user of either the username of email to login.
   def login
     @login || self.username || self.email
   end
 
-
-  ###
-  # Override a devise function to allow logging in with
-  # either email or username.
   def self.find_for_database_authentication (warden_conditions)
     conditions = warden_conditions.dup
     if (login = conditions.delete(:login))
@@ -103,9 +93,6 @@ class Player < ApplicationRecord
     end
   end
 
-
-  ###
-  # Award this player with a particular +achievement+.
   def award (achievement, level=0)
     if awarded? achievement
       a = achievements.find_by type: achievement.sti_name
@@ -116,9 +103,6 @@ class Player < ApplicationRecord
     end
   end
 
-
-  ##
-  # Check whether this player has been awarded a particular achievement
   def awarded?(achievement)
     achievements.exists? type: achievement.sti_name
   end
@@ -147,8 +131,7 @@ class Player < ApplicationRecord
   end
 
   def recent_games
-    sql = "SELECT g.id, g.venue_id, g.season_id, g.played_on, p.position, p.score FROM games as g INNER JOIN games_players as p ON g.id = p.game_id WHERE player_id = #{id} ORDER BY g.played_on DESC, g.created_at DESC LIMIT 25;"
-    ActiveRecord::Base.connection.exec_query(sql)
+    GamesPlayers.includes(game: [:venue]).where(player_id: self.id).reorder(created_at: :desc).limit(25)
   end
 
 end

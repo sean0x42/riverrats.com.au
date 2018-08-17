@@ -1,0 +1,10 @@
+<tr>
+  <td><%= (game_player.position + 1).ordinalize %></td>
+  <td>
+    <%= link_to game_path(game_player.game) do %>
+      <span class="highlight">Game <%= game_player.game.name %></span> at the <%= game_player.game.venue.name %>
+    <%- end %>
+  </td>
+  <td><%= local_date(game_player.game.played_on, '%B %d, %Y') %></td>
+  <td class="numeric stretch score"><%= number_to_human(game_player.score, format: '%n%u', precision: 2, units: { thousand: 'k', million: 'm', billion: 'b' }) %></td>
+</tr>

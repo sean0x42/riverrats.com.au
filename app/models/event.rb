@@ -13,7 +13,7 @@ class Event < ApplicationRecord
     start_at < Time.now
   end
 
-  def upcoming?
-    start_at > Date.today and start_at < Date.today + 2.weeks
+  def today?
+    self.start_at > Date.today.at_beginning_of_day && self.start_at < Date.today.at_end_of_day
   end
 end

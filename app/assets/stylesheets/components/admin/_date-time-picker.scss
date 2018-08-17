@@ -1,18 +1,18 @@
 .flatpickr-day {
 
   &:hover {
-    color: $branding-secondary-text;
-    background: $branding-secondary;
-    border-color: $branding-secondary;
+    color: $darcula-inverted;
+    background: $darcula;
+    border-color: $darcula;
   }
 
   &.today {
-    border-bottom-color: $branding-secondary !important;
+    border-bottom-color: $darcula !important;
 
     &:not(.selected):hover {
-      color: $branding-secondary-text;
-      background: $branding-secondary;
-      border-color: $branding-secondary !important;
+      color: $darcula-inverted;
+      background: $darcula;
+      border-color: $darcula !important;
     }
   }
 
@@ -22,9 +22,9 @@
     border-color: $zurple;
 
     &:hover {
-      color: $branding-secondary-text;
-      background: $branding-secondary;
-      border-color: $branding-secondary;
+      color: $darcula-inverted;
+      background: $darcula;
+      border-color: $darcula;
     }
 
   }

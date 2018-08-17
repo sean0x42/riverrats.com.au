@@ -6,19 +6,9 @@ class Admin::GamesController < ApplicationController
   before_action :require_admin
 
   # GET /admin/games
+  # noinspection RailsChecklist01
   def index
-    all = Game.order(id: :desc)
-
-    if params.has_key? :query
-      @games = Game.search params[:query], page: params[:page], per_page: 25
-    else
-      @games = all.page params[:page]
-    end
-
-    @stats = {
-      count: all.count,
-      new_count: all.where('created_at > ?', Date.today - 30.days).count,
-    }
+    @games = Game.includes(:venue).page params[:page]
   end
 
   # GET /admin/games/new

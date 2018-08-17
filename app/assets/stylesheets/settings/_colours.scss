@@ -16,31 +16,14 @@ $darcula-inverted: hsl(273, 20%, 90%);
 $darcula-light: hsl(270, 13%, 22%);
 $darcula-light-inverted: hsl(270, 20%, 90%);
 
-$branding-secondary: hsl(88, 50%, 53%);
-$branding-secondary-rotated: adjust_hue($branding-secondary, 14deg);
-$branding-secondary-text: hsl(88, 10%, 96%);
-
 // Interface colours
 $danger: hsl(11, 70%, 57%);
 $danger-inverted: hsl(11, 15%, 97%);
 $danger-red-rotated: adjust-hue($danger, 4deg);
 
-$acceptance-green: hsl(145, 67%, 45%);
-
-$breakdown: $zurple; // hsl(38, 90%, 51%);
-$breakdown-rotated: adjust_hue($breakdown, 8deg);
-$breakdown-text: hsl(38, 15%, 21%);
-
 // Default text colours
 $text: hsl(278, 15%, 33%);
 $text-bold: hsl(278, 15%, 28%);
-
-$border-on-white: hsl(282, 15%, 94%);
-$border-on-grey: hsl(282, 15%, 87%);
-
-$button-border: hsl(282, 15%, 92%);
-$input-border: darken($border-on-white, 4%);
-$input-background: lighten($border-on-white, 3%);
 
 // Grey
 $grey-darker: hsl(278, 20%, 50%);

@@ -1,8 +1,0 @@
-<tr class="inter-ui-ss01">
-  <td class="quiet"><%= (game['position'] + 1).ordinalize %></td>
-  <td><%= link_to "Game ##{game['id'].to_s.rjust(2, '0')}", game_path(game['id']) %></td>
-  <td class="quiet"><%= local_date(game['played_on'], '%B %d, %Y') %></td>
-  <% venue = Venue.find(game['venue_id']) %>
-  <td class="quiet"><%= link_to venue.name, venue_path(venue) %></td>
-  <td class="numeric stretch score"><%= number_with_delimiter game['score'] %></td>
-</tr>

@@ -32,9 +32,10 @@
   </table>
 </div>
 
-<!-- Pagination -->
-<%= paginate @games %>
-<p><%= page_entries_info @games %></p>
+<div class="model-list-footer">
+  <%= paginate @games %>
+  <p><%= page_entries_info @games %></p>
+</div>
 
 
     <!-- Breakdown -->

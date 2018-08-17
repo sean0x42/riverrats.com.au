@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, @region] do |form| %>
+<%= form_with model: [:admin, @region], class: 'modal-form' do |form| %>
 
   <%= render partial: 'application/form_errors', locals: { object: @region } %>
 

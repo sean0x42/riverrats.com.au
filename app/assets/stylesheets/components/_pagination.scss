@@ -1,15 +1,16 @@
 nav.pagination {
-  margin: 2rem 0 0;
+  margin: 2rem 0 1.5rem;
 
   & > div {
     display: flex;
     justify-content: center;
 
     .page {
-      border-top: 1px solid $border-on-white;
-      border-bottom: 1px solid $border-on-white;
-      border-right: 1px solid $border-on-white;
+      background: $grey-light;
+      border: 1px solid darken($grey-dark, 4%);
+      border-left: none;
       padding-left: 1px;
+      line-height: 1;
 
       &:last-child {
         border-radius: 0 3px 3px 0;
@@ -18,12 +19,12 @@ nav.pagination {
       &:first-child {
         padding-left: 0;
         border-radius: 3px 0 0 3px;
-        border-left: 1px solid $border-on-white;
+        border-left: 1px solid $grey-dark;
       }
 
-      line-height: 1;
-
-      a, &.current, &.gap {
+      a,
+      &.current,
+      &.gap {
         display: block;
         padding: 8px 11px;
       }

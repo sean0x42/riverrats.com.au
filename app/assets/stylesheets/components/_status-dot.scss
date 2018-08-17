@@ -7,10 +7,10 @@
     height: $size;
     width: $size;
     border-radius: 50%;
-    background: darken($border-on-white, 8%);
+    background: $grey-dark;
   }
 
   &.active i {
-    background: $acceptance-green;
+    background: $zurple;
   }
 }

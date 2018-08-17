@@ -1,90 +1,20 @@
-<%- content_for :title, t('view.players.index.title') %>
-<%- content_for :description, t('view.players.index.description') %>
+<%- content_for :title, t('players.index.title') %>
+<%- content_for :description, t('players.index.description') %>
 <%- content_for :canonical_url, players_url %>
 
+<div class="wrapper">
+  <span class="subheading">Leaderboard</span>
+  <h1><%= t('players.index.title') %></h1>
 
-<div class="thin-hero inverted">
-  <div class="wrapper">
-    <%- if params.has_key? :query %>
-      <h1 class="has-subtitle"><%= t('view.players.search.title') %></h1>
-      <p class="subtitle">Your search returned <%= pluralize @players.count, 'result' %>.</p>
-    <%- else %>
-      <span class="subheading">Leaderboard</span>
-      <h1>Best of All Time</h1>
-    <%- end %>
-  </div>
-</div>
-
-<div class="column-wrapper">
-
-  <div class="wide">
-
-    <!-- Search results -->
-    <div class="background" id="leaderboard">
-      <%- if params.has_key? :query %>
-        <h2><i class="material-icons">&#xE8B6;</i>Results</h2>
-      <%- else %>
-        <h2>Leaderboard</h2>
-      <%- end %>
-
-      <%- if @players.empty? %>
-        <%= render partial: 'application/empty_state', locals: { description: 'This search returned no results.' } %>
-      <%- else %>
-        <div class="table-wrapper">
-          <table>
-            <tr>
-              <th></th>
-              <th class="stretch">Name</th>
-              <th class="numeric">Score</th>
-              <th class="numeric">P</th>
-              <th class="numeric">W</th>
-            </tr>
-            <%= render collection: @players, partial: 'player' %>
-          </table>
-        </div>
-      <%- end %>
-
-      <div class="background-footer">
-        <%= paginate @players %>
-        <p><%= page_entries_info @players %></p>
-      </div>
-
-    </div>
-
+  <div class="model-list">
+    <table>
+      <%= render @players %>
+    </table>
   </div>
 
-  <div class="thin">
-
-    <div class="background">
-
-      <h2>Metadata</h2>
-
-      <ul class="info">
-
-        <!-- Players -->
-        <li>
-          <i class="material-icons">person</i>
-          <%= pluralize @players.count, 'player' %>
-        </li>
-
-        <!-- Tracking since -->
-        <li>
-          <i class="material-icons">date_range</i>
-          Tracking started&nbsp;<%= local_time_ago Date.parse('2018-05-27') %>
-        </li>
-
-      </ul>
-
-      <div class="buttons">
-        <!-- Print -->
-        <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
-          <i class="material-icons">&#xE8AD;</i>
-          Print this page
-        <% end %>
-      </div>
-
-    </div>
-
+  <div class="model-list-footer">
+    <%= paginate @players %>
+    <p><%= page_entries_info @players %></p>
   </div>
 
 </div>

@@ -7,90 +7,6 @@
 
 en:
   version: "version 1.1.0-alpha"
-  admin:
-    player:
-      create:
-        title: 'Player created'
-        body: "You have successfully created @%{player}."
-      update:
-        title: 'Player updated'
-        body: "You have successfully updated @%{player}."
-      destroy:
-        title: 'Player deleted'
-        body: "You have successfully deleted @%{player}."
-      confirm_delete: "Are you sure you want to delete this user? This action cannot be undone."
-    game:
-      create:
-        title: 'Game created'
-        body: "You have successfully created the game '%{game}'."
-      update:
-        title: 'Game updated'
-        body: "You have successfully updated the game '%{game}'."
-      destroy:
-        title: 'Game deleted'
-        body: "You have successfully deleted the game '%{game}'."
-      confirm_delete: "Are you sure you want to delete this game? This action cannot be undone."
-    event:
-      create:
-        title: 'Event created'
-        body: "You have successfully created an event titled '%{event}'."
-      update:
-        title: 'Event updated'
-        body: "You have successfully updated an event titled '%{event}'."
-      destroy:
-        title: 'Event deleted'
-        body: "You have successfully deleted an event titled '%{event}'."
-      confirm_delete: "Are you sure you want to delete this event? This action cannot be undone."
-      recurring:
-        confirm_delete: "Are you sure you want to delete this event, and all following events? This action cannot be undone."
-    venue:
-      create:
-        title: 'Venue created'
-        body: "You have successfully created venue '%{venue}'."
-      update:
-        title: 'Venue updated'
-        body: "You have successfully updated venue '%{venue}'."
-      destroy:
-        title: 'Venue deleted'
-        body: "You have successfully deleted venue '%{venue}'."
-      confirm_delete: "Are you sure you want to delete this venue? This action cannot be undone."
-    region:
-      create:
-        title: 'Region created'
-        body: "You have successfully created region '%{region}'."
-      update:
-        title: 'Region updated'
-        body: "You have successfully updated region '%{region}'."
-      destroy:
-        title: 'Region deleted'
-        body: "You have successfully deleted region '%{region}'."
-      confirm_delete: "Are you sure you want to delete this region? This action cannot be undone."
-    players:
-      index:
-        title: "Players"
-      new:
-        title: "Create Player"
-      edit:
-        title: "Edit Player"
-    games:
-      index:
-        title: "Games"
-      new:
-        title: "Create Game"
-    events:
-      index:
-        title: "Events"
-    venues:
-      index:
-        title: "Venues"
-    regions:
-      index:
-        title: "Regions"
-      new:
-        title: "Create Region"
-    achievements:
-      new:
-        title: "Award Achievement"
   achievement:
     wins:
       title: "Winner Winner Chicken Dinner %{level}"
@@ -136,40 +52,133 @@ en:
     events:
       index: "The events calendar allows you to view every upcoming and historical event. Note: upcoming events are generated 6 months in advance."
   empty_state: "There's nothing here..."
-  view:
-    welcome:
-      index:
-        description: "Welcome to the River Rats Poker League official website! Here you can track your scores, games, achievements and more."
-      privacy_policy:
-        title: "Privacy Policy"
-        description: "Want to know more about what we do with your data? This page will break down exactly which data points we collect, and how we use them."
-    seasons:
-      show:
-        title: "%{season}"
-        description: "This page contains complete leaderboards, start and end dates, and some other metadata for %{season}."
+  admin:
     players:
       index:
-        title: "Leaderboards (All Time)"
-        description: "View the best players that the River Rats Poker League has to offer!"
-      search:
-        title: "Search results"
-      show:
-        title: "%{name} (%{username})"
-        description: "View %{name}'s player profile, including a brief game history, achievements, and rankings!"
+        title: "Players"
+      new:
+        title: "Create Player"
+      edit:
+        title: "Edit Player"
+      create:
+        title: 'Player created'
+        body: "You have successfully created @%{player}."
+      update:
+        title: 'Player updated'
+        body: "You have successfully updated @%{player}."
+      destroy:
+        title: 'Player deleted'
+        body: "You have successfully deleted @%{player}."
+      confirm_delete: "Are you sure you want to delete this user? This action cannot be undone."
     games:
-      show:
-        title: "Game %{game}"
-        description: "View a detailed breakdown and leaderboard of Game %{game}"
       index:
-        title: "All Games"
-        description: "View every held by the River Rats Poker League."
+        title: "Games"
+      new:
+        title: "Create Game"
+      edit:
+        title: "Edit Game"
+      create:
+        title: 'Game created'
+        body: "You have successfully created the game '%{game}'."
+      update:
+        title: 'Game updated'
+        body: "You have successfully updated the game '%{game}'."
+      destroy:
+        title: 'Game deleted'
+        body: "You have successfully deleted the game '%{game}'."
+      confirm_delete: "Are you sure you want to delete this game? This action cannot be undone."
+    events:
+      index:
+        title: "Events"
+      new:
+        title: "Schedule Event"
+      edit:
+        title: "Edit Event"
+      create:
+        title: 'Event created'
+        body: "You have successfully created an event titled '%{event}'."
+      update:
+        title: 'Event updated'
+        body: "You have successfully updated an event titled '%{event}'."
+      destroy:
+        title: 'Event deleted'
+        body: "You have successfully deleted an event titled '%{event}'."
+      confirm_delete: "Are you sure you want to delete this event? This action cannot be undone."
+      recurring:
+        confirm_delete: "Are you sure you want to delete this event, and all following events? This action cannot be undone."
     venues:
-      show:
-        description: "Learn more about %{venue}! See full venue leaderboards, as well as the venue location."
-    region:
-      show:
-        description: "View the region: %{region}"
-        title: "%{region}"
+      index:
+        title: "Venues"
+      new:
+        title: "Create Venue"
+      edit:
+        title: "Edit Venue"
+      create:
+        title: 'Venue created'
+        body: "You have successfully created venue '%{venue}'."
+      update:
+        title: 'Venue updated'
+        body: "You have successfully updated venue '%{venue}'."
+      destroy:
+        title: 'Venue deleted'
+        body: "You have successfully deleted venue '%{venue}'."
+      confirm_delete: "Are you sure you want to delete this venue? This action cannot be undone."
+    regions:
+      index:
+        title: "Regions"
+      new:
+        title: "Create Region"
+      edit:
+        title: "Edit Region"
+      create:
+        title: 'Region created'
+        body: "You have successfully created region '%{region}'."
+      update:
+        title: 'Region updated'
+        body: "You have successfully updated region '%{region}'."
+      destroy:
+        title: 'Region deleted'
+        body: "You have successfully deleted region '%{region}'."
+      confirm_delete: "Are you sure you want to delete this region? This action cannot be undone."
+    achievements:
+      new:
+        title: "Award Achievement"
+    mail:
+      new:
+        title: "Generate Mailing List"
+  welcome:
+    index:
+      description: "Welcome to the River Rats Poker League official website! Here you can track your scores, games, achievements and more."
+    privacy_policy:
+      title: "Privacy Policy"
+      description: "Want to know more about what we do with your data? This page will break down exactly which data points we collect, and how we use them."
+  seasons:
+    show:
+      title: "%{season}"
+      description: "This page contains complete leaderboards, start and end dates, and some other metadata for %{season}."
+  players:
+    index:
+      title: "All Time Leaderboard"
+      description: "View the best players that the River Rats Poker League has to offer!"
+    search:
+      title: "Search results"
+    show:
+      title: "%{name} (%{username})"
+      description: "View %{name}'s player profile, including a brief game history, achievements, and rankings!"
+  games:
+    show:
+      title: "Game %{game}"
+      description: "View a detailed breakdown and leaderboard of Game %{game}"
+    index:
+      title: "All Games"
+      description: "View every held by the River Rats Poker League."
+  venues:
+    show:
+      description: "Learn more about %{venue}! See full venue leaderboards, as well as the venue location."
+  region:
+    show:
+      description: "View the region: %{region}"
+      title: "%{region}"
   error:
     insufficient_permission:
       title: "Permission denied"

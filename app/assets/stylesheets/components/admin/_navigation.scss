@@ -1,5 +1,6 @@
 .admin-navigation {
-  position: relative;
+  position: sticky;
+  top: 100px;
   width: 270px;
   line-height: $body-line-height;
 

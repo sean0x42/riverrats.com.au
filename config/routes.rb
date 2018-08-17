@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     resources :achievements, only: [:new, :create]
 
     get 'mail', to: 'mail#index'
-    post 'mail/players', to: 'mail#show'
+    post 'mail/players', to: 'mail#show', defaults: { format: 'csv' }
     get 'scores', to: 'scores#index'
 
   end

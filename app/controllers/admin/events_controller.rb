@@ -7,19 +7,7 @@ class Admin::EventsController < ApplicationController
 
   # GET /admin/events
   def index
-    all = SingleEvent.all
-
-    if params.has_key? :query
-      @events = SingleEvent.search params[:query], page: params[:page], per_page: 25
-    else
-      @events = SingleEvent.where('start_at > ?', Time.now - 2.weeks).page params[:page]
-    end
-
-    @stats = {
-      finished: all.where('start_at < ?', Time.now).count,
-      upcoming: all.where('start_at > ? AND start_at < ?', Time.now, Time.now + 2.weeks).count,
-      recurring: RecurringEvent.count
-    }
+    @events = SingleEvent.includes(:venue).where('start_at > ?', Time.now - 1.weeks).page params[:page]
   end
 
   # GET /admin/events/new

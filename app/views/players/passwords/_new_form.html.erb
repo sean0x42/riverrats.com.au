@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |form| %>
+<%= form_with model: resource, url: player_password_path, class: 'modal-form' do |form| %>
   <%= devise_error_messages! %>
 
   <div class="field">

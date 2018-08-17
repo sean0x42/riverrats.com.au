@@ -1,4 +1,4 @@
-<%= form_with model: resource do |form| %>
+<%= form_with model: resource, class: 'modal-form' do |form| %>
   <%= devise_error_messages! %>
 
   <div class="field">
@@ -33,5 +33,4 @@
   <div class="modal-footer">
     <p>Already have an account? <%= link_to 'Log in', new_player_session_path, class: 'anchor', remote: true, data: { expects_modal: true, disable: true } %>.</p>
   </div>
-
 <% end %>

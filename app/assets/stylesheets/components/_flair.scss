@@ -10,3 +10,9 @@
     content: '\00a0';
   }
 }
+
+.inverted .flair {
+  background: $zurple-inverted;
+  color: $zurple;
+  font-weight: 500;
+}

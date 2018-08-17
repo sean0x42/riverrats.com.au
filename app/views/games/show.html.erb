@@ -1,101 +1,80 @@
-<%- content_for :title, t('view.games.show.title') % { game: @game.name } %>
-<%- content_for :description, t('view.games.show.description') % { game: @game.name } %>
+<%- content_for :title, t('games.show.title') % { game: @game.name } %>
+<%- content_for :description, t('games.show.description') % { game: @game.name } %>
 <%- content_for :canonical_url, games_url %>
 
-<div id="print">
+<div class="wrapper">
+  <span class="subheading">Game Log</span>
+  <h1>Game <%= @game.name %></h1>
 
-  <div class="thin-hero">
-    <div class="wrapper">
-      <h1 class="has-subtitle">Game <%= @game.name %></h1>
-      <p class="subtitle">View a detailed breakdown and leaderboard of this game.</p>
-    </div>
+  <div class="model-list">
+    <table>
+      <%= render collection: @players, partial: 'player' %>
+    </table>
   </div>
 
-  <div class="column-wrapper">
+  <div class="model-list-footer">
+    <%= paginate @players %>
+    <p><%= page_entries_info @players %></p>
+  </div>
+</div>
 
-    <div class="wide">
+<div class="column-wrapper">
 
-      <!-- Leaderboard -->
-      <div class="background" id="leaderboard">
-        <h2>Leaderboard</h2>
-        <%- if @players.empty? %>
-          <%= render partial: 'application/empty_state', locals: { description: 'No one has played in this game yet.' } %>
-        <%- else %>
-          <div class="table-wrapper">
-            <table>
-              <tr>
-                <th></th>
-                <th class="stretch">Name</th>
-                <th class="numeric">Score</th>
-              </tr>
-              <%= render collection: @players, partial: 'player' %>
-            </table>
-          </div>
-        <%- end %>
 
-        <div class="background-footer">
-          <%= paginate @players %>
-          <p><%= page_entries_info @players %></p>
-        </div>
-      </div>
+  <div class="thin">
 
+    <!-- Breakdown -->
+    <div class="background">
+      <h2>About this game</h2>
+
+      <ul class="info">
+
+        <!-- Played -->
+        <li>
+          <i class="material-icons">event_note</i>
+          <%= @game.played_on.strftime '%A, %B %d %Y' %>
+        </li>
+
+        <!-- Venue -->
+        <li>
+          <i class="material-icons">&#xE8F9;</i>
+          <% venue = @game.venue %>
+          <%= link_to venue.name, venue_path(venue) %>
+        </li>
+
+        <!-- Players -->
+        <li>
+          <i class="material-icons">person</i>
+          <%= pluralize @game.games_players.count, 'player' %>
+        </li>
+
+        <!-- Tournament Directions -->
+        <li>
+          <i class="material-icons">account_box</i>
+          <%= pluralize @game.referees.count, 'tourament director' %>
+        </li>
+
+      </ul>
     </div>
 
+    <!-- Referees -->
+    <div class="background">
+      <h2>Tournament Directors</h2>
+      <ul class="thin-player-list">
+        <%= render collection: @game.referees, partial: 'referee' %>
+      </ul>
 
-    <div class="thin">
-
-      <!-- Breakdown -->
-      <div class="background">
-        <h2>About this game</h2>
-
-        <ul class="info">
-
-          <!-- Played -->
-          <li>
-            <i class="material-icons">event_note</i>
-            <%= @game.played_on.strftime '%A, %B %d %Y' %>
-          </li>
-
-          <!-- Venue -->
-          <li>
-            <i class="material-icons">&#xE8F9;</i>
-            <% venue = @game.venue %>
-            <%= link_to venue.name, venue_path(venue) %>
-          </li>
-
-          <!-- Players -->
-          <li>
-            <i class="material-icons">person</i>
-            <%= pluralize @game.games_players.count, 'player' %>
-          </li>
-
-          <!-- Tournament Directions -->
-          <li>
-            <i class="material-icons">account_box</i>
-            <%= pluralize @game.referees.count, 'tourament director' %>
-          </li>
-
-        </ul>
-      </div>
-
-      <!-- Referees -->
-      <div class="background">
-        <h2>Tournament Directors</h2>
-        <ul class="thin-player-list">
-          <%= render collection: @game.referees, partial: 'referee' %>
-        </ul>
-
-        <div class="buttons">
-          <!-- Print -->
-          <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
-            <i class="material-icons">&#xE8AD;</i>
-            Print this page
-          <% end %>
-        </div>
-
+      <div class="buttons">
+        <!-- Print -->
+        <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
+          <i class="material-icons">&#xE8AD;</i>
+          Print this page
+        <% end %>
       </div>
 
     </div>
 
   </div>
+
+</div>
 </div>
