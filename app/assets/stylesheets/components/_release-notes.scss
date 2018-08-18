@@ -1,0 +1,102 @@
+.release-notes {
+  position: relative;
+  padding: 1rem 0;
+  margin: 2rem 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 28.5px;
+    width: 3px;
+    background: $grey-dark;
+    z-index: 1;
+  }
+
+  .release {
+    position: relative;
+    z-index: 2;
+
+    h2 {
+      line-height: $body-line-height;
+      margin-top: 0;
+    }
+
+    &:not(:first-child) {
+      margin-top: 4rem;
+    }
+  }
+
+  .version {
+    display: inline-block;
+    background: $zurple;
+    color: $zurple-inverted;
+    width: 60px;
+    text-align: center;
+    border-radius: $border-radius - 1px;
+    font-size: 95%;
+    font-weight: 500;
+    margin-right: 0.75rem;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 1rem 0;
+    padding-left: 4rem;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-gap: 0.75rem;
+    align-items: flex-start;
+    margin: 0.5rem 0;
+  }
+
+  p {
+    margin: 0;
+    max-width: 75ch;
+  }
+
+  .change {
+    display: inline-block;
+    font-size: 85%;
+    text-align: center;
+    border-radius: $border-radius;
+    width: 80px;
+    font-weight: 500;
+    line-height: $body-line-height;
+    margin: 2px 0 0;
+  }
+
+  .change-new {
+    background: $new;
+    color: $new-inverted;
+  }
+
+  .change-improved {
+    background: $improved;
+    color: $improved-inverted;
+  }
+
+  .change-deprecated {
+    background: $deprecated;
+    color: $deprecated-inverted;
+  }
+
+  .change-removed {
+    background: $removed;
+    color: $removed-inverted;
+  }
+
+  .change-fixed {
+    background: $fixed;
+    color: $fixed-inverted;
+  }
+
+  .change-security {
+    background: $security;
+    color: $security-inverted;
+  }
+}

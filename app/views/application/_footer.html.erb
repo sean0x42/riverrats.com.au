@@ -53,6 +53,7 @@
         <li><%= link_to 'Seasonal Leaderboard', seasons_path %></li>
         <li><%= link_to 'Game history', games_path %></li>
         <li><%= link_to 'Event calendar', events_path %></li>
+        <li><%= link_to 'Release notes', release_notes_path %></li>
       </ul>
       <ul class="column">
         <li class="title">Account</li>
@@ -82,7 +83,7 @@
   <div class="footer-base">
     <div class="wrapper">
       <p>Designed &amp; developed by <%= link_to 'Sean Bailey', 'https://www.seanbailey.io', target: '_blank' %></p>
-      <p class="version"><%= I18n.t('version') %></p>
+      <p class="version"><%= link_to t('version'), release_notes_path %></p>
       <p>River Rats Poker League &copy; <%= Date.today.year %></p>
     </div>
   </div>

@@ -4,4 +4,7 @@ class LandingController < ApplicationController
 
   def privacy_policy
   end
+
+  def release_notes
+  end
 end

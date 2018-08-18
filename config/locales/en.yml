@@ -187,3 +187,6 @@ en:
     privacy_policy:
       title: "Privacy Policy"
       description: "Want to know more about what we do with your data? This page will break down exactly which data points we collect, and how we use them."
+    release_notes:
+      title: "Release Notes"
+      description: "View a full history of changes made to riverrats.com.au"

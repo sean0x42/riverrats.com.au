@@ -1,5 +1,5 @@
 <li>
-  <%= link_to event_path(event), class: 'event' do %>
+  <%= link_to event_path(event), class: 'event', remote: true, data: { expects_modal: true, disable: true } do %>
     <p><%= event.title %></p>
     <%- time_format = event.start_at.min == 0 ? '%l%p' : '%l:%M%p' %>
     <p class="starts"><%= event.start_at.strftime(time_format).downcase %></p>

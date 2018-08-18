@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   root 'landing#index'
   get '/privacy-policy', to: 'landing#privacy_policy'
-
+  get '/release-notes', to: 'landing#release_notes'
   get 'players/auto-complete', to: 'players#auto_complete'
   get 'players/random', to: 'players#random'
 

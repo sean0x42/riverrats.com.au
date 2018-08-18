@@ -84,24 +84,16 @@
     margin: 0 auto;
   }
 
-  .social-links {
-    list-style-type: none;
-    fill: darken($darcula-inverted, 5%);
-    line-height: 1.0;
-
-
-    svg {
-      height: 19px;
-      width: 19px;
-    }
-  }
-
   p:first-child {
     margin-right: auto;
   }
 
   a {
     color: lighten($darcula-inverted, 10%);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .version {
