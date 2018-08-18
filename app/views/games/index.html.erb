@@ -1,61 +1,19 @@
-<%- content_for :title, t('view.games.index.title') %>
-<%- content_for :description, t('view.games.index.description') %>
+<%- content_for :title, t('games.index.title') %>
+<%- content_for :description, t('games.index.description') %>
 <%- content_for :canonical_url, games_url %>
 
-<div class="thin-hero">
-  <div class="wrapper">
-    <h1 class="has-subtitle"><%= t('view.games.index.title') %></h1>
-    <p class="subtitle">Every game ever hosted by the River Rats Poker League.</p>
-  </div>
-</div>
+<div class="wrapper">
+  <span class="subheading">River Rats History</span>
+  <h1><%= t('games.index.title') %></h1>
 
-<div class="column-wrapper">
-
-  <div class="wide">
-
-    <!-- Games -->
-    <div class="background">
-      <h2>Games</h2>
-      <%- if @games.empty? %>
-        <%= render partial: 'application/empty_state', locals: { description: 'No one has played anything yet.' } %>
-      <%- else %>
-        <div class="table-wrapper">
-          <table>
-            <tr>
-              <th>Name</th>
-              <th>Date</th>
-              <th class="stretch">Venue</th>
-              <th class="numeric">Players</th>
-            </tr>
-            <%= render collection: @games, partial: 'game' %>
-          </table>
-        </div>
-      <%- end %>
-
-      <div class="background-footer">
-        <%= paginate @games %>
-        <p><%= page_entries_info @games %></p>
-      </div>
-    </div>
-
+  <div class="model-list">
+    <table>
+      <%= render @games %>
+    </table>
   </div>
 
-  <div class="thin">
-
-    <div class="background">
-      <h2>Breakdown</h2>
-
-      <ul class="info">
-
-        <!-- Number of games -->
-        <li>
-          <i class="material-icons">casino</i>
-          <%= pluralize @games.count, 'game' %> on this page
-        </li>
-
-      </ul>
-    </div>
-
+  <div class="model-list-footer">
+    <%= paginate @games %>
+    <p><%= page_entries_info @games %></p>
   </div>
-
 </div>

@@ -10,20 +10,17 @@
   </div>
 </div>
 
-<div class="profile-wrapper">
-  <div class="wrapper">
+<div class="wrapper split-wrapper">
 
-    <!-- Game history -->
-    <div class="model-list game-list">
-      <table>
-        <%= render collection: @player.recent_games, partial: 'game_player' %>
-      </table>
-    </div>
-
-    <!-- Achievements -->
-    <div></div>
-
+  <!-- Game history -->
+  <div class="model-list game-list">
+    <table>
+      <%= render collection: @player.recent_games, partial: 'game_player' %>
+    </table>
   </div>
+
+  <!-- Achievements -->
+  <div></div>
 
 </div>
 

@@ -1,3 +1,19 @@
+.header-dropdown-overlay {
+  background: $darcula;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  transition: opacity 500ms;
+
+  &[active] {
+    opacity: 0.35;
+  }
+}
+
 .header-dropdown-wrapper {
   position: relative;
 
@@ -14,7 +30,7 @@
     top: 100%;
     left: 0;
     min-width: 280px;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
     color: $text;
     fill: $text;
     background: white;
@@ -26,29 +42,15 @@
       left: unset;
       right: 0;
     }
+  }
 
-    ul {
-      margin: 0;
-      padding: 1rem 0;
-      list-style-type: none;
-      border-top: 1px solid $grey;
+  ul {
+    margin: 0;
+    padding: 1rem 0;
+    list-style-type: none;
 
-      a {
-        display: flex;
-        align-items: center;
-        padding: 0.4rem 1.2rem;
-
-        &:hover {
-          color: $zurple-dark;
-          fill: $zurple;
-        }
-      }
-
-      svg {
-        margin-right: 0.5rem;
-        height: 21px;
-        width: 21heapx;
-      }
+    a {
+      padding: 0.25rem 1rem;
     }
   }
 

@@ -1,0 +1,10 @@
+<%- content_for :description, t('landing.index.description') %>
+<%- content_for :canonical_url, root_url %>
+
+<div class="hero inverted">
+  <div class="wrapper">
+    <span class="subheading">Welcome</span>
+    <h1>River Rats Poker League</h1>
+    <p><%= pluralize Player.count, 'player' %> and growing!</p>
+  </div>
+</div>

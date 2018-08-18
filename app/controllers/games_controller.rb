@@ -1,12 +1,11 @@
 class GamesController < ApplicationController
   # GET /games/
   def index
-    @games = Game.page params[:page]
+    @games = Game.includes(:venue).page(params[:page]).per(50)
   end
 
   # GET /games/:id
   def show
-    @game = Game.includes(games_players: [:player]).find params[:id]
-    @players = @game.games_players.page params[:page]
+    @game = Game.includes(:venue).find(params[:id])
   end
 end

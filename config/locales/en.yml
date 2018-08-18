@@ -146,12 +146,6 @@ en:
     mail:
       new:
         title: "Generate Mailing List"
-  welcome:
-    index:
-      description: "Welcome to the River Rats Poker League official website! Here you can track your scores, games, achievements and more."
-    privacy_policy:
-      title: "Privacy Policy"
-      description: "Want to know more about what we do with your data? This page will break down exactly which data points we collect, and how we use them."
   seasons:
     show:
       title: "%{season}"
@@ -167,14 +161,15 @@ en:
       description: "View %{name}'s player profile, including a brief game history, achievements, and rankings!"
   games:
     show:
-      title: "Game %{game}"
+      title: "Game %{game} at the %{venue}"
       description: "View a detailed breakdown and leaderboard of Game %{game}"
     index:
-      title: "All Games"
-      description: "View every held by the River Rats Poker League."
+      title: "Games History"
+      description: "View every game held by the River Rats Poker League."
   venues:
     show:
       description: "Learn more about %{venue}! See full venue leaderboards, as well as the venue location."
+      title: "%{venue}"
   region:
     show:
       description: "View the region: %{region}"
@@ -186,3 +181,9 @@ en:
   input:
     file:
       label: "Browse this device"
+  landing:
+    index:
+      description: "Welcome to the River Rats Poker League official website! Here you can track your scores, games, achievements and more."
+    privacy_policy:
+      title: "Privacy Policy"
+      description: "Want to know more about what we do with your data? This page will break down exactly which data points we collect, and how we use them."

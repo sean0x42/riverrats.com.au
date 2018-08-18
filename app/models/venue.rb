@@ -55,4 +55,7 @@ class Venue < ApplicationRecord
     { name: name }
   end
 
+  def paginated_players(page)
+    PlayersVenues.includes(:player).where(venue_id: self.id).page(page).per(25)
+  end
 end

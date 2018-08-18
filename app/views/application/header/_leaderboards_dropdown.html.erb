@@ -16,7 +16,12 @@
     </div>
 
     <!-- Dropdown -->
-    <div class="header-dropdown"></div>
+    <div class="header-dropdown">
+      <ul>
+        <li><%= link_to t('players.index.title'), players_path %></li>
+        <li><%= link_to 'Season Leaderboard', seasons_path %></li>
+      </ul>
+    </div>
 
   </div>
 </li>

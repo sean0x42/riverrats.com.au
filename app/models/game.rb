@@ -44,4 +44,8 @@ class Game < ApplicationRecord
     UpdateVenueRanksJob.perform_later region
     UpdateRegionRanksJob.perform_later region.region
   end
+
+  def paginated_players(page)
+    GamesPlayers.includes(:player).where(game_id: self.id).page(page).per(25)
+  end
 end

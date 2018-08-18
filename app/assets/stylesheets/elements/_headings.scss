@@ -29,9 +29,12 @@ h1 {
   font-weight: normal; // Font weight should be similar to that of the subheading (visually).
   margin-top: 0.25rem; // Space between H1 and subheading
   margin-bottom: 1.5rem;
+  line-height: 1.1;
 }
 
 
 h2 {
   font-weight: 500;
+  font-size: 16px;
+  margin: 2.5rem 0 1rem;
 }

@@ -16,8 +16,8 @@ Rails.application.routes.draw do
                passwords: 'players/passwords'
              }
 
-  root 'welcome#index'
-  get '/privacy-policy', to: 'welcome#privacy_policy'
+  root 'landing#index'
+  get '/privacy-policy', to: 'landing#privacy_policy'
 
   get 'players/auto-complete', to: 'players#auto_complete'
   get 'players/random', to: 'players#random'

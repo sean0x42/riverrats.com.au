@@ -124,7 +124,6 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
-    json (2.1.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -138,10 +137,6 @@ GEM
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
     kgio (2.11.2)
-    koala (3.0.0)
-      addressable
-      faraday
-      json (>= 1.8)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.6.0)
@@ -329,7 +324,6 @@ DEPENDENCIES
   ice_cube
   jbuilder (~> 2.5)
   kaminari
-  koala
   letter_opener
   listen (>= 3.0.5, < 3.2)
   local_time

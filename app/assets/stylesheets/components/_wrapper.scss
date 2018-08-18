@@ -1,101 +1,24 @@
 .wrapper {
   position: relative;
-  margin: 6rem auto;
+  margin: 8rem auto;
   width: 100%;
   max-width: $wrapper-width;
   z-index: 10;
   padding: 0 1.5rem;
 
-  .background {
-    background: white;
-    border-radius: 3px;
-    padding: 1.75rem 1.25rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
-    & > *:first-child { margin-top:    0; }
-    & > *:last-child  { margin-bottom: 0; }
-    &:last-child { margin-bottom: 0; }
+  &.split-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    grid-gap: 1.5rem;
+    align-items: flex-start;
+    margin-top: 0;
 
-    .info {
-      color: lighten($text, 15%);
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-
-      li {
-        margin: 0.75rem 0;
-        display: flex;
-        align-items: center;
-      }
-
-      i {
-        color: lighten($text, 25%);
-        font-size: 22px;
-        margin: -0.25rem 0.5rem -0.25rem 0;
-        line-height: 1.0;
-        vertical-align: middle;
-      }
-
-      svg {
-        flex-shrink: 0;
-        text-decoration: none;
-        width: 22px;
-        margin: -0.25rem 0.5rem -0.25rem 0;
-        fill: lighten($text, 25%);
-        line-height: 1.0;
-        vertical-align: middle;
-      }
-
+    .model-list {
+      margin-top: 0;
     }
-
-    .background-footer {
-      text-align: center;
-      margin: 3rem 0 1rem;
-
-      p {
-        margin: 1.5rem 0;
-        color: lighten($text, 20%);
-      }
-
-      *:last-child { margin-bottom: 0;}
-
-    }
-
-    &.danger-zone {
-      h2 { color: $danger; }
-      p { max-width: 60ch; }
-    }
-
   }
 
-}
-
-.column-wrapper {
-  margin: 0 auto 0.75rem;
-  padding: 0 0.5rem;
-
-  &.small-first {
-    margin: 3rem auto 2rem;
-  }
-
-  .thin {
-    margin-top: 1rem;
-  }
-
-  & > div {
-    flex-shrink: 0;
-    min-width: 0;
-  }
-
-}
-
-@media (min-width: 1245px) {
-  .wrapper {
-    margin: 8rem auto;
-
-    .background {
-      margin-bottom: 2.5rem;
-      padding: 2rem;
-    }
+  &.split-header {
+    margin-bottom: 2.8rem;
   }
 }

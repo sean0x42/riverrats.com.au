@@ -1,5 +1,0 @@
-Koala.configure do |config|
-  config.access_token = 'EAACEdEose0cBAC0nZBrLeWcotzA57CMNZAkw1ddpQobU6AF3OgpoRc0lmdWqsGIpvQKi5bv9EtA954dHT4f7gCQXT7uGwomaRV743EHsfPN5QKTtVZA2mQP79hZBdEgUfvo895I0WxYM9olDqZC5ClrugaUCfrpZCJ0fqGBoSFJ07QqpcPO6z6InVJpmDDiPc842ZBZCoeNFYAf8uTyHx5ZBm064bhl8epBMZD'
-  # config.app_id = '103313737218686'
-  # config.app_secret = '883f292cc7be8ad9dceced15a7ff40ec'
-end
