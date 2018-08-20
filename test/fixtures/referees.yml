@@ -1,1 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+<% 2.times do |n| %>
+referee_alpha_<%= n %>:
+  game: duplicate_referees
+  player: eve
+<% end %>
+
+<% %w(no_players duplicate_players out_of_season).each_with_index do |game, n| %>
+referee_beta_<%= n %>:
+  game: <%= game %>
+  player: eve
+<% end %>

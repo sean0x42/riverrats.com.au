@@ -1,4 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
- event_id: 1
+<% 10.times do |n| %>
+game_<%= n %>:
+  venue: nabiac_hotel
+  season: season_one
+  played_on: <%= Date.today - (n - 10).days %>
+<% end %>
+
+<% %w(duplicate_players duplicate_referees no_players no_referees).each do |name| %>
+<%= name %>:
+  venue: nabiac_hotel
+  season: season_one
+  played_on: <%= Date.today %>
+<% end %>
+
+out_of_season:
+  venue: nabiac_hotel
+  season: season_zero
+  played_on: <%= Date.parse('January 1, 2018') %>

@@ -5,7 +5,7 @@ set :application, 'river_rats'
 set :repo_url, 'git@github.com:LuckehPickle/riverrats.com.au.git'
 set :branch, 'master'
 set :domain, 'riverrats.com.au'
-set :rvm_ruby_version, '2.4.1'
+set :rvm_ruby_version, '2.4.4'
 set :rails_env, 'production'
 
 # Default deploy_to directory is /var/www/my_app_name

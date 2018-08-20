@@ -33,10 +33,10 @@ module RiverratsComAu
 
     # Action View
     config.action_view.form_with_generates_ids = true
-    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+    config.action_view.field_error_proc = Proc.new { |tag| tag }
 
     # Register observers
-    config.active_record.observers = [:games_players_observer, :game_observer]
+    config.active_record.observers = [:games_player_observer, :game_observer]
 
     # Set default time zone
     config.time_zone = "Sydney"

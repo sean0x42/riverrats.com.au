@@ -9,7 +9,7 @@ class Player < ApplicationRecord
 
   before_validation :generate_username, on: :create
 
-  has_many :games_players, class_name: 'GamesPlayers', dependent: :nullify
+  has_many :games_players, class_name: 'GamesPlayer', dependent: :nullify
   has_many :games, through: :games_players
 
   has_many :referees, dependent: :nullify
@@ -54,13 +54,13 @@ class Player < ApplicationRecord
               greater_than_or_equal_to: 0
             }
 
-  validates :notify_promotional, :notify_events,
-            presence: true
+  validates :notify_promotional, :notify_events, presence: true
 
   validates :email,
             format: { with: URI::MailTo::EMAIL_REGEXP },
             allow_nil: true,
-            allow_blank: true
+            allow_blank: true,
+            uniqueness: true
 
 
   def to_param
@@ -131,7 +131,6 @@ class Player < ApplicationRecord
   end
 
   def recent_games
-    GamesPlayers.includes(game: [:venue]).where(player_id: self.id).reorder(created_at: :desc).limit(25)
+    GamesPlayer.includes(game: [:venue]).where(player_id: self.id).reorder(created_at: :desc).limit(25)
   end
-
 end

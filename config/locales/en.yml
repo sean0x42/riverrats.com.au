@@ -174,10 +174,6 @@ en:
     show:
       description: "View the region: %{region}"
       title: "%{region}"
-  error:
-    insufficient_permission:
-      title: "Permission denied"
-      description: "You do not have permission to access this page."
   input:
     file:
       label: "Browse this device"
@@ -190,3 +186,15 @@ en:
     release_notes:
       title: "Release Notes"
       description: "View a full history of changes made to riverrats.com.au"
+  errors:
+    insufficient_permission:
+      title: "Permission denied"
+      description: "You do not have permission to access this page."
+    missing_admin_email:
+      title: "Missing email"
+      description: "Your account must have a verified email address to access this part of the website."
+    game:
+      duplicate_players: "has duplicated players."
+      duplicate_referees: "has duplicate tournament directors."
+      too_few_players: "Too few players. There must be at least 2."
+      too_few_referees: "Too few tournament directors. There must be at least 1."

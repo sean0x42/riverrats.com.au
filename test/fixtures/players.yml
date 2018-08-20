@@ -1,11 +1,52 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one:
- username: seanbailey
- first_name: Sean
- last_name: Bailey
- email: sean@seanbailey.io
+alice:
+  username: alicehill
+  first_name: Alice
+  last_name: Hill
+  is_admin: true
+  email: alice@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest Player, 'alice123' %>
+
+bob:
+  username: bobsmith
+  first_name: Bob
+  last_name: Smith
+  is_developer: true
+  email: bob@riverrats.com.au
+  encrypted_password: <%= Devise::Encryptor.digest Player, 'littleBobbyTables@994' %>
+
+carter:
+  username: carterjohnson
+  first_name: Carter
+  last_name: Johnson
+  is_admin: true
+  encrypted_password: <%= Devise::Encryptor.digest Player, '123456789' %>
+
+dave:
+  username: davebrave
+  first_name: Dave
+  last_name: Brave
+  email: nil
+  encrypted_password: <%= Devise::Encryptor.digest Player, 'BraveDave\'sSuperSecurePassword1789' %>
+
+eve:
+  username: evestephens
+  first_name: Eve
+  last_name: Stephens
+  is_admin: false
+  is_developer: false
+  email: eve@stephens.com
+  encrypted_password: <%= Devise::Encryptor.digest Player, '_evenstephens' %>
+
+felicity:
+  username: ''
+  first_name: Felicity
+  last_name: Jones
+  encrypted_password: <%= Devise::Encryptor.digest Player, 'aLpHaBeTsOuP' %>
+
+greg:
+  username: gregorydavis
+  first_name: ''
+  last_name: Davis
+  encrypted_password: <%= Devise::Encryptor.digest Player, '_3287hbdsfk' %>

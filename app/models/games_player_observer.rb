@@ -1,6 +1,6 @@
 require 'score_lib'
 
-class GamesPlayersObserver < ActiveRecord::Observer
+class GamesPlayerObserver < ActiveRecord::Observer
   include ScoreLib
 
   def before_save (game_player)

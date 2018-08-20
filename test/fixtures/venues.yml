@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
- slug: nabiac-hotel
- name: Nabiac Hotel
- region_id: 1
- latitude: 100
- longitude: 100
- address: 12 Example Street
- suburb: Taree
- state: 2
+nabiac_hotel:
+  slug: nabiac-hotel
+  name: Nabiac Hotel
+  region: nabiac
+
+australian_hotel:
+  slug: australian-hotel
+  name: Australian Hotel
+  region: wingham
+
+bellevue_hotel:
+  slug: bellevue-hotel
+  name: Bellevue Hotel
+  region: forster

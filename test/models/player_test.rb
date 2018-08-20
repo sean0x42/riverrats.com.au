@@ -1,19 +1,18 @@
 require 'test_helper'
 
 class PlayerTest < ActiveSupport::TestCase
-  test "should not save empty player" do
-    player = Player.new
-    assert_not player.save
+  test "email should be optional" do
+    player = players(:carter)
+    assert player.valid?, player.errors
   end
 
-  test "should not save username with spaces" do
-    player = Player.new(
-      username: 'Sean Bailey',
-      first_name: 'Sean',
-      last_name: 'Bailey',
-      email: 'sean@seanbailey.io'
-    )
+  test "username should be present" do
+    blank_username = players(:felicity)
+    assert_not blank_username.valid?, 'Player should not be valid with a blank username.'
+  end
 
-    assert_not player.save
+  test "first name should be present" do
+    blank_first_name = players(:greg)
+    assert_not blank_first_name.valid?, 'Player should not be valid with a blank first name.'
   end
 end
