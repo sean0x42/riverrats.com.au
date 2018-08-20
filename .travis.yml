@@ -2,6 +2,9 @@ language: ruby
 rvm:
   - 2.4.4
 
+# We need Ubuntu 14 (Trusty) to use Postgres 9.6
+dist: trusty
+
 addons:
   postgresql: 9.6
 
@@ -10,4 +13,15 @@ cache:
     - vendor/bundle
     - node_modules
 
+services:
+- redis-server
+
 bundler_args: --without production
+
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
+
+script:
+  - bundle exec rails db:migrate RAILS_ENV=test
+  - bundle exec rails test

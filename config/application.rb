@@ -40,7 +40,5 @@ module RiverratsComAu
 
     # Set default time zone
     config.time_zone = "Sydney"
-
-    config.require_master_key = true
   end
 end
