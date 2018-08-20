@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - 2.4.4
+
+addons:
+  postgresql: 9.6
+
+cache:
+  directories:
+    - vendor/bundle
+    - node_modules
+
+bundler_args: --without production

@@ -53,6 +53,10 @@ group :development do
   gem 'capistrano3-unicorn', require: false
 end
 
+group :production do
+  gem 'unicorn', platform: :ruby
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -70,6 +74,5 @@ gem 'paperclip', '~> 6.0.0'
 gem 'rails-observers'
 gem 'searchkick'
 gem 'sidekiq'
-gem 'unicorn', platform: :ruby
 gem 'webpacker', '~> 3.5'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?

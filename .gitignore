@@ -32,11 +32,6 @@ config/secrets.yml
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 
-# if using bower-rails ignore default bower_components path bower.json files
-/vendor/assets/bower_components
-*.bowerrc
-bower.json
-
 # Ignore pow environment settings
 .powenv
 
@@ -48,9 +43,14 @@ bower.json
 
 *.pem
 *.sh
+yarn-debug.log*
+.yarn-integrity
+
+# Ignore webpacker files
+/node_modules
 config/database.yml/public/packs
 /public/packs-test
 /public/packs
-/node_modules
-yarn-debug.log*
-.yarn-integrity
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
