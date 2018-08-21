@@ -1,17 +1,9 @@
 import { Modal } from "./modal";
-
-/**
- * @enum which tracks the current state of the modal controller.
- */
-const State = Object.freeze({
-  DISPLAYING_MODAL: Symbol("displaying"),
-  AWAITING_MODAL: Symbol("awaiting"),
-  NONE: Symbol('none')
-});
+import { State } from "./state";
+import { StepController } from "./step_controller";
 
 let state = State.NONE;
 const queue = [];
-
 
 /**
  * Checks if there is a new modal in the queue to display. If there is, the state is updated appropriately and the new
@@ -42,9 +34,20 @@ const renderModal = (modal) => {
   // Construct modal
   const modalElement = document.createElement("div");
   modalElement.classList.add("modal");
-  modalElement.innerHTML = `<span class="subheading">${modal.subheading}</span><h1>${modal.title}</h1>`;
+
+  // Add subheading if one was defined
+  if (modal.subheading !== null)
+    modal.innerHTML += `<span class="subheading">${modal.subheading}</span>`;
+
+  // Add title, if one was defined.
+  if (modal.title !== null)
+    modalElement.innerHTML += `<h1>${modal.title}</h1>`;
+
   modalElement.innerHTML += modal.html;
   innerWrapper.appendChild(modalElement);
+
+  // Initialise step manager
+  initStepController(modalElement);
 
   // Enable overlay, if it is not yet enabled
   const overlay = document.querySelector(".modal-overlay");
@@ -76,6 +79,15 @@ const closeCurrentModal = () => {
 
   // Update state
   state = State.NONE;
+};
+
+/**
+ * Determines whether the given modal requires a step controller. If it does, a step controller is initialised.
+ * @param modal Modal to add step controller to.
+ */
+const initStepController = modal => {
+  if (modal.querySelectorAll(".step").length > 1)
+    new StepController(modal);
 };
 
 /**

@@ -26,14 +26,14 @@
 
     &:before {
       position: absolute;
-      top: 1px;
+      top: 2px;
       left: 0;
       content: '';
       cursor: pointer;
       display: inline-block;
       height: 1.2rem;
       width: 1.2rem;
-      border: 2px solid $grey-dark;
+      border: 2px solid darken($grey-dark, 8%);
       border-radius: $border-radius - 1px;
       background: white;
       transition: background 200ms, border-color 200ms;
@@ -41,7 +41,7 @@
 
     &:after {
       position: absolute;
-      top: 5px;
+      top: 6px;
       left: 3px;
       content: '';
       display: inline-block;

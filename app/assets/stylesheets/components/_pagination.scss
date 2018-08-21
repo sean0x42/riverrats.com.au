@@ -22,6 +22,10 @@ nav.pagination {
         border-left: 1px solid $grey-dark;
       }
 
+      a {
+        color: $zurple-dark;
+      }
+
       a,
       &.current,
       &.gap {

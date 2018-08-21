@@ -1,7 +1,7 @@
-<%= form_with model: resource, url: player_session_path, class: 'modal-form' do |form| %>
+<%= form_with model: resource, url: player_session_path, class: 'modal-form', local: true do |form| %>
 
   <div class="field">
-    <%= form.label :login, 'Email or username' %><br/>
+    <%= form.label :login, 'Email or Username' %><br/>
     <%= form.text_field :login, autofocus: true %>
   </div>
 

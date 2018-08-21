@@ -75,6 +75,15 @@ en:
         title: "Games"
       new:
         title: "Create Game"
+        add_players: "Add Players"
+        add_tournament_directors: "Add Tournament Directors"
+        game_details: "Edit Details"
+        empty_players:
+          title: "You haven't added any players yet"
+          description: "Use the search bar below to add as many players as you like."
+        empty_referees:
+          title: "You haven't added any TDs yet"
+          description: "Use the search bar below to add a tournament director or two."
       edit:
         title: "Edit Game"
       create:

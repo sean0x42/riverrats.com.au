@@ -15,7 +15,7 @@ input[type="tel"] {
   border-radius: 2px;
   line-height: 1.1;
   color: $grey-light-inverted;
-  padding: 10px 14px;
+  padding: 10px 13px;
 }
 
 input[type="number"] {
@@ -24,12 +24,6 @@ input[type="number"] {
 
 input[type="tel"] {
   max-width: 240px;
-}
-
-.date-input,
-.date-time-input {
-  max-width: 260px !important;
-  cursor: pointer;
 }
 
 textarea {

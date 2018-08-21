@@ -55,6 +55,10 @@
     overflow-x: hidden;
     padding: 2rem;
     border-radius: $border-radius;
+
+    & > *:first-child {
+      margin-top: 0 !important;
+    }
   }
 }
 
@@ -62,9 +66,13 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin: 2rem 0 0;
+  margin: 2.5rem 0 0;
 
   .remember {
     margin-right: auto;
+  }
+
+  .checkbox {
+    margin-bottom: 0 !important;
   }
 }

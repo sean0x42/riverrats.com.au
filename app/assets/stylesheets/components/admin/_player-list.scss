@@ -1,0 +1,7 @@
+.player-list {
+  border: 1px solid $grey;
+
+  &.empty {
+    border: 2px dashed $zurple;
+  }
+}

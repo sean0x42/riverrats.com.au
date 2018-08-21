@@ -62,7 +62,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'autoprefixer-rails'
 gem 'bootsnap', require: false
-gem 'cocoon'
 gem 'connection_pool'
 gem 'devise'
 gem 'elasticsearch'

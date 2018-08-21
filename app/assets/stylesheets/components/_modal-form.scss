@@ -8,22 +8,21 @@
 }
 
 .modal-form {
+  margin-top: 2rem;
+
   hr {
     border: none;
     border-bottom: 2px dashed $grey;
     margin: 1.7rem 0 1.3rem;
   }
 
-  h1 {
-    margin-bottom: 2rem;
-  }
-
   h2 {
     margin-top: 2rem;
   }
 
-  .button.wide {
-    margin-top: 2.5rem;
+  .button.wide,
+  .button-secondary.wide {
+    margin-top: 2.2rem;
   }
 
   .modal-footer {
@@ -41,5 +40,25 @@
 
   input {
     max-width: unset;
+  }
+
+  .step {
+    display: none;
+
+    &[active] {
+      display: block;
+    }
+  }
+
+  .previous-step {
+    display: block;
+    color: $zurple-dark;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: $font-size - 1px;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
