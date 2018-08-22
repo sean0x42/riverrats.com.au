@@ -10,7 +10,7 @@ class UpdateSeasonJob < ApplicationJob
   def perform (player, changes, season)
 
     # Get related season
-    season = PlayersSeasons.where(
+    season = PlayersSeason.where(
       season_id: season.id,
       player_id: player.id
     ).first_or_create

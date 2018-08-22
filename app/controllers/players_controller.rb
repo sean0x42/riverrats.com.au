@@ -1,5 +1,4 @@
 class PlayersController < ApplicationController
-
   # GET /players
   def index
     @players = Player.page params[:page]
@@ -15,7 +14,15 @@ class PlayersController < ApplicationController
 
   # GET /players/auto-complete
   def auto_complete
-    render json: Player.search(params[:query], fields: [:full_name, :username], match: :word_start, limit: 10, load: false, misspellings: false).map do |player|
+    options = {
+      fields: [:full_name, :username],
+      match: :word_start,
+      limit: 10,
+      load: false,
+      misspellings: false
+    }
+
+    render json: Player.search(params[:query], options).map do |player|
       { id: player.id, name: player.full_name, username: player.username }
     end
   end
@@ -24,5 +31,4 @@ class PlayersController < ApplicationController
   def random
     redirect_to player_path(Player.pluck(:username).shuffle.first)
   end
-
 end

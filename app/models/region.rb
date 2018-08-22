@@ -6,7 +6,7 @@ class Region < ApplicationRecord
 
   searchkick callbacks: :async
 
-  has_many :players_regions, class_name: 'PlayersRegions', dependent: :nullify
+  has_many :players_regions, class_name: 'PlayersRegion', dependent: :nullify
   has_many :players, through: :players_regions
   has_many :venues, dependent: :nullify
 
@@ -15,5 +15,9 @@ class Region < ApplicationRecord
 
   def search_data
     { name: name }
+  end
+
+  def paginated_players(page)
+    PlayersRegion.includes(:player).where(region: self).page(page).per(25)
   end
 end

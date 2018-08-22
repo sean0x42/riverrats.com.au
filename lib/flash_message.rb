@@ -1,1 +1,1 @@
-Struct.new 'Flash', :title, :body
+Struct.new('Flash', :title, :body)

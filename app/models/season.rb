@@ -1,5 +1,5 @@
 class Season < ApplicationRecord
-  has_many :players_seasons, class_name: 'PlayersSeasons', dependent: :nullify
+  has_many :players_seasons, class_name: 'PlayersSeason', dependent: :nullify
   has_many :players, through: :players_seasons
 
   validates :start_at, :end_at, presence: true
@@ -18,5 +18,9 @@ class Season < ApplicationRecord
     if start_at > end_at
       errors.add(:start_at, 'can\'t be after the end date.')
     end
+  end
+
+  def paginated_players(page)
+    PlayersSeason.includes(:player).where(season: self).page(page).per(25)
   end
 end

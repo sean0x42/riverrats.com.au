@@ -7,24 +7,12 @@ class Admin::PlayersController < ApplicationController
 
   # GET /admin/players
   def index
-    all = Player.order(score: :desc)
-
-    if params.has_key? :query
-      @players = Player.search params[:query], page: params[:page], per_page: 25
-    else
-      @players = all.page params[:page]
-    end
-
-    @stats = {
-      count: all.count,
-      new_count: all.where('created_at > ?', Date.today - 30.days).count,
-      admin_count: all.where(is_admin: true).count
-    }
+    @players = Player.order(score: :desc).page params[:page]
   end
 
   # GET /admin/players/:username
   def show
-    @player = Player.find_by! username: params[:username]
+    @player = Player.find_by!(username: params[:username])
   end
 
   # GET /admin/players/new
@@ -52,12 +40,12 @@ class Admin::PlayersController < ApplicationController
 
   # GET /admin/players/:username/edit
   def edit
-    @player = Player.find_by! username: params[:username]
+    @player = Player.find_by!(username: params[:username])
   end
 
   # PATCH /admin/players/:username
   def update
-    @player = Player.find_by! username: params[:username]
+    @player = Player.find_by!(username: params[:username])
 
     if @player.update edit_params
       flash[:success] = Struct::Flash.new t('admin.players.update.title'), t('admin.players.update.body') % { player: @player.username }
@@ -72,7 +60,7 @@ class Admin::PlayersController < ApplicationController
 
   # DELETE /admin/players/:username
   def destroy
-    @player = Player.find_by! username: params[:username]
+    @player = Player.find_by!(username: params[:username])
     @player.destroy
 
     flash[:success] = Struct::Flash.new t('admin.players.destroy.title'), t('admin.players.destroy.body') % { player: @player.username }

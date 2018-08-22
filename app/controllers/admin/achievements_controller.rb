@@ -15,7 +15,7 @@ class Admin::AchievementsController < ApplicationController
     @achievement = Achievement.new achievement_params
 
     if @achievement.save
-      flash[:success] = Struct::Flash.new('Successfully awarded an achievement', t('admin.achievement.award') % { player: "@#{@achievement.player.username}"})
+      flash[:success] = Struct::Flash.new('Successfully awarded an achievement', t('admin.achievements.new.title') % { player: "@#{@achievement.player.username}"})
       redirect_to admin_players_path
     else
       if params.has_key? :achievement && params[:achievement].has_key?(:player_id)

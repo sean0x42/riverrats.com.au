@@ -40,7 +40,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.friendly.find params[:id]
 
     if @region.update region_params
-      flash[:success] = Struct::Flash.new t('admin.region.update.title'), t('admin.region.update.body') % {region: @region.name }
+      flash[:success] = Struct::Flash.new t('admin.regions.update.title'), t('admin.regions.update.body') % {region: @region.name }
       redirect_to admin_regions_path
     else
       render 'edit'
@@ -52,7 +52,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.friendly.find params[:id]
     @region.destroy
 
-    flash[:success] = Struct::Flash.new t('admin.region.destroy.title'), t('admin.region.destroy.body') % {region: @region.name }
+    flash[:success] = Struct::Flash.new t('admin.regions.destroy.title'), t('admin.regions.destroy.body') % {region: @region.name }
     redirect_to admin_regions_path
   end
 

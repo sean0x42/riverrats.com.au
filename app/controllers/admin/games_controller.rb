@@ -14,7 +14,6 @@ class Admin::GamesController < ApplicationController
   # GET /admin/games/new
   def new
     @game = Game.new
-    @attrs = Admin::AttributeCollector.empty_attrs
   end
 
   # POST /admin/games
@@ -22,10 +21,9 @@ class Admin::GamesController < ApplicationController
     @game = Game.new games_params
 
     if @game.save
-      flash[:success] = Struct::Flash.new t('admin.game.create.title'), t('admin.game.create.body')  % { game: @game.name }
+      flash[:success] = Struct::Flash.new t('admin.games.create.title'), t('admin.games.create.body')  % { game: @game.name }
       redirect_to admin_games_path
     else
-      @attrs = Admin::AttributeCollector.from_params params
       render 'new'
     end
   end
@@ -33,7 +31,6 @@ class Admin::GamesController < ApplicationController
   # GET /admin/games/:id/edit
   def edit
     @game = Game.find params[:id]
-    @attrs = Admin::AttributeCollector.from_db params[:id]
   end
 
   # POST /admin/games/:id
@@ -41,11 +38,10 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
 
     if @game.update games_params
-      @game.update_ranks
-      flash[:success] = Struct::Flash.new t('admin.game.update.title'), t('admin.game.update.body') % { game: @game.name }
+      # @game.update_ranks TODO Add an after update task to queue this job
+      flash[:success] = Struct::Flash.new t('admin.games.update.title'), t('admin.games.update.body') % { game: @game.name }
       redirect_to admin_games_path
     else
-      @attrs = Admin::AttributeCollector.from_params params
       render 'edit'
     end
   end
@@ -55,7 +51,7 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
     @game.destroy
 
-    flash[:success] = Struct::Flash.new t('admin.game.destroy.title'), t('admin.game.destroy.body')  % { game: @game.name }
+    flash[:success] = Struct::Flash.new t('admin.games.destroy.title'), t('admin.games.destroy.body')  % { game: @game.name }
     redirect_to admin_games_path
   end
 

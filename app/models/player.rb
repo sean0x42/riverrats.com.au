@@ -1,29 +1,25 @@
 require 'csv'
+require 'username_lib'
+
 class Player < ApplicationRecord
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   default_scope { order(rank: :asc) }
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-
   searchkick callbacks: :async, word_start: [:full_name, :username]
 
-  before_validation :generate_username, on: :create
+  before_validation :gen_username, on: :create
 
   has_many :games_players, class_name: 'GamesPlayer', dependent: :nullify
   has_many :games, through: :games_players
-
   has_many :referees, dependent: :nullify
   has_many :games, through: :referees
-
-  has_many :players_venues, class_name: 'PlayersVenues', dependent: :nullify
+  has_many :players_venues, class_name: 'PlayersVenue', dependent: :nullify
   has_many :venues, through: :players_venues
-
-  has_many :players_regions, class_name: 'PlayersRegions', dependent: :nullify
+  has_many :players_regions, class_name: 'PlayersRegion', dependent: :nullify
   has_many :regions, through: :players_regions
-
-  has_many :players_seasons, class_name: 'PlayersSeasons', dependent: :nullify
+  has_many :players_seasons, class_name: 'PlayersSeason', dependent: :nullify
   has_many :seasons, through: :players_seasons
-
   has_many :achievements
 
   # Virtual attribute for authenticating by either username
@@ -35,7 +31,7 @@ class Player < ApplicationRecord
             presence: true,
             uniqueness: { case_sensitive: false },
             format: {
-              with: /\A[a-zA-Z0-9-]*\z/,
+              with: /\A[a-z0-9-]*\z/,
               message: 'may use numbers, letters, underscores (_), and hyphens (-)'
             },
             length: { minimum: 2 }
@@ -107,8 +103,8 @@ class Player < ApplicationRecord
     achievements.exists? type: achievement.sti_name
   end
 
-  def generate_username
-    self.username = UsernameGenerator.generate(first_name, last_name)
+  def gen_username
+    self.username = generate_username(first_name, last_name)
   end
 
   def email_required?
@@ -131,6 +127,6 @@ class Player < ApplicationRecord
   end
 
   def recent_games
-    GamesPlayer.includes(game: [:venue]).where(player_id: self.id).reorder(created_at: :desc).limit(25)
+    GamesPlayer.includes(game: [:venue]).where(player: self).reorder(created_at: :desc).limit(25)
   end
 end

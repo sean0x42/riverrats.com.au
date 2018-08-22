@@ -9,7 +9,7 @@ class Venue < ApplicationRecord
   has_attached_file :image, styles: { regular: ['1400x1400>', :png] }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  has_many :players_venues, class_name: 'PlayersVenues', dependent: :nullify
+  has_many :players_venues, class_name: 'PlayersVenue', dependent: :nullify
   has_many :players, through: :players_venues
 
   belongs_to :region
@@ -55,6 +55,6 @@ class Venue < ApplicationRecord
   end
 
   def paginated_players(page)
-    PlayersVenues.includes(:player).where(venue_id: self.id).page(page).per(25)
+    PlayersVenue.includes(:player).where(venue: self).page(page).per(25)
   end
 end

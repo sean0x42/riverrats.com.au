@@ -20,7 +20,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.new event_params
 
     if @event.save
-      flash[:success] = Struct::Flash.new t('admin.event.create.title'), t('admin.event.create.body') % { event: @event.clean_title }
+      flash[:success] = Struct::Flash.new t('admin.events.create.title'), t('admin.events.create.body') % { event: @event.clean_title }
       redirect_to admin_events_path
     else
       render 'new'
@@ -37,7 +37,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find params[:id]
 
     if @event.update event_params
-      flash[:success] = Struct::Flash.new t('admin.event.update.title'), t('admin.event.update.body') % { event: @event.clean_title }
+      flash[:success] = Struct::Flash.new t('admin.events.update.title'), t('admin.events.update.body') % { event: @event.clean_title }
       redirect_to admin_events_path
     else
       render 'edit'
@@ -54,7 +54,7 @@ class Admin::EventsController < ApplicationController
     end
 
     @event.destroy
-    flash[:success] = Struct::Flash.new t('admin.event.destroy.title'), t('admin.event.destroy.body') % { event: @event.clean_title }
+    flash[:success] = Struct::Flash.new t('admin.events.destroy.title'), t('admin.events.destroy.body') % { event: @event.clean_title }
     redirect_to admin_events_path
   end
 

@@ -1,3 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one: {}
+negative_score:
+  venue: nabiac_hotel
+  player: greg
+  score: -100
+
+negative_games_played:
+  venue: nabiac_hotel
+  player: alice
+  games_played: -100
+
+negative_games_won:
+  venue: nabiac_hotel
+  player: eve
+  games_won: -100
+
+negative_rank:
+  venue: nabiac_hotel
+  player: felicity
+  rank: -100
