@@ -36,7 +36,7 @@ class Player < ApplicationRecord
             uniqueness: { case_sensitive: false },
             format: {
               with: /\A[a-zA-Z0-9-]*\z/,
-              message: 'only allows numbers, letters, underscores (_), and hyphens (-)'
+              message: 'may use numbers, letters, underscores (_), and hyphens (-)'
             },
             length: { minimum: 2 }
 
@@ -44,7 +44,7 @@ class Player < ApplicationRecord
             presence: true,
             format: {
               with: /\A[a-zA-Z][a-zA-Z-]*[a-zA-Z]\z/,
-              message: 'only allows latin letters, and hyphens (-)'
+              message: 'may use letters and hyphens (-)'
             },
             length: { maximum: 64 }
 

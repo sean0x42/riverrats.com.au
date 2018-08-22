@@ -18,19 +18,26 @@ form {
     }
   }
 
-  .buttons {
-    margin-top: 0 !important;
-    margin-bottom: 0;
-    flex-direction: row-reverse;
+  .field-errors {
+    margin: 0.5rem 0 0.75rem;
+    padding-left: 1.75rem;
+    color: lighten($text, 15%);
+    line-height: $body-line-height;
+    border-left: 2px solid $danger;
   }
 
-}
+  .field_with_errors {
+    display: inline;
 
-@media (min-width: 800px) {
+    input {
+      border-bottom-color: $danger;
+      border-bottom-width: 2px;
+    }
 
-  form {
-    .buttons {
-      margin-top: 2.5rem !important;
+    label {
+      color: $text-bold;
+      font-weight: 500;
+      margin-bottom: 0;
     }
   }
 

@@ -1,35 +1,32 @@
 <%= form_with model: [:admin, @player], class: 'modal-form' do |form| %>
 
-  <%= render partial: 'application/form_errors', locals: { object: @player } %>
-
   <!-- Username -->
   <%- if @player.persisted? %>
     <div class="field">
       <%= form.label :username %><br/>
+      <%= field_errors @player, :username %>
       <%= form.text_field :username, spellcheck: false %>
     </div>
   <%- end %>
 
-  <!-- Full name -->
-  <div class="fields">
+  <!-- First name -->
+  <div class="field">
+    <%= form.label :first_name %><br/>
+    <%= field_errors @player, :first_name %>
+    <%= form.text_field :first_name, autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
+  </div>
 
-    <!-- First name -->
-    <div class="field">
-      <%= form.label :first_name %><br/>
-      <%= form.text_field :first_name, autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
-    </div>
-
-    <!-- Last name -->
-    <div class="field">
-      <%= form.label :last_name %><br/>
-      <%= form.text_field :last_name, spellcheck: false, placeholder: 'Surname...' %>
-    </div>
-
+  <!-- Last name -->
+  <div class="field">
+    <%= form.label :last_name %><br/>
+    <%= field_errors @player, :last_name %>
+    <%= form.text_field :last_name, spellcheck: false, placeholder: 'Surname...' %>
   </div>
 
   <!-- Email address -->
   <div class="field">
     <%= form.label :email, 'Email (Optional)' %><br/>
+    <%= field_errors @player, :email %>
     <%= form.email_field :email, placeholder: 'someone@example.com' %>
   </div>
 

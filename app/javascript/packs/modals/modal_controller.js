@@ -37,7 +37,7 @@ const renderModal = (modal) => {
 
   // Add subheading if one was defined
   if (modal.subheading !== null)
-    modal.innerHTML += `<span class="subheading">${modal.subheading}</span>`;
+    modalElement.innerHTML += `<span class="subheading">${modal.subheading}</span>`;
 
   // Add title, if one was defined.
   if (modal.title !== null)
@@ -79,6 +79,7 @@ const closeCurrentModal = () => {
 
   // Update state
   state = State.NONE;
+  updateModalQueue();
 };
 
 /**

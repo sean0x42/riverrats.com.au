@@ -1,87 +1,103 @@
 <%= form_with model: [:admin, @venue], class: 'modal-form' do |form| %>
 
-  <%= render partial: 'application/form_errors', locals: { object: @venue } %>
+  <div class="step" data-step-label="<%= t('admin.venues.new.venue_details') %>">
+    <span class="subheading">Admin Tools</span>
+    <h1><%= t('admin.venues.new.title') %></h1>
 
-  <!-- Name -->
-  <div class="field">
-    <%= form.label :name %><br/>
-    <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Nabiac Hotel' %>
-  </div>
+    <!-- Name -->
+    <div class="field">
+      <%= form.label :name %><br/>
+      <%= field_errors @venue, :name %>
+      <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Nabiac Hotel' %>
+    </div>
 
-  <!-- Phone -->
-  <div class="field">
-    <%= form.label :phone_number %><br/>
-    <%= form.telephone_field :phone_number %>
-  </div>
-
-  <!-- URLS -->
-  <div class="fields">
+    <!-- Phone -->
+    <div class="field">
+      <%= form.label :phone_number %><br/>
+      <%= field_errors @venue, :phone_number %>
+      <%= form.telephone_field :phone_number %>
+    </div>
 
     <!-- Website -->
     <div class="field">
       <%= form.label :website %><br/>
+      <%= field_errors @venue, :website %>
       <%= form.text_field :website %>
     </div>
 
     <!-- Facebook -->
     <div class="field">
       <%= form.label :facebook, 'Facebook URL' %><br/>
+      <%= field_errors @venue, :facebook %>
       <%= form.text_field :facebook, placeholder: 'https://www.facebook.com/...' %>
     </div>
-
   </div>
 
-  <!-- Image -->
-  <div class="field">
-    <%= form.file_field :image %>
-    <%= form.label :image, class: 'button' do %>
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
-           height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" class="material-icons" style="margin-left: -3px">
-        <path d="M10.59,4.59C10.21,4.21,9.7,4,9.17,4H4C2.9,4,2.01,4.9,2.01,6L2,18c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8c0-1.1-0.9-2-2-2h-8L10.59,4.59z"></path>
-      </svg>
-      <span><%= t('input.file.label') %></span>
-    <%- end %>
-    <%= form.file_field :image, class: 'auto-submit', direct_upload: true %>
+  <div class="step" data-step-label="<%= t('admin.venues.new.image') %>">
+    <span class="subheading"><%= t('admin.venues.new.title') %></span>
+    <h1><%= t('admin.venues.new.image') %></h1>
+
+    <!-- Image -->
+    <div class="field">
+      <label>Image</label><br/>
+      <%= field_errors @venue, :image %>
+      <div class="buttons">
+        <%= form.label :image, class: 'button' do %>
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
+               height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" class="material-icons" style="margin-left: -3px">
+            <path d="M10.59,4.59C10.21,4.21,9.7,4,9.17,4H4C2.9,4,2.01,4.9,2.01,6L2,18c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8c0-1.1-0.9-2-2-2h-8L10.59,4.59z"></path>
+          </svg>
+          <span><%= t('input.file.label') %></span>
+        <%- end %>
+        <%= form.file_field :image, class: 'auto-submit', direct_upload: true %>
+      </div>
+    </div>
   </div>
 
-  <hr/>
+  <div class="step" data-step-label="<%= t('admin.venues.new.address') %>">
+    <span class="subheading"><%= t('admin.venues.new.title') %></span>
+    <h1><%= t('admin.venues.new.address') %></h1>
 
-  <h2>Address</h2>
+    <!-- Address -->
+    <div class="field">
+      <%= form.label :address_line_one, 'Address' %><br/>
+      <%= field_errors @venue, :address_line_one %>
+      <%= form.text_field :address_line_one, placeholder: 'Line 1' %>
+    </div>
 
-  <!-- Address -->
-  <div class="field">
-    <%= form.label :address_line_one, 'Address' %><br/>
-    <%= form.text_field :address_line_one, placeholder: 'Line 1' %>
-    <%= form.text_field :address_line_two, placeholder: 'Line 2 (Optional)' %>
-  </div>
-
-  <div class="fields">
+    <div class="field">
+      <%= field_errors @venue, :address_line_two %>
+      <%= form.text_field :address_line_two, placeholder: 'Line 2 (Optional)' %>
+    </div>
 
     <!-- Suburb -->
     <div class="field">
       <%= form.label :suburb, 'City/Suburb' %><br/>
+      <%= field_errors @venue, :suburb %>
       <%= form.text_field :suburb %>
     </div>
 
     <!-- Post Code -->
     <div class="field">
       <%= form.label :post_code %><br/>
+      <%= field_errors @venue, :post_code %>
       <%= form.number_field :post_code %>
     </div>
 
-  </div>
+    <!-- State -->
+    <div class="field">
+      <%= form.label :state %><br/>
+      <%= field_errors @venue, :state %>
+      <%= form.select :state, Venue.states.keys.map { |state| [state.titleize, state] } %>
+    </div>
 
-  <!-- State -->
-  <div class="field">
-    <%= form.label :state %><br/>
-    <%= form.select :state, Venue.states.keys.map { |state| [state.titleize, state] } %>
-  </div>
+    <!-- Region -->
+    <div class="field">
+      <%= form.label :region_id %><br/>
+      <%= field_errors @venue, :region_id %>
+      <%= form.collection_select :region_id, Region.all, :id, :name %>
+    </div>
 
-  <!-- Region -->
-  <div class="field">
-    <%= form.label :region_id %><br/>
-    <%= form.collection_select :region_id, Region.all, :id, :name %>
+    <%= form.submit class: 'button wide', data: { disable_with: 'Please wait...' } %>
   </div>
-
-  <%= form.submit class: 'button wide', data: { disable_with: 'Please wait...' } %>
 <% end %>

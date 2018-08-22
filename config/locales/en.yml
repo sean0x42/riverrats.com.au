@@ -120,6 +120,9 @@ en:
         title: "Venues"
       new:
         title: "Create Venue"
+        venue_details: "Edit Details"
+        image: "Add Image"
+        address: "Edit Address"
       edit:
         title: "Edit Venue"
       create:

@@ -7,11 +7,7 @@ class Admin::RegionsController < ApplicationController
 
   # GET /admin/regions
   def index
-    if params.has_key? :query
-      @regions = Region.search params[:query], page: params[:page], per_page: 25
-    else
-      @regions = Region.page params[:page]
-    end
+    @regions = Region.page params[:page]
   end
 
   # GET /admin/regions/new
@@ -24,10 +20,13 @@ class Admin::RegionsController < ApplicationController
     @region = Region.new region_params
 
     if @region.save
-      flash[:success] = Struct::Flash.new t('admin.region.create.title'), t('admin.region.create.body') % { region: @region.name }
+      flash[:success] = Struct::Flash.new t('admin.regions.create.title'), t('admin.regions.create.body') % { region: @region.name }
       redirect_to admin_regions_path
     else
-      render 'new'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.js { render 'failure' }
+      end
     end
   end
 

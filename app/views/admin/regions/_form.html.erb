@@ -1,13 +1,10 @@
 <%= form_with model: [:admin, @region], class: 'modal-form' do |form| %>
-
-  <%= render partial: 'application/form_errors', locals: { object: @region } %>
-
   <!-- Name -->
   <div class="field">
     <%= form.label :name %><br/>
+    <%= field_errors @region, :name %>
     <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Taree' %>
   </div>
 
   <%= form.submit class: 'button wide', data: { disable_with: 'Please wait...' } %>
-
 <% end %>

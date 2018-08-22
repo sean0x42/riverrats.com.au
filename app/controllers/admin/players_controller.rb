@@ -34,22 +34,19 @@ class Admin::PlayersController < ApplicationController
 
   # POST /admin/players
   def create
-    generated_password = Devise.friendly_token(8)
-
-    @player = Player.new do |player|
-      player.first_name = auth_params[:first_name]
-      player.last_name = auth_params[:last_name]
-      player.email = auth_params[:email].blank? ? nil : auth_params[:email]
-      player.is_admin = auth_params[:is_admin]
-      player.password = generated_password
-    end
+    player_params = new_params
+    player_params[:password] = Devise.friendly_token(8)
+    @player = Player.new player_params
 
     if @player.save
-      flash[:success] = Struct::Flash.new t('admin.player.create.title'), t('admin.player.create.body') % { player: @player.username }
-      PlayerMailer.welcome(@player.id, generated_password).deliver_later
+      flash[:success] = Struct::Flash.new t('admin.players.create.title'), t('admin.players.create.body') % { player: @player.username }
+      PlayerMailer.welcome(@player, player_params[:password]).deliver_later
       redirect_to admin_players_path
     else
-      render 'new'
+      respond_to do |format|
+        format.js { render 'failure' }
+        format.html { render 'new'}
+      end
     end
   end
 
@@ -63,7 +60,7 @@ class Admin::PlayersController < ApplicationController
     @player = Player.find_by! username: params[:username]
 
     if @player.update edit_params
-      flash[:success] = Struct::Flash.new t('admin.player.update.title'), t('admin.player.update.body') % { player: @player.username }
+      flash[:success] = Struct::Flash.new t('admin.players.update.title'), t('admin.players.update.body') % { player: @player.username }
       redirect_to admin_players_path
     else
       if @player.username_changed?
@@ -78,20 +75,19 @@ class Admin::PlayersController < ApplicationController
     @player = Player.find_by! username: params[:username]
     @player.destroy
 
-    flash[:success] = Struct::Flash.new t('admin.player.destroy.title'), t('admin.player.destroy.body') % { player: @player.username }
+    flash[:success] = Struct::Flash.new t('admin.players.destroy.title'), t('admin.players.destroy.body') % { player: @player.username }
     redirect_to admin_players_path
   end
 
   private
 
-  def auth_params
+  def new_params
+    params[:email] = nil if params.has_key? :email && params[:email].blank?
     params.require(:player).permit(:first_name, :last_name, :email, :is_admin)
   end
 
   def edit_params
-    if params.has_key? :email && params[:email].blank?
-      params[:email] = nil
-    end
+    params[:email] = nil if params.has_key? :email && params[:email].blank?
     params.require(:player).permit(:username, :first_name, :last_name, :email, :is_admin)
   end
 end
