@@ -6,11 +6,12 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="number"],
-input[type="tel"] {
+input[type="tel"],
+.better-select-trigger {
   position: relative;
   width: 100%;
-  max-width: 320px;
-  background: $grey-light;
+  max-width: $max-input-width;
+  background: white;
   border: 1px solid $grey-dark;
   border-radius: 2px;
   line-height: 1.1;

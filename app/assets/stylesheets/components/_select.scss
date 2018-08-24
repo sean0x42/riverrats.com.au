@@ -1,78 +1,67 @@
-.select-wrapper {
+.better-select-wrapper {
   position: relative;
-  margin-top: 0.25rem;
   width: 100%;
-  max-width: 260px;
-  select { @include hidden-visually; }
+  max-width: $max-select-width;
 
-  .select-button {
-    @include no-select;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    letter-spacing: 0.5px;
-    line-height: 1.1;
-    vertical-align: middle;
-    border: 1px solid $grey-dark;
-    border-radius: 2px;
-    cursor: pointer;
-    position: relative;
-    color: $text;
-    background: $grey-light;
-    padding: 10px 14px;
-
-    i {
-      margin: -0.25rem;
-      color: $zurple;
-    }
-
+  &[active] .better-select-trigger {
+    border-radius: $border-radius $border-radius 0 0;
   }
 
-  &.open .select-button {
-    border-radius: 2px 2px 0 0;
-  }
-
-  .select-options {
-    position: absolute;
-    left: 0;
-    right: 0;
-    background: white;
-    border-radius: 0 0 2px 2px;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    overflow: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 150ms;
-    z-index: 10;
-
-    li {
-      @include no-select;
-      padding: 7px 14px;
-      cursor: pointer;
-      border-left: 1px solid $grey-dark;
-      border-right: 1px solid $grey-dark;
-
-      &:hover {
-        color: $zurple-inverted;
-        background: $zurple;
-        border-color: $zurple;
-      }
-
-      &:last-child {
-        border-bottom: 1px solid $grey-dark;
-        border-radius: 0 0 2px 2px;
-      }
-
-    }
-
-  }
-
-  &.open .select-options {
-    pointer-events: all;
+  &[active] .better-select-dropdown {
     opacity: 1;
+    pointer-events: all;
   }
+}
 
+.better-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: unset;
+  cursor: pointer;
+  fill: $grey-light-inverted;
+  @include no-select();
+
+  svg {
+    width: 22px;
+    height: 22px;
+    margin: -2px 0;
+  }
+}
+
+.better-select-dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: $grey-light;
+  border: 1px solid $grey-dark;
+  border-top: none;
+  border-radius: 0 0 $border-radius $border-radius;
+  margin: 0;
+  padding: 3px 0;
+  max-height: $max-select-height;
+  overflow-y: auto;
+  list-style-type: none;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms;
+  @include no-select();
+
+  li {
+    line-height: 1.25;
+    padding: 8px 14px;
+    cursor: pointer;
+
+    &:hover {
+      background: $zurple;
+      color: $zurple-inverted;
+    }
+  }
+}
+
+// Hide the existing select
+select[data-processed] {
+  @include hidden-visually();
 }

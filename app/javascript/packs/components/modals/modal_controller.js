@@ -87,8 +87,9 @@ const closeCurrentModal = () => {
  * @param modal Modal to add step controller to.
  */
 const initStepController = modal => {
-  if (modal.querySelectorAll(".step").length > 1)
+  if (modal.querySelectorAll(".step").length > 1) {
     new StepController(modal);
+  }
 };
 
 /**
@@ -99,7 +100,9 @@ const initStepController = modal => {
  */
 window.constructModal = (title, subheading, html) => {
   queue.push(new Modal(title, subheading, html));
-  updateModalQueue()
+  updateModalQueue();
+  checkForDateFields();
+  checkForSelects();
 };
 
 // Listen to ajax before event

@@ -1,9 +1,9 @@
 <%= form_with model: [:admin, @achievement.becomes(Achievement)], html: { multipart: true }, class: 'modal-form' do |form| %>
-  <%= render partial: 'application/form_errors', locals: { object: @achievement } %>
 
   <!-- Achievement -->
   <div class="field">
     <%= form.label :type, 'Achievement' %><br/>
+    <%= field_errors @achievement, :type %>
     <%= form.select :type, options_for_select(
         [
             [StraightFlush.title, StraightFlush.sti_name],
@@ -16,18 +16,17 @@
   <!-- Player -->
   <div class="field">
     <%= form.label :player_id %><br/>
+    <%= field_errors @achievement, :player_id %>
     <%= form.hidden_field :player_id %>
     <div class="player-input-wrapper">
-      <%= form.text_field :player,
-                          class: 'typeahead-achievement player-input',
-                          name: nil,
-                          placeholder: 'Name or username',
-                          value: @player_name %>
+      <%= form.text_field :player, class: 'typeahead-achievement player-input', name: nil, placeholder: 'Name or username', value: @player_name %>
     </div>
   </div>
 
   <!-- Proof -->
   <div class="field">
+    <label>Proof</label><br/>
+    <%= field_errors @achievement, :proof %>
     <%= form.label :proof, class: 'button' do %>
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
            height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" class="material-icons" style="margin-left: -3px">

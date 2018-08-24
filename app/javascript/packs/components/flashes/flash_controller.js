@@ -22,8 +22,8 @@ function createFlash(flash) {
   const inner = document.createElement("div");
   const title = document.createElement("h3");
   const body = document.createElement("p");
-  title.innerText = flash.title;
-  body.innerText = flash.body;
+  title.textContent = flash.title;
+  body.textContent = flash.body;
   inner.appendChild(title);
   inner.appendChild(body);
   element.appendChild(inner);

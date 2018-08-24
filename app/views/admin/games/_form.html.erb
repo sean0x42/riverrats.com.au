@@ -1,7 +1,5 @@
 <%= form_with model: [:admin, @game], class: 'modal-form' do |form| %>
 
-  <%#= render partial: 'application/form_errors', locals: { object: @game } %>
-
   <div class="step" data-step-label="<%= t('admin.games.new.game_details') %>">
 
     <span class="subheading">Admin Tools</span>
@@ -10,18 +8,21 @@
     <!-- Date played -->
     <div class="field">
       <%= form.label :played_on %><br/>
-      <%= form.date_field :played_on %>
+      <%= field_errors @game, :played_on %>
+      <%= form.date_field :played_on, placeholder: 'Click to edit' %>
     </div>
 
     <!-- Venue -->
     <div class="field">
       <%= form.label :venue_id %><br/>
+      <%= field_errors @game, :venue_id %>
       <%= form.collection_select :venue_id, Venue.all, :id, :name %>
     </div>
 
     <!-- Season -->
     <div class="field">
       <%= form.label :season_id %><br/>
+      <%= field_errors @game, :season_id %>
       <%= form.collection_select :season_id, Season.all.order(start_at: :desc).limit(10), :id, :name %>
     </div>
 

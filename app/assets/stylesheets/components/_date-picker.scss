@@ -1,0 +1,70 @@
+.flatpickr-months,
+.flatpickr-weekdays {
+  background: $zurple;
+  color: $zurple-inverted;
+  fill: $zurple-inverted;
+
+  .flatpickr-current-month span.cur-month {
+    font-weight: 500;
+  }
+
+  .flatpickr-month {
+    color: inherit;
+  }
+
+  span.flatpickr-weekday {
+    color: inherit;
+    font-weight: 500;
+  }
+}
+
+.flatpickr-calendar {
+  border-radius: $border-radius;
+}
+
+.flatpickr-months {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+
+  .flatpickr-next-month:hover svg,
+  .flatpickr-prev-month:hover svg {
+    fill: white;
+  }
+}
+
+.flatpickr-calendar.arrowTop::after {
+  border-bottom-color: $zurple;
+}
+
+.flatpickr-day {
+  color: $text;
+
+  &.today {
+    border-color: $zurple-light;
+
+    &:hover {
+      border-color: $zurple-light;
+      background: $grey;
+      color: $text;
+    }
+  }
+
+  &.selected {
+    border-color: $zurple;
+    background: $zurple;
+    color: $zurple-inverted;
+
+    &:hover {
+      border-color: $zurple;
+      background: $zurple;
+      color: $zurple-inverted;
+    }
+  }
+
+  &:hover {
+    border-color: $grey;
+    background: $grey;
+    color: $text;
+  }
+
+}

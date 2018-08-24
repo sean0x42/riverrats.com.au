@@ -104,7 +104,7 @@ class Player < ApplicationRecord
   end
 
   def gen_username
-    self.username = generate_username(first_name, last_name)
+    self.username = UsernameLib.generate_username(first_name, last_name)
   end
 
   def email_required?
