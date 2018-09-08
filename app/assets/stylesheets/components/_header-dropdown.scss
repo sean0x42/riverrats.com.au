@@ -17,13 +17,6 @@
 .header-dropdown-wrapper {
   position: relative;
 
-  .header-dropdown-trigger {
-    display: flex;
-    align-items: center;
-    fill: $darcula-inverted;
-    @include no-select();
-  }
-
   .header-dropdown {
     display: none;
     position: absolute;
@@ -56,5 +49,30 @@
 
   &[active] .header-dropdown {
     display: block;
+  }
+}
+
+.header-link,
+.header-dropdown-trigger {
+  display: flex !important;
+  align-items: center;
+  fill: $darcula-inverted;
+  @include no-select();
+
+  svg:last-child {
+    display: none;
+  }
+}
+
+@media (min-width: 980px) {
+  .header-link,
+  .header-dropdown-wrapper .header-dropdown-trigger {
+    .mobile-icon {
+      display: none;
+    }
+
+    svg:last-child {
+      display: block;
+    }
   }
 }
