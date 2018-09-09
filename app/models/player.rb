@@ -22,8 +22,6 @@ class Player < ApplicationRecord
   has_many :seasons, through: :players_seasons
   has_many :achievements
 
-  # Virtual attribute for authenticating by either username
-  # or email
   attr_accessor :login
   attr_writer :login
 
@@ -128,5 +126,9 @@ class Player < ApplicationRecord
 
   def recent_games
     GamesPlayer.includes(game: [:venue]).where(player: self).reorder(created_at: :desc).limit(25)
+  end
+
+  def season_player
+    PlayersSeason.where(player: self, season: Season.current).first
   end
 end

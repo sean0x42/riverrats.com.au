@@ -1,25 +1,5 @@
 <li class="achievement">
-
-  <%- if achievement.class.type == :single %>
-    <%- case achievement.level %>
-  <%- when 0 %>
-      <%= image_tag 'pokerchip-black.svg' %>
-    <%- when 1 %>
-      <%= image_tag 'pokerchip-purple.svg' %>
-    <%- when 2 %>
-      <%= image_tag 'pokerchip-yellow.svg' %>
-    <%- when 3 %>
-      <%= image_tag 'pokerchip-orange.svg' %>
-    <%- when 4 %>
-      <%= image_tag 'pokerchip-white.svg' %>
-    <%- when 5..100 %>
-      <%= image_tag 'pokerchip-blue.svg' %>
-    <%- else %>
-      <%= image_tag 'pokerchip-green.svg' %>
-    <%- end %>
-  <%- else %>
-    <%= image_tag 'pokerchip-green.svg' %>
-  <%- end %>
+  <div class="image"></div>
 
   <%- if achievement.proof.present? %>
     <%= link_to achievement.proof.url(:full) do %>

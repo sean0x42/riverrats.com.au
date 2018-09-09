@@ -23,4 +23,8 @@ class Season < ApplicationRecord
   def paginated_players(page)
     PlayersSeason.includes(:player).where(season: self).page(page).per(25)
   end
+
+  def self.current
+    Season.where('start_at < ? and end_at > ?', Time.now, Time.now).first
+  end
 end

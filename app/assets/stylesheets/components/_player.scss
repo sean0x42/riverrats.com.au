@@ -1,0 +1,55 @@
+.player-data {
+  background: white;
+  border: 1px solid $grey;
+  border-radius: $border-radius;
+  padding: 1.5rem;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+
+  .image {
+    background: $grey;
+    width: 40px;
+    height: 40px;
+    border-radius: $border-radius;
+  }
+
+  .achievement {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 0.75rem;
+
+    .image {
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    p {
+      margin: 0;
+      font-size: 15px;
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .title {
+      color: $text-bold;
+      font-weight: bold;
+    }
+  }
+
+  .button-tertiary {
+    margin: 0;
+    justify-content: center;
+    text-align: center;
+  }
+}
