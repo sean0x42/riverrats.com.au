@@ -5,11 +5,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :players,
-             path_names: {
-               sign_in: 'login',
-               sign_out: 'logout',
-               sign_up: 'register'
-             },
+             path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' },
              controllers: {
                registrations: 'players/registrations',
                sessions: 'players/sessions',
@@ -19,10 +15,15 @@ Rails.application.routes.draw do
   root 'landing#index'
   get '/privacy-policy', to: 'landing#privacy_policy'
   get '/release-notes', to: 'landing#release_notes'
-  get 'players/auto-complete', to: 'players#auto_complete'
-  get 'players/random', to: 'players#random'
 
-  resources :players, only: [:index, :show], param: :username
+  resources :players, only: [:index, :show], param: :username do
+    collection do
+      get 'random'
+      get 'auto-complete'
+    end
+    resources :achievements, only: [:index, :show]
+  end
+
   resources :events, only: :show
   resources :games, :seasons, only: [:index, :show]
   get '/calendar(/:year/:month)', to: 'events#index', as: 'events'
@@ -39,7 +40,5 @@ Rails.application.routes.draw do
     get 'mail', to: 'mail#index'
     post 'mail/players', to: 'mail#show', defaults: { format: 'csv' }
     get 'scores', to: 'scores#index'
-
   end
-
 end

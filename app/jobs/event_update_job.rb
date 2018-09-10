@@ -11,5 +11,4 @@ class EventUpdateJob < ApplicationJob
   after_perform do
     self.class.set(wait_until: Time.now + 1.month).perform_later
   end
-
 end

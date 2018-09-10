@@ -4,7 +4,7 @@
   z-index: 2000;
   width: 100%;
   color: $darcula-inverted;
-  background: transparentize($darcula, 0.1);
+  background: transparentize($darcula, 0.15);
   border-top: 4px solid $zurple;
 
   & > .wrapper {
@@ -22,6 +22,18 @@
     line-height: 1.0;
     vertical-align: middle;
     margin-right: 1.25rem;
+  }
+
+  nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparentize($darcula, 0.15);
+    border-bottom: 4px solid $zurple;
+    display: flex;
+    align-items: center;
+    width: 100%;
   }
 
   nav > ul {
@@ -104,5 +116,16 @@
     &:hover {
       color: lighten(saturate($zurple, 100%), 24%);
     }
+  }
+}
+
+@media (min-width: 980px) {
+  .header nav {
+    position: relative;
+    bottom: unset;
+    left: unset;
+    right: unset;
+    background: none;
+    border-bottom: none;
   }
 }

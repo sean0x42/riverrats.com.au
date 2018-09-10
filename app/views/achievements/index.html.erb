@@ -1,0 +1,8 @@
+<%- content_for :title, t('achievements.index.title') % { player: @player.full_name } %>
+<%- content_for :description, t('achievements.index.description') % { player: @player.full_name } %>
+<%- content_for :canonical_url, player_achievements_path(@player) %>
+
+<div class="content-wrapper wrapper">
+  <span class="subheading">Achievement List</span>
+  <h1><%= t('achievements.index.title') % { player: @player.full_name } %></h1>
+</div>

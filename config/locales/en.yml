@@ -210,3 +210,7 @@ en:
       duplicate_referees: "has duplicate tournament directors."
       too_few_players: "Too few players. There must be at least 2."
       too_few_referees: "Too few tournament directors. There must be at least 1."
+  achievements:
+    index:
+      title: "%{player}'s Achievements"
+      description: "View a list of all achievements unlocked by %{player}"

@@ -41,7 +41,8 @@ const onTriggerMouseEnter = event => {
  * @param event Mouse leave event.
  */
 const onDropdownMouseLeave = event => {
-
+  const { target } = event;
+  disableDropdown(target.parentNode);
 };
 
 /**

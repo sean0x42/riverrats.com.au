@@ -16,7 +16,7 @@
   .nav-columns {
     display: grid;
     grid-gap: 2rem;
-    grid-template-columns: repeat(4, 180px);
+    grid-template-columns: repeat(auto-fit, 180px);
     margin: 0 0 4rem;
 
     ul {
