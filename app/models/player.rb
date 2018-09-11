@@ -131,4 +131,12 @@ class Player < ApplicationRecord
   def season_player
     PlayersSeason.where(player: self, season: Season.current).first
   end
+
+  def self.recent(days = 30)
+    Player.where('created_at > ?', Date.today - days.days)
+  end
+
+  def self.admin
+    Player.where(is_admin: true).or(Player.where(is_developer: true))
+  end
 end

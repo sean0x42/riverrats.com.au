@@ -28,7 +28,7 @@ class Admin::PlayersController < ApplicationController
 
     if @player.save
       flash[:success] = Struct::Flash.new t('admin.players.create.title'), t('admin.players.create.body') % { player: @player.username }
-      PlayerMailer.welcome(@player, player_params[:password]).deliver_later
+      PlayerMailer.welcome(@player.id, player_params[:password]).deliver_later
       redirect_to admin_players_path
     else
       respond_to do |format|

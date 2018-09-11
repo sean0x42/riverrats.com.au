@@ -49,9 +49,9 @@ export class StepController {
     const link = document.createElement("a");
 
     // Set element attributes
-    link.classList.add("button-secondary", "wide");
+    link.classList.add("button", "wide");
     link.href = "javascript:void";
-    link.textContent = label;
+    link.textContent = `Next: ${label}`;
 
     // Bind to click event
     link.addEventListener("click", StepController.nextStep);

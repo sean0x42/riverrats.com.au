@@ -7,22 +7,27 @@
   </div>
   <div>
     <%= link_to new_admin_game_path, class: 'button', remote: true, data: { expects_modal: true } do %>
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
-           height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" class="material-icons" style="margin-left: -4px;">
-        <g>
-          <path d="M13,10H3c-0.55,0-1,0.45-1,1v0c0,0.55,0.45,1,1,1h10c0.55,0,1-0.45,1-1v0C14,10.45,13.55,10,13,10z M13,6H3
-		C2.45,6,2,6.45,2,7v0c0,0.55,0.45,1,1,1h10c0.55,0,1-0.45,1-1v0C14,6.45,13.55,6,13,6z M18,14v-3c0-0.55-0.45-1-1-1h0
-		c-0.55,0-1,0.45-1,1v3h-3c-0.55,0-1,0.45-1,1v0c0,0.55,0.45,1,1,1h3v3c0,0.55,0.45,1,1,1h0c0.55,0,1-0.45,1-1v-3h3
-		c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H18z M3,16h6c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H3c-0.55,0-1,0.45-1,1v0
-		C2,15.55,2.45,16,3,16z"></path>
-        </g>
+      <svg width="24px" height="24px" viewBox="0 0 24 24" class="material-icons" style="margin-left: -4px;">
+        <path d="M13,10H3c-0.55,0-1,0.45-1,1v0c0,0.55,0.45,1,1,1h10c0.55,0,1-0.45,1-1v0C14,10.45,13.55,10,13,10z M13,6H3C2.45,6,2,6.45,2,7v0c0,0.55,0.45,1,1,1h10c0.55,0,1-0.45,1-1v0C14,6.45,13.55,6,13,6z M18,14v-3c0-0.55-0.45-1-1-1h0c-0.55,0-1,0.45-1,1v3h-3c-0.55,0-1,0.45-1,1v0c0,0.55,0.45,1,1,1h3v3c0,0.55,0.45,1,1,1h0c0.55,0,1-0.45,1-1v-3h3c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H18z M3,16h6c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H3c-0.55,0-1,0.45-1,1v0C2,15.55,2.45,16,3,16z"></path>
       </svg>
       <span><%= t('admin.games.new.title') %></span>
-    <%- end %>
+    <% end -%>
   </div>
 </div>
 
 <div class="breakdown">
+
+  <!-- Games played -->
+  <div>
+    <h2>Games Recorded</h2>
+    <p><%= number_to_human(Game.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+  </div>
+
+  <!-- Recent Games -->
+  <div>
+    <h2>Recent Games</h2>
+    <p><%= number_to_human(Game.recent.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+  </div>
 
 </div>
 
@@ -36,49 +41,3 @@
   <%= paginate @games %>
   <p><%= page_entries_info @games %></p>
 </div>
-
-
-    <!-- Breakdown -->
-<!--    <div class="background">-->
-<!--      <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>-->
-
-<!--      <div class="stats">-->
-
-<!--        <!-- Registered players -->
-<!--        <div class="stat">-->
-<!--          <p class="numeric"><%#= number_with_delimiter @stats[:count] %></p>-->
-<!--          <p class="label">games played</p>-->
-<!--        </div>-->
-
-<!--        <!-- New players -->
-<!--        <div class="stat">-->
-<!--          <p class="numeric"><%#= number_with_delimiter @stats[:new_count] %></p>-->
-<!--          <p class="label">in the last 30 days</p>-->
-<!--        </div>-->
-
-<!--      </div>-->
-
-<!--    </div>-->
-
-<!--    <!-- Games list -->
-<!--    <div class="background">-->
-
-<!--      <h2><i class="material-icons">&#xE021;</i> Games</h2>-->
-
-      <%# if @games.empty? %>
-        <%#= render partial: 'admin/empty_state', locals: { noun: 'games', link: new_admin_game_path } %>
-      <%# else %>
-<!--        <div class="table-wrapper">-->
-<!--          <table>-->
-<!--            <tr>-->
-<!--              <th></th>-->
-<!--              <th>Played</th>-->
-<!--              <th>Venue</th>-->
-<!--              <th class="stretch">Season</th>-->
-<!--              <th class="numeric">Players</th>-->
-<!--              <th class="numeric">Referees</th>-->
-<!--            </tr>-->
-            <%#= render @games %>
-<!--          </table>-->
-<!--        </div>-->
-      <%# end %>

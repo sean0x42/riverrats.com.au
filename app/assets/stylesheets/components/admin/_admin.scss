@@ -26,4 +26,17 @@
   .model-list {
     margin-top: 2rem;
   }
+
+  .breakdown {
+    margin: 2rem 0;
+    background: $grey;
+
+    h2 {
+      color: $zurple-dark;
+    }
+
+    p {
+      color: $text;
+    }
+  }
 }

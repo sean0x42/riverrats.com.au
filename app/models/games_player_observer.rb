@@ -55,7 +55,8 @@ class GamesPlayerObserver < ActiveRecord::Observer
   end
 
 
-  def before_destroy (game_player)
+  def after_destroy(game_player)
+
 
     changes = { score: (-1 * game_player.score), plays: -1, wins: 0, second_places: 0, wooden_spoons: 0 }
     player = game_player.player

@@ -1,3 +1,5 @@
+# Recalculates a players statistics. This is time consuming but guaranteed to be
+# accurate.
 class RecalculatePlayerStatsWorker
   include Sidekiq::Worker
   sidekiq_options retry: false
@@ -6,18 +8,15 @@ class RecalculatePlayerStatsWorker
     player = Player.includes(:games_players).find(player_id)
     return if player.nil?
 
-    # Rest values
-    player.score        = 0
-    player.games_played = 0
-    player.games_won    = 0
+    score = played = won = 0
 
     # Calculate new ones
     player.games_players.each do |game|
-      player.score += game.score
-      player.games_played += 1
-      player.games_won += 1 if game.position == 0
+      score += game.score
+      played += 1
+      won += 1 if game.position.zero?
     end
 
-    player.save
+    player.update(score: score, games_played: played, games_won: won)
   end
 end

@@ -1,10 +1,12 @@
+# A join table between games and players
 class GamesPlayer < ApplicationRecord
   include ActiveModel::Dirty
 
-  default_scope { order(position: :asc)}
+  default_scope { order(position: :asc) }
 
   belongs_to :game
   belongs_to :player
+  after_save :update_stats
 
   validates :game, :player, presence: true
   validates :position, :score,
@@ -15,10 +17,16 @@ class GamesPlayer < ApplicationRecord
             }
 
   def first_place?
-    position == 0
+    position.zero?
   end
 
   def was_first_place?
-    position_was == 0
+    position_was.zero?
+  end
+
+  private
+
+  def update_stats
+    RecalculatePlayerStatsWorker.perform_async(player.id)
   end
 end

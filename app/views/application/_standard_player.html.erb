@@ -2,7 +2,7 @@
 <tr>
 
   <!-- Position -->
-  <td><%= (standard_player.rank + 1).ordinalize %></td>
+  <td><%= standard_player.rank.nil? ? 'n/a' : (standard_player.rank + 1).ordinalize %></td>
 
   <!-- Username and flair -->
   <td class="stretch">

@@ -6,7 +6,13 @@ class Venue < ApplicationRecord
 
   searchkick callbacks: :async
 
-  has_attached_file :image, styles: { regular: ['1400x1400>', :png] }
+  # New ActiveStorage declaration
+  # has_one_attached :image
+
+  # Old Paperclip config
+  # Must be removed BEFORE running the rake task.
+  has_attached_file :image,
+                    styles: { regular: ['1400x1400>', :png] }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   has_many :players_venues, class_name: 'PlayersVenue', dependent: :nullify

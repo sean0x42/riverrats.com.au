@@ -62,4 +62,8 @@ class Game < ApplicationRecord
       errors.add :referees, I18n.t('errors.game.duplicate_referees')
     end
   end
+
+  def self.recent(days = 30)
+    Game.where('created_at > ?', Date.today - days.days)
+  end
 end
