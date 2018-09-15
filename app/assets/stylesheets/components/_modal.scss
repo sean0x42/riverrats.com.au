@@ -47,7 +47,8 @@
 
   .wrapper {
     max-width: $modal-width;
-    margin: 6rem auto 4rem;
+    margin: 1rem auto;
+    padding: 0 1rem;
   }
 
   .modal {
@@ -74,5 +75,14 @@
 
   .checkbox {
     margin-bottom: 0 !important;
+  }
+}
+
+@media (min-width: 980px) {
+  .modal-wrapper {
+    .wrapper {
+      margin: 6rem auto 4rem;
+      padding: 0 1.5rem;
+    }
   }
 }

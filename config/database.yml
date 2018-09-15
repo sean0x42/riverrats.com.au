@@ -62,6 +62,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  host: localhost
   database: riverrats_com_au_test
   username: rails_dev
   password: aqwe123

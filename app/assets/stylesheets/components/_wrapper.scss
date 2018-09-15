@@ -1,6 +1,6 @@
 .wrapper {
   position: relative;
-  margin: 8rem auto;
+  margin: 4rem auto;
   width: 100%;
   max-width: $wrapper-width;
   z-index: 10;
@@ -20,5 +20,11 @@
 
   &.split-header {
     margin-bottom: 2.8rem;
+  }
+}
+
+@media (min-width: 980px) {
+  .wrapper {
+    margin: 8rem auto;
   }
 }

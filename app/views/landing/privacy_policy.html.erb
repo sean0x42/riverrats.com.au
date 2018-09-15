@@ -23,9 +23,9 @@
     <h2>Commercial and marketing data</h2>
     <p>We use the information given to us by you, such as your email address and real name, to communicate directly to
       you. We may send you emails containing newsletters, promotions, and special offers. If you do not want to
-      receive such emails, you may opt out in your account's <%= link_to 'settings', edit_player_registration_path, class: 'anchor' %>.</p>
+      receive such emails, you may opt out in your account's <%= link_to 'settings', edit_player_registration_path, class: 'anchor', remote: true, data: { expects_modal: true } %>.</p>
     <p>We also use your email address and real name to send emails regarding upcoming events. This service is
-      automatic, and if you wish you may opt out in your account's <%= link_to 'settings', edit_player_registration_path, class: 'anchor' %>.</p>
+      automatic, and if you wish you may opt out in your account's <%= link_to 'settings', edit_player_registration_path, class: 'anchor', remote: true, data: { expects_modal: true } %>.</p>
     <p>We also use this information to send service related emails (e.g. account verification, changes/updates to
       features, technical and security notes, and password resets). You may not opt out of such emails, as they are
       essential to the functions of this service.</p>

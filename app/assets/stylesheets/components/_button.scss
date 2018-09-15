@@ -33,6 +33,7 @@
 
   .material-icons {
     margin: -3px 0.75rem;
+    flex-shrink: 0;
 
     // It is best to visually adjust these values with inline styles.
     &:first-child {

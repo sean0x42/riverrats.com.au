@@ -3,7 +3,7 @@
 <%- content_for :canonical_url, players_url %>
 
 
-<div class="thin-hero inverted">
+<div class="hero inverted">
   <div class="wrapper">
     <span class="subheading">Player Profile</span>
     <h1><%= @player.full_name %></h1>
@@ -59,31 +59,3 @@
   </div>
 
 </div>
-
-
-<!--      <!-- Stats -->
-<!--      <div class="background">-->
-<!--        <h2>Statistics</h2>-->
-
-<!--        <ul class="info">-->
-
-<!--          <!-- Joined -->
-<!--          <li>-->
-<!--            <i class="material-icons">event_note</i>-->
-<!--            Joined&nbsp;<%#= local_time_ago @player.created_at %>-->
-<!--          </li>-->
-
-<!--          <!-- Games Played -->
-<!--          <li>-->
-<!--            <i class="material-icons">casino</i>-->
-<!--            <%#= pluralize @player.games_played, 'game' %> played-->
-<!--          </li>-->
-
-<!--          <!-- Games Won -->
-<!--          <li>-->
-<!--            <i class="material-icons">new_releases</i>-->
-<!--            <%#= pluralize @player.games_won, 'game' %> won-->
-<!--          </li>-->
-
-<!--        </ul>-->
-<!--      </div>-->
