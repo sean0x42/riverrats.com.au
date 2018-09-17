@@ -100,14 +100,14 @@ class Admin::PlayersController < ApplicationController
   private
 
   def auth_params
-    params.require(:player).permit(:first_name, :last_name, :email, :is_admin)
+    params.require(:player).permit(:first_name, :last_name, :email)
   end
 
   def edit_params
     if params.has_key? :email && params[:email].blank?
       params[:email] = nil
     end
-    params.require(:player).permit(:username, :first_name, :last_name, :email, :is_admin)
+    params.require(:player).permit(:username, :first_name, :last_name, :email)
   end
 
   def require_admin

@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.10.2'
+lock '~> 3.11.0'
 
 set :application, 'river_rats'
 set :repo_url, 'git@github.com:LuckehPickle/riverrats.com.au.git'
