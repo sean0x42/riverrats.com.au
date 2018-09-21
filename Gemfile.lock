@@ -108,7 +108,7 @@ GEM
       multi_json
     erubi (1.7.1)
     execjs (2.7.0)
-    faraday (0.15.2)
+    faraday (0.15.3)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     ffi (1.9.25-x64-mingw32)
@@ -184,9 +184,9 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.5)
-    rack-protection (2.0.3)
+    rack-protection (2.0.4)
       rack
-    rack-proxy (0.6.4)
+    rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -227,7 +227,7 @@ GEM
       railties (>= 4.2.0, < 5.3)
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
-    sass (3.5.7)
+    sass (3.6.0)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -245,7 +245,7 @@ GEM
     selenium-webdriver (3.14.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
-    sidekiq (5.2.1)
+    sidekiq (5.2.2)
       connection_pool (~> 2.2, >= 2.2.2)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
