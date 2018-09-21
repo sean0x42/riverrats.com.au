@@ -14,6 +14,6 @@ class Event < ApplicationRecord
   end
 
   def today?
-    self.start_at > Date.today.at_beginning_of_day && self.start_at < Date.today.at_end_of_day
+    self.start_at > Time.zone.today.at_beginning_of_day && self.start_at < Time.zone.today.at_end_of_day
   end
 end

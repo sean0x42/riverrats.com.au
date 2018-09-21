@@ -72,7 +72,9 @@ const onSelectTriggerClick = event => {
 
   // Disable all selects
   document.querySelectorAll(".better-select-wrapper[active]").forEach(select => {
-    if (select !== wrapper) select.removeAttribute("active");
+    if (select !== wrapper) {
+      select.removeAttribute("active");
+    }
   });
 
   // Toggle wrapper

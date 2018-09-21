@@ -26,6 +26,6 @@ class PlayersController < ApplicationController
 
   # GET /players/random
   def random
-    redirect_to player_path(Player.pluck(:username).shuffle.first)
+    redirect_to player_path(Player.pluck(:username).sample)
   end
 end

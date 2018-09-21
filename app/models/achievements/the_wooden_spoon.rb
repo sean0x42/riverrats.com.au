@@ -1,5 +1,4 @@
 class TheWoodenSpoon < Achievement
-
   def self.check_conditions_for (player)
     awarded = player.awarded? self
 
@@ -39,8 +38,6 @@ class TheWoodenSpoon < Achievement
   def self.type
     :single
   end
-
-  private
 
   def self.requirements
     [1, 10, 25, 50]

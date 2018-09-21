@@ -64,6 +64,6 @@ class Game < ApplicationRecord
   end
 
   def self.recent(days = 30)
-    Game.where('created_at > ?', Date.today - days.days)
+    Game.where('created_at > ?', Time.zone.today - days.days)
   end
 end

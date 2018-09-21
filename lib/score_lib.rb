@@ -1,11 +1,5 @@
 module ScoreLib
-
-  ###
-  # Calculates the number of points a player has earned,
-  # according to their +position+.
-  # @param [Integer] position Player's position in game.
-  # @return [Integer] Number of points earned.
-  def calculate_score (position)
+  def calculate_score(position)
     case (position + 1)
       when 1
         1000
@@ -27,5 +21,4 @@ module ScoreLib
         50
     end
   end
-
 end

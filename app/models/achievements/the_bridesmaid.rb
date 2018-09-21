@@ -1,5 +1,4 @@
 class TheBridesmaid < Achievement
-
   def self.check_conditions_for (player)
     awarded = player.awarded? self
 
@@ -14,7 +13,7 @@ class TheBridesmaid < Achievement
 
     awarded
   end
-
+  
   def check
     requirements = self.class.requirements
 
@@ -40,10 +39,7 @@ class TheBridesmaid < Achievement
     :single
   end
 
-  private
-
   def self.requirements
     [1, 10, 25, 50]
   end
-
 end

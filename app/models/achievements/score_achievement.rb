@@ -1,5 +1,4 @@
 class ScoreAchievement < Achievement
-
   def self.check_conditions_for (player)
     awarded = player.awarded? self
 
@@ -39,10 +38,7 @@ class ScoreAchievement < Achievement
     :single
   end
 
-  private
-
   def self.requirements
     [50, 1000, 2500, 5000, 10000, 25000, 50000]
   end
-
 end

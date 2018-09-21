@@ -17,6 +17,17 @@ const updateModalQueue = () => {
 };
 
 /**
+ * Determines whether the given modal requires a step controller. If it does, a step controller is initialised.
+ * @param modal Modal to add step controller to.
+ */
+const initStepController = modal => {
+  if (modal.querySelectorAll(".step").length > 1) {
+    new StepController(modal);
+  }
+};
+
+
+/**
  * Renders the given model in the DOM.
  * @param modal Modal to render.
  */
@@ -36,12 +47,14 @@ const renderModal = (modal) => {
   modalElement.classList.add("modal");
 
   // Add subheading if one was defined
-  if (modal.subheading !== null)
+  if (modal.subheading !== null) {
     modalElement.innerHTML += `<span class="subheading">${modal.subheading}</span>`;
+  }
 
   // Add title, if one was defined.
-  if (modal.title !== null)
+  if (modal.title !== null) {
     modalElement.innerHTML += `<h1>${modal.title}</h1>`;
+  }
 
   modalElement.innerHTML += modal.html;
   innerWrapper.appendChild(modalElement);
@@ -80,16 +93,6 @@ const closeCurrentModal = () => {
   // Update state
   state = State.NONE;
   updateModalQueue();
-};
-
-/**
- * Determines whether the given modal requires a step controller. If it does, a step controller is initialised.
- * @param modal Modal to add step controller to.
- */
-const initStepController = modal => {
-  if (modal.querySelectorAll(".step").length > 1) {
-    new StepController(modal);
-  }
 };
 
 /**

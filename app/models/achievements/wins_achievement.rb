@@ -1,6 +1,5 @@
 class WinsAchievement < Achievement
-
-  def self.check_conditions_for (player)
+  def self.check_conditions_for(player)
     awarded = player.awarded? self
 
     if awarded
@@ -40,10 +39,7 @@ class WinsAchievement < Achievement
     :single
   end
 
-  private
-
   def self.requirements
     [1, 5, 10, 25, 50, 100, 250, 500, 750, 1000]
   end
-
 end

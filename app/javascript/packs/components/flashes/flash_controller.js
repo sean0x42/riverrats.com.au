@@ -49,7 +49,7 @@ export function renderFlashMessage(flash) {
 
 
 // Catch and deal with clicks to close flashes
-addEventListener("click", event => {
+addEventListener("click", (event) => {
   const { target } = event;
   if (!target.classList.contains("flash-close")) return;
   const flash = target.closest(".flash");
