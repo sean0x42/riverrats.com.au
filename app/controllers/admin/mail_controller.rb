@@ -1,5 +1,6 @@
-class Admin::MailController < ApplicationController
+require 'flash_message'
 
+class Admin::MailController < ApplicationController
   layout 'admin'
   before_action :authenticate_player!
   before_action :require_admin
@@ -11,30 +12,16 @@ class Admin::MailController < ApplicationController
   # POST /admin/mail/players.csv
   def show
     target = params.has_key?(:target) ? params[:target] : 'promotional'
+    options = {}
 
-    case target
-    when 'promotional'
-      @players = Player.where notify_promotional: true
-    when 'event'
-      @players = Player.where notify_events: true
-    when 'all'
-      @players = Player.all
-    else
-      render nothing: true, status: 400
+    if target == 'promotional'
+      options[:notify_promotional] = true
+    elsif target == 'event'
+      options[:notify_events] = true
     end
 
     respond_to do |format|
-      format.csv { send_data @players.to_csv }
+      format.csv { send_data Player.where(options).to_csv }
     end
   end
-
-  private
-
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
-  end
-
 end

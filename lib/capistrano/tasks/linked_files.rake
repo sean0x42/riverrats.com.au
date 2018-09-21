@@ -5,7 +5,6 @@ task :linked_files do
     execute :mkdir, '-p', "#{fetch(:deploy_to)}/shared/config"
     within "#{fetch(:deploy_to)}/shared/config" do
       upload! 'config/database.yml', 'database.yml'
-      upload! 'config/secrets.yml', 'secrets.yml'
     end
   end
 end

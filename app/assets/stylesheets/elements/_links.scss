@@ -1,8 +1,7 @@
-a {
-  color: $branding-primary;
-  text-decoration: none;
+a.anchor {
+  color: $zurple-dark;
+}
 
-  &:hover {
-    text-decoration: underline;
-  }
+a:not(.anchor) {
+  text-decoration: none;
 }

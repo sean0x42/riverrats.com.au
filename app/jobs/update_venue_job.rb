@@ -10,7 +10,7 @@ class UpdateVenueJob < ApplicationJob
   def perform (player, changes, venue)
 
     # Get related venue
-    venue = PlayersVenues.where(
+    venue = PlayersVenue.where(
       venue_id: venue.id,
       player_id: player.id
     ).first_or_create

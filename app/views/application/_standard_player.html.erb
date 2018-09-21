@@ -1,0 +1,26 @@
+<% player = standard_player.player %>
+<tr>
+
+  <!-- Position -->
+  <td><%= standard_player.rank.nil? ? 'n/a' : (standard_player.rank + 1).ordinalize %></td>
+
+  <!-- Username and flair -->
+  <td class="stretch">
+    <%- if player.nil? %>
+      [Deleted player]
+    <%- else %>
+      <%= link_to player_path(player) do %>
+        <span class="highlight"><%= player.full_name %></span>&nbsp;@<%= player.username %>
+        <%- if player.is_developer? %>
+          <span class="flair">developer</span>
+        <%- elsif player.is_admin? %>
+          <span class="flair">admin</span>
+        <%- end %>
+      <%- end %>
+    <%- end %>
+  </td>
+
+  <!-- Score -->
+  <td class="numeric"><%= number_to_human(standard_player.score, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %> pts</td>
+
+</tr>

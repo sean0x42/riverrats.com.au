@@ -9,7 +9,7 @@ class UpdateRegionJob < ApplicationJob
   def perform (player, changes, region)
 
     # Get related region
-    region = PlayersRegions.where(
+    region = PlayersRegion.where(
       region_id: region.id,
       player_id: player.id
     ).first_or_create

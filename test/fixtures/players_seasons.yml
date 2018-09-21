@@ -1,5 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
+negative_score:
+  season: season_one
+  player: greg
+  score: -100
+
+negative_games_played:
+  season: season_one
+  player: alice
+  games_played: -100
+
+negative_games_won:
+  season: season_one
+  player: eve
+  games_won: -100
+
+negative_rank:
+  season: season_one
+  player: felicity
+  rank: -100

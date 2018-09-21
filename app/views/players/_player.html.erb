@@ -1,16 +1,28 @@
-<tr class="inter-ui-ss01<%= ' first' if (!player.rank.nil?) && player.rank == 0 %>">
-    <td class="quiet"><%= player.rank.nil? ? '-' : (player.rank + 1).ordinalize %></td>
-    <td class="stretch">
-        <% if player.nil? %>
-            [Deleted player]
-        <% else %>
-            <%= link_to player, data: { player_id: player.id, show_profile_preview: true} do %>
-                <%= player.full_name %>
-                <span class="quiet">@<%= player.username %></span>
-            <%- end %>
-        <% end %>
-    </td>
-    <td class="numeric score"><%= number_with_delimiter player.score %></td>
-    <td class="numeric quiet"><%= player.games_played %></td>
-    <td class="numeric quiet"><%= player.games_won %></td>
+<tr>
+
+  <!-- Rank -->
+  <td><%= player.rank.nil? ? 'n/a' : (player.rank + 1).ordinalize %></td>
+
+  <!-- Username and flair -->
+  <td class="stretch">
+    <%- if player.nil? %>
+      [Deleted player]
+    <%- else %>
+      <%= link_to player_path(player) do %>
+        <span class="highlight"><%= player.full_name %></span>&nbsp;@<%= player.username %>
+        <%- if player.is_developer? %>
+          <span class="flair">developer</span>
+        <%- elsif player.is_admin? %>
+          <span class="flair">admin</span>
+        <%- end %>
+      <%- end %>
+    <%- end %>
+  </td>
+
+  <!-- Score -->
+  <td class="numeric"><%= number_to_human(player.score, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %> pts</td>
+
+  <!-- Wins -->
+  <td class="numeric"><%= number_to_human(player.games_played, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %> <%= 'game'.pluralize(player.games_played) %></td>
+
 </tr>

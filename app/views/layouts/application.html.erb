@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html lang="en-AU">
-
-    <head>
-        <title><%= content_for?(:title) ? yield(:title) : 'River Rats Poker League' %></title>
-        <%= csrf_meta_tags %>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1, maximum-scale: 1.0" />
-        <meta name="description" content="<%= yield(:description) %>"/>
-        <link rel="canonical" href="<%= yield(:canonical_url) %>">
-        <%= render 'favicons' %>
-        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <%= yield :styles %>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-        <%= yield :scripts %>
-    </head>
-
-    <body class="<%= yield(:body_class) %>">
-        <%= render 'flashes' %>
-        <%- if content_for? :body %>
-            <%= yield :body %>
-        <%- else %>
-            <%= render 'application/header' %>
-            <%= yield %>
-            <%= render 'application/footer-banner' %>
-            <%= render 'application/footer' %>
-        <%- end %>
-    </body>
-
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : 'River Rats Poker League' %><%= yield(:title_suffix) %></title>
+  <%= csrf_meta_tags %>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1, maximum-scale: 1.0"/>
+  <meta name="description" content="<%= yield(:description) %>"/>
+  <link rel="canonical" href="<%= yield(:canonical_url) %>">
+  <%= render 'favicons' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%#= stylesheet_pack_tag 'application' %>
+  <%= yield :styles %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application' %>
+  <%= yield :scripts %>
+</head>
+<body class="<%= yield(:body_class) %>">
+  <%= render 'flash_messages' %>
+  <%= render 'application/header' %>
+  <%= content_for?(:body) ? yield(:body) : yield %>
+  <%= render 'application/footer' %>
+  <%= render 'modals' %>
+</body>
 </html>

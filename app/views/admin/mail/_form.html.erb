@@ -1,0 +1,16 @@
+<%= form_with url: "#{admin_mail_players_path}.csv", local: true do |form| %>
+
+  <!-- Filter -->
+  <div class="field">
+    <%= form.label :target, 'Filter Players' %><br/>
+    <%= form.select :target, options_for_select(
+        [
+            ['Receiving promotional mail', 'promotional'],
+            ['Receiving event mail', 'event'],
+            ['Everyone', 'all']
+        ]
+    ) %>
+  </div>
+
+  <%= form.submit 'Generate', class: 'button wide', name: nil, data: { disable_with: 'Please wait...' } %>
+<% end %>

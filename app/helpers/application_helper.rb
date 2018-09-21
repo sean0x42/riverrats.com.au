@@ -13,5 +13,8 @@ module ApplicationHelper
              placeholder: placeholder
            }
   end
-  
+
+  def field_errors(model, field)
+    render 'application/field_errors', model: model, field: field
+  end
 end

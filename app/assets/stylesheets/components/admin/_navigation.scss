@@ -1,215 +1,54 @@
 .admin-navigation {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  background: white;
-  border-top: 1px solid $branding-primary;
-  z-index: 20000;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 100px;
+  width: 270px;
+  line-height: $body-line-height;
+
+  h2 {
+    color: $zurple-dark;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    margin: 2rem 0 0.5rem;
+    padding-left: 0.75rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 
   ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
     padding: 0;
-    margin: 0;
+    margin: 0 0 1rem;
     list-style-type: none;
-
-    a {
-      @include no-select;
-      display: flex;
-      flex-direction: column;
-      font-size: 14px;
-      color: lighten($generic-text, 15%);
-      border-radius: 3px;
-      align-items: center;
-      padding: 6px 0.5rem;
-      margin: 3px 0;
-      text-decoration: none;
-
-      i {
-        padding-top: 6px;
-        font-size: 26px;
-        color: lighten($generic-text, 25%);
-      }
-
-      &:hover {
-        background: hsl(220, 8%, 99%);
-      }
-
-      &.active {
-        color: darken($branding-primary, 5%);
-        i { color: $branding-primary; }
-      }
-
-    }
-
   }
 
-  h2,
-  hr,
-  .copyright,
-  #regions,
-  #venues {
-    display: none;
-  }
-
-  .overflow-navigation {
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    bottom: 75px;
-    background: white;
-    overflow-y: auto;
-    padding: 1rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 100ms;
-
-    h2 {
-      display: block;
-      color: lighten($generic-text-bold, 30%);
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-      margin: 2rem 0 0;
-      padding-left: 12px;
-    }
-
-    ul {
-      display: block;
-      margin: 0.5rem 0 1rem;
-
-      a {
-        flex-direction: row;
-        font-size: $font-size;
-        padding: 6px 12px;
-        margin: 3px 0;
-
-        i {
-          padding-top: 0;
-          font-size: 21px;
-          margin: -3px 0.75rem -3px 0;
-        }
-
-        &.active {
-          background: white;
-        }
-
-      }
-
-      .more {
-        display: none;
-      }
-
-      &.actions,
-      &.danger-zone {
-        display: block;
-      }
-
-    }
-
-  }
-
-  &.open .overflow-navigation {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-}
-
-@media (min-width: 410px) {
-  .admin-navigation #venues {
-    display: block;
-  }
-}
-
-@media (min-width: 510px) {
-  .admin-navigation #regions {
-    display: block;
-  }
-}
-
-
-@media (min-width: 1000px) {
-
-  .admin-navigation {
-    position: relative;
-    width: 270px;
-    flex-shrink: 0;
-    margin-right: 2rem;
+  a {
+    display: flex;
+    align-items: center;
+    color: $grey-darker;
+    fill: $grey-darker;
     border-radius: 3px;
-    border-top: none;
-    background: unset;
-    box-shadow: unset;
+    padding: 6px 1rem;
+    margin: 3px 0;
+    @include no-select();
 
-    h2 {
-      display: block;
-      color: lighten($generic-text-bold, 30%);
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-      margin: 3rem 0 0;
-      padding-left: 12px;
+    svg {
+      width: 22px;
+      height: 22px;
+      margin-right: 0.7rem;
     }
 
-    & > h2:first-child { margin: 0; }
-
-    ul {
-      display: block;
-      margin: 0.5rem 0 1rem;
-
-      a {
-        flex-direction: row;
-        font-size: $font-size;
-        padding: 6px 12px;
-        margin: 3px 0;
-
-        i {
-          padding-top: 0;
-          font-size: 21px;
-          margin: -3px 0.75rem -3px 0;
-        }
-
-        &.active { background: white; }
-      }
-
-      .more { display: none; }
-      &.actions, &.danger-zone { display: block; }
+    &:hover {
+      background: hsl(220, 8%, 99%);
     }
 
-    hr {
-      display: block;
-      border: none;
-      border-top: 1px solid $border-on-grey;
-      margin: 2rem 0 1.5rem;
+    &.active {
+      background: white;
+      color: $zurple-dark;
+      fill: $zurple-dark;
     }
-
-    .copyright {
-      display: inline;
-      font-size: 15px;
-      margin: 2rem 0 0;
-      padding-left: 12px;
-      color: lighten($generic-text, 28%);
-    }
-
-    .overflow-navigation {
-      position: relative;
-      background: none;
-      top: unset;
-      bottom: unset;
-      padding: 0;
-      opacity: 1;
-      pointer-events: all;
-
-      .normal-nav {
-        display: none;
-      }
-    }
-
   }
 
 }

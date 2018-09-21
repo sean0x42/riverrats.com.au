@@ -1,75 +1,43 @@
-<%- content_for :title, 'All Games (Admin)' %>
+<%- content_for :title, t('admin.games.index.title') %>
 
-<div class="column-wrapper small-first">
+<div class="heading-and-button">
+  <div>
+    <span class="subheading">Admin Tools</span>
+    <h1><%= t('admin.games.index.title') %></h1>
+  </div>
+  <div>
+    <%= link_to new_admin_game_path, class: 'button', remote: true, data: { expects_modal: true } do %>
+      <svg width="24px" height="24px" viewBox="0 0 24 24" class="material-icons" style="margin-left: -4px;">
+        <path d="M13,10H3c-0.55,0-1,0.45-1,1v0c0,0.55,0.45,1,1,1h10c0.55,0,1-0.45,1-1v0C14,10.45,13.55,10,13,10z M13,6H3C2.45,6,2,6.45,2,7v0c0,0.55,0.45,1,1,1h10c0.55,0,1-0.45,1-1v0C14,6.45,13.55,6,13,6z M18,14v-3c0-0.55-0.45-1-1-1h0c-0.55,0-1,0.45-1,1v3h-3c-0.55,0-1,0.45-1,1v0c0,0.55,0.45,1,1,1h3v3c0,0.55,0.45,1,1,1h0c0.55,0,1-0.45,1-1v-3h3c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H18z M3,16h6c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H3c-0.55,0-1,0.45-1,1v0C2,15.55,2.45,16,3,16z"></path>
+      </svg>
+      <span><%= t('admin.games.new.title') %></span>
+    <% end -%>
+  </div>
+</div>
 
-    <!-- Navigation -->
-    <div class="thin">
-        <%= render 'admin/navigation' %>
-    </div>
+<div class="breakdown">
 
-    <div class="wide">
+  <!-- Games played -->
+  <div>
+    <h2>Games Recorded</h2>
+    <p><%= number_to_human(Game.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+  </div>
 
-        <!-- Header -->
-        <div class="wrapper-header admin">
-            <div>
-                <h1 class="has-subtitle">Games</h1>
-                <p class="subtitle">Here you can view and manage all games.</p>
-            </div>
-            <%= render 'admin/buttons' %>
-        </div>
+  <!-- Recent Games -->
+  <div>
+    <h2>Recent Games</h2>
+    <p><%= number_to_human(Game.recent.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+  </div>
 
-        <!-- Breakdown -->
-        <div class="background">
-            <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>
+</div>
 
-            <div class="stats">
+<div class="games-list model-list">
+  <table>
+    <%= render @games %>
+  </table>
+</div>
 
-                <!-- Registered players -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @stats[:count] %></p>
-                    <p class="label">games played</p>
-                </div>
-
-                <!-- New players -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @stats[:new_count] %></p>
-                    <p class="label">in the last 30 days</p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Games list -->
-        <div class="background">
-
-            <h2><i class="material-icons">&#xE021;</i> Games</h2>
-
-            <% if @games.empty? %>
-                <%= render partial: 'admin/empty-state', locals: {noun: 'games', link: new_admin_game_path} %>
-            <% else %>
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th>Played</th>
-                            <th>Venue</th>
-                            <th class="stretch">Season</th>
-                            <th class="numeric">Players</th>
-                            <th class="numeric">Referees</th>
-                        </tr>
-                        <%= render @games %>
-                    </table>
-                </div>
-            <% end %>
-
-            <div class="background-footer">
-                <%= paginate @games %>
-                <p><%= page_entries_info @games %></p>
-            </div>
-
-        </div>
-
-    </div>
-
+<div class="model-list-footer">
+  <%= paginate @games %>
+  <p><%= page_entries_info @games %></p>
 </div>

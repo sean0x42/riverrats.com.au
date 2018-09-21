@@ -1,112 +1,27 @@
-.hero, .thin-hero {
+.hero {
   position: relative;
   padding: 0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  background: $branding-primary url(asset-path('trianglify.png'));
+  margin: 0 0 -13rem;
+  color: darken($zurple-inverted, 5%);
+  background: $zurple url(asset-path('trianglify.svg'));
   background-size: cover;
-
-  h1 {
-    color: white;
-    margin: 0 0 1rem;
-  }
-
-  .subtitle {
-    time { color: darken($branding-primary-text, 4%); }
-  }
-
-  .buttons {
-    justify-content: center;
-    text-shadow: none;
-
-    .button {
-      background: darken($branding-primary-text, 2%);
-      color: $branding-primary;
-    }
-
-    .button-secondary, .button-tertiary {
-      color: darken($branding-primary-text, 7%);
-      i { color: inherit; }
-    }
-
-  }
-
-  .badge {
-    background: darken($branding-primary, 4%);
-    text-shadow: none;
-  }
-
-  a:not(.button):not(.button-secondary):not(.button-tertiary) {
-    color: $branding-primary-text;
-    text-decoration: underline;
-  }
-
-  strong {
-    color: white;
-  }
-
-}
-
-.thin-hero {
-  position: relative;
-  margin: 0 0 -10rem;
   z-index: 0;
-  padding: 0 1.5rem;
-  color: darken($branding-primary-text, 5%);
 
   .wrapper {
-    padding: 4rem 0 12rem;
-    margin: 0 auto;
-  }
-
-  h1 { font-size: 24px; }
-  .has-subtitle { margin: 0; }
-  .subtitle {
-    margin-top: 0.7rem;
-    margin-bottom: 0;
-    max-width: 60ch;
-  }
-
-}
-
-.hero {
-  display: flex;
-  align-items: center;
-  height: calc(100vh - 72px);
-  text-align: center;
-  color: darken($branding-primary-text, 8%);
-
-  .wrapper {
-    padding: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 16rem;
     margin: 0 auto;
   }
 
   h1 {
-    font-size: 32px;
+    margin-bottom: 0;
   }
-
-  .subtitle {
-    font-size: 18px;
-  }
-
 }
 
-@media (min-width: 800px) {
+@media (min-width: 980px) {
   .hero {
-    display: block;
-    height: unset;
-
     .wrapper {
-      padding: 7rem 2rem;
-    }
-  }
-}
-
-@media (min-width: 1245px) {
-  .thin-hero {
-    margin: 0 0 -9rem;
-
-    .wrapper {
-      padding: 6rem 0 12rem;
+      padding-top: 8rem;
     }
   }
 }

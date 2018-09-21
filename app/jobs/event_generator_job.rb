@@ -8,8 +8,6 @@ class EventGeneratorJob < ApplicationJob
     EventGeneratorJob.mass_insert(event, schedule.occurrences(end_date))
   end
 
-  ##
-  # Creates an SQL statement for inserting single events on mass
   def self.mass_insert(event, times)
     escaped_values = event.escaped_values
     values = times.map do |time|
@@ -19,5 +17,4 @@ class EventGeneratorJob < ApplicationJob
     sql = "INSERT INTO events (title, description, type, recurring_event_id, venue_id, start_at, created_at, updated_at) VALUES #{values};"
     ActiveRecord::Base.connection.execute(sql)
   end
-
 end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GamesPlayersObserverTest < ActiveSupport::TestCase
+class GamesPlayerObserverTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

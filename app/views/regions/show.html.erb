@@ -1,88 +1,31 @@
-<%- content_for :title, t('view.region.show.title') % { region: @region.name } %>
-<%- content_for :description, t('view.region.show.description') % { region: @region.name } %>
+<%- content_for :title, t('region.show.title') % { region: @region.name } %>
+<%- content_for :description, t('region.show.description') % { region: @region.name } %>
 <%- content_for :canonical_url, region_url(@region) %>
 
-<div id="print">
+<div class="wrapper split-header">
+  <span class="subheading">Region</span>
+  <h1><%= t('region.show.title') % { region: @region.name } %></h1>
+</div>
 
-    <div class="thin-hero">
-        <div class="wrapper">
-            <h1 class="has-subtitle"><%= @region.name %></h1>
-            <p class="subtitle">Region containing <%= pluralize @region.venues.count, 'venue' %>.</p>
-        </div>
+<div class="wrapper split-wrapper">
+  <div>
+    <%- players = @region.paginated_players(params[:page]) %>
+    <div class="model-list">
+      <table>
+        <%= render collection: players, partial: 'application/standard_player' %>
+      </table>
     </div>
 
-    <div class="column-wrapper">
-
-        <div class="wide">
-
-            <!-- Leaderboard -->
-            <div class="background">
-                <h2>Leaderboard</h2>
-
-                <%- if @players.empty? %>
-                    <%= render partial: 'application/empty-state', locals: { description: 'No one has played at this region yet.'} %>
-                <%- else %>
-                    <div class="table-wrapper">
-                        <table>
-                            <tr>
-                                <th></th>
-                                <th class="stretch">Name</th>
-                                <th class="numeric">Score</th>
-                                <th class="numeric">P</th>
-                                <th class="numeric">W</th>
-                            </tr>
-                            <%= render collection: @players, partial: 'player' %>
-                        </table>
-                    </div>
-                <%- end %>
-
-                <div class="background-footer">
-                    <%= paginate @players %>
-                    <p><%= page_entries_info @players %></p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="thin">
-
-            <!-- Venues -->
-            <div class="background">
-                <h2><i class="material-icons">&#xE24B;</i>Breakdown</h2>
-
-                <ul class="info">
-
-                    <!-- Players -->
-                    <li>
-                        <i class="material-icons">person</i>
-                        <%= pluralize @region.players.count, 'player' %>
-                    </li>
-
-                    <!-- Venues -->
-                    <li>
-                        <i class="material-icons">&#xE8F9;</i>
-                        <%= pluralize @region.venues.count, 'venue' %>
-                    </li>
-
-                </ul>
-
-                <ul>
-                    <%= render collection: @region.venues, partial: 'venue' %>
-                </ul>
-
-                <div class="buttons">
-                    <!-- Print -->
-                    <%= link_to 'javascript:print("#print")', class: 'button-secondary' do %>
-                        <i class="material-icons">&#xE8AD;</i>
-                        Print this page
-                    <% end %>
-                </div>
-
-            </div>
-
-        </div>
-
+    <div class="model-list-footer">
+      <%= paginate players %>
     </div>
+  </div>
 
+  <div class="region-data">
+    <h2>Venues</h2>
+    <!-- Venues -->
+    <ul>
+      <%= render collection: @region.venues, partial: 'venue' %>
+    </ul>
+  </div>
 </div>

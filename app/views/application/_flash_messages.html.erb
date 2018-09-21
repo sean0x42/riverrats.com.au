@@ -1,0 +1,33 @@
+<!-- Flash messages -->
+<div class="flash-messages" id="flash-messages" data-turblinks-permanent>
+  <%- unless flash.empty? %>
+    <% flash.each do |type, message| %>
+
+      <!-- Flash -->
+      <div class="flash flash-<%= type %>">
+
+        <!-- Icon -->
+        <div class="flash-icon">
+          <i class="material-icons">&#xE88F;</i>
+        </div>
+
+        <div class="flash-body">
+          <%- if message.is_a? String %>
+            <p><%= message %></p>
+          <%- else %>
+            <h3><%= message['title'] %></h3>
+            <p><%= message['body'] %></p>
+          <%- end %>
+        </div>
+
+        <!-- Close flash button -->
+        <button class="flash-close">
+          <svg class="material-icons" width="24px" height="24px" viewBox="0 0 24 24">
+            <path d="M18.3,5.71L18.3,5.71c-0.39-0.39-1.02-0.39-1.41,0L12,10.59L7.11,5.7c-0.39-0.39-1.02-0.39-1.41,0l0,0 c-0.39,0.39-0.39,1.02,0,1.41L10.59,12L5.7,16.89c-0.39,0.39-0.39,1.02,0,1.41h0c0.39,0.39,1.02,0.39,1.41,0L12,13.41l4.89,4.89 c0.39,0.39,1.02,0.39,1.41,0l0,0c0.39-0.39,0.39-1.02,0-1.41L13.41,12l4.89-4.89C18.68,6.73,18.68,6.09,18.3,5.71z"></path>
+          </svg>
+        </button>
+
+      </div>
+    <% end %>
+  <%- end %>
+</div>

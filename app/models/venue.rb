@@ -1,5 +1,4 @@
 class Venue < ApplicationRecord
-
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
 
@@ -7,10 +6,16 @@ class Venue < ApplicationRecord
 
   searchkick callbacks: :async
 
-  has_attached_file :image, styles: { regular: ['1400x1400>', :png] }
+  # New ActiveStorage declaration
+  # has_one_attached :image
+
+  # Old Paperclip config
+  # Must be removed BEFORE running the rake task.
+  has_attached_file :image,
+                    styles: { regular: ['1400x1400>', :png] }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  has_many :players_venues, class_name: 'PlayersVenues', dependent: :nullify
+  has_many :players_venues, class_name: 'PlayersVenue', dependent: :nullify
   has_many :players, through: :players_venues
 
   belongs_to :region
@@ -55,4 +60,7 @@ class Venue < ApplicationRecord
     { name: name }
   end
 
+  def paginated_players(page)
+    PlayersVenue.includes(:player).where(venue: self).page(page).per(25)
+  end
 end

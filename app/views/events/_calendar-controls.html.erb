@@ -1,13 +1,15 @@
 <div class="calendar-controls">
 
-    <% _prev = previous_month(date) %>
-    <%= link_to events_path(_prev.year, _prev.strftime('%B').downcase) do %>
-        &lt; <%= _prev.strftime '%B' %>
-    <% end %>
+  <!-- Previous month -->
+  <% previous_month = date - 1.month %>
+  <%= link_to events_path(previous_month.year, previous_month.strftime('%B').downcase) do %>
+    &lt; <%= previous_month.strftime '%B' %>
+  <% end %>
 
-    <% _next = next_month(date) %>
-    <%= link_to events_path(_next.year, _next.strftime('%B').downcase) do %>
-        <%= _next.strftime '%B' %> &gt;
-    <% end %>
+  <!-- Next month -->
+  <% next_month = date + 1.month %>
+  <%= link_to events_path(next_month.year, next_month.strftime('%B').downcase) do %>
+    <%= next_month.strftime '%B' %> &gt;
+  <% end %>
 
 </div>

@@ -12,7 +12,7 @@
 
   input[type="search"] {
     font-size: $font-size - 1px;
-    color: $generic-text;
+    color: $text;
     padding: 15px 15px 15px 52px;
     line-height: 1.0;
     width: 100%;
@@ -23,7 +23,7 @@
     position: absolute;
     top: 0;
     font-size: 21px;
-    color: lighten($generic-text, 25%);
+    color: lighten($text, 25%);
     transition: color 200ms;
     padding: 12px 1.2rem;
     pointer-events: none;

@@ -1,32 +1,88 @@
-.modals {
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  background: $darcula;
+  z-index: 10000;
+  pointer-events: none;
+  transition: opacity 300ms;
+
+  &[active] {
+    opacity: 0.75;
+    pointer-events: all;
+  }
+}
+
+.modal-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10001;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 100ms;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &[active] {
+    opacity: 1;
+  }
+
+}
+
+.modal-wrapper {
   position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.15);
-  z-index: 2000;
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 10002;
+
+  .wrapper {
+    max-width: $modal-width;
+    margin: 1rem auto;
+    padding: 0 1rem;
+  }
 
   .modal {
-    position: relative;
     background: white;
-    width: 400px;
-    padding: 21px 1rem 1rem;
-    border-radius: 3px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow-x: hidden;
+    padding: 2rem;
+    border-radius: $border-radius;
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
-      border-radius: 3px 3px 0 0;
+    & > *:first-child {
+      margin-top: 0 !important;
+    }
+  }
+}
+
+.remember-and-forget {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 2.5rem 0 0;
+
+  .remember {
+    margin-right: auto;
+  }
+
+  .checkbox {
+    margin-bottom: 0 !important;
+  }
+}
+
+@media (min-width: 980px) {
+  .modal-wrapper {
+    .wrapper {
+      margin: 6rem auto 4rem;
+      padding: 0 1.5rem;
     }
   }
 }

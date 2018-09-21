@@ -31,13 +31,13 @@ module RiverratsComAu
       "#{config.root}/app/models/achievements/wins"
     ]
 
+    # Action View
+    config.action_view.form_with_generates_ids = true
+
     # Register observers
-    config.active_record.observers = [:games_players_observer, :game_observer]
+    config.active_record.observers = [:games_player_observer, :game_observer]
 
     # Set default time zone
     config.time_zone = "Sydney"
-
-    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
-
   end
 end

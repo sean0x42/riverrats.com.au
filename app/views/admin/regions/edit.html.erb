@@ -1,42 +1,6 @@
-<%- content_for :title, "Edit #{@region.name} (Admin)" %>
+<%- content_for :title, t('admin.regions.edit.title') %>
 
-<div class="column-wrapper small-first">
+<span class="subheading">Admin Tools</span>
+<h1><%= t('admin.regions.edit.title') %></h1>
 
-    <!-- Navigation -->
-    <div class="thin">
-        <%= render 'admin/navigation' %>
-    </div>
-
-    <div class="wide">
-
-        <!-- Header -->
-        <div class="wrapper-header admin">
-            <div>
-                <h1 class="has-subtitle">Edit <%= @region.name %></h1>
-                <p class="subtitle">Make some changes to this region.</p>
-            </div>
-        </div>
-
-        <!-- Form -->
-        <div class="background">
-            <h2>Form</h2>
-            <%= render 'form' %>
-        </div>
-
-        <!-- Danger zone -->
-        <div class="background danger-zone">
-
-            <h2><i class="material-icons">&#xE002;</i>Delete Region</h2>
-            <p><strong>Permanently</strong> delete <%= @region.name %> from the database. You will not be able to recover it.</p>
-
-            <div class="buttons">
-                <%= link_to admin_region_path(@region), method: :delete, class: 'button danger', data: {confirm: t('region.confirm_delete')} do %>
-                    Delete <%= @region.name %>
-                <% end %>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+<%= render 'form' %>

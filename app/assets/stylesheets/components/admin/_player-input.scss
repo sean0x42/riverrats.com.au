@@ -1,8 +1,8 @@
 .player-input-wrapper {
   width: 100%;
   max-width: 600px;
-  background: lighten($input-background, 1%);
-  border: 1px solid $input-border;
+  background: $grey-light;
+  border: 1px solid $grey-dark;
   border-radius: 2px;
   display: flex;
 
@@ -15,7 +15,7 @@
   }
 
   .tt-input, .tt-hint {
-    background: lighten($input-background, 1%);
+    background: $grey-light;
     border: none;
     margin: 0;
   }
@@ -26,7 +26,7 @@
     border-radius: 0;
     flex-shrink: 0;
     border: none;
-    border-left: 1px solid $input-border;
+    border-left: 1px solid $grey-dark;
   }
 
   .tt-menu {
@@ -43,8 +43,8 @@
       padding: 6px 14px;
 
       &.tt-cursor {
-        color: $branding-primary-text;
-        background: $branding-primary;
+        color: $zurple-inverted;
+        background: $zurple;
       }
     }
 

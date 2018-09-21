@@ -1,16 +1,13 @@
-class Admin::VenuesController < ApplicationController
+require 'flash_message'
 
+class Admin::VenuesController < ApplicationController
   layout 'admin'
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/venues
   def index
-    if params.has_key? :query
-      @venues = Venue.search params[:query], page: params[:page], per_page: 25
-    else
-      @venues = Venue.page params[:page]
-    end
+    @venues = Venue.page params[:page]
   end
 
   # GET /admin/venues/new
@@ -23,7 +20,8 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.new venue_params
 
     if @venue.save
-      redirect_to admin_venues_path, notice: t('venue.create') % {venue: @venue.name }
+      flash[:success] = Struct::Flash.new t('admin.venues.create.title'), t('admin.venues.create.body') % { venue: @venue.name }
+      redirect_to admin_venues_path
     else
       render 'new'
     end
@@ -39,7 +37,8 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.friendly.find params[:id]
 
     if @venue.update venue_params
-      redirect_to admin_venues_path, notice: t('venue.update') % {venue: @venue.name }
+      flash[:success] = Struct::Flash.new t('admin.venues.update.title'), t('admin.venues.update.body') % { venue: @venue.name }
+      redirect_to admin_venues_path
     else
       render 'edit'
     end
@@ -50,20 +49,25 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.friendly.find params[:id]
     @venue.destroy
 
-    redirect_to admin_venues_path, notice: t('venue.destroy') % {venue: @venue.name }
+    flash[:success] = Struct::Flash.new t('admin.venues.destroy.title'), t('admin.venues.destroy.body') % { venue: @venue.name }
+    redirect_to admin_venues_path
   end
 
   private
 
   def venue_params
-    params.require(:venue).permit(:name, :region_id, :address_line_one, :address_line_two, :suburb, :post_code, :state, :website, :facebook, :phone_number, :image)
+    params.require(:venue).permit(
+      :name,
+      :region_id,
+      :address_line_one,
+      :address_line_two,
+      :suburb,
+      :post_code,
+      :state,
+      :website,
+      :facebook,
+      :phone_number,
+      :image
+    )
   end
-
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
-  end
-
 end

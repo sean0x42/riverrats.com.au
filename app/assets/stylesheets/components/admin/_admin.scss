@@ -1,0 +1,42 @@
+.admin {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  align-items: flex-start;
+  grid-gap: 2rem;
+  margin: 138px auto 8rem;
+  padding: 0 1.5rem;
+  max-width: $wrapper-width;
+  width: 100%;
+
+  .wrapper {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .heading-and-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+      margin-bottom: 0;
+    }
+  }
+
+  .model-list {
+    margin-top: 2rem;
+  }
+
+  .breakdown {
+    margin: 2rem 0;
+    background: $grey;
+
+    h2 {
+      color: $zurple-dark;
+    }
+
+    p {
+      color: $text;
+    }
+  }
+}

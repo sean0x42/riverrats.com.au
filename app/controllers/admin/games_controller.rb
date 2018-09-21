@@ -1,29 +1,19 @@
-class Admin::GamesController < ApplicationController
+require 'flash_message'
 
+class Admin::GamesController < ApplicationController
   layout 'admin'
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/games
+  # noinspection RailsChecklist01
   def index
-    all = Game.order(id: :desc)
-
-    if params.has_key? :query
-      @games = Game.search params[:query], page: params[:page], per_page: 25
-    else
-      @games = all.page params[:page]
-    end
-
-    @stats = {
-      count: all.count,
-      new_count: all.where('created_at > ?', Date.today - 30.days).count,
-    }
+    @games = Game.includes(:venue).page params[:page]
   end
 
   # GET /admin/games/new
   def new
     @game = Game.new
-    @attrs = Admin::AttributeCollector.empty_attrs
   end
 
   # POST /admin/games
@@ -31,9 +21,9 @@ class Admin::GamesController < ApplicationController
     @game = Game.new games_params
 
     if @game.save
-      redirect_to admin_games_path, notice: t('game.create')  % { game: @game.name }
+      flash[:success] = Struct::Flash.new t('admin.games.create.title'), t('admin.games.create.body')  % { game: @game.name }
+      redirect_to admin_games_path
     else
-      @attrs = Admin::AttributeCollector.from_params params
       render 'new'
     end
   end
@@ -41,7 +31,6 @@ class Admin::GamesController < ApplicationController
   # GET /admin/games/:id/edit
   def edit
     @game = Game.find params[:id]
-    @attrs = Admin::AttributeCollector.from_db params[:id]
   end
 
   # POST /admin/games/:id
@@ -49,10 +38,10 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
 
     if @game.update games_params
-      @game.update_ranks
-      redirect_to admin_games_path, notice: t('game.update') % { game: @game.name }
+      # @game.update_ranks TODO Add an after update task to queue this job
+      flash[:success] = Struct::Flash.new t('admin.games.update.title'), t('admin.games.update.body') % { game: @game.name }
+      redirect_to admin_games_path
     else
-      @attrs = Admin::AttributeCollector.from_params params
       render 'edit'
     end
   end
@@ -62,7 +51,8 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
     @game.destroy
 
-    redirect_to admin_games_path, notice: t('game.destroy')  % { game: @game.name }
+    flash[:success] = Struct::Flash.new t('admin.games.destroy.title'), t('admin.games.destroy.body')  % { game: @game.name }
+    redirect_to admin_games_path
   end
 
   private
@@ -74,12 +64,4 @@ class Admin::GamesController < ApplicationController
       referees_attributes: [:id, :player_id, :_destroy]
     )
   end
-
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
-  end
-
 end

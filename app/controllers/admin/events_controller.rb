@@ -1,26 +1,13 @@
-class Admin::EventsController < ApplicationController
+require 'flash_message'
 
+class Admin::EventsController < ApplicationController
   layout 'admin'
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/events
   def index
-
-    all = SingleEvent.all
-
-    if params.has_key? :query
-      @events = SingleEvent.search params[:query], page: params[:page], per_page: 25
-    else
-      @events = SingleEvent.where('start_at > ?', Time.now - 2.weeks).page params[:page]
-    end
-
-    @stats = {
-      finished: all.where('start_at < ?', Time.now).count,
-      upcoming: all.where('start_at > ? AND start_at < ?', Time.now, Time.now + 2.weeks).count,
-      recurring: RecurringEvent.count
-    }
-
+    @events = SingleEvent.includes(:venue).where('start_at > ?', Time.now - 1.weeks).page params[:page]
   end
 
   # GET /admin/events/new
@@ -29,18 +16,11 @@ class Admin::EventsController < ApplicationController
   end
 
   # POST /admin/events
-  # noinspection RailsChecklist01
   def create
     @event = Event.new event_params
 
     if @event.save
-      flash[:success] = FlashMessage.new(
-        'Success!',
-        t('event.create') % {
-          event: @event.clean_title,
-          link: event_path(@event)
-        }
-      )
+      flash[:success] = Struct::Flash.new t('admin.events.create.title'), t('admin.events.create.body') % { event: @event.clean_title }
       redirect_to admin_events_path
     else
       render 'new'
@@ -57,13 +37,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find params[:id]
 
     if @event.update event_params
-      flash[:success] = FlashMessage.new(
-        'Success!',
-        t('event.update') % {
-          event: @event.clean_title,
-          link: event_path(@event)
-        }
-      )
+      flash[:success] = Struct::Flash.new t('admin.events.update.title'), t('admin.events.update.body') % { event: @event.clean_title }
       redirect_to admin_events_path
     else
       render 'edit'
@@ -80,8 +54,8 @@ class Admin::EventsController < ApplicationController
     end
 
     @event.destroy
-
-    redirect_to admin_events_path, notice: t('event.destroy') % { event: @event.clean_title }
+    flash[:success] = Struct::Flash.new t('admin.events.destroy.title'), t('admin.events.destroy.body') % { event: @event.clean_title }
+    redirect_to admin_events_path
   end
 
   private
@@ -92,12 +66,4 @@ class Admin::EventsController < ApplicationController
       :type, :period, :interval, day: []
     )
   end
-
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
-  end
-
 end

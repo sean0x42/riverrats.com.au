@@ -1,105 +1,105 @@
 <%= form_with model: [:admin, @event.becomes(Event)], local: true do |form| %>
 
-    <%= render partial: 'application/form-errors', locals: { object: @event } %>
+  <%= render partial: 'application/form_errors', locals: { object: @event } %>
 
-    <!-- Basic event info -->
-    <section>
-        <div class="section-outline">
-            <h2><span>I</span>Event details</h2>
-        </div>
-        <div class="section-content">
-
-            <!-- Title -->
-            <div class="field">
-                <%= form.label :title, for: 'event_title' %><br/>
-                <div class="input-wrapper">
-                    <i class="material-icons">&#xE264;</i>
-                    <%= form.text_field :title, id: 'event_title', autofocus: true, placeholder: 'e.g. Mad Monday' %>
-                </div>
-            </div>
-
-            <!-- Description -->
-            <div class="field">
-                <%= form.label :description, for: 'event_description' %><br/>
-                <%= form.text_area :description, id: 'event_description' %>
-            </div>
-
-            <!-- Event is held at this venue -->
-            <div class="field">
-                <%= form.label :venue_id, for: 'event_venue_id' %><br/>
-                <%= form.collection_select :venue_id, Venue.all, :id, :name, {}, { id: 'event_venue_id' } %>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Time -->
-    <section>
-        <div class="section-outline">
-            <h2><span>II</span>Timing</h2>
-        </div>
-        <div class="section-content">
-
-            <!-- Starts at -->
-            <div class="field">
-                <%= form.label :start_at, for: 'event_start_at' %><br/>
-                <div class="input-wrapper">
-                    <i class="material-icons">&#xE192;</i>
-                    <%= form.datetime_field :start_at, id: 'event_start_at', class: 'date-time-input', placeholder: 'Click to edit' %>
-                </div>
-            </div>
-
-            <%- unless @event.persisted? %>
-
-                <!-- Recurring or one time -->
-                <div class="field">
-                    <%= form.label :type, for: 'event_type' %>
-                    <%= form.select :type, options_for_select(
-                        [
-                            ['One time event', SingleEvent.sti_name],
-                            ['Recurring event', RecurringEvent.sti_name]
-                        ],
-                        @event.type
-                    ), {}, { id: 'event_type' } %>
-                </div>
-
-                <!-- Fields related to a recurring event -->
-                <div id="recurring-event-fields">
-
-                    <!-- Period of time between events -->
-                    <div class="field">
-                        <%= form.label :period, 'Occurs', for: 'event_period' %>
-                        <%= form.select :period, RecurringEvent.periods.keys.to_a, {}, { id: 'event_period' } %>
-                    </div>
-
-                    <!-- Number of periods between events -->
-                    <div class="field">
-                        <%= form.label :interval, 'Every', for: 'event_interval' %>
-                        <%= form.number_field :interval, id: 'event_interval',
-                                              value: params.has_key?(:interval) ? params[:interval] : 1,
-                                              min: 1, style: 'width: 60px;' %>
-                        <span id="interval-label">day(s)</span>
-                    </div>
-
-                    <!-- Optional days of the week to perform on -->
-                    <div class="field" id="weekday-fields">
-                        <%= form.label 'On these days:', style: 'margin-bottom: 0.5rem;display: block' %>
-                        <%= week_day_checkboxes form, @event %>
-                    </div>
-
-                    <!-- Provides a summary of the recurrence schedule -->
-                    <p style="font-weight: bold;">Summary: <span id="summary" style="font-weight: normal;"></span></p>
-
-                </div>
-
-            <% end %>
-
-        </div>
-    </section>
-
-    <div class="field buttons">
-        <%= form.submit class: 'button' %>
-        <%= link_to 'Cancel', admin_events_path, class: 'button-tertiary' %>
+  <!-- Basic event info -->
+  <section>
+    <div class="section-outline">
+      <h2><span>I</span>Event details</h2>
     </div>
+    <div class="section-content">
+
+      <!-- Title -->
+      <div class="field">
+        <%= form.label :title, for: 'event_title' %><br/>
+        <div class="input-wrapper">
+          <i class="material-icons">&#xE264;</i>
+          <%= form.text_field :title, id: 'event_title', autofocus: true, placeholder: 'e.g. Mad Monday' %>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="field">
+        <%= form.label :description, for: 'event_description' %><br/>
+        <%= form.text_area :description, id: 'event_description' %>
+      </div>
+
+      <!-- Event is held at this venue -->
+      <div class="field">
+        <%= form.label :venue_id, for: 'event_venue_id' %><br/>
+        <%= form.collection_select :venue_id, Venue.all, :id, :name, {}, { id: 'event_venue_id' } %>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Time -->
+  <section>
+    <div class="section-outline">
+      <h2><span>II</span>Timing</h2>
+    </div>
+    <div class="section-content">
+
+      <!-- Starts at -->
+      <div class="field">
+        <%= form.label :start_at, for: 'event_start_at' %><br/>
+        <div class="input-wrapper">
+          <i class="material-icons">&#xE192;</i>
+          <%= form.datetime_field :start_at, id: 'event_start_at', class: 'date-time-input', placeholder: 'Click to edit' %>
+        </div>
+      </div>
+
+      <%- unless @event.persisted? %>
+
+        <!-- Recurring or one time -->
+        <div class="field">
+          <%= form.label :type, for: 'event_type' %>
+          <%= form.select :type, options_for_select(
+              [
+                  ['One time event', SingleEvent.sti_name],
+                  ['Recurring event', RecurringEvent.sti_name]
+              ],
+              @event.type
+          ), {}, { id: 'event_type' } %>
+        </div>
+
+        <!-- Fields related to a recurring event -->
+        <div id="recurring-event-fields">
+
+          <!-- Period of time between events -->
+          <div class="field">
+            <%= form.label :period, 'Occurs', for: 'event_period' %>
+            <%= form.select :period, RecurringEvent.periods.keys.to_a, {}, { id: 'event_period' } %>
+          </div>
+
+          <!-- Number of periods between events -->
+          <div class="field">
+            <%= form.label :interval, 'Every', for: 'event_interval' %>
+            <%= form.number_field :interval, id: 'event_interval',
+                                  value: params.has_key?(:interval) ? params[:interval] : 1,
+                                  min: 1, style: 'width: 60px;' %>
+            <span id="interval-label">day(s)</span>
+          </div>
+
+          <!-- Optional days of the week to perform on -->
+          <div class="field" id="weekday-fields">
+            <%= form.label 'On these days:', style: 'margin-bottom: 0.5rem;display: block' %>
+            <%= week_day_checkboxes form, @event %>
+          </div>
+
+          <!-- Provides a summary of the recurrence schedule -->
+          <p style="font-weight: bold;">Summary: <span id="summary" style="font-weight: normal;"></span></p>
+
+        </div>
+
+      <% end %>
+
+    </div>
+  </section>
+
+  <div class="field buttons">
+    <%= form.submit class: 'button' %>
+    <%= link_to 'Cancel', admin_events_path, class: 'button-tertiary' %>
+  </div>
 
 <% end %>

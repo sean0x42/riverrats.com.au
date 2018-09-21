@@ -1,8 +1,0 @@
-<% player = referee.player %>
-<li>
-    <%- if player.nil? %>
-        [Deleted player]
-    <%- else %>
-        <%= link_to player.full_name, player_path(player), data: { player_id: player.id, show_profile_preview: true } %>
-    <%- end %>
-</li>

@@ -1,44 +1,5 @@
-<%- content_for :title, 'Edit Event (Admin)' %>
+<%- content_for :title, t('admin.events.edit.title') %>
 
-<div class="column-wrapper small-first">
-
-    <!-- Navigation -->
-    <div class="thin">
-        <%= render 'admin/navigation' %>
-    </div>
-
-    <div class="wide">
-
-        <!-- Header -->
-        <div class="wrapper-header admin">
-            <div>
-                <h1 class="has-subtitle">Edit <%= @event.clean_title %></h1>
-                <p class="subtitle">Here you can alter the finer details regarding a particular event.</p>
-            </div>
-        </div>
-
-        <!-- Form -->
-        <div class="background">
-            <%= render 'form' %>
-        </div>
-
-        <!-- Danger zone -->
-        <div class="background danger-zone">
-            <h2><i class="material-icons">&#xE002;</i> Delete event</h2>
-            <p><strong>Permanently</strong> delete <%= @event.clean_title %> from the database.</p>
-            <div class="buttons">
-                <%= link_to admin_event_path(@event), method: :delete, class: 'button danger', data: {confirm: t('event.confirm_delete')} do %>
-                    Delete <%= @event.clean_title %>
-                <% end %>
-
-                <% unless @event.becomes(SingleEvent).recurring_event.nil? %>
-                    <%= link_to admin_event_path(@event.becomes(SingleEvent).recurring_event, from: @event.id), method: :delete, class: 'button-secondary danger', data: { confirm: t('event.recurring.confirm_delete')} do %>
-                            Delete this and following
-                    <% end %>
-                <% end %>
-            </div>
-        </div>
-
-    </div>
-
-</div>
+<span class="subheading">Admin Tools</span>
+<h1><%= t('admin.events.edit.title') %></h1>
+<%= render 'form' %>

@@ -1,16 +1,13 @@
-class Admin::RegionsController < ApplicationController
+require 'flash_message'
 
+class Admin::RegionsController < ApplicationController
   layout 'admin'
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/regions
   def index
-    if params.has_key? :query
-      @regions = Region.search params[:query], page: params[:page], per_page: 25
-    else
-      @regions = Region.page params[:page]
-    end
+    @regions = Region.page params[:page]
   end
 
   # GET /admin/regions/new
@@ -23,10 +20,13 @@ class Admin::RegionsController < ApplicationController
     @region = Region.new region_params
 
     if @region.save
-      flash[:notice] = t('region.create') % {region: @region.name }
+      flash[:success] = Struct::Flash.new t('admin.regions.create.title'), t('admin.regions.create.body') % { region: @region.name }
       redirect_to admin_regions_path
     else
-      render 'new'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.js { render 'failure' }
+      end
     end
   end
 
@@ -40,7 +40,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.friendly.find params[:id]
 
     if @region.update region_params
-      flash[:notice] = t('region.update') % {region: @region.name }
+      flash[:success] = Struct::Flash.new t('admin.regions.update.title'), t('admin.regions.update.body') % {region: @region.name }
       redirect_to admin_regions_path
     else
       render 'edit'
@@ -52,7 +52,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.friendly.find params[:id]
     @region.destroy
 
-    flash[:notice] = t('region.destroy') % {region: @region.name }
+    flash[:success] = Struct::Flash.new t('admin.regions.destroy.title'), t('admin.regions.destroy.body') % {region: @region.name }
     redirect_to admin_regions_path
   end
 
@@ -60,12 +60,5 @@ class Admin::RegionsController < ApplicationController
 
   def region_params
     params.require(:region).permit(:name)
-  end
-
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
   end
 end

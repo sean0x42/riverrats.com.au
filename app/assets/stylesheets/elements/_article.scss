@@ -1,3 +1,17 @@
-article h2 {
-  margin: 3rem 0 1.5rem;
+article {
+  background: white;
+  padding: 1.5rem;
+  border: 1px solid $grey;
+  border-radius: $border-radius;
+  max-width: 75ch;
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 980px) {
+  article {
+    padding: 2rem;
+  }
 }

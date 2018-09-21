@@ -1,0 +1,63 @@
+.admin .modal-form {
+  background: white;
+  max-width: $modal-width;
+  width: 100%;
+  padding: 2rem;
+  border-radius: $border-radius;
+}
+
+.modal-form {
+  margin-top: 2rem;
+
+  hr {
+    border: none;
+    border-bottom: 2px dashed $grey;
+    margin: 1.7rem 0 1.3rem;
+  }
+
+  h2 {
+    margin-top: 2rem;
+  }
+
+  .button.wide,
+  .button-secondary.wide {
+    margin-top: 2.2rem;
+  }
+
+  .modal-footer {
+    background: $grey;
+    color: $grey-inverted;
+    text-align: center;
+    padding: 1rem;
+    margin: 2rem -2rem -2rem;
+    border-top: 1px solid $grey-dark;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  input {
+    max-width: unset;
+  }
+
+  .step {
+    display: none;
+
+    &[active] {
+      display: block;
+    }
+  }
+
+  .previous-step {
+    display: block;
+    color: $zurple-dark;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: $font-size - 1px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

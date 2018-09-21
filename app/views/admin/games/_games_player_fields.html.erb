@@ -1,18 +1,18 @@
 <div class="player orderable">
 
-    <!-- Hidden form fields -->
-    <%= f.hidden_field :player_id, class: 'player-id-input' %>
-    <%= f.hidden_field :position, class: 'player-position-input' %>
+  <!-- Hidden form fields -->
+  <%= f.hidden_field :player_id, class: 'player-id-input' %>
+  <%= f.hidden_field :position, class: 'player-position-input' %>
 
-    <!-- Visual information -->
-    <i class="material-icons drag-handle">drag_indicator</i>
-    <p class="player-position"><%= f.object.position.to_i + 1 %>.</p>
-    <p class="player-name"><%= @attrs[:names][f.object.player_id] %></p>
-    <p class="player-username"><%= @attrs[:usernames][f.object.player_id] %></p>
+  <!-- Visual information -->
+  <i class="material-icons drag-handle">drag_indicator</i>
+  <p class="player-position"><%= f.object.position.to_i + 1 %>.</p>
+  <p class="player-name"><%= @attrs[:names][f.object.player_id] %></p>
+  <p class="player-username"><%= @attrs[:usernames][f.object.player_id] %></p>
 
-    <!-- Remove button -->
-    <%= link_to_remove_association f, wrapper_class: 'player' do %>
-        <i class="material-icons">&#xE5CD;</i>
-    <% end %>
+  <!-- Remove button -->
+  <%= link_to_remove_association f, wrapper_class: 'player' do %>
+    <i class="material-icons">&#xE5CD;</i>
+  <% end %>
 
 </div>

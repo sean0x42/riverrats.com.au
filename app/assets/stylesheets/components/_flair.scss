@@ -1,0 +1,18 @@
+.flair {
+  background: $zurple;
+  color: $zurple-inverted;
+  border-radius: $border-radius - 1px;
+  font-size: 90%;
+  margin: 0 0.15rem;
+
+  &:before,
+  &:after {
+    content: '\00a0';
+  }
+}
+
+.inverted .flair {
+  background: $zurple-inverted;
+  color: $zurple;
+  font-weight: 500;
+}

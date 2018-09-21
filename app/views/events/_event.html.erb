@@ -1,6 +1,7 @@
 <li>
-    <%= link_to event_path(event), class: "event #{'active' unless event.has_occurred?}" do %>
-        <p><%= event.title %></p>
-        <p class="starts"><%= event.start_at.strftime '%l:%M%p' %></p>
-    <% end %>
+  <%= link_to event_path(event), class: 'event', remote: true, data: { expects_modal: true, disable: true } do %>
+    <p><%= event.title %></p>
+    <%- time_format = event.start_at.min == 0 ? '%l%p' : '%l:%M%p' %>
+    <p class="starts"><%= event.start_at.strftime(time_format).downcase %></p>
+  <% end %>
 </li>

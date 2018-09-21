@@ -5,7 +5,11 @@
   margin: -0.5rem;
   margin-top: 1.5rem;
 
-  .button, .button-secondary, .button-tertiary { margin: 0.5rem; }
+  .button,
+  .button-secondary,
+  .button-tertiary {
+    margin: 0.5rem;
+  }
 }
 
 .button, .button-secondary, .button-tertiary {
@@ -14,20 +18,31 @@
   align-items: center;
   font-size: $font-size - 1px;
   font-weight: 500;
-  letter-spacing: 0.5px;
   line-height: 1.1;
   vertical-align: middle;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   text-decoration: none;
-  padding: 16px 26px;
+  padding: 14px 22px;
 
-  & > i {
-    font-size: 22px;
-    font-weight: normal;
-    margin: -3px -8px;
-    margin-right: 0.5em;
+  svg.material-icons {
+    height: 22px;
+    width: 22px;
+  }
+
+  .material-icons {
+    margin: -3px 0.75rem;
+    flex-shrink: 0;
+
+    // It is best to visually adjust these values with inline styles.
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
   &.wide {
@@ -35,47 +50,58 @@
     width: 100%;
   }
 
-  &:hover { text-decoration: none; }
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .button {
-  color: $branding-primary-text;
-  background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
-  transition: all 300ms;
+  color: $zurple-inverted;
+  fill: $zurple-inverted;
+  background: $zurple;
   transform: translateY(0px);
+  transition: transform 300ms, box-shadow 300ms;
 
-  &:hover {
+  &:not([disabled]):hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   &.danger {
-    color: $danger-text;
-    background: linear-gradient(90deg, $danger-red, $danger-red-rotated);
+    color: $danger-inverted;
+    fill: $danger-inverted;
+    background: $danger;
+  }
+
+  &[disabled] {
+    background: $grey-dark;
+    color: $grey-dark-inverted;
+    fill: $grey-dark-inverted;
   }
 }
 
 .button-secondary {
   position: relative;
-  color: darken($branding-primary, 3%);
-  background: none;
-  border: 2px solid $button-border;
-  padding: 14px 24px;
-
-  i { color: lighten($branding-primary, 10%); }
+  color: $zurple;
+  fill: $zurple;
+  background: white;
+  border: 2px solid $grey;
+  padding: 13px 21px;
 
   &.danger {
-    color: darken($danger-red, 10%);
-    i { color: lighten($danger-red, 0%); }
+    color: $danger;
+    fill: $danger;
   }
-
 }
 
 .button-tertiary {
-  margin: 0.5rem -0.25rem !important;
-  color: lighten($generic-text, 25%);
+  margin: 0.5rem -0.25rem;
+  background: $grey-light;
+  color: lighten($text, 20%);
+  fill: lighten($text, 20%);
 
   &:hover {
-    color: darken($branding-primary, 3%);
+    color: darken($zurple, 3%);
+    fill: darken($zurple, 3%);
   }
 }
