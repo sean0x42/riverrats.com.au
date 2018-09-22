@@ -1,40 +1,38 @@
-.calendar-wrapper {
-  .wrapper {
-    margin-top: 0;
-    max-width: 1550px;
-  }
+.calendar-wrapper .wrapper {
+  margin-top: 0;
+  max-width: 1550px;
 }
 
 .calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  background: white;
-  width: 100%;
+  background: $white;
   border-left: 1px solid $grey;
   border-radius: $border-radius;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
 
   .weekday-title {
+    border-right: 1px solid $grey;
+    color: $text-bold;
     display: inline;
-    line-height: 1.0;
+    font-weight: 500;
+    line-height: 1;
     margin: 0;
     padding: 1rem 0.75rem 0;
-    font-weight: 500;
-    color: $text-bold;
-    border-right: 1px solid $grey;
   }
 
   .date {
-    min-height: 190px;
     border-bottom: 1px solid $grey;
     border-right: 1px solid $grey;
+    min-height: 190px;
     padding: 0.75rem;
 
     .day {
-      text-align: right;
-      font-size: 20px;
-      margin: 0.75rem 0;
-      line-height: 1;
       color: lighten($text, 14%);
+      font-size: 20px;
+      line-height: 1;
+      margin: 0.75rem 0;
+      text-align: right;
     }
 
     &.disabled .day {
@@ -52,16 +50,16 @@
   }
 
   ul {
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    list-style-type: none;
   }
 
   .event {
-    display: block;
-    color: $zurple-inverted;
     background: $zurple;
     border-radius: $border-radius;
+    color: $zurple-inverted;
+    display: block;
     padding: 0.25rem 0.5rem;
 
     &:not(:last-child) {
@@ -69,15 +67,14 @@
     }
 
     p {
-      margin: 0;
       line-height: 1.4;
-      width: 100%;
-      white-space: nowrap;
+      margin: 0;
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
     }
   }
-
 }
 
 @media (min-width: 1220px) {

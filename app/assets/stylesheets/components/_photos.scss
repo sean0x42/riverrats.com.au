@@ -1,18 +1,19 @@
 .photos {
   display: grid;
-  grid-template-columns: repeat(5, minmax(200px, 1fr));
   grid-gap: 1rem;
-  overflow-x: auto;
-  white-space: nowrap;
+  grid-template-columns: repeat(5, minmax(200px, 1fr));
   margin: 6rem 0 0;
+  overflow-x: auto;
   padding: 0 1rem;
+  white-space: nowrap;
 
   .photo-placeholder {
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    background: rgba(0, 0, 0, 0.1);
+    $darken: rgba(0, 0, 0, 0.1);
+    background: $darken;
     border-radius: 4px;
+    display: inline-block;
+    height: 200px;
+    width: 200px;
   }
 
   .image {
@@ -20,9 +21,9 @@
     overflow: hidden;
 
     img {
+      border-radius: 4px;
       display: block;
       height: 100%;
-      border-radius: 4px;
     }
   }
 }

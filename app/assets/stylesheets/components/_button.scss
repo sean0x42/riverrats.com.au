@@ -1,6 +1,6 @@
 .buttons {
-  display: flex;
   align-items: flex-start;
+  display: flex;
   flex-wrap: wrap;
   margin: -0.5rem;
   margin-top: 1.5rem;
@@ -12,19 +12,21 @@
   }
 }
 
-.button, .button-secondary, .button-tertiary {
-  @include no-select;
-  display: flex;
+.button,
+.button-secondary,
+.button-tertiary {
+  @include no-select();
   align-items: center;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
   font-size: $font-size - 1px;
   font-weight: 500;
   line-height: 1.1;
-  vertical-align: middle;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  text-decoration: none;
   padding: 14px 22px;
+  text-decoration: none;
+  vertical-align: middle;
 
   svg.material-icons {
     height: 22px;
@@ -32,8 +34,8 @@
   }
 
   .material-icons {
-    margin: -3px 0.75rem;
     flex-shrink: 0;
+    margin: -3px 0.75rem;
 
     // It is best to visually adjust these values with inline styles.
     &:first-child {
@@ -56,21 +58,22 @@
 }
 
 .button {
+  background: $zurple;
   color: $zurple-inverted;
   fill: $zurple-inverted;
-  background: $zurple;
-  transform: translateY(0px);
+  transform: translateY(0);
   transition: transform 300ms, box-shadow 300ms;
 
   &:not([disabled]):hover {
+    $shadow: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px $shadow;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   &.danger {
+    background: $danger;
     color: $danger-inverted;
     fill: $danger-inverted;
-    background: $danger;
   }
 
   &[disabled] {
@@ -81,12 +84,12 @@
 }
 
 .button-secondary {
-  position: relative;
+  background: $white;
+  border: 2px solid $grey;
   color: $zurple;
   fill: $zurple;
-  background: white;
-  border: 2px solid $grey;
   padding: 13px 21px;
+  position: relative;
 
   &.danger {
     color: $danger;
@@ -95,10 +98,10 @@
 }
 
 .button-tertiary {
-  margin: 0.5rem -0.25rem;
   background: $grey-light;
   color: lighten($text, 20%);
   fill: lighten($text, 20%);
+  margin: 0.5rem -0.25rem;
 
   &:hover {
     color: darken($zurple, 3%);

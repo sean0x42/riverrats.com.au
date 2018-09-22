@@ -8,15 +8,15 @@ input[type="email"],
 input[type="number"],
 input[type="tel"],
 .better-select-trigger {
-  position: relative;
-  width: 100%;
-  max-width: $max-input-width;
-  background: white;
+  background: $white;
   border: 1px solid $grey-dark;
   border-radius: 2px;
-  line-height: 1.1;
   color: $grey-light-inverted;
+  line-height: 1.1;
+  max-width: $max-input-width;
   padding: 10px 13px;
+  position: relative;
+  width: 100%;
 }
 
 input[type="number"] {
@@ -28,14 +28,14 @@ input[type="tel"] {
 }
 
 textarea {
-  width: 100%;
-  min-width: 200px;
-  min-height: 120px;
   background: $grey-light;
   border: 1px solid $grey-light;
   border-radius: 2px;
-  line-height: 1.8;
   color: $grey-light-inverted;
-  padding: 10px 14px;
+  line-height: 1.8;
   margin-top: 0.25rem;
+  min-height: 120px;
+  min-width: 200px;
+  padding: 10px 14px;
+  width: 100%;
 }

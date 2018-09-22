@@ -13,55 +13,55 @@
 }
 
 .header {
-  position: relative;
-  width: 100%;
-  color: $darcula-inverted;
   background: transparentize($darcula, 0.1);
   border-top: 4px solid $zurple;
+  color: $darcula-inverted;
+  position: relative;
+  width: 100%;
   z-index: 2000;
 
-  & > .wrapper {
-    display: flex;
+  > .wrapper {
     align-items: center;
+    display: flex;
     margin: 0 auto;
-    padding-top: 0.75rem;
     padding-bottom: 0.75rem;
+    padding-top: 0.75rem;
   }
 
   .logo {
-    position: relative;
-    width: 65px;
     flex-shrink: 0;
-    line-height: 1.0;
-    vertical-align: middle;
+    line-height: 1;
     margin-right: 1.25rem;
+    position: relative;
+    vertical-align: middle;
+    width: 65px;
   }
 
   ul.navigation {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    align-items: center;
     background: transparentize($darcula, 0.1);
     border-bottom: 4px solid $zurple;
+    bottom: 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    align-items: center;
-    width: 100%;
+    left: 0;
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    list-style-type: none;
+    position: fixed;
+    right: 0;
+    width: 100%;
   }
 
   .header-link,
   .header-menu-trigger {
-    padding: 0.75rem;
     font-size: 15px;
+    padding: 0.75rem;
 
     &:hover {
       $hover-color: lighten($darcula-inverted, 8%);
-      fill: $hover-color;
       color: $hover-color;
+      fill: $hover-color;
       text-decoration: none;
     }
 
@@ -71,42 +71,9 @@
   }
 
   .header-link {
-    display: block;
     color: inherit;
+    display: block;
     text-decoration: none;
-  }
-
-  .notifications {
-    cursor: pointer;
-
-    &:hover svg {
-      fill: $darcula-inverted;
-    }
-
-    svg {
-      fill: darken($darcula-inverted, 8%);
-      height: 22px;
-      width: 22px;
-    }
-
-    span {
-      font-size: 90%;
-      background: $darcula-dark;
-      color: darken($darcula-dark-inverted, 8%);
-      border-radius: $border-radius - 1px;
-      padding: 0.1rem 0;
-      margin-left: 0.25rem;
-
-      &:before,
-      &:after {
-        content: '\00a0';
-      }
-    }
-
-    &.active span {
-      color: $zurple-inverted;
-      background: $zurple;
-    }
   }
 
   a.register {
@@ -118,20 +85,56 @@
   }
 }
 
+// We have to disable this for nesting depth
+// scss-lint:disable MergeableSelector
+.header .notifications {
+  cursor: pointer;
+
+  &:hover svg {
+    fill: $darcula-inverted;
+  }
+
+  svg {
+    fill: darken($darcula-inverted, 8%);
+    height: 22px;
+    width: 22px;
+  }
+
+  span {
+    background: $darcula-dark;
+    border-radius: $border-radius - 1px;
+    color: darken($darcula-dark-inverted, 8%);
+    font-size: 90%;
+    margin-left: 0.25rem;
+    padding: 0.1rem 0;
+
+    &::before,
+    &::after {
+      content: "\00a0";
+    }
+  }
+
+  &.active span {
+    background: $zurple;
+    color: $zurple-inverted;
+  }
+}
+// scss-lint:enable MergeableSelector
+
 .banner {
-  width: 100%;
   background: $zurple;
   color: $zurple-inverted;
+  font-size: $font-size;
   line-height: $body-line-height;
   margin-top: -4px;
-  font-size: $font-size;
+  width: 100%;
 
   .wrapper {
-    display: flex;
     align-items: center;
+    display: flex;
     margin: 0 auto;
+    padding-bottom: 0.75rem;
     padding-top: 0.75rem;
-    padding-bottom: 0.751rem;
   }
 
   p {
@@ -139,16 +142,16 @@
   }
 
   a {
-    color: white;
+    color: $white;
     text-decoration: underline;
   }
 
   svg {
     fill: $zurple-inverted;
-    width: 22px;
+    flex-shrink: 0;
     height: 22px;
     margin-right: 0.5rem;
-    flex-shrink: 0;
+    width: 22px;
   }
 }
 
@@ -159,29 +162,29 @@
 
     .header-link,
     .header-menu-trigger {
-      padding: 0.5rem;
       font-size: $font-size;
+      padding: 0.5rem;
     }
 
     ul.navigation {
-      position: relative;
-      bottom: unset;
-      left: unset;
-      right: unset;
       background: none;
-      border-bottom: none;
+      border-bottom: 0;
+      bottom: unset;
       display: flex;
+      left: unset;
+      position: relative;
+      right: unset;
     }
 
     .account {
       margin-left: auto;
 
       svg:first-child {
-        margin-right: 0.5rem;
-        margin-bottom: 0;
-        width: 22px;
-        height: 22px;
         fill: $zurple-light;
+        height: 22px;
+        margin-bottom: 0;
+        margin-right: 0.5rem;
+        width: 22px;
       }
     }
   }

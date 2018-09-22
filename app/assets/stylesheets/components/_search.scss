@@ -1,32 +1,33 @@
 .search-wrapper {
+  $shadow: rgba(0, 0, 0, 0.02);
+  background: $white;
+  border-radius: 3px;
+  box-shadow: 0 15px 30px $shadow, 0 5px 15px $shadow;
+  max-width: 400px;
+  overflow: hidden;
   position: relative;
   width: 100%;
-  max-width: 400px;
-  border-radius: 3px;
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.02),
-  0 5px 15px rgba(0, 0, 0, 0.02);
 
-  input[type="submit"] { display: none; }
+  input[type="submit"] {
+    display: none;
+  }
 
   input[type="search"] {
-    font-size: $font-size - 1px;
+    border: 0;
     color: $text;
+    font-size: $font-size - 1px;
+    line-height: 1;
     padding: 15px 15px 15px 52px;
-    line-height: 1.0;
     width: 100%;
-    border: none;
   }
 
   i {
-    position: absolute;
-    top: 0;
-    font-size: 21px;
     color: lighten($text, 25%);
-    transition: color 200ms;
+    font-size: 21px;
     padding: 12px 1.2rem;
     pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition: color 200ms;
   }
-
 }

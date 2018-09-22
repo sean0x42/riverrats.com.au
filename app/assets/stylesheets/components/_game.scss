@@ -1,42 +1,42 @@
 .game-data {
-  background: white;
+  background: $white;
   border: 1px solid $grey;
   border-radius: $border-radius;
 
   .players {
-    display: grid;
-    border-top: 1px solid $grey;
-    background: $grey-lighter;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 0.5rem;
     align-items: center;
+    background: $grey-lighter;
+    border-top: 1px solid $grey;
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
     padding: 1.25rem;
 
     p {
-      margin: 0;
-      line-height: 1.0;
-      display: flex;
       align-items: center;
+      display: flex;
+      line-height: 1;
+      margin: 0;
     }
   }
 
   svg {
     fill: $grey-darker;
-    width: 22px;
     height: 22px;
     margin-right: 0.5rem;
+    width: 22px;
   }
 
   ul {
+    line-height: $body-line-height;
+    list-style-type: none;
     margin: 0;
     padding: 0.75rem 1.25rem;
-    list-style-type: none;
-    line-height: $body-line-height;
   }
 
   li {
-    display: flex;
     align-items: center;
+    display: flex;
     margin: 0.5rem 0;
   }
 }

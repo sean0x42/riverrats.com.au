@@ -20,6 +20,13 @@
 
 .flatpickr-calendar {
   border-radius: $border-radius;
+
+  // Grumble grumble flatpickr is inconsistent
+  // scss-lint:disable SelectorFormat
+  &.arrowTop::after {
+    border-bottom-color: $zurple;
+  }
+  // scss-lint:enable SelectorFormat
 }
 
 .flatpickr-months {
@@ -28,12 +35,8 @@
 
   .flatpickr-next-month:hover svg,
   .flatpickr-prev-month:hover svg {
-    fill: white;
+    fill: $white;
   }
-}
-
-.flatpickr-calendar.arrowTop::after {
-  border-bottom-color: $zurple;
 }
 
 .flatpickr-day {
@@ -43,28 +46,27 @@
     border-color: $zurple-light;
 
     &:hover {
-      border-color: $zurple-light;
       background: $grey;
+      border-color: $zurple-light;
       color: $text;
     }
   }
 
   &.selected {
-    border-color: $zurple;
     background: $zurple;
+    border-color: $zurple;
     color: $zurple-inverted;
 
     &:hover {
-      border-color: $zurple;
       background: $zurple;
+      border-color: $zurple;
       color: $zurple-inverted;
     }
   }
 
   &:hover {
-    border-color: $grey;
     background: $grey;
+    border-color: $grey;
     color: $text;
   }
-
 }

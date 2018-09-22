@@ -1,17 +1,17 @@
 .update-banner {
-  display: none;
-  width: 100%;
   background: $zurple;
   color: $zurple-inverted;
+  display: none;
   line-height: $body-line-height;
   margin-top: -4px;
+  width: 100%;
 
   .wrapper {
-    display: flex;
     align-items: center;
+    display: flex;
     margin: 0 auto;
-    padding-top: 1rem;
     padding-bottom: 1rem;
+    padding-top: 1rem;
   }
 
   p {
@@ -19,14 +19,14 @@
   }
 
   a {
-    color: white;
+    color: $white;
     text-decoration: underline;
   }
 
   svg {
     fill: $zurple-inverted;
-    width: 22px;
     height: 22px;
     margin-right: 0.5rem;
+    width: 22px;
   }
 }

@@ -1,53 +1,54 @@
 .player-input-wrapper {
-  width: 100%;
-  max-width: 600px;
   background: $grey-light;
   border: 1px solid $grey-dark;
   border-radius: 2px;
   display: flex;
+  max-width: 600px;
+  width: 100%;
 
   input {
-    max-width: none !important;
+    max-width: none;
   }
 
   .twitter-typeahead {
     flex-grow: 1;
   }
 
-  .tt-input, .tt-hint {
+  .tt-input,
+  .tt-hint {
     background: $grey-light;
-    border: none;
+    border: 0;
     margin: 0;
   }
 
   .button-secondary {
-    padding: 10px 18px;
-    font-size: 14px;
+    border: 0;
+    border-left: 1px solid $grey-dark;
     border-radius: 0;
     flex-shrink: 0;
-    border: none;
-    border-left: 1px solid $grey-dark;
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+}
+
+.tt-menu {
+  $shadow: rgba(0, 0, 0, 0.05);
+  background: $white;
+  border-radius: 3px;
+  box-shadow: 0 15px 30px $shadow, 0 5px 15px $shadow;
+  margin-top: 1px;
+
+  &.tt-open {
+    right: 0;
   }
 
-  .tt-menu {
-    background: white;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
-    border-radius: 3px;
-    margin-top: 1px;
+  .tt-suggestion,
+  .empty {
+    padding: 6px 14px;
 
-    &.tt-open {
-      right: 0;
+    &.tt-cursor {
+      background: $zurple;
+      color: $zurple-inverted;
     }
-
-    .tt-suggestion, .empty {
-      padding: 6px 14px;
-
-      &.tt-cursor {
-        color: $zurple-inverted;
-        background: $zurple;
-      }
-    }
-
   }
-
 }

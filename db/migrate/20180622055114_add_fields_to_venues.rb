@@ -1,18 +1,23 @@
+# frozen_string_literal: true
+
 class AddFieldsToVenues < ActiveRecord::Migration[5.2]
   def change
-    remove_column :venues, :latitude
-    remove_column :venues, :longitude
-    remove_column :venues, :address
-    remove_column :venues, :suburb
-    remove_column :venues, :state
-    add_column :venues, :facebook,         :string
-    add_column :venues, :website,          :string
-    add_column :venues, :phone_number,     :string
-    add_column :venues, :address_line_one, :string
-    add_column :venues, :address_line_two, :string
-    add_column :venues, :suburb,           :string
-    add_column :venues, :post_code,        :integer
-    add_column :venues, :state,            :integer, default: 1, limit: 1
+    change_table :venues, bulk: true do |t|
+      t.remove :latitude
+      t.remove :longitude
+      t.remove :address
+      t.remove :suburb
+      t.remove :state
+      t.string :facebook
+      t.string :website
+      t.string :phone_number
+      t.string :address_line_one
+      t.string :address_line_two
+      t.string :suburb
+      t.integer :post_code
+      t.integer :state, default: 1, limit: 1
+    end
+
     add_attachment :venues, :image
   end
 end

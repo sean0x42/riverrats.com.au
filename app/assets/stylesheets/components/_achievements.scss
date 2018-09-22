@@ -4,10 +4,10 @@
   padding: 0;
 
   .achievement {
-    display: grid;
-    grid-template-columns: 50px 1fr;
     align-items: center;
+    display: grid;
     grid-gap: 1rem;
+    grid-template-columns: 50px 1fr;
     margin-bottom: 1.25rem;
     margin-left: -3px;
 
@@ -16,14 +16,13 @@
     }
 
     p {
-      margin: 0;
       font-size: $font-size - 1px;
       line-height: 1.8;
+      margin: 0;
     }
 
     .title {
       font-weight: bold;
     }
-
   }
 }

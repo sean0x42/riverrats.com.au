@@ -1,5 +1,5 @@
 .player-data {
-  background: white;
+  background: $white;
   border: 1px solid $grey;
   border-radius: $border-radius;
   padding: 1.5rem;
@@ -10,35 +10,35 @@
 
   ul {
     list-style-type: none;
-    padding: 0;
     margin: 1.5rem 0;
+    padding: 0;
   }
 
   .image {
     background: $grey;
-    width: 40px;
-    height: 40px;
     border-radius: $border-radius;
+    height: 40px;
+    width: 40px;
   }
 
   .achievement {
-    width: 100%;
-    display: flex;
     align-items: center;
+    display: flex;
     margin-top: 0.75rem;
+    width: 100%;
 
     .image {
-      margin-right: 1rem;
       flex-shrink: 0;
+      margin-right: 1rem;
     }
 
     p {
-      margin: 0;
       font-size: 15px;
-      white-space: nowrap;
-      width: 100%;
+      margin: 0;
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
     }
 
     .title {
@@ -48,8 +48,8 @@
   }
 
   .button-tertiary {
-    margin: 0;
     justify-content: center;
+    margin: 0;
     text-align: center;
   }
 }

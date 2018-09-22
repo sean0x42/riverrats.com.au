@@ -1,40 +1,49 @@
 .subheading {
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 14px;
-  letter-spacing: 0.05em; // Extra 5% letter spacing for added readability
   color: $zurple;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.05em; // Extra 5% letter spacing for added readability
+  text-transform: uppercase;
 
   &:not(:first-child) {
     margin-top: 2rem;
   }
 }
 
-.inverted .subheading {
-  color: $grey-light;
-}
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $text-bold;
 }
 
 .inverted {
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: $zurple-inverted;
+  }
+
+  .subheading {
+    color: $grey-light;
   }
 }
 
 h1 {
   font-size: 2.2em;
   font-weight: normal; // Font weight should be similar to that of the subheading (visually).
-  margin-top: 0.25rem; // Space between H1 and subheading
-  margin-bottom: 1.5rem;
   line-height: 1.1;
+  margin-bottom: 1.5rem;
+  margin-top: 0.25rem; // Space between H1 and subheading
 }
 
-
 h2 {
-  font-weight: 500;
   font-size: 16px;
+  font-weight: 500;
   margin: 2.5rem 0 1rem;
 }

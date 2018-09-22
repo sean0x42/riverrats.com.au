@@ -13,3 +13,9 @@ Style/RegexpLiteral:
 Style/Documentation:
   Exclude:
     - 'db/migrate/*'
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*'
+Metrics/AbcSize:
+  Exclude:
+  - 'db/migrate/*'

@@ -1,11 +1,11 @@
 .admin {
-  display: grid;
-  grid-template-columns: 270px 1fr;
   align-items: flex-start;
+  display: grid;
   grid-gap: 2rem;
+  grid-template-columns: 270px 1fr;
   margin: 138px auto 8rem;
-  padding: 0 1.5rem;
   max-width: $wrapper-width;
+  padding: 0 1.5rem;
   width: 100%;
 
   .wrapper {
@@ -14,8 +14,8 @@
   }
 
   .heading-and-button {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: space-between;
 
     h1 {
@@ -28,8 +28,8 @@
   }
 
   .breakdown {
-    margin: 2rem 0;
     background: $grey;
+    margin: 2rem 0;
 
     h2 {
       color: $zurple-dark;

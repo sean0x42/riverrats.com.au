@@ -1,0 +1,51 @@
+scss_files: "app/assets/stylesheets/**/*.*"
+
+plugin_directories: ['.scss-linters']
+
+# List of gem names to load custom linters from (make sure they are already
+# installed)
+plugin_gems: []
+
+severity: warning
+
+linters:
+  QualifyingElement:
+    enabled: false
+  LeadingZero:
+    style: include_zero
+  ChainedClasses:
+    enabled: false
+  Comment:
+    enabled: true
+    style: silent
+  DebugStatement:
+    enabled: true
+  HexLength:
+    enabled: false
+    style: long
+  StringQuotes:
+    enabled: true
+    style: double_quotes
+  SelectorDepth:
+    enabled: true
+    max_depth: 3
+  PropertyCount:
+    enabled: false
+  PropertySpelling:
+    enabled: true
+    extra_properties:
+      - 'grid-gap'
+      - 'grid-template-columns'
+      - 'font-variant-numeric'
+  PropertyUnits:
+    enabled: true
+    global: [
+      'ch', 'em', 'ex', 'rem',
+      'cm', 'in', 'mm', 'pc', 'pt', 'px', 'q',
+      'vh', 'vw', 'vmin', 'vmax',
+      'deg', 'grad', 'rad', 'turn',
+      'ms', 's',
+      'Hz', 'kHz',
+      'dpi', 'dpcm', 'dppx',
+      '%', 'fr']
+    properties: {}

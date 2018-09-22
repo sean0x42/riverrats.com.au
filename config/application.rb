@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -35,6 +37,6 @@ module RiverratsComAu
     config.action_view.form_with_generates_ids = true
 
     # Set default time zone
-    config.time_zone = "Sydney"
+    config.time_zone = 'Sydney'
   end
 end
