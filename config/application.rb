@@ -34,9 +34,6 @@ module RiverratsComAu
     # Action View
     config.action_view.form_with_generates_ids = true
 
-    # Register observers
-    config.active_record.observers = [:games_player_observer, :game_observer]
-
     # Set default time zone
     config.time_zone = "Sydney"
   end

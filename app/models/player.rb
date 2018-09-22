@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
 require 'csv'
 require 'username_lib'
 
+# Represents a single player
 class Player < ApplicationRecord
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :trackable, :validatable
 
   default_scope { order(rank: :asc) }
 
-  searchkick callbacks: :async, word_start: [:full_name, :username]
+  searchkick callbacks: :async, word_start: %i[full_name username]
 
   before_validation :gen_username, on: :create
 
@@ -61,12 +65,11 @@ class Player < ApplicationRecord
     username
   end
 
-
   def search_data
     {
-      full_name: self.full_name,
-      username: "@#{self.username}",
-      rank: self.rank
+      full_name: full_name,
+      username: "@#{username}",
+      rank: rank
     }
   end
 
@@ -75,10 +78,10 @@ class Player < ApplicationRecord
   end
 
   def login
-    @login || self.username || self.email
+    @login || username || email
   end
 
-  def self.find_for_database_authentication (warden_conditions)
+  def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if (login = conditions.delete(:login))
       where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first
@@ -87,13 +90,13 @@ class Player < ApplicationRecord
     end
   end
 
-  def award (achievement, level=0)
+  def award(achievement, level = 0)
     if awarded? achievement
       a = achievements.find_by type: achievement.sti_name
       a.level = level
       a.save
     else
-      self.achievements << achievement.new(level: level)
+      achievements << achievement.new(level: level)
     end
   end
 
@@ -114,29 +117,31 @@ class Player < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w(first_name last_name email)
+    attributes = %w[first_name last_name email]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
-      all.each do |player|
+      all.find_each do |player|
         csv << player.attributes
       end
     end
   end
 
   def recent_games
-    GamesPlayer.includes(game: [:venue]).where(player: self).reorder(created_at: :desc).limit(25)
+    GamesPlayer.includes(game: [:venue])
+               .where(player: self)
+               .reorder(created_at: :desc).limit(25)
   end
 
   def season_player
-    PlayersSeason.where(player: self, season: Season.current).first
+    PlayersSeason.find_by(player: self, season: Season.current)
   end
 
   def self.recent(days = 30)
-    Player.where('created_at > ?', Date.today - days.days)
+    Player.where('created_at > ?', Time.zone.today - days.days)
   end
 
-  def self.admin
-    Player.where(is_admin: true).or(Player.where(is_developer: true))
+  def self.admins
+    Player.where(admin: true).or(Player.where(developer: true))
   end
 end

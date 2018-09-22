@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Awarded to players who are dealt a Royal Flush
 class RoyalFlush < Achievement
   validates_attachment_presence :proof
 

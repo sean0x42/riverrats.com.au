@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Awarded to players that are dealt a Straight Flush
 class StraightFlush < Achievement
   validates_attachment_presence :proof
 

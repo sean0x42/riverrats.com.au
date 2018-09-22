@@ -79,7 +79,7 @@
         <%- if player_signed_in? %>
           <li><%= link_to 'View my profile', player_path(current_player) %></li>
           <li><%= link_to 'Settings', edit_player_registration_path, remote: true, data: { expects_modal: true, disable: true } %></li>
-          <%- if current_player.is_admin %>
+          <%- if current_player.admin? %>
             <li><%= link_to 'Admin panel', admin_root_path %></li>
           <%- end %>
           <li><%= link_to 'Logout', destroy_player_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' } %></li>

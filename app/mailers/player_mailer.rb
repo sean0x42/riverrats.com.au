@@ -1,19 +1,18 @@
-class PlayerMailer < ApplicationMailer
+# frozen_string_literal: true
 
-  ###
-  # Sends a welcome email to the player.
-  # @param [Integer] player_id Player to send email to
-  # @param [String] password Randomly generated password to send to player
-  def welcome (player_id, password)
+# A mailer for sending information to players.
+class PlayerMailer < ApplicationMailer
+  def welcome(player_id, password)
     @player = Player.find(player_id)
     return if @player.nil?
-    @password = password
-    email = @player.email.nil? || @player.email.blank? ? 'riverratspl@gmail.com' : @player.email
-    email_with_name = "#{@player.full_name} <#{email}>"
-    mail(
-      to: email_with_name,
-      subject: 'Welcome to the River Rats Poker League!'
-    )
-  end
 
+    @password = password
+    email = if @player.email.nil? || @player.email.blank?
+              'riverratspl@gmail.com'
+            else
+              @player.email
+            end
+    email_with_name = "#{@player.full_name} <#{email}>"
+    mail(to: email_with_name, subject: t('mailer.player.welcome.subject'))
+  end
 end

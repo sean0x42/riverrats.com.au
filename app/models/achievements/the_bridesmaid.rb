@@ -1,5 +1,7 @@
-class TheBridesmaid < Achievement
+# frozen_string_literal: true
 
+# Awarded to players who place second in a certain number of games
+class TheBridesmaid < Achievement
   def self.check_conditions_for (player)
     awarded = player.awarded? self
 
@@ -40,10 +42,7 @@ class TheBridesmaid < Achievement
     :single
   end
 
-  private
-
   def self.requirements
     [1, 10, 25, 50]
   end
-
 end

@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
+# A controller for the landing page
 class LandingController < ApplicationController
-  def index
-  end
+  # GET /
+  def index; end
 
-  def privacy_policy
-  end
+  # GET /privacy-policy
+  def privacy_policy; end
 
-  def release_notes
-  end
+  # GET /release-notes
+  def release_notes; end
 end

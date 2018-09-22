@@ -1,13 +1,21 @@
+# frozen_string_literal: true
+
 require 'flash_message'
 
+# A controller for events in the admin scope
 class Admin::EventsController < ApplicationController
   layout 'admin'
+
+  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/events
   def index
-    @events = SingleEvent.includes(:venue).where('start_at > ?', Time.now - 1.weeks).page params[:page]
+    @events = SingleEvent
+              .includes(:venue)
+              .where('start_at > ?', Time.zone.now - 1.week)
+              .page(params[:page])
   end
 
   # GET /admin/events/new
@@ -17,10 +25,13 @@ class Admin::EventsController < ApplicationController
 
   # POST /admin/events
   def create
-    @event = Event.new event_params
+    @event = Event.new(event_params)
 
     if @event.save
-      flash[:success] = Struct::Flash.new t('admin.events.create.title'), t('admin.events.create.body') % { event: @event.clean_title }
+      flash[:success] = Struct::Flash.new(
+        t('admin.events.create.title'),
+        t('admin.events.create.body')
+      )
       redirect_to admin_events_path
     else
       render 'new'
@@ -37,7 +48,10 @@ class Admin::EventsController < ApplicationController
     @event = Event.find params[:id]
 
     if @event.update event_params
-      flash[:success] = Struct::Flash.new t('admin.events.update.title'), t('admin.events.update.body') % { event: @event.clean_title }
+      flash[:success] = Struct::Flash.new(
+        t('admin.events.update.title'),
+        t('admin.events.update.body')
+      )
       redirect_to admin_events_path
     else
       render 'edit'
@@ -47,14 +61,12 @@ class Admin::EventsController < ApplicationController
   # DELETE /admin/events/:id
   def destroy
     @event = Event.find params[:id]
+    @event.destroy_from_date(params[:from])
 
-    if params.has_key? :from
-      @events = SingleEvent.where(recurring_event_id: @event.id).where(['id >= ?', params[:from]])
-      @events.destroy_all
-    end
-
-    @event.destroy
-    flash[:success] = Struct::Flash.new t('admin.events.destroy.title'), t('admin.events.destroy.body') % { event: @event.clean_title }
+    flash[:success] = Struct::Flash.new(
+      t('admin.events.destroy.title'),
+      t('admin.events.destroy.body')
+    )
     redirect_to admin_events_path
   end
 

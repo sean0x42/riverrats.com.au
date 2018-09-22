@@ -1,18 +1,15 @@
+# frozen_string_literal: true
+
+# A venue that hosts games for the league
 class Venue < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :finders]
+  friendly_id :name, use: %i[slugged finders]
 
   default_scope { order(:name) }
 
   searchkick callbacks: :async
 
-  # New ActiveStorage declaration
-  # has_one_attached :image
-
-  # Old Paperclip config
-  # Must be removed BEFORE running the rake task.
-  has_attached_file :image,
-                    styles: { regular: ['1400x1400>', :png] }
+  has_attached_file :image, styles: { regular: ['1400x1400>', :png] }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   has_many :players_venues, class_name: 'PlayersVenue', dependent: :nullify
@@ -20,15 +17,15 @@ class Venue < ApplicationRecord
 
   belongs_to :region
 
-  enum state: [
-    :australian_capital_territory,
-    :new_south_wales,
-    :norther_territory,
-    :queensland,
-    :south_australia,
-    :tasmania,
-    :victoria,
-    :western_australia
+  enum state: %i[
+    australian_capital_territory
+    new_south_wales
+    norther_territory
+    queensland
+    south_australia
+    tasmania
+    victoria
+    western_australia
   ]
 
   validates :name,

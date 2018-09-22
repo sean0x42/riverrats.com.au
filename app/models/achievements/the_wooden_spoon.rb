@@ -1,6 +1,8 @@
-class TheWoodenSpoon < Achievement
+# frozen_string_literal: true
 
-  def self.check_conditions_for (player)
+# Awarded to a player who frequently places in tenth place
+class TheWoodenSpoon < Achievement
+  def self.check_conditions_for(player)
     awarded = player.awarded? self
 
     if awarded
@@ -39,8 +41,6 @@ class TheWoodenSpoon < Achievement
   def self.type
     :single
   end
-
-  private
 
   def self.requirements
     [1, 10, 25, 50]

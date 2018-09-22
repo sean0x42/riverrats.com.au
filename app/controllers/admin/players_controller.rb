@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 require 'flash_message'
 
+# A controller for players in the admin scope
 class Admin::PlayersController < ApplicationController
   layout 'admin'
+
+  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
@@ -24,16 +29,16 @@ class Admin::PlayersController < ApplicationController
   def create
     player_params = new_params
     player_params[:password] = Devise.friendly_token(8)
-    @player = Player.new player_params
+    @player = Player.new(player_params)
 
+    # noinspection RailsChecklist01
     if @player.save
-      flash[:success] = Struct::Flash.new t('admin.players.create.title'), t('admin.players.create.body') % { player: @player.username }
       PlayerMailer.welcome(@player.id, player_params[:password]).deliver_later
-      redirect_to admin_players_path
+      redirect_to admin_players_path, notice: t('admin.players.create.flash')
     else
       respond_to do |format|
         format.js { render 'failure' }
-        format.html { render 'new'}
+        format.html { render 'new' }
       end
     end
   end
@@ -48,12 +53,10 @@ class Admin::PlayersController < ApplicationController
     @player = Player.find_by!(username: params[:username])
 
     if @player.update edit_params
-      flash[:success] = Struct::Flash.new t('admin.players.update.title'), t('admin.players.update.body') % { player: @player.username }
-      redirect_to admin_players_path
+      redirect_to admin_players_path, notice: t('admin.players.update.flash')
     else
-      if @player.username_changed?
-        @player.username = @player.username_was
-      end
+      # noinspection RubyResolve
+      @player.username = @player.username_was if @player.username_changed?
       render 'edit'
     end
   end
@@ -63,19 +66,19 @@ class Admin::PlayersController < ApplicationController
     @player = Player.find_by!(username: params[:username])
     @player.destroy
 
-    flash[:success] = Struct::Flash.new t('admin.players.destroy.title'), t('admin.players.destroy.body') % { player: @player.username }
-    redirect_to admin_players_path
+    redirect_to admin_players_path, notice: t('admin.players.destroy.flash')
   end
 
   private
 
   def new_params
-    params[:email] = nil if params.has_key? :email && params[:email].blank?
-    params.require(:player).permit(:first_name, :last_name, :email, :is_admin)
+    params[:email] = nil if params.key?(:email) && params[:email].blank?
+    params.require(:player).permit(:first_name, :last_name, :email, :admin)
   end
 
   def edit_params
-    params[:email] = nil if params.has_key? :email && params[:email].blank?
-    params.require(:player).permit(:username, :first_name, :last_name, :email, :is_admin)
+    params[:email] = nil if params.key?(:email) && params[:email].blank?
+    params.require(:player).permit(:username, :first_name, :last_name, :email,
+                                   :admin)
   end
 end

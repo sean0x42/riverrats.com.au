@@ -16,11 +16,6 @@ class RegionPlayerTest < ActiveSupport::TestCase
     assert_not player.valid?, 'Region player with negative games_won should not be valid.'
   end
 
-  test "rank should be positive" do
-    player = players_regions(:negative_rank)
-    assert_not player.valid?, 'Region player with negative rank should not be valid.'
-  end
-
   test "player should not be duplicated" do
     PlayersRegion.create(region: regions(:nabiac), player: players(:bob))
     duplicate = PlayersRegion.new(region: regions(:nabiac), player: players(:bob))

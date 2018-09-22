@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # An achievement awarded to a player
 class Achievement < ApplicationRecord
   belongs_to :player

@@ -4,7 +4,7 @@ class EventGeneratorJob < ApplicationJob
 
   def perform(event)
     end_date = (Time.now.at_midnight + 6.months).end_of_month
-    schedule = event.get_schedule
+    schedule = event.schedule
     EventGeneratorJob.mass_insert(event, schedule.occurrences(end_date))
   end
 

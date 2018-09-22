@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# A controller for players
 class PlayersController < ApplicationController
   # GET /players
   def index
@@ -6,13 +9,15 @@ class PlayersController < ApplicationController
 
   # GET /players/:username
   def show
-    @player = Player.includes(:achievements).find_by!(username: params[:username])
+    @player = Player
+              .includes(:achievements)
+              .find_by!(username: params[:username])
   end
 
   # GET /players/auto-complete
   def auto_complete
     options = {
-      fields: [:full_name, :username],
+      fields: %i[full_name username],
       match: :word_start,
       limit: 10,
       load: false,
@@ -26,6 +31,7 @@ class PlayersController < ApplicationController
 
   # GET /players/random
   def random
-    redirect_to player_path(Player.pluck(:username).shuffle.first)
+    # noinspection RubyResolve
+    redirect_to player_path(Player.pluck(:username).sample)
   end
 end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EventGeneratorJobJobTest < ActiveJob::TestCase
+class EventGeneratorJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end

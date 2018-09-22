@@ -11,9 +11,9 @@
     <%- else %>
       <%= link_to player_path(p) do %>
         <span class="highlight"><%= p.full_name %></span>&nbsp;@<%= p.username %>
-        <%- if p.is_developer? %>
+        <%- if p.developer? %>
           <span class="flair">developer</span>
-        <%- elsif p.is_admin? %>
+        <%- elsif p.admin? %>
           <span class="flair">admin</span>
         <%- end %>
       <%- end %>

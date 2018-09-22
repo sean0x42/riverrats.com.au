@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Player sessions controller
 class Players::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
   respond_to :html, :js

@@ -4,8 +4,8 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import "./components/flashes/flash_controller"
-import "./components/modals/modal_controller"
-import "./components/date_picker"
-import "./components/better_select"
-import "./navigation"
+import "./components/flashes/flash_controller";
+import "./components/modals/modal_controller";
+import "./components/date_picker";
+import "./components/better_select";
+import "./navigation";
