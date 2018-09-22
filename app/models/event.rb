@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Represents a calendar event (either repeating or single)
 class Event < ApplicationRecord
   belongs_to :venue
 
@@ -10,10 +13,18 @@ class Event < ApplicationRecord
   end
 
   def has_occurred?
-    start_at < Time.now
+    self.start_at < Time.zone.now
   end
 
   def today?
     self.start_at > Time.zone.today.at_beginning_of_day && self.start_at < Time.zone.today.at_end_of_day
+  end
+
+  def destroy_from_date(from)
+    unless from.nil?
+      events = SingleEvent.where(recurring_event_id: @event.id).where('id >= ?', from)
+      events.destroy_all
+    end
+    self.destroy
   end
 end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Awarded to player who win a certain number of games
 class WinsAchievement < Achievement
   def self.check_conditions_for(player)
     awarded = player.awarded? self

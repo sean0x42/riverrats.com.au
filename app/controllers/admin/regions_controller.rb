@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 require 'flash_message'
 
+# A controller for regions in the admin scope
 class Admin::RegionsController < ApplicationController
   layout 'admin'
+
+  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
@@ -20,8 +25,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.new region_params
 
     if @region.save
-      flash[:success] = Struct::Flash.new t('admin.regions.create.title'), t('admin.regions.create.body') % { region: @region.name }
-      redirect_to admin_regions_path
+      redirect_to admin_regions_path, notice: t('admin.regions.create.flash')
     else
       respond_to do |format|
         format.html { render 'new' }
@@ -40,8 +44,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.friendly.find params[:id]
 
     if @region.update region_params
-      flash[:success] = Struct::Flash.new t('admin.regions.update.title'), t('admin.regions.update.body') % {region: @region.name }
-      redirect_to admin_regions_path
+      redirect_to admin_regions_path, notice: t('admin.regions.update.flash')
     else
       render 'edit'
     end
@@ -52,8 +55,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.friendly.find params[:id]
     @region.destroy
 
-    flash[:success] = Struct::Flash.new t('admin.regions.destroy.title'), t('admin.regions.destroy.body') % {region: @region.name }
-    redirect_to admin_regions_path
+    redirect_to admin_regions_path, notice: t('admin.regions.destroy.flash')
   end
 
   private

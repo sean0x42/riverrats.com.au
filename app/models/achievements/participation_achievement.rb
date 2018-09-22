@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Awarded to players who participate in a set number of games
 class ParticipationAchievement < Achievement
-  def self.check_conditions_for (player)
+  def self.check_conditions_for(player)
     awarded = player.awarded? self
 
     if awarded
@@ -7,7 +10,7 @@ class ParticipationAchievement < Achievement
       achievement.check
     end
 
-    if (!awarded) && player.games_played >= requirements[0]
+    if !awarded && player.games_played >= requirements[0]
       player.award self
     end
 
@@ -16,13 +19,11 @@ class ParticipationAchievement < Achievement
 
   def check
     requirements = self.class.requirements
+    return if requirements <= level + 1
 
-    # We can go higher
-    if requirements.length > level + 1
-      # Check conditions
-      if player.games_played >= requirements[level + 1]
-        player.award self.class, level + 1
-      end
+    # Check conditions
+    if player.games_played >= requirements[level + 1]
+      player.award self.class, level + 1
     end
   end
 

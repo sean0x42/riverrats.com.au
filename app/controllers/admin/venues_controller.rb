@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 require 'flash_message'
 
+# A controller for venues in the admin scope
 class Admin::VenuesController < ApplicationController
   layout 'admin'
+
+  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
@@ -20,8 +25,7 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.new venue_params
 
     if @venue.save
-      flash[:success] = Struct::Flash.new t('admin.venues.create.title'), t('admin.venues.create.body') % { venue: @venue.name }
-      redirect_to admin_venues_path
+      redirect_to admin_venues_path, notice: t('admin.venues.create.flash')
     else
       render 'new'
     end
@@ -37,8 +41,7 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.friendly.find params[:id]
 
     if @venue.update venue_params
-      flash[:success] = Struct::Flash.new t('admin.venues.update.title'), t('admin.venues.update.body') % { venue: @venue.name }
-      redirect_to admin_venues_path
+      redirect_to admin_venues_path, notice: t('admin.venues.update.flash')
     else
       render 'edit'
     end
@@ -49,25 +52,15 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.friendly.find params[:id]
     @venue.destroy
 
-    flash[:success] = Struct::Flash.new t('admin.venues.destroy.title'), t('admin.venues.destroy.body') % { venue: @venue.name }
-    redirect_to admin_venues_path
+    redirect_to admin_venues_path, notice: t('admin.venues.destroy.flash')
   end
 
   private
 
   def venue_params
-    params.require(:venue).permit(
-      :name,
-      :region_id,
-      :address_line_one,
-      :address_line_two,
-      :suburb,
-      :post_code,
-      :state,
-      :website,
-      :facebook,
-      :phone_number,
-      :image
-    )
+    params.require(:venue).permit(:name, :region_id, :address_line_one,
+                                  :address_line_two, :suburb, :post_code,
+                                  :state, :website, :facebook, :phone_number,
+                                  :image)
   end
 end

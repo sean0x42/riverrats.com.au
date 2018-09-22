@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'node_modules/**/*'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Rails:
+  Enabled: true

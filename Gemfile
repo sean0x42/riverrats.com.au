@@ -53,6 +53,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.3', require: false
   gem 'capistrano-rvm', require: false
   gem 'capistrano3-unicorn', require: false
+  gem 'rubocop', require: false
 end
 
 group :production do

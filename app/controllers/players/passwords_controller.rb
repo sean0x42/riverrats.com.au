@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Players password controller
 class Players::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   # def new

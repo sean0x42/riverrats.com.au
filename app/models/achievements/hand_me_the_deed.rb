@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Awarded to players scoring the most points at a venue
 class HandMeTheDeed < Achievement
   def title
     I18n.t('achievement.hand_me_the_deed.title')

@@ -1,14 +1,18 @@
+# frozen_string_literal: true
+
 require 'flash_message'
 
+# A controller for games in the admin scope
 class Admin::GamesController < ApplicationController
   layout 'admin'
+
+  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/games
-  # noinspection RailsChecklist01
   def index
-    @games = Game.includes(:venue).page params[:page]
+    @games = Game.includes(:venue).page(params[:page])
   end
 
   # GET /admin/games/new
@@ -21,8 +25,7 @@ class Admin::GamesController < ApplicationController
     @game = Game.new games_params
 
     if @game.save
-      flash[:success] = Struct::Flash.new t('admin.games.create.title'), t('admin.games.create.body')  % { game: @game.name }
-      redirect_to admin_games_path
+      redirect_to admin_games_path, notice: t('admin.games.create.flash')
     else
       render 'new'
     end
@@ -38,9 +41,7 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
 
     if @game.update games_params
-      # @game.update_ranks TODO Add an after update task to queue this job
-      flash[:success] = Struct::Flash.new t('admin.games.update.title'), t('admin.games.update.body') % { game: @game.name }
-      redirect_to admin_games_path
+      redirect_to admin_games_path, notice: t('admin.games.update.flash')
     else
       render 'edit'
     end
@@ -51,8 +52,7 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
     @game.destroy
 
-    flash[:success] = Struct::Flash.new t('admin.games.destroy.title'), t('admin.games.destroy.body')  % { game: @game.name }
-    redirect_to admin_games_path
+    redirect_to admin_games_path, notice: t('admin.games.destroy.flash')
   end
 
   private
@@ -60,8 +60,8 @@ class Admin::GamesController < ApplicationController
   def games_params
     params.require(:game).permit(
       :played_on, :venue_id, :season_id,
-      games_players_attributes: [:id, :player_id, :position, :_destroy],
-      referees_attributes: [:id, :player_id, :_destroy]
+      games_players_attributes: %i[id player_id position _destroy],
+      referees_attributes: %i[id player_id _destroy]
     )
   end
 end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Awarded to players for reaching a certain score threshold
 class ScoreAchievement < Achievement
   def self.check_conditions_for (player)
     awarded = player.awarded? self

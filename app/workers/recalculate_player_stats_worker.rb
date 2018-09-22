@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Recalculates a players statistics. This is time consuming but guaranteed to be
 # accurate.
 class RecalculatePlayerStatsWorker

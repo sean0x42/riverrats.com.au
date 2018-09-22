@@ -1,17 +1,21 @@
+# frozen_string_literal: true
+
 require 'flash_message'
 
+# A controller for mail in the admins cope
 class Admin::MailController < ApplicationController
   layout 'admin'
+
+  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/mail
-  def index
-  end
+  def index; end
 
   # POST /admin/mail/players.csv
   def show
-    target = params.has_key?(:target) ? params[:target] : 'promotional'
+    target = params.key?(:target) ? params[:target] : 'promotional'
     options = {}
 
     if target == 'promotional'

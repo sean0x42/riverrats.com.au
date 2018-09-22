@@ -1,10 +1,12 @@
-class EventsController < ApplicationController
+# frozen_string_literal: true
 
+# A controller for events
+class EventsController < ApplicationController
   # GET /calendar(/:year/:month)
   def index
-    @date = Date.today
+    @date = Time.zone.today
 
-    if params.has_key? :year
+    if params.key?(:year)
       # Attempt to parse date
       begin
         @date = Date.parse("#{params[:month]} #{params[:year]}")

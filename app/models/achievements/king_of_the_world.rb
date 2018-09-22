@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Awarded to players who win a regional championship
 class KingOfTheWorld < Achievement
   validates_attachment_presence :proof
 

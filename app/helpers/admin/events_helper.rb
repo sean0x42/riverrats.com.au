@@ -1,29 +1,17 @@
+# frozen_string_literal: true
+
+# A helper for admin events
 module Admin::EventsHelper
-
-
-  ###
-  # Renders a set of textboxes, one for each day of the week.
-  # @param [FormHelper] form Form object.
-  # @param [Event] event Parent event model.
-  def week_day_checkboxes (form, event)
-
+  def week_day_checkboxes(form, event)
     selected_days = []
 
     # Updated selected days if this is a recurring event
-    if event.type == RecurringEvent.sti_name
-      selected_days = event.selected_days
-    end
+    selected_days = event.selected_days if event.type == RecurringEvent.sti_name
 
     render partial: 'admin/events/checkboxes', locals: {
       selected: selected_days,
-      week_days: days_of_the_week,
+      week_days: %w[sunday monday tuesday wednesday thursday friday saturday],
       form: form
     }
-
   end
-
-  def days_of_the_week
-    %w(sunday monday tuesday wednesday thursday friday saturday)
-  end
-
 end

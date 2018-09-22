@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Awarded to the player with the most wins after a single season
 class TheProdigy < Achievement
   def title
     I18n.t('achievement.the_prodigy.title')
