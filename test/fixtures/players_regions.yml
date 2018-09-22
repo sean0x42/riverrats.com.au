@@ -14,8 +14,3 @@ negative_games_won:
   region: nabiac
   player: eve
   games_won: -100
-
-negative_rank:
-  region: nabiac
-  player: alice
-  rank: -100

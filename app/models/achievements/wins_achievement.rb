@@ -6,36 +6,33 @@ class WinsAchievement < Achievement
     awarded = player.awarded? self
 
     if awarded
-      achievement = player.achievements.find_by(type: self.sti_name)
+      achievement = player.achievements.find_by(type: sti_name)
       achievement.check
     end
 
-    if (!awarded) && player.games_won >= requirements[0]
-      player.award self
-    end
+    player.award self if !awarded && player.games_won >= requirements[0]
 
     awarded
   end
 
   def check
     requirements = self.class.requirements
+    return if requirements.length <= level + 1
 
-    # We can go higher
-    if requirements.length > level + 1
-      # Check conditions
-      if player.games_won >= requirements[level + 1]
-        player.award self.class, level + 1
-      end
+    # Check conditions
+    if player.games_won >= requirements[level + 1]
+      player.award self.class, level + 1
     end
   end
 
   def title
-    I18n.t('achievement.wins.title') % { level: (level + 1).to_roman }
+    format(I18n.t('achievement.wins.title'), level: (level + 1).to_roman)
   end
 
   def description
     games = WinsAchievement.requirements[level]
-    I18n.t('achievement.wins.description') % { count: "#{games} #{'game'.pluralize games}" }
+    format(I18n.t('achievement.wins.description'),
+           count: "#{games} #{'game'.pluralize games}")
   end
 
   def self.type

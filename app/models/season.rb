@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# A single season (quarter of a year)
 class Season < ApplicationRecord
   has_many :players_seasons, class_name: 'PlayersSeason', dependent: :nullify
   has_many :players, through: :players_seasons
@@ -14,10 +17,9 @@ class Season < ApplicationRecord
   end
 
   def start_at_must_be_before_end_at
-    return unless start_at.present? && end_at.present?
-    if start_at > end_at
-      errors.add(:start_at, 'can\'t be after the end date.')
-    end
+    return unless start_at.present? && end_at.present? && start_at > end_at
+
+    errors.add(:start_at, 'can\'t be after the end date.')
   end
 
   def paginated_players(page)
@@ -25,6 +27,6 @@ class Season < ApplicationRecord
   end
 
   def self.current
-    Season.where('start_at < ? and end_at > ?', Time.now, Time.now).first
+    Season.find_by('start_at < ? and end_at > ?', Time.zone.now, Time.zone.now)
   end
 end

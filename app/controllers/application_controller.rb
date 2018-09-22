@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
+# Base controller
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
-  
+
   def require_admin
     if current_player.email.nil?
-      flash[:errors] = Struct::Flash.new t('errors.missing_admin_email.title'), t('errors.missing_admin_email.description')
-      redirect_to root_path
+      redirect_to root_path, notice: t('errors.missing_admin_email.flash')
     elsif !current_player.admin? && !current_player.developer?
-      flash[:errors] = Struct::Flash.new t('errors.insufficient_permission.title'), t('errors.insufficient_permission.description')
-      redirect_to root_path
+      redirect_to root_path, notice: t('errors.insufficient_permission.flash')
     end
   end
 

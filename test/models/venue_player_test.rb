@@ -16,11 +16,6 @@ class VenuePlayerTest < ActiveSupport::TestCase
     assert_not player.valid?, 'Venue player with negative games_won should not be valid.'
   end
 
-  test "rank should be positive" do
-    player = players_venues(:negative_rank)
-    assert_not player.valid?, 'Venue player with negative rank should not be valid.'
-  end
-
   test "player should not be duplicated" do
     PlayersVenue.create(venue: venues(:nabiac_hotel), player: players(:bob))
     duplicate = PlayersVenue.new(venue: venues(:nabiac_hotel), player: players(:bob))

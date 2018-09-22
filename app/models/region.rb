@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# A region covered by the league
 class Region < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :finders]
+  friendly_id :name, use: %i[slugged finders]
 
   default_scope { order(:name) }
 

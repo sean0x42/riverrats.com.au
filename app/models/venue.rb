@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# A venue that hosts games for the league
 class Venue < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: %i[slugged finders]

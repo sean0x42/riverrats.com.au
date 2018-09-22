@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# A controller for games
 class GamesController < ApplicationController
   # GET /games/
   def index

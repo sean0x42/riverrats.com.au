@@ -9,6 +9,9 @@ class Game < ApplicationRecord
 
   searchkick callbacks: :async
 
+  after_save :update_ranks
+  after_destroy :update_ranks
+
   has_many :games_players,
            class_name: 'GamesPlayer',
            dependent: :delete_all,
@@ -38,12 +41,6 @@ class Game < ApplicationRecord
     { name: name }
   end
 
-  # def update_ranks
-  #   region = venue
-  #   UpdateGlobalRanksJob.perform_later
-  #   UpdateSeasonRanksJob.perform_later self.season
-  # end
-
   def paginated_players(page)
     GamesPlayer.includes(:player).where(game_id: self.id).page(page).per(25)
   end
@@ -55,7 +52,7 @@ class Game < ApplicationRecord
   end
 
   def referee_count
-    return unless referees.size.empty?
+    return unless referees.empty?
 
     errors.add :referees, I18n.t('errors.game.too_few_referees')
   end
@@ -76,5 +73,11 @@ class Game < ApplicationRecord
 
   def self.recent(days = 30)
     Game.where('created_at > ?', Time.zone.today - days.days)
+  end
+
+  private
+
+  def update_ranks
+    CalculateRanksWorker.perform_async
   end
 end

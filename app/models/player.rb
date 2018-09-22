@@ -5,7 +5,7 @@ require 'username_lib'
 
 # Represents a single player
 class Player < ApplicationRecord
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, 
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable
 
   default_scope { order(rank: :asc) }
@@ -64,7 +64,7 @@ class Player < ApplicationRecord
   def to_param
     username
   end
-  
+
   def search_data
     {
       full_name: full_name,
@@ -81,7 +81,7 @@ class Player < ApplicationRecord
     @login || username || email
   end
 
-  def self.find_for_database_authentication (warden_conditions)
+  def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if (login = conditions.delete(:login))
       where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first
@@ -90,7 +90,7 @@ class Player < ApplicationRecord
     end
   end
 
-  def award (achievement, level=0)
+  def award(achievement, level = 0)
     if awarded? achievement
       a = achievements.find_by type: achievement.sti_name
       a.level = level
@@ -128,7 +128,9 @@ class Player < ApplicationRecord
   end
 
   def recent_games
-    GamesPlayer.includes(game: [:venue]).where(player: self).reorder(created_at: :desc).limit(25)
+    GamesPlayer.includes(game: [:venue])
+               .where(player: self)
+               .reorder(created_at: :desc).limit(25)
   end
 
   def season_player

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A join table between games and players
 class GamesPlayer < ApplicationRecord
   include ActiveModel::Dirty
@@ -7,6 +9,7 @@ class GamesPlayer < ApplicationRecord
   belongs_to :game
   belongs_to :player
   after_save :update_stats
+  after_destroy :update_stats
 
   validates :game, :player, presence: true
   validates :position, :score,
