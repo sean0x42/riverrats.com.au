@@ -4,7 +4,7 @@ alice:
   username: alicehill
   first_name: Alice
   last_name: Hill
-  is_admin: true
+  admin: true
   email: alice@gmail.com
   encrypted_password: <%= Devise::Encryptor.digest Player, 'alice123' %>
 
@@ -12,7 +12,7 @@ bob:
   username: bobsmith
   first_name: Bob
   last_name: Smith
-  is_developer: true
+  developer: true
   email: bob@riverrats.com.au
   encrypted_password: <%= Devise::Encryptor.digest Player, 'littleBobbyTables@994' %>
 
@@ -20,7 +20,7 @@ carter:
   username: carterjohnson
   first_name: Carter
   last_name: Johnson
-  is_admin: true
+  admin: true
   encrypted_password: <%= Devise::Encryptor.digest Player, '123456789' %>
 
 dave:
@@ -34,8 +34,8 @@ eve:
   username: evestephens
   first_name: Eve
   last_name: Stephens
-  is_admin: false
-  is_developer: false
+  admin: false
+  developer: false
   email: eve@stephens.com
   encrypted_password: <%= Devise::Encryptor.digest Player, '_evenstephens' %>
 

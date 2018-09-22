@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if current_player.email.nil?
       flash[:errors] = Struct::Flash.new t('errors.missing_admin_email.title'), t('errors.missing_admin_email.description')
       redirect_to root_path
-    elsif !current_player.is_admin && !current_player.is_developer
+    elsif !current_player.admin? && !current_player.developer?
       flash[:errors] = Struct::Flash.new t('errors.insufficient_permission.title'), t('errors.insufficient_permission.description')
       redirect_to root_path
     end

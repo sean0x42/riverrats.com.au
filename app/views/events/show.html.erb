@@ -4,7 +4,7 @@
   <div class="wrapper">
     <h1 class="has-subtitle">
       <%= @event.clean_title %>
-      <%- unless @event.has_occurred? %>
+      <%- unless @event.occurred? %>
         <span class="badge">upcoming</span>
       <%- end %>
     </h1>

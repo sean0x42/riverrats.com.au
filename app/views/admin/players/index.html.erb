@@ -34,7 +34,7 @@
   <!-- Admins -->
   <div>
     <h2>Admins</h2>
-    <p><%= number_to_human(Player.admin.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+    <p><%= number_to_human(Player.admins.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
   </div>
 
 </div>

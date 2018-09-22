@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
 require 'csv'
 require 'username_lib'
 
+# Represents a single player
 class Player < ApplicationRecord
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, 
+         :trackable, :validatable
 
   default_scope { order(rank: :asc) }
 
-  searchkick callbacks: :async, word_start: [:full_name, :username]
+  searchkick callbacks: :async, word_start: %i[full_name username]
 
   before_validation :gen_username, on: :create
 
@@ -60,13 +64,12 @@ class Player < ApplicationRecord
   def to_param
     username
   end
-
-
+  
   def search_data
     {
-      full_name: self.full_name,
-      username: "@#{self.username}",
-      rank: self.rank
+      full_name: full_name,
+      username: "@#{username}",
+      rank: rank
     }
   end
 
@@ -75,7 +78,7 @@ class Player < ApplicationRecord
   end
 
   def login
-    @login || self.username || self.email
+    @login || username || email
   end
 
   def self.find_for_database_authentication (warden_conditions)
@@ -93,7 +96,7 @@ class Player < ApplicationRecord
       a.level = level
       a.save
     else
-      self.achievements << achievement.new(level: level)
+      achievements << achievement.new(level: level)
     end
   end
 
@@ -114,11 +117,11 @@ class Player < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w(first_name last_name email)
+    attributes = %w[first_name last_name email]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
-      all.each do |player|
+      all.find_each do |player|
         csv << player.attributes
       end
     end
@@ -129,14 +132,14 @@ class Player < ApplicationRecord
   end
 
   def season_player
-    PlayersSeason.where(player: self, season: Season.current).first
+    PlayersSeason.find_by(player: self, season: Season.current)
   end
 
   def self.recent(days = 30)
-    Player.where('created_at > ?', Date.today - days.days)
+    Player.where('created_at > ?', Time.zone.today - days.days)
   end
 
-  def self.admin
-    Player.where(is_admin: true).or(Player.where(is_developer: true))
+  def self.admins
+    Player.where(admin: true).or(Player.where(developer: true))
   end
 end

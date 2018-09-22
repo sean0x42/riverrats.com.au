@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_033941) do
+ActiveRecord::Schema.define(version: 2018_09_22_043403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2018_09_11_033941) do
     t.integer "score", default: 0, null: false
     t.integer "games_played", default: 0, null: false
     t.integer "games_won", default: 0, null: false
-    t.boolean "is_admin", default: false, null: false
+    t.boolean "admin", default: false, null: false
     t.string "email"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 2018_09_11_033941) do
     t.integer "rank"
     t.integer "second_places", default: 0, null: false
     t.integer "wooden_spoons", default: 0, null: false
-    t.boolean "is_developer", default: false
+    t.boolean "developer", default: false
     t.index ["email"], name: "index_players_on_email"
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
     t.index ["username"], name: "index_players_on_username", unique: true
@@ -138,7 +138,6 @@ ActiveRecord::Schema.define(version: 2018_09_11_033941) do
     t.integer "games_won", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "rank"
     t.index ["player_id", "region_id"], name: "index_players_regions_on_player_id_and_region_id"
     t.index ["player_id"], name: "index_players_regions_on_player_id"
     t.index ["region_id"], name: "index_players_regions_on_region_id"
@@ -166,7 +165,6 @@ ActiveRecord::Schema.define(version: 2018_09_11_033941) do
     t.integer "games_won", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "rank"
     t.index ["player_id", "venue_id"], name: "index_players_venues_on_player_id_and_venue_id"
     t.index ["player_id"], name: "index_players_venues_on_player_id"
     t.index ["venue_id"], name: "index_players_venues_on_venue_id"

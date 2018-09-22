@@ -73,11 +73,11 @@ class Admin::PlayersController < ApplicationController
 
   def new_params
     params[:email] = nil if params.key?(:email) && params[:email].blank?
-    params.require(:player).permit(:first_name, :last_name, :email, :is_admin)
+    params.require(:player).permit(:first_name, :last_name, :email, :admin)
   end
 
   def edit_params
     params[:email] = nil if params.key?(:email) && params[:email].blank?
-    params.require(:player).permit(:username, :first_name, :last_name, :email, :is_admin)
+    params.require(:player).permit(:username, :first_name, :last_name, :email, :admin)
   end
 end

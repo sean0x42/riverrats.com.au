@@ -1,10 +1,15 @@
-AllCops:
-  Exclude:
-    - 'bin/*'
-    - 'node_modules/**/*'
-
-Style/ClassAndModuleChildren:
-  Enabled: false
-
 Rails:
   Enabled: true
+
+AllCops:
+  Exclude:
+  - 'bin/*'
+  - 'node_modules/**/*'
+  - 'db/schema.rb'
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+Style/Documentation:
+  Exclude:
+    - 'db/migrate/*'

@@ -16,7 +16,7 @@ en:
       description: "Collect %{score} points."
     participation:
       title: "I Got This %{level}"
-      description: "Play %{count}."
+      description: "Play %{count} %{game}."
     royal_flush:
       title: "Get Flushed!"
       description: "Get a Royal Flush"
