@@ -1,16 +1,16 @@
 .release-notes {
-  position: relative;
-  padding: 1rem 0;
   margin: 2rem 0;
+  padding: 1rem 0;
+  position: relative;
 
-  &:before {
+  &::before {
+    background: $grey-dark;
+    bottom: 0;
     content: '';
+    left: 38.5px;
     position: absolute;
     top: 0;
-    bottom: 0;
-    left: 38.5px;
     width: 3px;
-    background: $grey-dark;
     z-index: 1;
   }
 
@@ -29,15 +29,15 @@
   }
 
   .version {
-    display: inline-block;
     background: $zurple;
-    color: $zurple-inverted;
-    width: 80px;
-    text-align: center;
     border-radius: $border-radius - 1px;
+    color: $zurple-inverted;
+    display: inline-block;
     font-size: 85%;
     font-weight: 500;
-    margin-right: 0.75rem;
+    margin-right: .75rem;
+    text-align: center;
+    width: 80px;
   }
 
   ul {
@@ -47,11 +47,11 @@
   }
 
   li {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    grid-gap: 0.75rem;
     align-items: flex-start;
-    margin: 0.5rem 0;
+    display: grid;
+    grid-gap: .75rem;
+    grid-template-columns: 80px 1fr;
+    margin: .5rem 0;
   }
 
   p {
@@ -60,14 +60,14 @@
   }
 
   .change {
+    border-radius: $border-radius;
     display: inline-block;
     font-size: 85%;
-    text-align: center;
-    border-radius: $border-radius;
-    width: 80px;
     font-weight: 500;
     line-height: $body-line-height;
     margin: 2px 0 0;
+    text-align: center;
+    width: 80px;
   }
 
   .change-new {
@@ -103,7 +103,7 @@
 
 @media (min-width: 980px) {
   .release-notes {
-    &:before {
+    &::before {
       left: 28.5px;
     }
 

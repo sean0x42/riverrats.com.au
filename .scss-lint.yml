@@ -1,0 +1,9 @@
+scss_files: "app/assets/stylesheets/**/*.*"
+
+severity: warning
+
+linters:
+  PropertySpelling:
+    enabled: false
+  QualifyingElement:
+    enabled: false

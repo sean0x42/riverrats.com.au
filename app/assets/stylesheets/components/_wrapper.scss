@@ -1,16 +1,16 @@
 .wrapper {
-  position: relative;
   margin: 4rem auto;
-  width: 100%;
   max-width: $wrapper-width;
-  z-index: 10;
   padding: 0 1.5rem;
+  position: relative;
+  width: 100%;
+  z-index: 10;
 
   &.split-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    grid-gap: 1.5rem;
     align-items: flex-start;
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: 1fr 320px;
     margin-top: 0;
 
     .model-list {

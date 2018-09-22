@@ -1,13 +1,13 @@
 .landing-fold {
-  color: darken($zurple-inverted, 5%);
   background: $zurple url(asset-path('trianglify.svg'));
   background-size: cover;
+  color: darken($zurple-inverted, 5%);
   padding: 2rem 0;
 
   .wrapper {
     display: grid;
-    grid-template-columns: 1fr 120px;
     grid-gap: 1rem;
+    grid-template-columns: 1fr 120px;
   }
 
   h1 {

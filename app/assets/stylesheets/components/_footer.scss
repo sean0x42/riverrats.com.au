@@ -1,77 +1,75 @@
 .footer {
-  position: relative;
-  padding: 4rem 0 0;
-  margin: 0;
-  z-index: 1;
-  color: $text;
   background: $grey;
   border-bottom: 70px solid $darcula;
   border-top: 1px solid $grey-dark;
+  color: $text;
   line-height: $body-line-height;
+  margin: 0;
+  padding: 4rem 0 0;
+  position: relative;
+  z-index: 1;
 
-  & > .wrapper {
+  > .wrapper {
     margin: 0 auto;
   }
+}
 
-  .nav-columns {
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fit, 180px);
-    margin: 0 0 2rem;
+.nav-columns {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, 180px);
+  margin: 0 0 2rem;
 
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      text-align: left;
-    }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
 
-    li {
-      margin: 0.3rem 0;
-    }
+  li {
+    margin: .3rem 0;
 
-    a {
-      position: relative;
-      color: lighten($text, 20%);
-      padding: 2px 0;
-
-      &:hover {
-        text-decoration: none;
-        color: $zurple;
-      }
-    }
-
-    li.title {
+    &.title {
       color: $zurple;
       font-weight: 500;
     }
-
   }
 
+  a {
+    color: lighten($text, 20%);
+    padding: 2px 0;
+    position: relative;
+
+    &:hover {
+      color: $zurple;
+      text-decoration: none;
+    }
+  }
 }
 
 .footer-buttons {
-  position: absolute;
-  top: -24px;
   left: 0;
+  position: absolute;
   right: 0;
+  top: -24px;
 
   .wrapper {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: center;
     margin: 0 auto;
-    padding: 0 0.25rem;
+    padding: 0 .25rem;
   }
 
   .button,
   .button-secondary {
-    margin: 0 0.25rem;
+    margin: 0 .25rem;
   }
 
   .button-secondary {
-    display: none;
     border-color: $grey-dark;
+    display: none;
   }
 }
 
@@ -89,20 +87,20 @@
 
     .button,
     .button-secondary {
-      margin: 0 0.5rem;
+      margin: 0 .5rem;
     }
   }
 }
 
 .footer-base {
-  padding: 0.4rem 0;
-  color: $darcula-inverted;
   background: $darcula;
+  color: $darcula-inverted;
+  padding: .4rem 0;
 
   .wrapper {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin: 0 auto;
   }
 
@@ -136,16 +134,16 @@
     }
 
     .version {
-      margin: 0 0.75rem 0 0;
-      padding: 0 0.75rem 0 0;
       border-right: 1px solid darken($darcula-inverted, 30%);
+      margin: 0 .75rem 0 0;
+      padding: 0 .75rem 0 0;
     }
   }
 }
 
 @media (min-width: 980px) {
   .footer {
-    margin-bottom: 0;
     border-bottom: 4px solid $zurple;
+    margin-bottom: 0;
   }
 }

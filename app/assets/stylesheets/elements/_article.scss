@@ -1,11 +1,11 @@
 article {
-  background: white;
-  padding: 1.5rem;
+  background: $white;
   border: 1px solid $grey;
   border-radius: $border-radius;
   max-width: 75ch;
+  padding: 1.5rem;
 
-  & > *:first-child {
+  > *:first-child {
     margin-top: 0;
   }
 }

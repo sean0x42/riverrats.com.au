@@ -1,6 +1,6 @@
 @mixin hidden-visually () {
-  width: 0.1px;
-  height: 0.1px;
+  width: .1px;
+  height: .1px;
   opacity: 0;
   overflow: hidden;
   position: absolute;

@@ -1,14 +1,14 @@
 .model-list {
-  width: 100%;
-  overflow-x: auto;
-  background: white;
-  margin: 3rem 0 0;
+  background: $white;
   border-radius: $border-radius;
+  margin: 3rem 0 0;
+  overflow-x: auto;
+  width: 100%;
 
   table {
     border: 1px solid $grey;
-    border-radius: $border-radius;
     border-collapse: collapse;
+    border-radius: $border-radius;
     width: 100%;
   }
 
@@ -17,10 +17,10 @@
   }
 
   td {
-    white-space: nowrap;
-    padding: 0.5rem;
-    text-align: left;
     line-height: $body-line-height;
+    padding: .5rem;
+    text-align: left;
+    white-space: nowrap;
 
     &:first-child {
       padding-left: 1.5rem;
@@ -38,9 +38,12 @@
       color: $zurple-dark;
     }
 
+    // Disabled because fixing this would result in deeper nesting
+    // scss-lint:disable MergeableSelector
     &:hover .highlight {
       color: $zurple-dark;
     }
+    // scss-lint:enable MergeableSelector
   }
 
   .stretch {
@@ -69,8 +72,8 @@
     text-align: center;
 
     b {
-      font-weight: 500;
       color: $text-bold;
+      font-weight: 500;
     }
   }
 }

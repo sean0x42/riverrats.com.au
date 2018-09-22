@@ -1,16 +1,16 @@
 .admin .modal-form {
-  background: white;
-  max-width: $modal-width;
-  width: 100%;
-  padding: 2rem;
+  background: $white;
   border-radius: $border-radius;
+  max-width: $modal-width;
+  padding: 2rem;
+  width: 100%;
 }
 
 .modal-form {
   margin-top: 2rem;
 
   hr {
-    border: none;
+    border: 0;
     border-bottom: 2px dashed $grey;
     margin: 1.7rem 0 1.3rem;
   }
@@ -26,11 +26,11 @@
 
   .modal-footer {
     background: $grey;
-    color: $grey-inverted;
-    text-align: center;
-    padding: 1rem;
-    margin: 2rem -2rem -2rem;
     border-top: 1px solid $grey-dark;
+    color: $grey-inverted;
+    margin: 2rem -2rem -2rem;
+    padding: 1rem;
+    text-align: center;
 
     p {
       margin: 0;
@@ -50,11 +50,11 @@
   }
 
   .previous-step {
-    display: block;
     color: $zurple-dark;
-    text-align: center;
-    margin-top: 1rem;
+    display: block;
     font-size: $font-size - 1px;
+    margin-top: 1rem;
+    text-align: center;
 
     &:hover {
       text-decoration: underline;

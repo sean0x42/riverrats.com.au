@@ -1,13 +1,13 @@
 .venue-image {
   border-radius: 3px;
-  overflow: hidden;
   margin: 0 0 1rem;
+  overflow: hidden;
 
   img {
     display: block;
-    width: 100%;
-    line-height: 1.0;
+    line-height: 1;
     vertical-align: middle;
+    width: 100%;
   }
 }
 

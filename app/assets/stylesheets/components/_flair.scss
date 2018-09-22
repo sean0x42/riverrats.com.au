@@ -1,12 +1,12 @@
 .flair {
   background: $zurple;
-  color: $zurple-inverted;
   border-radius: $border-radius - 1px;
+  color: $zurple-inverted;
   font-size: 90%;
-  margin: 0 0.15rem;
+  margin: 0 .15rem;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: '\00a0';
   }
 }

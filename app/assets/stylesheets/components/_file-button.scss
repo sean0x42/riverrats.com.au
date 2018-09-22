@@ -1,7 +1,0 @@
-.file-button {
-  @include no-select;
-  margin-top: 0.25rem;
-  display: flex;
-}
-
-input[type='file'] { @include hidden-visually; }

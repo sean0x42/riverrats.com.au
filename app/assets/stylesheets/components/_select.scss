@@ -1,7 +1,7 @@
 .better-select-wrapper {
+  max-width: $max-select-width;
   position: relative;
   width: 100%;
-  max-width: $max-select-width;
 
   &[active] .better-select-trigger {
     border-radius: $border-radius $border-radius 0 0;
@@ -14,45 +14,45 @@
 }
 
 .better-select-trigger {
-  display: flex;
+  @include no-select();
   align-items: center;
+  cursor: pointer;
+  display: flex;
+  fill: $grey-light-inverted;
   justify-content: space-between;
   max-width: unset;
-  cursor: pointer;
-  fill: $grey-light-inverted;
-  @include no-select();
 
   svg {
-    width: 22px;
     height: 22px;
     margin: -2px 0;
+    width: 22px;
   }
 }
 
 .better-select-dropdown {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
+  @include no-select();
   background: $grey-light;
   border: 1px solid $grey-dark;
-  border-top: none;
   border-radius: 0 0 $border-radius $border-radius;
-  margin: 0;
-  padding: 3px 0;
-  max-height: $max-select-height;
-  overflow-y: auto;
+  border-top: 0;
+  left: 0;
   list-style-type: none;
-  z-index: 10;
+  margin: 0;
+  max-height: $max-select-height;
   opacity: 0;
+  overflow-y: auto;
+  padding: 3px 0;
   pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
   transition: opacity 150ms;
-  @include no-select();
+  z-index: 10;
 
   li {
+    cursor: pointer;
     line-height: 1.25;
     padding: 8px 14px;
-    cursor: pointer;
 
     &:hover {
       background: $zurple;

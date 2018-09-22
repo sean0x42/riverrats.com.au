@@ -57,6 +57,7 @@ group :development do
   gem 'capistrano3-unicorn', require: false
   gem 'letter_opener'
   gem 'rubocop', require: false
+  gem 'scss_lint', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

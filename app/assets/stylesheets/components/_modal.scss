@@ -1,71 +1,70 @@
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
   background: $darcula;
-  z-index: 10000;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
   pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
   transition: opacity 300ms;
+  z-index: 10000;
 
   &[active] {
-    opacity: 0.75;
+    opacity: .75;
     pointer-events: all;
   }
 }
 
 .modal-loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10001;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 100ms;
-  display: flex;
   align-items: center;
+  bottom: 0;
+  display: flex;
   justify-content: center;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 100ms;
+  z-index: 10001;
 
   &[active] {
     opacity: 1;
   }
-
 }
 
 .modal-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   bottom: 0;
+  left: 0;
   overflow-y: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
   z-index: 10002;
 
   .wrapper {
-    max-width: $modal-width;
     margin: 1rem auto;
+    max-width: $modal-width;
     padding: 0 1rem;
   }
 
   .modal {
-    background: white;
+    background: $white;
+    border-radius: $border-radius;
     overflow-x: hidden;
     padding: 2rem;
-    border-radius: $border-radius;
 
-    & > *:first-child {
-      margin-top: 0 !important;
+    > *:first-child {
+      margin-top: 0;
     }
   }
 }
 
 .remember-and-forget {
-  display: flex;
   align-items: center;
+  display: flex;
   flex-wrap: wrap;
   margin: 2.5rem 0 0;
 
@@ -74,15 +73,13 @@
   }
 
   .checkbox {
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
   }
 }
 
 @media (min-width: 980px) {
-  .modal-wrapper {
-    .wrapper {
-      margin: 6rem auto 4rem;
-      padding: 0 1.5rem;
-    }
+  .modal-wrapper .wrapper {
+    margin: 6rem auto 4rem;
+    padding: 0 1.5rem;
   }
 }

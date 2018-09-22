@@ -1,13 +1,13 @@
 .status-dot {
-  padding: 0 0.5rem;
+  padding: 0 .5rem;
 
   i {
-    display: block;
     $size: 7px;
+    background: $grey-dark;
+    border-radius: 50%;
+    display: block;
     height: $size;
     width: $size;
-    border-radius: 50%;
-    background: $grey-dark;
   }
 
   &.active i {

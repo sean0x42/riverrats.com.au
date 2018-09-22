@@ -9,23 +9,24 @@ form {
     margin: 0 0 1rem;
 
     .checkbox {
-      margin-bottom: 0.5rem;
+      margin-bottom: .5rem;
     }
 
     .field-descriptor {
-      margin: 0.25rem 0;
       color: lighten($text, 30%);
+      margin: .25rem 0;
     }
   }
 
   .field-errors {
-    margin: 0.5rem 0 0.75rem;
-    padding-left: 1.75rem;
+    border-left: 2px solid $danger;
     color: lighten($text, 15%);
     line-height: $body-line-height;
-    border-left: 2px solid $danger;
+    margin: .5rem 0 .75rem;
+    padding-left: 1.75rem;
   }
 
+  // scss-lint:disable SelectorFormat
   .field_with_errors {
     display: inline;
 
@@ -40,5 +41,5 @@ form {
       margin-bottom: 0;
     }
   }
-
+  // scss-lint:enable SelectorFormat
 }

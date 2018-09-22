@@ -2,37 +2,36 @@
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, 140px);
-  p { margin: 0; }
+
+  p {
+    margin: 0;
+  }
 
   .numeric {
-    font-weight: bold;
-    font-size: 24px;
     color: $zurple;
+    font-size: 24px;
+    font-weight: bold;
     line-height: 1;
   }
 
   .label {
-    margin-top: 0.4rem;
     font-size: 15px;
+    margin-top: .4rem;
   }
-
 }
 
 .stats-arbitrary {
-
   strong {
-    font-weight: bold;
     color: $zurple;
+    font-weight: bold;
   }
 
   p {
-    margin: 0.25rem 0;
+    margin: .25rem 0;
   }
-
 }
 
 @media (min-width: 700px) {
-
   .stats .numeric {
     font-size: 30px;
   }
