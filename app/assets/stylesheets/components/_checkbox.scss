@@ -1,7 +1,7 @@
 .checkbox {
   transition: color 300ms;
 
-  input[type='checkbox'] {
+  input[type="checkbox"] {
     @include hidden-visually();
 
     + label::after {
@@ -9,14 +9,14 @@
     }
   }
 
-  input[type='checkbox']:checked + label {
+  input[type="checkbox"]:checked + label {
     &::before {
       background: $zurple;
       border-color: $zurple;
     }
 
     &::after {
-      content: '';
+      content: "";
     }
   }
 
@@ -28,7 +28,7 @@
       background: $white;
       border: 2px solid darken($grey-dark, 8%);
       border-radius: $border-radius - 1px;
-      content: '';
+      content: "";
       cursor: pointer;
       display: inline-block;
       height: 1.2rem;
@@ -42,7 +42,7 @@
     &::after {
       border-bottom: 2.5px solid $white;
       border-left: 2.5px solid $white;
-      content: '';
+      content: "";
       display: inline-block;
       height: 7px;
       left: 3px;

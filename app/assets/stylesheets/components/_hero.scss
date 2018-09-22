@@ -1,5 +1,5 @@
 .hero {
-  background: $zurple url(asset-path('trianglify.svg'));
+  background: $zurple url(asset-path("trianglify.svg"));
   background-size: cover;
   color: darken($zurple-inverted, 5%);
   margin: 0 0 -13rem;
