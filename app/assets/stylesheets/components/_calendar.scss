@@ -18,20 +18,20 @@
     font-weight: 500;
     line-height: 1;
     margin: 0;
-    padding: 1rem .75rem 0;
+    padding: 1rem 0.75rem 0;
   }
 
   .date {
     border-bottom: 1px solid $grey;
     border-right: 1px solid $grey;
     min-height: 190px;
-    padding: .75rem;
+    padding: 0.75rem;
 
     .day {
       color: lighten($text, 14%);
       font-size: 20px;
       line-height: 1;
-      margin: .75rem 0;
+      margin: 0.75rem 0;
       text-align: right;
     }
 
@@ -60,10 +60,10 @@
     border-radius: $border-radius;
     color: $zurple-inverted;
     display: block;
-    padding: .25rem .5rem;
+    padding: 0.25rem 0.5rem;
 
     &:not(:last-child) {
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
     }
 
     p {

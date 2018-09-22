@@ -37,7 +37,7 @@
     align-self: stretch;
     background: $zurple;
     line-height: 1;
-    padding: 18px .5rem;
+    padding: 18px 0.5rem;
     vertical-align: middle;
 
     i {
@@ -47,18 +47,18 @@
   }
 
   .flash-body {
-    padding: .5rem 0;
+    padding: 0.5rem 0;
   }
 
   h3 {
     font-size: $font-size;
     line-height: $body-line-height;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 
   p {
     font-size: $font-size;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 
   .flash-close {
@@ -68,7 +68,7 @@
     fill: $zurple;
     line-height: 1;
     margin: 0;
-    padding: .5rem;
+    padding: 0.5rem;
     vertical-align: middle;
     width: 40px;
 

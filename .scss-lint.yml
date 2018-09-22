@@ -7,3 +7,15 @@ linters:
     enabled: false
   QualifyingElement:
     enabled: false
+  LeadingZero:
+    style: include_zero
+  ChainedClasses:
+    enabled: false
+  Comment:
+    enabled: true
+    style: silent
+  DebugStatement:
+    enabled: true
+  HexLength:
+    enabled: false
+    style: long

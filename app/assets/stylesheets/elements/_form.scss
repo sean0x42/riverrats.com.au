@@ -9,12 +9,12 @@ form {
     margin: 0 0 1rem;
 
     .checkbox {
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
     }
 
     .field-descriptor {
       color: lighten($text, 30%);
-      margin: .25rem 0;
+      margin: 0.25rem 0;
     }
   }
 
@@ -22,7 +22,7 @@ form {
     border-left: 2px solid $danger;
     color: lighten($text, 15%);
     line-height: $body-line-height;
-    margin: .5rem 0 .75rem;
+    margin: 0.5rem 0 0.75rem;
     padding-left: 1.75rem;
   }
 

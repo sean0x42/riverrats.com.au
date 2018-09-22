@@ -29,7 +29,7 @@
     transform: scale(1.1) rotateZ(90deg);
 
     &::before {
-      animation-delay: .3s;
+      animation-delay: 0.3s;
     }
   }
 
@@ -37,7 +37,7 @@
     transform: scale(1.1) rotateZ(180deg);
 
     &::before {
-      animation-delay: .6s;
+      animation-delay: 0.6s;
     }
   }
 
@@ -45,7 +45,7 @@
     transform: scale(1.1) rotateZ(270deg);
 
     &::before {
-      animation-delay: .9s;
+      animation-delay: 0.9s;
     }
   }
 }

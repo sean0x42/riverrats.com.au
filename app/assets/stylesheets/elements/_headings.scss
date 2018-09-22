@@ -2,7 +2,7 @@
   color: $zurple;
   font-size: 14px;
   font-weight: bold;
-  letter-spacing: .05em; // Extra 5% letter spacing for added readability
+  letter-spacing: 0.05em; // Extra 5% letter spacing for added readability
   text-transform: uppercase;
 
   &:not(:first-child) {
@@ -39,7 +39,7 @@ h1 {
   font-weight: normal; // Font weight should be similar to that of the subheading (visually).
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  margin-top: .25rem; // Space between H1 and subheading
+  margin-top: 0.25rem; // Space between H1 and subheading
 }
 
 h2 {

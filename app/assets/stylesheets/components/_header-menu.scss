@@ -10,7 +10,7 @@
   transition: opacity 500ms;
 
   &[active] {
-    opacity: .35;
+    opacity: 0.35;
   }
 }
 
@@ -26,7 +26,7 @@
     fill: $text;
     left: 0;
     line-height: $body-line-height;
-    margin-top: .8rem;
+    margin-top: 0.8rem;
     min-width: 280px;
     position: absolute;
     top: 100%;
@@ -43,7 +43,7 @@
     padding: 1rem 0;
 
     a {
-      padding: .25rem 1rem;
+      padding: 0.25rem 1rem;
     }
   }
 

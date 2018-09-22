@@ -35,7 +35,7 @@
     display: inline-block;
     font-size: 85%;
     font-weight: 500;
-    margin-right: .75rem;
+    margin-right: 0.75rem;
     text-align: center;
     width: 80px;
   }
@@ -49,9 +49,9 @@
   li {
     align-items: flex-start;
     display: grid;
-    grid-gap: .75rem;
+    grid-gap: 0.75rem;
     grid-template-columns: 80px 1fr;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 
   p {

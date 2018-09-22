@@ -2,13 +2,13 @@
   align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
-  margin: -.5rem;
+  margin: -0.5rem;
   margin-top: 1.5rem;
 
   .button,
   .button-secondary,
   .button-tertiary {
-    margin: .5rem;
+    margin: 0.5rem;
   }
 }
 
@@ -35,7 +35,7 @@
 
   .material-icons {
     flex-shrink: 0;
-    margin: -3px .75rem;
+    margin: -3px 0.75rem;
 
     // It is best to visually adjust these values with inline styles.
     &:first-child {
@@ -65,7 +65,7 @@
   transition: transform 300ms, box-shadow 300ms;
 
   &:not([disabled]):hover {
-    $shadow: rgba(0, 0, 0, .1);
+    $shadow: rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 8px $shadow;
     transform: translateY(-1px);
   }
@@ -101,7 +101,7 @@
   background: $grey-light;
   color: lighten($text, 20%);
   fill: lighten($text, 20%);
-  margin: .5rem -.25rem;
+  margin: 0.5rem -0.25rem;
 
   &:hover {
     color: darken($zurple, 3%);

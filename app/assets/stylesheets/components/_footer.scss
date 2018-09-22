@@ -28,7 +28,7 @@
   }
 
   li {
-    margin: .3rem 0;
+    margin: 0.3rem 0;
 
     &.title {
       color: $zurple;
@@ -59,12 +59,12 @@
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    padding: 0 .25rem;
+    padding: 0 0.25rem;
   }
 
   .button,
   .button-secondary {
-    margin: 0 .25rem;
+    margin: 0 0.25rem;
   }
 
   .button-secondary {
@@ -87,7 +87,7 @@
 
     .button,
     .button-secondary {
-      margin: 0 .5rem;
+      margin: 0 0.5rem;
     }
   }
 }
@@ -95,7 +95,7 @@
 .footer-base {
   background: $darcula;
   color: $darcula-inverted;
-  padding: .4rem 0;
+  padding: 0.4rem 0;
 
   .wrapper {
     align-items: center;
@@ -135,8 +135,8 @@
 
     .version {
       border-right: 1px solid darken($darcula-inverted, 30%);
-      margin: 0 .75rem 0 0;
-      padding: 0 .75rem 0 0;
+      margin: 0 0.75rem 0 0;
+      padding: 0 0.75rem 0 0;
     }
   }
 }

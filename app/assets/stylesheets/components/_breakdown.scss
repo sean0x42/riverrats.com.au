@@ -1,5 +1,5 @@
 .breakdown {
-  background: transparentize($darcula-light, .4);
+  background: transparentize($darcula-light, 0.4);
   border-radius: $border-radius;
   display: grid;
   grid-gap: 2rem;
@@ -21,6 +21,6 @@
     color: lighten($darcula-light-inverted, 10%);
     font-size: 30px;
     line-height: 1.1;
-    margin: .5rem 0 0;
+    margin: 0.5rem 0 0;
   }
 }
