@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 desc 'Copies some linked files to the remote server.'
 task :linked_files do
   on roles(:all) do |host|

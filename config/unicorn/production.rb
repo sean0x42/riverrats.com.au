@@ -1,10 +1,12 @@
-root = "/home/rails/river_rats/current"
+# frozen_string_literal: true
+
+root = '/home/rails/river_rats/current'
 working_directory root
 
 stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
 
-worker_processes ENV.fetch("RAILS_MAX_THREADS") { 5 }
+worker_processes ENV.fetch('RAILS_MAX_THREADS') { 5 }
 timeout 30
 preload_app true
 
@@ -16,7 +18,7 @@ before_fork do
     Process.kill 'QUIT', Process.pid
   end
 
-  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
 end
 
 after_fork do
@@ -24,7 +26,7 @@ after_fork do
     puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
   end
 
-  defined?(ActiveRecord::Base) and
+  defined?(ActiveRecord::Base) &&
     ActiveRecord::Base.establish_connection
 end
 
