@@ -1,7 +1,5 @@
 <%= form_with model: [:admin, @event.becomes(Event)], local: true do |form| %>
 
-  <%= render partial: 'application/form_errors', locals: { object: @event } %>
-
   <!-- Basic event info -->
   <section>
     <div class="section-outline">

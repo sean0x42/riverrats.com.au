@@ -34,7 +34,10 @@ class Admin::EventsController < ApplicationController
       )
       redirect_to admin_events_path
     else
-      render 'new'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.js { render 'failure' }
+      end
     end
   end
 
