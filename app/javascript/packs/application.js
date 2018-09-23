@@ -6,12 +6,16 @@
 
 // Polyfills
 import "promise-polyfill/src/polyfill";
-import "whatwg-fetch"
+import "whatwg-fetch";
+import "./polyfill/closest";
 
-// Application
+// Components
 import "./components/flashes/flash_controller";
 import "./components/modals/modal_controller";
 import "./components/date_picker";
 import "./components/better_select";
 import "./components/player_input.js";
+
+// Application
 import "./navigation";
+import "./game_editor";

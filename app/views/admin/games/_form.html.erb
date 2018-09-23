@@ -26,12 +26,12 @@
     <%= link_to 'Create player', new_admin_player_path, class: 'anchor', remote: true, data: { expects_modal: true } %>
   </div>
 
-  <div class="player-area empty">
+  <div class="player-area" id="js-game-players">
     <%= render 'empty_players' %>
   </div>
 
   <div class="player-area-footer">
-    <div class="player-input-wrapper">
+    <div class="player-input-wrapper" id="js-game-players-input">
       <input type="text" class="player-input" placeholder="Name or username">
       <button class="player-input-submit button-secondary">Add player</button>
     </div>

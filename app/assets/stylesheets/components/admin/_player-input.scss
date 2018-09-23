@@ -21,33 +21,46 @@
 
 .suggestions-window {
   $shadow: rgba(0, 0, 0, 0.03);
-  background: $grey-light;
+  background: $white;
   border: 1px solid $grey;
   border-radius: 0 0 $border-radius $border-radius;
   border-top: 0;
+  box-shadow: 0 15px 30px $shadow, 0 5px 15px $shadow;
   left: 0;
   list-style-type: none;
   margin: 0;
   max-height: 8 * 36.5px;
+  overflow-y: auto;
   padding: 0;
   position: absolute;
-  overflow-y: auto;
   right: 0;
   top: 100%;
-  box-shadow: 0 15px 30px $shadow, 0 5px 15px $shadow;
   z-index: 10000;
 
   li {
-    padding: 9px 13px;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: lighten($text, 25%);
     cursor: pointer;
+    overflow: hidden;
+    padding: 9px 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
 
     &:hover {
       background: $zurple;
       color: $zurple-inverted;
     }
+
+    // Disabled because of nesting depth
+    // scss-lint:disable MergeableSelector
+    &:hover .highlight {
+      color: $zurple-inverted;
+    }
+
+    &:hover .flair {
+      background: $zurple-inverted;
+      color: $zurple;
+    }
+    // scss-lint:enable MergeableSelector
   }
 }

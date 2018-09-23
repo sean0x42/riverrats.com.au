@@ -15,9 +15,42 @@
 }
 
 .player-area {
-  border: 1px solid $grey;
+  .players {
+    margin: 0;
+    padding: 0;
+    border: 1px solid $grey;
+    border-radius: $border-radius;
+    list-style-type: none;
+  }
 
-  &.empty {
+  li {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    align-items: center;
+    grid-gap: 1rem;
+    padding: 0 0 0 1rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $grey;
+    }
+  }
+
+  .player-remove {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 0.5rem;
+    fill: $darcula-light;
+    line-height: 1;
+    vertical-align: middle;
+
+    svg {
+      height: 22px;
+      width: 22px;
+    }
+  }
+
+  .empty-state {
     border: 2px dashed $zurple;
   }
 }

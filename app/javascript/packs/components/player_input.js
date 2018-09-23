@@ -1,6 +1,6 @@
-const SUGGESTIONS_WINDOW_CLASS = "suggestions-window";
+import { createPlayerFromSearch } from "../player/player_controller";
 
-let addedPlayers = [];
+const SUGGESTIONS_WINDOW_CLASS = "suggestions-window";
 
 /**
  * Waits for the specified delay to expire before handling input.
@@ -10,7 +10,7 @@ const delayInput = (() => {
   return (callback, delay) => {
     clearTimeout(timer);
     timer = setTimeout(callback, delay);
-  }
+  };
 })();
 
 /**
@@ -29,6 +29,34 @@ const getOrCreateSuggestionWindow = (wrapper) => {
   }
 
   return window;
+};
+
+/**
+ * An event handler that is fired whenever you click on an entry.
+ * @param event Click event
+ */
+const onEntryClick = (event) => {
+  // Init
+  const {target} = event;
+  const wrapper = target.closest(".player-input-wrapper");
+
+  // Make sure wrapper was found
+  if (wrapper === null) {
+    console.error("Catastrophic error: Failed to find input wrapper.");
+    return;
+  }
+
+  // Finish initializing
+  const suggestionWindow = wrapper.querySelector(".suggestions-window");
+  const input = wrapper.querySelector("input.player-input");
+  wrapper.dispatchEvent(new CustomEvent("suggestion:select", {
+    bubbles: true,
+    detail: target.closest("li").player
+  }));
+
+  // Clear
+  input.value = "";
+  suggestionWindow.parentNode.removeChild(suggestionWindow);
 };
 
 /**
@@ -56,11 +84,12 @@ const generateSuggestions = (field, data) => {
   // Create entry for each result
   for (let i = 0; i < data.length; i++) {
     // Create elements
-    const result = data[i];
-    const entry = document.createElement("li");
-    entry.setAttribute("data-player-id", result["id"]);
-    entry.innerText = `${result["full_name"]} ${result["username"]}`;
-    suggestionWindow.appendChild(entry);
+    const player = createPlayerFromSearch(data[i]);
+    const suggestion = document.createElement("li");
+    suggestion.player = player;
+    suggestion.appendChild(player.asElement());
+    suggestion.addEventListener("click", onEntryClick);
+    suggestionWindow.appendChild(suggestion);
   }
 };
 
@@ -70,7 +99,7 @@ const generateSuggestions = (field, data) => {
  * @param event Key up event.
  */
 const onKeyUp = (event) => {
-  const { target } = event;
+  const {target} = event;
 
   delayInput(() => {
     // noinspection JSUnresolvedFunction
@@ -86,7 +115,9 @@ const onKeyUp = (event) => {
     }
 
     fetch(`${baseUri}?query=${target.value}`)
-      .then(response => { return response.json(); })
+      .then(response => {
+        return response.json();
+      })
       .then(data => generateSuggestions(target, data))
       .catch(error => console.error(error));
   }, 300);
@@ -98,7 +129,6 @@ const onKeyUp = (event) => {
  */
 const checkForPlayerInputs = () => {
   const inputs = document.querySelectorAll("input.player-input:not([data-listening])");
-  addedPlayers = [];
 
   // Initialised inputs
   inputs.forEach(input => {
