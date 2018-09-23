@@ -41,12 +41,12 @@
     <h2><%= t('admin.games.new.add_tournament_directors') %></h2>
   </div>
 
-  <div class="player-area empty">
+  <div class="player-area" id="js-game-referees">
     <%= render 'empty_referees' %>
   </div>
 
   <div class="player-area-footer">
-    <div class="player-input-wrapper">
+    <div class="player-input-wrapper" id="js-game-referees-input">
       <input type="text" class="player-input" placeholder="Name or username">
       <button class="player-input-submit button-secondary">Add TD</button>
     </div>
