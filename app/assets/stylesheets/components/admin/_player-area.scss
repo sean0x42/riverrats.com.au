@@ -1,0 +1,27 @@
+.player-area-header {
+  align-items: center;
+  border-bottom: 1px solid $grey;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+  padding-bottom: 0.5rem;
+
+  h2 {
+    border-bottom: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.player-area {
+  border: 1px solid $grey;
+
+  &.empty {
+    border: 2px dashed $zurple;
+  }
+}
+
+.player-area-footer {
+  margin-top: 1.5rem;
+}

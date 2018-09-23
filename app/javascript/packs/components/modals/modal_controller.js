@@ -1,6 +1,5 @@
 import { Modal } from "./modal";
 import { State } from "./state";
-import { StepController } from "./step_controller";
 
 let state = State.NONE;
 const queue = [];
@@ -14,16 +13,6 @@ const updateModalQueue = () => {
   renderModal(queue.shift());
   document.querySelector(".modal-loader").removeAttribute("active");
   state = State.DISPLAYING_MODAL;
-};
-
-/**
- * Determines whether the given modal requires a step controller. If it does, a step controller is initialised.
- * @param modal Modal to add step controller to.
- */
-const initStepController = modal => {
-  if (modal.querySelectorAll(".step").length > 1) {
-    new StepController(modal);
-  }
 };
 
 
@@ -58,9 +47,6 @@ const renderModal = (modal) => {
 
   modalElement.innerHTML += modal.html;
   innerWrapper.appendChild(modalElement);
-
-  // Initialise step manager
-  initStepController(modalElement);
 
   // Enable overlay, if it is not yet enabled
   const overlay = document.querySelector(".modal-overlay");

@@ -1,52 +1,51 @@
 .player-input-wrapper {
-  background: $grey-light;
-  border: 1px solid $grey-dark;
-  border-radius: 2px;
   display: flex;
-  max-width: 600px;
   width: 100%;
+  position: relative;
 
   input {
     max-width: none;
+    border-radius: $border-radius 0 0 $border-radius;
   }
 
-  .twitter-typeahead {
-    flex-grow: 1;
-  }
-
-  .tt-input,
-  .tt-hint {
-    background: $grey-light;
-    border: 0;
-    margin: 0;
-  }
-
-  .button-secondary {
-    border: 0;
-    border-left: 1px solid $grey-dark;
-    border-radius: 0;
+  button {
+    border: 1px solid $grey-dark;
+    border-left: 0;
+    border-radius: 0 $border-radius $border-radius 0;
+    cursor: pointer;
     flex-shrink: 0;
-    font-size: 14px;
+    font-size: 15px;
     padding: 10px 18px;
   }
 }
 
-.tt-menu {
-  $shadow: rgba(0, 0, 0, 0.05);
-  background: $white;
-  border-radius: 3px;
+.suggestions-window {
+  $shadow: rgba(0, 0, 0, 0.03);
+  background: $grey-light;
+  border: 1px solid $grey;
+  border-radius: 0 0 $border-radius $border-radius;
+  border-top: 0;
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  max-height: 8 * 36.5px;
+  padding: 0;
+  position: absolute;
+  overflow-y: auto;
+  right: 0;
+  top: 100%;
   box-shadow: 0 15px 30px $shadow, 0 5px 15px $shadow;
-  margin-top: 1px;
+  z-index: 10000;
 
-  &.tt-open {
-    right: 0;
-  }
+  li {
+    padding: 9px 13px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
 
-  .tt-suggestion,
-  .empty {
-    padding: 6px 14px;
-
-    &.tt-cursor {
+    &:hover {
       background: $zurple;
       color: $zurple-inverted;
     }
