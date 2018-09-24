@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, @game], class: 'modal-form' do |form| %>
+<%= form_with model: [:admin, @game], class: 'modal-form game-form' do |form| %>
 
   <!-- Date played -->
   <div class="field">
@@ -26,8 +26,15 @@
     <%= link_to 'Create player', new_admin_player_path, class: 'anchor', remote: true, data: { expects_modal: true } %>
   </div>
 
+  <%= field_errors @game, :games_players %>
+
   <div class="player-area" id="js-game-players">
-    <%= render 'empty_players' %>
+    <%= render 'empty_players', show: @game.games_players.empty? %>
+    <ul class="players js-sortable" style="<%= 'display: none' if @game.games_players.empty? %>">
+      <%= form.fields_for :games_players do |players_form| -%>
+        <%= render 'games_player_fields', form: players_form %>
+      <% end -%>
+    </ul>
   </div>
 
   <div class="player-area-footer">
@@ -41,8 +48,15 @@
     <h2><%= t('admin.games.new.add_tournament_directors') %></h2>
   </div>
 
+  <%= field_errors @game, :referees %>
+
   <div class="player-area" id="js-game-referees">
-    <%= render 'empty_referees' %>
+    <%= render 'empty_referees', show: @game.referees.empty? %>
+    <ul class="players" style="<%= 'display: none' if @game.referees.empty? %>">
+      <%= form.fields_for :referees do |referees_form| -%>
+        <%= render 'referee_fields', form: referees_form %>
+      <% end -%>
+    </ul>
   </div>
 
   <div class="player-area-footer">

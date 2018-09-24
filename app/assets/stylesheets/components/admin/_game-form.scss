@@ -1,0 +1,33 @@
+.admin form.game-form {
+  max-width: $modal-width + 50px;
+
+  .js-sortable {
+    outline: none;
+
+    li {
+      cursor: move;
+    }
+  }
+
+  .draggable-source--is-dragging {
+    background: $zurple;
+    color: $zurple-inverted;
+
+    .highlight {
+      color: inherit;
+    }
+
+    svg {
+      fill: $zurple-inverted;
+    }
+
+    .flair {
+      background: $zurple-inverted;
+      color: $zurple;
+    }
+  }
+
+  .draggable-mirror .player-remove {
+    display: none;
+  }
+}

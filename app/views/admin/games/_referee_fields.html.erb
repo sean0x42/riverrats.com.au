@@ -1,15 +1,19 @@
-<div class="player">
+<% player = form.object.player %>
+<li data-player-id="<%= form.object.id %>">
+  <%= form.hidden_field :player_id %>
+  <%= form.hidden_field :_destroy %>
 
-  <!-- Hidden from fields -->
-  <%= f.hidden_field :player_id, class: 'player-id-input' %>
+  <div class="inline-player">
+    <span class="highlight"><%= player.full_name %></span>
+    <span>@<%= player.username %></span>
+    <% if player.developer? -%>
+      <span class="flair">developer</span>
+    <% elsif player.admin? -%>
+      <span class="flair">admin</span>
+    <% end -%>
+  </div>
 
-  <!-- Visual information -->
-  <p class="player-name"><%= @attrs[:names][f.object.player_id] %></p>
-  <p class="player-username"><%= @attrs[:usernames][f.object.player_id] %></p>
-
-  <!-- Remove button -->
-  <%= link_to_remove_association f, wrapper_class: 'player' do %>
-    <i class="material-icons">&#xE5CD;</i>
-  <% end %>
-
-</div>
+  <button type="button" class="player-remove">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"><path d="M18.3,5.71L18.3,5.71c-0.39-0.39-1.02-0.39-1.41,0L12,10.59L7.11,5.7c-0.39-0.39-1.02-0.39-1.41,0l0,0c-0.39,0.39-0.39,1.02,0,1.41L10.59,12L5.7,16.89c-0.39,0.39-0.39,1.02,0,1.41h0c0.39,0.39,1.02,0.39,1.41,0L12,13.41l4.89,4.89c0.39,0.39,1.02,0.39,1.41,0l0,0c0.39-0.39,0.39-1.02,0-1.41L13.41,12l4.89-4.89C18.68,6.73,18.68,6.09,18.3,5.71z"></path></svg>
+  </button>
+</li>

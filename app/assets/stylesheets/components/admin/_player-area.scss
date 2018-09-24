@@ -16,33 +16,41 @@
 
 .player-area {
   .players {
-    margin: 0;
-    padding: 0;
     border: 1px solid $grey;
     border-radius: $border-radius;
     list-style-type: none;
+    margin: 0;
+    padding: 0;
   }
 
   li {
-    display: grid;
-    grid-template-columns: 1fr 50px;
     align-items: center;
-    grid-gap: 1rem;
+    display: flex;
     padding: 0 0 0 1rem;
 
     &:not(:last-child) {
       border-bottom: 1px solid $grey;
     }
+
+    * {
+      flex-shrink: 0;
+    }
+  }
+
+  .drag-handle {
+    fill: $zurple-light;
+    margin-right: 0.5rem;
   }
 
   .player-remove {
     background: none;
     border: 0;
     cursor: pointer;
-    padding: 0.5rem;
     fill: $text;
     line-height: 1;
+    padding: 0.75rem;
     vertical-align: middle;
+    margin-left: auto;
 
     svg {
       height: 22px;

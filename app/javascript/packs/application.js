@@ -8,6 +8,7 @@
 import "promise-polyfill/src/polyfill";
 import "whatwg-fetch";
 import "./polyfill/closest";
+import "./polyfill/includes";
 
 // Components
 import "./components/flashes/flash_controller";

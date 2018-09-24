@@ -46,7 +46,7 @@ class Game < ApplicationRecord
   end
 
   def player_count
-    return unless players.size < 2
+    return unless games_players.size < 2
 
     errors.add :games_players, I18n.t('errors.game.too_few_players')
   end
@@ -79,5 +79,8 @@ class Game < ApplicationRecord
 
   def update_ranks
     CalculateRanksWorker.perform_async
+    players.each do |player|
+      RecalculatePlayerStatsWorker.perform_async player.id
+    end
   end
 end

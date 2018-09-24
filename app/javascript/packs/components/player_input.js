@@ -127,7 +127,7 @@ const onKeyUp = (event) => {
 /**
  * Checks the page for any player inputs, and initializes them.
  */
-const checkForPlayerInputs = () => {
+window.checkForPlayerInputs = () => {
   const inputs = document.querySelectorAll("input.player-input:not([data-listening])");
 
   // Initialised inputs

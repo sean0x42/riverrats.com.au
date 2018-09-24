@@ -1,11 +1,11 @@
 .player-input-wrapper {
   display: flex;
-  width: 100%;
   position: relative;
+  width: 100%;
 
   input {
-    max-width: none;
     border-radius: $border-radius 0 0 $border-radius;
+    max-width: none;
   }
 
   button {

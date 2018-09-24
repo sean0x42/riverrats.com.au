@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
+require 'score_lib'
+
 # A join table between games and players
 class GamesPlayer < ApplicationRecord
   include ActiveModel::Dirty
+  include ScoreLib
 
   default_scope { order(position: :asc) }
 
   belongs_to :game
   belongs_to :player
+  before_save :calc_score
   after_save :update_stats
   after_destroy :update_stats
 
@@ -28,6 +32,10 @@ class GamesPlayer < ApplicationRecord
   end
 
   private
+
+  def calc_score
+    self.score = calculate_score(position)
+  end
 
   def update_stats
     RecalculatePlayerStatsWorker.perform_async(player.id)
