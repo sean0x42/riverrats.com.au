@@ -78,6 +78,9 @@ class Game < ApplicationRecord
   private
 
   def update_ranks
-    CalculateRanksWorker.perform_async
+    CalculateRanksWorker.perform_in(3.minutes)
+    players.pluck(:id).each do |player|
+      CalculateVenueStatsWorker.perform_async(venue.id, player)
+    end
   end
 end
