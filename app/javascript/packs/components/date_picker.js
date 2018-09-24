@@ -15,7 +15,7 @@ const FLATPICKR_CONFIG = Object.freeze({
 window.checkForDateFields = () => {
   // Retrieve date inputs that have not yet been processed
   const newFields = document.querySelectorAll(FIELD_SELECTOR);
-  newFields.forEach(field => {
+  newFields.forEach((field) => {
     flatpickr(field, FLATPICKR_CONFIG);
     field.setAttribute("data-processed", "true");
   });

@@ -103,7 +103,7 @@ const onKeyUp = (event) => {
 
   delayInput(() => {
     // noinspection JSUnresolvedFunction
-    const baseUri = Routes.auto_complete_players_path({format: 'json'});
+    const baseUri = Routes.auto_complete_players_path({format: "json"});
 
     // Clear suggestions if the field is empty
     if (target.value.length === 0) {
@@ -115,11 +115,9 @@ const onKeyUp = (event) => {
     }
 
     fetch(`${baseUri}?query=${target.value}`)
-      .then(response => {
-        return response.json();
-      })
-      .then(data => generateSuggestions(target, data))
-      .catch(error => console.error(error));
+      .then((response) => { return response.json(); })
+      .then((data) => generateSuggestions(target, data))
+      .catch((error) => console.error(error));
   }, 300);
 };
 
@@ -131,7 +129,7 @@ window.checkForPlayerInputs = () => {
   const inputs = document.querySelectorAll("input.player-input:not([data-listening])");
 
   // Initialised inputs
-  inputs.forEach(input => {
+  inputs.forEach((input) => {
     input.addEventListener("keyup", onKeyUp);
     input.setAttribute("data-listening", "true");
   });

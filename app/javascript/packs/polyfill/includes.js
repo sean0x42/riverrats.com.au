@@ -16,7 +16,7 @@ if (!Array.prototype.includes) {
       let k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
 
       const sameValueZero = (x, y) => {
-        return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
+        return x === y || (typeof x === "number" && typeof y === "number" && isNaN(x) && isNaN(y));
       };
 
       while (k < len) {

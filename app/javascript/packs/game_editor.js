@@ -1,5 +1,5 @@
 import { Flash } from "./components/flashes/flash";
-import { Sortable } from '@shopify/draggable';
+import { Sortable } from "@shopify/draggable";
 
 const SORTABLE_CONF = {
   draggable: "li"
@@ -30,7 +30,6 @@ const updatePositions = (positions) => {
     });
   });
   queues.player = result;
-  console.log(queues.player);
 };
 
 /**
@@ -206,7 +205,7 @@ const initSortable = () => {
   sortable.on("sortable:stop", () => {
     // setTimeout(updatePositions, 10);
     const positions = [];
-    Array.from(list.children).forEach(child => {
+    Array.from(list.children).forEach((child) => {
       const id = child.getAttribute("data-player-id");
       if (!positions.includes(id)) {
         positions.push(id);

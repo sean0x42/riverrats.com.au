@@ -95,7 +95,7 @@ window.constructModal = (title, subheading, html) => {
 };
 
 // Listen to ajax before event
-addEventListener("ajax:before", event => {
+addEventListener("ajax:before", (event) => {
   const { target } = event;
 
   // Handle clicks on model expecting links only
@@ -114,7 +114,7 @@ addEventListener("ajax:before", event => {
 });
 
 // Listen to click event
-addEventListener("click", event => {
+addEventListener("click", (event) => {
   const { target } = event;
   if ((target.classList.contains("modal-wrapper") || target.classList.contains("modal-overlay")) && isCloseable()) {
     closeCurrentModal();
