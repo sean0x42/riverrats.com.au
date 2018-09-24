@@ -3,7 +3,7 @@
  */
 export class Player {
   constructor(id, name, username, isAdmin, isDeveloper) {
-    this.uniqueId = (new Date).getTime();
+    this.uniqueId = (new Date()).getTime();
     this.id = id;
     this.name = name;
     this.username = username;

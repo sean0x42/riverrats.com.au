@@ -28,10 +28,8 @@ class Game < ApplicationRecord
                                 allow_destroy: true
 
   validates :venue, :season, :played_on, presence: true
-  validate :player_count,
-           :referee_count,
-           :no_duplicate_players,
-           :no_duplicate_referees
+  validate :player_count, :referee_count, :no_duplicate_players,
+           :no_duplicate_referees, :within_season
 
   def name
     "##{id.to_s.rjust(2, '0')}"
@@ -43,6 +41,19 @@ class Game < ApplicationRecord
 
   def paginated_players(page)
     GamesPlayer.includes(:player).where(game_id: self.id).page(page).per(25)
+  end
+
+  def self.recent(days = 30)
+    Game.where('created_at > ?', Time.zone.today - days.days)
+  end
+
+  private
+
+  def update_ranks
+    CalculateRanksWorker.perform_async
+    players.each do |player|
+      RecalculatePlayerStatsWorker.perform_async player.id
+    end
   end
 
   def player_count
@@ -71,16 +82,9 @@ class Game < ApplicationRecord
     errors.add :referees, I18n.t('errors.game.duplicate_referees')
   end
 
-  def self.recent(days = 30)
-    Game.where('created_at > ?', Time.zone.today - days.days)
-  end
+  def within_season
+    return if played_on >= season.start_at && played_on <= season.end_at
 
-  private
-
-  def update_ranks
-    CalculateRanksWorker.perform_async
-    players.each do |player|
-      RecalculatePlayerStatsWorker.perform_async player.id
-    end
+    errors.add :played_on, I18n.t('errors.game.played_outside_season')
   end
 end
