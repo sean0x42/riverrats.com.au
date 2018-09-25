@@ -2,7 +2,7 @@
 
 # Recalculates a players statistics. This is time consuming but guaranteed to be
 # accurate.
-class RecalculatePlayerStatsWorker
+class CalculatePlayerStatsWorker
   include Sidekiq::Worker
   sidekiq_options retry: false
 

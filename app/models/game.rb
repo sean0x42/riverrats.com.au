@@ -87,4 +87,11 @@ class Game < ApplicationRecord
 
     errors.add :played_on, I18n.t('errors.game.played_outside_season')
   end
+
+  def update_ranks
+    CalculateRanksWorker.perform_in(3.minutes)
+    players.pluck(:id).each do |player|
+      CalculateVenueStatsWorker.perform_async(venue.id, player)
+    end
+  end
 end

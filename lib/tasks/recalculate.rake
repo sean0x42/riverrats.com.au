@@ -4,7 +4,7 @@ namespace :recalculate do
   desc 'Asynchronously recalculates every players stats.'
   task player_stats: :environment do
     Player.all.pluck(:id).each do |player_id|
-      RecalculatePlayerStatsWorker.perform_async(player_id)
+      CalculatePlayerStatsWorker.perform_async(player_id)
     end
   end
 

@@ -38,6 +38,6 @@ class GamesPlayer < ApplicationRecord
   end
 
   def update_stats
-    RecalculatePlayerStatsWorker.perform_async(player.id)
+    CalculatePlayerStatsWorker.perform_async(player.id)
   end
 end
