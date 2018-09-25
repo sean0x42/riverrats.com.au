@@ -8,7 +8,7 @@ module Admin::GamesHelper
       'name': player.full_name,
       'username': "@#{player.username}",
       'isAdmin': player.admin?,
-      'isDeveloper': player.developer?,
+      'isDeveloper': player.developer?
     }.to_json
   end
 end
