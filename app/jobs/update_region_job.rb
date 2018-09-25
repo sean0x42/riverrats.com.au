@@ -6,8 +6,7 @@ class UpdateRegionJob < ApplicationJob
   # @param [Player] player player that was updated.
   # @param [Hash] changes A hash of all changes to to this player
   # @param [Region] region to update.
-  def perform (player, changes, region)
-
+  def perform(player, changes, region)
     # Get related region
     region = PlayersRegion.where(
       region_id: region.id,
@@ -18,7 +17,5 @@ class UpdateRegionJob < ApplicationJob
     region.games_played += changes[:plays]
     region.games_won += changes[:wins]
     region.save
-
   end
-
 end

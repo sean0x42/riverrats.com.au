@@ -4,5 +4,5 @@
       <span class="highlight">Game <%= game.name %></span> at the <%= game.venue.name %>
     <%- end %>
   </td>
-  <td><%= local_time_ago game.played_on %></td>
+  <td><%= game.played_on.strftime '%B %d, %Y' %></td>
 </tr>

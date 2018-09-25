@@ -20,3 +20,4 @@ import "./components/player_input.js";
 // Application
 import "./navigation";
 import "./game_editor";
+import "./event_editor";

@@ -1,11 +1,12 @@
 import { Flash } from "./components/flashes/flash";
 import { Sortable } from "@shopify/draggable";
+import { Player } from "./player/player";
 
 const SORTABLE_CONF = {
   draggable: "li"
 };
 
-let queues = {
+const queues = {
   player: [],
   referee: []
 };
@@ -34,12 +35,12 @@ const updatePositions = (positions) => {
 
 /**
  * Whether a particular queue contains a plsyer.
- * @param q Queue to search.
+ * @param scope Queue to search.
  * @param id Target player id
  * @return {boolean} Whether the player was found.
  */
-const contains = (q, id) => {
-  const queue = queues[q];
+const contains = (scope, id) => {
+  const queue = queues[scope];
 
   // Search for player
   for (let i = 0; i < queue.length; i++) {
@@ -53,11 +54,44 @@ const contains = (q, id) => {
 };
 
 /**
+ * Retrieves the given player and removes them. Returns null if not found.
+ * @param scope Queue scope.
+ * @param id Player id.
+ */
+const removePlayer = (scope, id) => {
+  const queue = queues[scope];
+
+  // Search for player
+  for (let i = 0; i < queue.length; i++) {
+    const player = queue[i];
+    if (player.id === id) {
+      queues[scope].splice(i, 1);
+      return player;
+    }
+  }
+
+  return null;
+};
+
+/**
  * An event handler that fires whenever a remove button is clicked.
  * @param event Button click event.
  */
 const onRemoveClick = (event) => {
-  console.log(event);
+  const { target } = event;
+  const listItem = target.parentNode;
+  const player = removePlayer(
+    listItem.getAttribute("data-scope"),
+    listItem.getAttribute("data-player-id")
+  );
+
+  // Delete player
+  if (!player.fresh) {
+    console.log("TODO"); // TODO
+  }
+
+  updatePlayersList();
+  updateRefereesList();
 };
 
 /**
@@ -87,8 +121,9 @@ const update = (scope, list, create) => {
 
   // Create players
   for (let i = 0; i < queues[scope].length; i++) {
-    const player = queues[scope][i];
-    players.appendChild(create(player, i));
+    const element = create(queues[scope][i], i);
+    element.setAttribute("data-scope", scope);
+    players.appendChild(element);
   }
 };
 
@@ -176,6 +211,21 @@ const updateRefereesList = () => {
 };
 
 /**
+ * Searches for existing players and adds them to the appropriate queues.
+ * @param scope Queue to add to.
+ * @param selector Selector for the player list.
+ */
+const addExisting = (scope, selector) => {
+  queues[scope] = [];
+  const list = document.querySelector(selector);
+  list.querySelectorAll("li[data-player]").forEach((item) => {
+    const player = Player.fromJSON(item.getAttribute("data-player").replace(/\\/g, ""));
+    queues[scope].push(player);
+    item.removeAttribute("data-player");
+  });
+};
+
+/**
  * Binds to various events.
  * @param input Input to bind to.
  * @param scope A queue of related elements.
@@ -202,6 +252,7 @@ const initSortable = () => {
   const list = document.querySelector(".js-sortable");
   const sortable = new Sortable(list, SORTABLE_CONF);
 
+  // Bind
   sortable.on("sortable:stop", () => {
     // setTimeout(updatePositions, 10);
     const positions = [];
@@ -224,19 +275,17 @@ const init = () => {
   if (playerInput !== null) {
     bind(playerInput, "player", updatePlayersList);
     initSortable();
+    addExisting("player", "#js-game-players .players");
+    updatePlayersList();
   }
 
   // Handle game referees
   const refereeInput = document.querySelector("#js-game-referees-input");
   if (refereeInput !== null) {
     bind(refereeInput, "referee", updateRefereesList);
+    addExisting("referee", "#js-game-referees .players");
+    updateRefereesList();
   }
-
-  // Reset
-  queues = {
-    player: [],
-    referee: []
-  };
 };
 
 document.addEventListener("turbolinks:load", init);

@@ -14,7 +14,7 @@ listen '/var/sockets/unicorn.river_rats.sock', backlog: 64
 
 before_fork do
   Signal.trap 'TERM' do
-    puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
+    Rails.logger.debug t('log.intercept_term')
     Process.kill 'QUIT', Process.pid
   end
 
@@ -23,13 +23,12 @@ end
 
 after_fork do
   Signal.trap 'TERM' do
-    puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
+    Rails.logger.debug t('log.term_trap')
   end
 
   defined?(ActiveRecord::Base) &&
     ActiveRecord::Base.establish_connection
 end
-
 
 # Force the bundler gemfile environment variable to
 # reference the capistrano "current" symlink

@@ -1,14 +1,12 @@
 class UpdateSeasonJob < ApplicationJob
   queue_as :default
 
-
   ###
   # Updates the corresponding season.
   # @param [Player] player player that was updated.
   # @param [Hash] changes A hash of all changes to to this player
   # @param [Season] season to update.
-  def perform (player, changes, season)
-
+  def perform(player, changes, season)
     # Get related season
     season = PlayersSeason.where(
       season_id: season.id,
@@ -19,7 +17,5 @@ class UpdateSeasonJob < ApplicationJob
     season.games_played += changes[:plays]
     season.games_won += changes[:wins]
     season.save
-
   end
-
 end

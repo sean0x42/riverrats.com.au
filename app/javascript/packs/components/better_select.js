@@ -105,6 +105,10 @@ const onSelectOptionClick = (event) => {
 
   // Update select element
   wrapper.nextElementSibling.value = value;
+
+  // Fire change event
+  const changeEvent = new Event("change");
+  wrapper.nextElementSibling.dispatchEvent(changeEvent);
 };
 
 /**

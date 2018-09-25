@@ -5,7 +5,7 @@ class RecurringEvent < Event
   include IceCube
 
   belongs_to :venue
-  after_create :on_create
+  after_save :generate_single_events
 
   enum period: %i[daily weekly monthly yearly]
 
@@ -16,15 +16,11 @@ class RecurringEvent < Event
             numericality: { only_integer: true, greater_than: 0 }
 
   def day=(value)
-    days = value.to_json
+    self.days = value.to_json
   end
 
   def selected_days
     JSON.parse(days || '[]')
-  end
-
-  def on_create
-    EventGeneratorJob.perform_now self
   end
 
   # Returns an SQL statement with this recurring event's values escaped.
@@ -54,5 +50,15 @@ class RecurringEvent < Event
     Schedule.new(start_at) do |s|
       s.add_recurrence_rule(rule)
     end
+  end
+
+  def self.period_map
+    periods.keys.map { |period| [period.upcase_first, period] }
+  end
+
+  private
+
+  def generate_single_events
+    GenerateSingleEventsWorker.perform_async id
   end
 end

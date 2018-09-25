@@ -36,4 +36,16 @@ class Event < ApplicationRecord
     end
     destroy
   end
+
+  def repeats=(value)
+    self.type = value.to_i.zero? ? SingleEvent.sti_name : RecurringEvent.sti_name
+  end
+
+  def day=(value)
+    becomes(RecurringEvent).day = value
+  end
+
+  def selected_days
+    becomes(RecurringEvent).selected_days
+  end
 end

@@ -1,6 +1,6 @@
-<%- week_days.each_with_index do |day, index| %>
+<% week_days.each_with_index do |day, index| -%>
   <div class="checkbox">
     <%= form.check_box :day, { id: "event_day_#{index}", multiple: true, checked: selected.include?(day) }, day, false %>
     <%= form.label :day, day.titleize, for: "event_day_#{index}" %>
   </div>
-<%- end %>
+<% end -%>

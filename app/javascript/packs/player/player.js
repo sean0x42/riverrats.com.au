@@ -9,8 +9,26 @@ export class Player {
     this.username = username;
     this.isAdmin = isAdmin;
     this.isDeveloper = isDeveloper;
+    this.fresh = true;
   }
 
+  /**
+   * Parses a JSON string to create a player.
+   * @param json JSON string.
+   * @returns {Player} Created player.
+   */
+  static fromJSON(json) {
+    const parsed = JSON.parse(json);
+    const player = new Player(parsed.id.toString(), parsed.name, parsed.username, parsed.isAdmin, parsed.isDeveloper);
+    player.fresh = false;
+    player.uniqueId = parsed.id;
+    return player;
+  }
+
+  /**
+   * An element representation of this player.
+   * @returns {HTMLElement} Element containing information about this player.
+   */
   asElement() {
     // Init
     const player = document.createElement("div");

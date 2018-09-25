@@ -60,7 +60,6 @@ class Player < ApplicationRecord
             allow_blank: true,
             uniqueness: true
 
-
   def to_param
     username
   end

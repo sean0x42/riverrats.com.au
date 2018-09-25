@@ -1,14 +1,12 @@
 class UpdateVenueJob < ApplicationJob
   queue_as :default
 
-
   ###
   # Updates the corresponding venue.
   # @param [Player] player player that was updated.
   # @param [Hash] changes A hash of all changes to to this player
   # @param [Venue] venue to update.
-  def perform (player, changes, venue)
-
+  def perform(player, changes, venue)
     # Get related venue
     venue = PlayersVenue.where(
       venue_id: venue.id,
@@ -19,7 +17,5 @@ class UpdateVenueJob < ApplicationJob
     venue.games_played += changes[:plays]
     venue.games_won += changes[:wins]
     venue.save
-
   end
-
 end
