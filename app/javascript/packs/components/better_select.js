@@ -15,7 +15,7 @@ const getValueAsString = (select) => {
   // Iterate over children
   const children = select.children;
   for (let i = 0; i < children.length; i++) {
-    if (children[i].value = value) return children[i].textContent;
+    if (children[i].value === value) return children[i].textContent;
   }
 
   return defaultValue;

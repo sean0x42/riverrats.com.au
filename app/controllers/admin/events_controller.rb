@@ -25,7 +25,12 @@ class Admin::EventsController < ApplicationController
 
   # POST /admin/events
   def create
-    @event = Event.new(create_event_params)
+    p = create_event_params
+    @event = if p[:repeats] == '1'
+               RecurringEvent.new(p)
+             else
+               SingleEvent.new(p)
+             end
 
     if @event.save
       redirect_to admin_events_path, notice: t('admin.events.create.flash')

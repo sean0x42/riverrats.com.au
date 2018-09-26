@@ -86,16 +86,18 @@ class Game < ApplicationRecord
   end
 
   def update_stats
-    venue = self.venue.id
+    venue = self.venue
+    region = venue.region.id
     season = self.season.id
     game_played_by.pluck(:id).each do |player|
-      CalculateVenueStatsWorker.perform_async(venue, player)
+      CalculateVenueStatsWorker.perform_async(venue.id, player)
+      CalculateRegionStatsWorker.perform_async(region, player)
       CalculateSeasonStatsWorker.perform_async(season, player)
     end
   end
 
   def update_ranks
-    CalculateRanksWorker.perform_in(3.minutes)
+    CalculateRanksWorker.perform_in(2.minutes)
     CalculateSeasonRanksWorker.perform_in(3.minutes, season.id)
   end
 end

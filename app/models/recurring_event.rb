@@ -5,7 +5,7 @@ class RecurringEvent < Event
   include IceCube
 
   belongs_to :venue
-  after_save :generate_single_events
+  after_create :generate_single_events
 
   enum period: %i[daily weekly monthly yearly]
 
@@ -23,29 +23,12 @@ class RecurringEvent < Event
     JSON.parse(days || '[]')
   end
 
-  # Returns an SQL statement with this recurring event's values escaped.
-  def escaped_values
-    RecurringEvent.send(:sanitize_sql,
-                        ["(?, ?, ?, ?, ?, '%<time>', ?, ?)", title, description,
-                         SingleEvent.sti_name, id, venue_id, Time.zone.now,
-                         Time.zone.now])
-  end
-
   def schedule
-    # Handle all possible period types
-    case period
-    when 'daily'
-      rule = Rule.daily(interval)
-    when 'weekly'
-      days = selected_days.map(&:to_sym)
-      rule = Rule.weekly(interval).day(days)
-    when 'monthly'
-      rule = Rule.monthly(interval)
-    when 'yearly'
-      rule = Rule.yearly(interval)
-    else
-      return period
-    end
+    rule = if period == 'weekly'
+             Rule.weekly(interval).day(selected_days.map(&:to_sym))
+           else
+             Rule.send(period, interval)
+           end
 
     Schedule.new(start_at) do |s|
       s.add_recurrence_rule(rule)

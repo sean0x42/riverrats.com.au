@@ -5,7 +5,7 @@ require 'event_lib'
 # A worker which automatically generates single events for a recurring event
 class GenerateSingleEventsWorker
   include Sidekiq::Worker
-  include IceCube
+  sidekiq_options queue: 'low_priority'
 
   def perform(recurring_event_id)
     recurring_event = RecurringEvent.includes(:venue).find(recurring_event_id)

@@ -28,6 +28,14 @@
     <%= form.text_field :facebook, placeholder: 'https://www.facebook.com/...' %>
   </div>
 
+  <!-- Image -->
+  <div class="field">
+    <%= form.label :image %><br/>
+    <%= form.file_field :image %>
+  </div>
+
+  <h2>Venue Location</h2>
+
   <!-- Address -->
   <div class="field">
     <%= form.label :address_line_one, 'Address' %><br/>

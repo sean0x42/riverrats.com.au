@@ -1,7 +1,10 @@
-.venue-data {
+.venue-data,
+.region-data,
+.season-data {
   background: $white;
   border: 1px solid $grey;
   border-radius: $border-radius;
+  overflow: hidden;
 
   svg {
     fill: $grey-darker;

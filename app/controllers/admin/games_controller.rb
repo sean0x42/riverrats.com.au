@@ -46,7 +46,10 @@ class Admin::GamesController < ApplicationController
     if @game.update games_params
       redirect_to admin_games_path, notice: t('admin.games.update.flash')
     else
-      render 'edit'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.js { render 'failure' }
+      end
     end
   end
 
