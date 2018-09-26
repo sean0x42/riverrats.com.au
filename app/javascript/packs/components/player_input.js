@@ -57,6 +57,7 @@ const onEntryClick = (event) => {
   // Clear
   input.value = "";
   suggestionWindow.parentNode.removeChild(suggestionWindow);
+  input.focus();
 };
 
 /**

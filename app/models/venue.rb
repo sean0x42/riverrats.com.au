@@ -17,16 +17,7 @@ class Venue < ApplicationRecord
 
   belongs_to :region
 
-  enum state: %i[
-    australian_capital_territory
-    new_south_wales
-    norther_territory
-    queensland
-    south_australia
-    tasmania
-    victoria
-    western_australia
-  ]
+  enum state: %i[ACT NSW NT QLD SA TAS VIC WA]
 
   validates :name,
             presence: true,

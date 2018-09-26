@@ -9,8 +9,8 @@ class Game < ApplicationRecord
 
   searchkick callbacks: :async
 
-  after_save :update_ranks
-  after_destroy :update_ranks
+  after_save :update_stats, :update_ranks
+  after_destroy :update_stats, :update_ranks
 
   has_many :games_players,
            class_name: 'GamesPlayer',
@@ -40,21 +40,18 @@ class Game < ApplicationRecord
   end
 
   def paginated_players(page)
-    GamesPlayer.includes(:player).where(game_id: self.id).page(page).per(25)
+    GamesPlayer.includes(:player).where(game_id: id).page(page).per(25)
   end
 
   def self.recent(days = 30)
     Game.where('created_at > ?', Time.zone.today - days.days)
   end
 
-  private
-
-  def update_ranks
-    CalculateRanksWorker.perform_async
-    players.each do |player|
-      RecalculatePlayerStatsWorker.perform_async player.id
-    end
+  def game_played_by
+    Player.joins(:games_players).where(games_players: { game_id: id })
   end
+
+  private
 
   def player_count
     return unless games_players.size < 2
@@ -88,10 +85,17 @@ class Game < ApplicationRecord
     errors.add :played_on, I18n.t('errors.game.played_outside_season')
   end
 
+  def update_stats
+    venue = self.venue.id
+    season = self.season.id
+    game_played_by.pluck(:id).each do |player|
+      CalculateVenueStatsWorker.perform_async(venue, player)
+      CalculateSeasonStatsWorker.perform_async(season, player)
+    end
+  end
+
   def update_ranks
     CalculateRanksWorker.perform_in(3.minutes)
-    players.pluck(:id).each do |player|
-      CalculateVenueStatsWorker.perform_async(venue.id, player)
-    end
+    CalculateSeasonRanksWorker.perform_in(3.minutes, season.id)
   end
 end

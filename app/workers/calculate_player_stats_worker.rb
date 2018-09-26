@@ -10,15 +10,23 @@ class CalculatePlayerStatsWorker
     player = Player.includes(:games_players).find(player_id)
     return if player.nil?
 
-    score = played = won = 0
-
-    # Calculate new ones
-    player.games_players.each do |game|
-      score += game.score
-      played += 1
-      won += 1 if game.position.zero?
+    reset(player)
+    player.games_players.each do |game_player|
+      player.score += game_player.score
+      player.games_played += 1
+      player.games_won += 1 if game_player.position.zero?
+      player.second_places += 1 if game_player.position == 1
+      player.wooden_spoons += 1 if game_player.last?
     end
 
-    player.update(score: score, games_played: played, games_won: won)
+    player.save
+  end
+
+  def reset(player)
+    player.score = 0
+    player.games_played = 0
+    player.games_won = 0
+    player.second_places = 0
+    player.wooden_spoons = 0
   end
 end

@@ -58,7 +58,7 @@
   <div class="field">
     <%= form.label :state %><br/>
     <%= field_errors @venue, :state %>
-    <%= form.select :state, Venue.states.keys.map { |state| [state.titleize, state] } %>
+    <%= form.select :state, Venue.states.keys %>
   </div>
 
   <!-- Region -->

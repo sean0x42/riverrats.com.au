@@ -31,6 +31,10 @@ class GamesPlayer < ApplicationRecord
     position_was.zero?
   end
 
+  def last?
+    position == GamesPlayer.where(game_id: game_id).count - 1
+  end
+
   private
 
   def calc_score
