@@ -24,10 +24,10 @@
   }
 
   address {
-    padding: 0 1.25rem 1.75rem;
     color: $text;
     font-style: normal;
     line-height: $body-line-height;
+    padding: 0 1.25rem 1.75rem;
   }
 
   .games-and-players {
@@ -48,17 +48,17 @@
   }
 
   .venue-image {
-     margin: 0 0 1rem;
-     overflow: hidden;
+    margin: 0 0 1rem;
+    overflow: hidden;
     border-bottom: 1px solid $grey;
 
-     img {
-       display: block;
-       line-height: 1;
-       vertical-align: middle;
-       max-width: 100%;
-     }
-   }
+    img {
+      display: block;
+      line-height: 1;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+  }
 }
 
 @media (min-width: 1245px) {
