@@ -1,1 +1,2 @@
+<p>Hosted at <%= link_to @event.venue.name, venue_path(@event.venue), class: 'anchor' %>.</p>
 <p><%= @event.description.blank? ? 'This event has no description.' : @event.description %></p>

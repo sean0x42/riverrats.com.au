@@ -16,7 +16,10 @@
   }
 
   h2 {
-    margin-top: 2rem;
+    border-bottom: 1px solid $grey;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    padding-bottom: 0.5rem;
   }
 
   .button.wide,
@@ -39,25 +42,5 @@
 
   input {
     max-width: unset;
-  }
-
-  .step {
-    display: none;
-
-    &[active] {
-      display: block;
-    }
-  }
-
-  .previous-step {
-    color: $zurple-dark;
-    display: block;
-    font-size: $font-size - 1px;
-    margin-top: 1rem;
-    text-align: center;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }

@@ -2,22 +2,22 @@
 
 # A lib for calculating and dealing with scores
 module ScoreLib
-  @score_map = {
-    1 => 1000,
-    2 => 750,
-    3 => 600,
-    4 => 500,
-    5 => 400,
-    6 => 300,
-    7 => 200,
+  SCORE_MAP = {
+    0 => 1000,
+    1 => 750,
+    2 => 600,
+    3 => 500,
+    4 => 400,
+    5 => 300,
+    6 => 200,
+    7 => 150,
     8 => 150,
-    9 => 150,
-    10 => 150
+    9 => 150
   }.freeze
 
   def calculate_score(position)
-    if @score_map.key?(position)
-      @score_map[position]
+    if SCORE_MAP.key?(position)
+      SCORE_MAP[position]
     else
       50
     end

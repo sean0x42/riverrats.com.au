@@ -14,7 +14,7 @@ class Admin::EventsController < ApplicationController
   def index
     @events = SingleEvent
               .includes(:venue)
-              .where('start_at > ?', Time.zone.now - 1.week)
+              .where('start_at > ?', Time.zone.now - 3.days)
               .page(params[:page])
   end
 
@@ -25,16 +25,15 @@ class Admin::EventsController < ApplicationController
 
   # POST /admin/events
   def create
-    @event = Event.new(event_params)
+    @event = Event.new(create_event_params)
 
     if @event.save
-      flash[:success] = Struct::Flash.new(
-        t('admin.events.create.title'),
-        t('admin.events.create.body')
-      )
-      redirect_to admin_events_path
+      redirect_to admin_events_path, notice: t('admin.events.create.flash')
     else
-      render 'new'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.js { render 'failure' }
+      end
     end
   end
 
@@ -47,12 +46,8 @@ class Admin::EventsController < ApplicationController
   def update
     @event = Event.find params[:id]
 
-    if @event.update event_params
-      flash[:success] = Struct::Flash.new(
-        t('admin.events.update.title'),
-        t('admin.events.update.body')
-      )
-      redirect_to admin_events_path
+    if @event.update(edit_event_params)
+      redirect_to admin_events_path, notice: t('admin.events.update.flash')
     else
       render 'edit'
     end
@@ -63,19 +58,19 @@ class Admin::EventsController < ApplicationController
     @event = Event.find params[:id]
     @event.destroy_from_date(params[:from])
 
-    flash[:success] = Struct::Flash.new(
-      t('admin.events.destroy.title'),
-      t('admin.events.destroy.body')
-    )
-    redirect_to admin_events_path
+    redirect_to admin_events_path, notice: t('admin.events.destroy.flash')
   end
 
   private
 
-  def event_params
+  def create_event_params
     params.require(:event).permit(
       :title, :description, :start_at, :venue_id,
-      :type, :period, :interval, day: []
+      :repeats, :period, :interval, day: []
     )
+  end
+
+  def edit_event_params
+    params.require(:event).permit(:title, :description, :start_at, :venue_id)
   end
 end

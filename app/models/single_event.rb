@@ -11,4 +11,13 @@ class SingleEvent < Event
   def search_data
     { title: title, description: description }
   end
+
+  def self.in_the_past
+    SingleEvent.where('start_at < ?', Time.zone.now)
+  end
+
+  def self.upcoming
+    now = Time.zone.now
+    SingleEvent.where('start_at > ? AND start_at < ?', now, now + 2.weeks)
+  end
 end

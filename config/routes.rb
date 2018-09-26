@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   resources :regions, :venues, only: :show, param: :slug
 
   namespace :admin do
-
     root to: redirect('/admin/players')
 
     resources :players, except: :show, param: :username

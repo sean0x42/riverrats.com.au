@@ -1,0 +1,10 @@
+.inline-player {
+  .highlight {
+    color: $text;
+    font-weight: 500;
+  }
+
+  span:not(:last-child)::after {
+    content: "\00a0";
+  }
+}

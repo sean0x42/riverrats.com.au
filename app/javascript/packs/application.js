@@ -4,8 +4,20 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+// Polyfills
+import "promise-polyfill/src/polyfill";
+import "whatwg-fetch";
+import "./polyfill/closest";
+import "./polyfill/includes";
+
+// Components
 import "./components/flashes/flash_controller";
 import "./components/modals/modal_controller";
 import "./components/date_picker";
 import "./components/better_select";
+import "./components/player_input.js";
+
+// Application
 import "./navigation";
+import "./game_editor";
+import "./event_editor";

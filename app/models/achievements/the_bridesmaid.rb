@@ -2,7 +2,7 @@
 
 # Awarded to players who place second in a certain number of games
 class TheBridesmaid < Achievement
-  def self.check_conditions_for (player)
+  def self.check_conditions_for(player)
     awarded = player.awarded? self
 
     if awarded

@@ -98,14 +98,11 @@ en:
       edit:
         title: "Edit Event"
       create:
-        title: 'Event created'
-        body: "You have successfully created an event."
+        flash: "You have successfully created an event."
       update:
-        title: 'Event updated'
-        body: "You have successfully updated an event."
+        flash: "You have successfully updated an event."
       destroy:
-        title: 'Event deleted'
-        body: "You have successfully deleted an event."
+        flash: "You have successfully deleted an event."
       confirm_delete: "Are you sure you want to delete this event? This action cannot be undone."
       recurring:
         confirm_delete: "Are you sure you want to delete this event, and all following events? This action cannot be undone."
@@ -203,3 +200,6 @@ en:
     index:
       title: "%{player}'s Achievements"
       description: "View a list of all achievements unlocked by %{player}"
+  log:
+    term_trap: "Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT"
+    intercept_term: "Unicorn master intercepting TERM and sending myself QUIT instead"

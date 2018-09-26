@@ -1,95 +1,72 @@
 <%= form_with model: [:admin, @venue], class: 'modal-form' do |form| %>
 
-  <div class="step" data-step-label="<%= t('admin.venues.new.venue_details') %>">
-    <span class="subheading">Admin Tools</span>
-    <h1><%= t('admin.venues.new.title') %></h1>
-
-    <!-- Name -->
-    <div class="field">
-      <%= form.label :name %><br/>
-      <%= field_errors @venue, :name %>
-      <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Nabiac Hotel' %>
-    </div>
-
-    <!-- Image -->
-    <div class="field">
-      <label>Image</label><br/>
-      <%= field_errors @venue, :image %>
-      <%= form.label :image, t('input.file.label') %>
-      <%= form.file_field :image, class: 'auto-submit', direct_upload: true %>
-    </div>
+  <!-- Name -->
+  <div class="field">
+    <%= form.label :name %><br/>
+    <%= field_errors @venue, :name %>
+    <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Nabiac Hotel' %>
   </div>
 
-  <div class="step" data-step-label="<%= t('admin.venues.new.image') %>">
-    <span class="subheading"><%= t('admin.venues.new.title') %></span>
-    <h1><%= t('admin.venues.new.image') %></h1>
-
-    <!-- Phone -->
-    <div class="field">
-      <%= form.label :phone_number %><br/>
-      <%= field_errors @venue, :phone_number %>
-      <%= form.telephone_field :phone_number %>
-    </div>
-
-    <!-- Website -->
-    <div class="field">
-      <%= form.label :website %><br/>
-      <%= field_errors @venue, :website %>
-      <%= form.text_field :website %>
-    </div>
-
-    <!-- Facebook -->
-    <div class="field">
-      <%= form.label :facebook, 'Facebook URL' %><br/>
-      <%= field_errors @venue, :facebook %>
-      <%= form.text_field :facebook, placeholder: 'https://www.facebook.com/...' %>
-    </div>
+  <!-- Phone -->
+  <div class="field">
+    <%= form.label :phone_number %><br/>
+    <%= field_errors @venue, :phone_number %>
+    <%= form.telephone_field :phone_number %>
   </div>
 
-  <div class="step" data-step-label="<%= t('admin.venues.new.address') %>">
-    <span class="subheading"><%= t('admin.venues.new.title') %></span>
-    <h1><%= t('admin.venues.new.address') %></h1>
-
-    <!-- Address -->
-    <div class="field">
-      <%= form.label :address_line_one, 'Address' %><br/>
-      <%= field_errors @venue, :address_line_one %>
-      <%= form.text_field :address_line_one, placeholder: 'Line 1' %>
-    </div>
-
-    <div class="field">
-      <%= field_errors @venue, :address_line_two %>
-      <%= form.text_field :address_line_two, placeholder: 'Line 2 (Optional)' %>
-    </div>
-
-    <!-- Suburb -->
-    <div class="field">
-      <%= form.label :suburb, 'City/Suburb' %><br/>
-      <%= field_errors @venue, :suburb %>
-      <%= form.text_field :suburb %>
-    </div>
-
-    <!-- Post Code -->
-    <div class="field">
-      <%= form.label :post_code %><br/>
-      <%= field_errors @venue, :post_code %>
-      <%= form.number_field :post_code %>
-    </div>
-
-    <!-- State -->
-    <div class="field">
-      <%= form.label :state %><br/>
-      <%= field_errors @venue, :state %>
-      <%= form.select :state, Venue.states.keys.map { |state| [state.titleize, state] } %>
-    </div>
-
-    <!-- Region -->
-    <div class="field">
-      <%= form.label :region_id %><br/>
-      <%= field_errors @venue, :region_id %>
-      <%= form.collection_select :region_id, Region.all, :id, :name %>
-    </div>
-
-    <%= form.submit class: 'button wide', data: { disable_with: 'Please wait...' } %>
+  <!-- Website -->
+  <div class="field">
+    <%= form.label :website %><br/>
+    <%= field_errors @venue, :website %>
+    <%= form.text_field :website %>
   </div>
-<% end %>
+
+  <!-- Facebook -->
+  <div class="field">
+    <%= form.label :facebook, 'Facebook URL' %><br/>
+    <%= field_errors @venue, :facebook %>
+    <%= form.text_field :facebook, placeholder: 'https://www.facebook.com/...' %>
+  </div>
+
+  <!-- Address -->
+  <div class="field">
+    <%= form.label :address_line_one, 'Address' %><br/>
+    <%= field_errors @venue, :address_line_one %>
+    <%= form.text_field :address_line_one, placeholder: 'Line 1' %>
+  </div>
+
+  <div class="field">
+    <%= field_errors @venue, :address_line_two %>
+    <%= form.text_field :address_line_two, placeholder: 'Line 2 (Optional)' %>
+  </div>
+
+  <!-- Suburb -->
+  <div class="field">
+    <%= form.label :suburb, 'City/Suburb' %><br/>
+    <%= field_errors @venue, :suburb %>
+    <%= form.text_field :suburb %>
+  </div>
+
+  <!-- Post Code -->
+  <div class="field">
+    <%= form.label :post_code %><br/>
+    <%= field_errors @venue, :post_code %>
+    <%= form.number_field :post_code %>
+  </div>
+
+  <!-- State -->
+  <div class="field">
+    <%= form.label :state %><br/>
+    <%= field_errors @venue, :state %>
+    <%= form.select :state, Venue.states.keys %>
+  </div>
+
+  <!-- Region -->
+  <div class="field">
+    <%= form.label :region_id %><br/>
+    <%= field_errors @venue, :region_id %>
+    <%= form.collection_select :region_id, Region.all, :id, :name %>
+  </div>
+
+  <%= form.submit class: 'button wide', data: { disable_with: 'Please wait...' } %>
+<% end -%>

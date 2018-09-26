@@ -60,7 +60,6 @@ class Player < ApplicationRecord
             allow_blank: true,
             uniqueness: true
 
-
   def to_param
     username
   end
@@ -69,7 +68,8 @@ class Player < ApplicationRecord
     {
       full_name: full_name,
       username: "@#{username}",
-      rank: rank
+      is_admin: admin?,
+      is_developer: developer?
     }
   end
 

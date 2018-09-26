@@ -62,6 +62,8 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+    game:
+      played_outside_season: "The date played must fall within the appropriate season."
   mailer:
     player:
       welcome:

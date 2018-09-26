@@ -1,0 +1,68 @@
+.player-area-header {
+  align-items: center;
+  border-bottom: 1px solid $grey;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+  padding-bottom: 0.5rem;
+
+  h2 {
+    border-bottom: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.player-area {
+  .players {
+    border: 1px solid $grey;
+    border-radius: $border-radius;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    align-items: center;
+    display: flex;
+    padding: 0 0 0 1rem;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $grey;
+    }
+
+    * {
+      flex-shrink: 0;
+    }
+  }
+
+  .drag-handle {
+    fill: $zurple-light;
+    margin-right: 0.5rem;
+  }
+
+  .player-remove {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    fill: $text;
+    line-height: 1;
+    margin-left: auto;
+    padding: 0.75rem;
+    vertical-align: middle;
+
+    svg {
+      height: 22px;
+      width: 22px;
+    }
+  }
+
+  .empty-state {
+    border: 2px dashed $zurple;
+  }
+}
+
+.player-area-footer {
+  margin-top: 1.5rem;
+}

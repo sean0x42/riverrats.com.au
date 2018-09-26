@@ -6,7 +6,7 @@ const ELEMENT_SELECTOR = `select:not([data-better-select="false"]):not([data-pro
  * @param select Select element to retrieve value of.
  * @return {*} A string containing the value.
  */
-const getValueAsString = select => {
+const getValueAsString = (select) => {
   // Init
   const value = select.value;
   const defaultValue = "None";
@@ -25,7 +25,7 @@ const getValueAsString = select => {
  * Builds a custom select wrapper around an existing select element.
  * @param select Existing select element.
  */
-const buildSelectWrapper = select => {
+const buildSelectWrapper = (select) => {
   const value = getValueAsString(select);
 
   // Construct wrapper
@@ -39,7 +39,7 @@ const buildSelectWrapper = select => {
   trigger.classList.add("better-select-trigger");
   content.textContent = value;
   trigger.appendChild(content);
-  trigger.innerHTML += `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><path d="M8.71,11.71l2.59,2.59c0.39,0.39,1.02,0.39,1.41,0l2.59-2.59c0.63-0.63,0.18-1.71-0.71-1.71H9.41C8.52,10,8.08,11.08,8.71,11.71z"></path></svg>`;
+  trigger.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><path d="M8.71,11.71l2.59,2.59c0.39,0.39,1.02,0.39,1.41,0l2.59-2.59c0.63-0.63,0.18-1.71-0.71-1.71H9.41C8.52,10,8.08,11.08,8.71,11.71z"></path></svg>`;
   wrapper.appendChild(trigger);
 
   // Construct dropdown
@@ -48,7 +48,7 @@ const buildSelectWrapper = select => {
   wrapper.appendChild(dropdown);
 
   // Add options to dropdown
-  select.querySelectorAll("option").forEach(option => {
+  select.querySelectorAll("option").forEach((option) => {
     const child = document.createElement("li");
     child.classList.add("better-select-option");
     child.setAttribute("data-value", option.value);
@@ -65,13 +65,13 @@ const buildSelectWrapper = select => {
  * trigger for a better select element is clicked.
  * @param event Click event.
  */
-const onSelectTriggerClick = event => {
+const onSelectTriggerClick = (event) => {
   // Buttons inside a form will submit their parent form when clicked => prevent default
   event.preventDefault();
   const wrapper = event.target.parentNode;
 
   // Disable all selects
-  document.querySelectorAll(".better-select-wrapper[active]").forEach(select => {
+  document.querySelectorAll(".better-select-wrapper[active]").forEach((select) => {
     if (select !== wrapper) {
       select.removeAttribute("active");
     }
@@ -90,7 +90,7 @@ const onSelectTriggerClick = event => {
  * option for a better select element is clicked.
  * @param event Click event.
  */
-const onSelectOptionClick = event => {
+const onSelectOptionClick = (event) => {
   const { target } = event;
   const value = target.getAttribute("data-value");
   const label = target.textContent;
@@ -105,6 +105,10 @@ const onSelectOptionClick = event => {
 
   // Update select element
   wrapper.nextElementSibling.value = value;
+
+  // Fire change event
+  const changeEvent = new Event("change");
+  wrapper.nextElementSibling.dispatchEvent(changeEvent);
 };
 
 /**
@@ -115,7 +119,7 @@ const onSelectOptionClick = event => {
 window.checkForSelects = () => {
   // Retrieve select elements that have not yet been processed
   const selects = document.querySelectorAll(ELEMENT_SELECTOR);
-  selects.forEach(select => {
+  selects.forEach((select) => {
     buildSelectWrapper(select);
     select.setAttribute("data-processed", "true");
   });

@@ -30,14 +30,14 @@
     <%= form.email_field :email, placeholder: 'someone@example.com' %>
   </div>
 
-  <h2>Permissions</h2>
+<!--  <h2>Permissions</h2>-->
 
-  <div class="field">
-    <div class="checkbox">
-      <%= form.check_box :admin %>
-      <%= form.label :admin, 'Access admin panel' %>
-    </div>
-  </div>
+<!--  <div class="field">-->
+<!--    <div class="checkbox">-->
+      <%#= form.check_box :admin %>
+      <%#= form.label :admin, 'Access admin panel' %>
+<!--    </div>-->
+<!--  </div>-->
 
   <%= form.submit class: 'button wide', remote: true, data: { disable_with: 'Please wait...' } %>
 <% end %>

@@ -18,10 +18,11 @@ module ApplicationHelper
 
   # Returns the players position, correctly formatted.
   def position(player, index, page = 1, per = 25)
+    page ||= 1
     if player.has_attribute?(:rank)
       player.rank.nil? ? 'n/a' : (player.rank + 1).ordinalize
     else
-      (page - 1 * per + index).ordinalize
+      ((page - 1) * per + index + 1).ordinalize
     end
   end
 end

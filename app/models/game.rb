@@ -9,8 +9,8 @@ class Game < ApplicationRecord
 
   searchkick callbacks: :async
 
-  after_save :update_ranks
-  after_destroy :update_ranks
+  after_save :update_stats, :update_ranks
+  after_destroy :update_stats, :update_ranks
 
   has_many :games_players,
            class_name: 'GamesPlayer',
@@ -28,10 +28,8 @@ class Game < ApplicationRecord
                                 allow_destroy: true
 
   validates :venue, :season, :played_on, presence: true
-  validate :player_count,
-           :referee_count,
-           :no_duplicate_players,
-           :no_duplicate_referees
+  validate :player_count, :referee_count, :no_duplicate_players,
+           :no_duplicate_referees, :within_season
 
   def name
     "##{id.to_s.rjust(2, '0')}"
@@ -42,11 +40,21 @@ class Game < ApplicationRecord
   end
 
   def paginated_players(page)
-    GamesPlayer.includes(:player).where(game_id: self.id).page(page).per(25)
+    GamesPlayer.includes(:player).where(game_id: id).page(page).per(25)
   end
 
+  def self.recent(days = 30)
+    Game.where('created_at > ?', Time.zone.today - days.days)
+  end
+
+  def game_played_by
+    Player.joins(:games_players).where(games_players: { game_id: id })
+  end
+
+  private
+
   def player_count
-    return unless players.size < 2
+    return unless games_players.size < 2
 
     errors.add :games_players, I18n.t('errors.game.too_few_players')
   end
@@ -71,13 +79,23 @@ class Game < ApplicationRecord
     errors.add :referees, I18n.t('errors.game.duplicate_referees')
   end
 
-  def self.recent(days = 30)
-    Game.where('created_at > ?', Time.zone.today - days.days)
+  def within_season
+    return if played_on >= season.start_at && played_on <= season.end_at
+
+    errors.add :played_on, I18n.t('errors.game.played_outside_season')
   end
 
-  private
+  def update_stats
+    venue = self.venue.id
+    season = self.season.id
+    game_played_by.pluck(:id).each do |player|
+      CalculateVenueStatsWorker.perform_async(venue, player)
+      CalculateSeasonStatsWorker.perform_async(season, player)
+    end
+  end
 
   def update_ranks
-    CalculateRanksWorker.perform_async
+    CalculateRanksWorker.perform_in(3.minutes)
+    CalculateSeasonRanksWorker.perform_in(3.minutes, season.id)
   end
 end

@@ -13,3 +13,4 @@
 //= require rails-ujs
 //= require turbolinks
 //= require local-time
+//= require js-routes
