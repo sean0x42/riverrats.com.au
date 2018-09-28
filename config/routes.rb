@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :players, only: [:index, :show], param: :username do
     collection do
+      get 'search'
       get 'random'
       get 'auto-complete'
     end

@@ -1,0 +1,12 @@
+<div class="search-data">
+  <div class="model-list">
+    <table>
+      <%= render @players %>
+    </table>
+  </div>
+
+  <div class="model-list-footer">
+    <%= paginate @players %>
+    <p><%= page_entries_info @players %></p>
+  </div>
+</div>

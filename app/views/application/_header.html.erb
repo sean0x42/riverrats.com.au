@@ -1,6 +1,5 @@
 <!-- Contains both the mobile and desktop versions of the header -->
 <div class="header" data-turblinks-permanent>
-
   <!-- Banner -->
   <%# TODO Hide this banner with a cookie %>
   <div class="banner" style="display: none">
@@ -15,36 +14,23 @@
   </div>
 
   <div class="wrapper">
-
     <!-- Logo -->
     <%= link_to root_path, class: 'logo' do %>
       <%= image_tag 'flat logo.svg' %>
     <% end %>
 
+    <!-- Search -->
+    <div class="search-wrapper">
+      <% remote = action_name == 'search' && controller_path == 'players' -%>
+      <%= form_with url: search_players_path, method: :get, class: 'search', local: !remote do |form| %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+        <%= form.search_field :query, value: params[:query], placeholder: 'Search players' %>
+        <%= form.submit 'search', name: nil %>
+      <% end -%>
+    </div>
+
     <!-- Navigation -->
     <ul class="navigation">
-
-      <!-- News -->
-      <li>
-        <div class="header-menu-wrapper">
-          <!-- Trigger -->
-          <div class="header-menu-trigger">
-            <svg style="width:24px; height:24px" viewBox="0 0 24 24" class="header-mobile">
-              <path d="M20,11H4V8H20M20,15H13V13H20M20,19H13V17H20M11,19H4V13H11M20.33,4.67L18.67,3L17,4.67L15.33,3L13.67,4.67L12,3L10.33,4.67L8.67,3L7,4.67L5.33,3L3.67,4.67L2,3V19A2,2 0 0,0 4,21H20A2,2 0 0,0 22,19V3L20.33,4.67Z"></path>
-            </svg>
-            <span>News</span>
-            <svg width="24px" height="24px" viewBox="0 0 24 24" class="header-desktop">
-              <path d="M8.71,11.71l2.59,2.59c0.39,0.39,1.02,0.39,1.41,0l2.59-2.59c0.63-0.63,0.18-1.71-0.71-1.71H9.41 C8.52,10,8.08,11.08,8.71,11.71z"></path>
-            </svg>
-          </div>
-
-          <!-- Menu -->
-          <div class="header-menu">
-            <p>Coming soon!</p>
-          </div>
-        </div>
-      </li>
-
       <!-- Leaderboards -->
       <li>
         <%= link_to players_path, class: 'header-link' do %>
@@ -68,7 +54,6 @@
 
       <% if player_signed_in? -%>
         <li class="header-menu-wrapper account">
-
           <!-- Trigger -->
           <div class="header-menu-trigger account-dropdown">
             <svg width="24px" height="24px" viewBox="0 0 24 24" class="material-icons">
@@ -85,9 +70,7 @@
 
           <!-- Dropdown -->
           <div class="header-menu right-aligned">
-
             <ul>
-
               <!-- Preferences -->
               <li>
                 <%= link_to edit_player_registration_path, data: { expects_modal: true }, remote: true do %>
@@ -111,10 +94,8 @@
                   <span>Logout</span>
                 <%- end %>
               </li>
-
             </ul>
           </div>
-
         </li>
 
 <!--        <li class="header-menu-wrapper header-desktop">-->
@@ -157,11 +138,8 @@
           <% end -%>
         </li>
       <% end -%>
-
     </ul>
-
   </div>
-
 </div>
 
 <div class="header-menu-overlay"></div>

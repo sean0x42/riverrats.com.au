@@ -1,33 +1,35 @@
 .search-wrapper {
-  $shadow: rgba(0, 0, 0, 0.02);
-  background: $white;
+  background: transparentize($zurple-dark, 0.75);
   border-radius: 3px;
-  box-shadow: 0 15px 30px $shadow, 0 5px 15px $shadow;
-  max-width: 400px;
+  color: $darcula-light-inverted;
+  max-width: 350px;
   overflow: hidden;
   position: relative;
   width: 100%;
+  margin-right: 1rem;
 
   input[type="submit"] {
     display: none;
   }
 
   input[type="search"] {
+    background: none;
     border: 0;
-    color: $text;
+    color: inherit;
     font-size: $font-size - 1px;
     line-height: 1;
-    padding: 15px 15px 15px 52px;
+    padding: 10px 10px 10px 45px;
     width: 100%;
   }
 
-  i {
-    color: lighten($text, 25%);
-    font-size: 21px;
-    padding: 12px 1.2rem;
+  svg {
+    fill: lighten($text, 25%);
+    width: 22px;
+    height: 22px;
     pointer-events: none;
     position: absolute;
-    top: 0;
+    top: 7px;
+    left: 14px;
     transition: color 200ms;
   }
 }

@@ -7,6 +7,11 @@ class PlayersController < ApplicationController
     @players = Player.page params[:page]
   end
 
+  # GET /players/search
+  def search
+    @players = Player.search params[:query], page: params[:page]
+  end
+
   # GET /players/:username
   def show
     @player = Player
