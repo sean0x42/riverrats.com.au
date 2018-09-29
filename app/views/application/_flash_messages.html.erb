@@ -1,7 +1,7 @@
 <!-- Flash messages -->
 <div class="flash-messages" id="flash-messages" data-turblinks-permanent>
-  <%- unless flash.empty? %>
-    <% flash.each do |type, message| %>
+  <% unless flash.empty? -%>
+    <% flash.each do |type, message| -%>
 
       <!-- Flash -->
       <div class="flash flash-<%= type %>">
@@ -12,12 +12,12 @@
         </div>
 
         <div class="flash-body">
-          <%- if message.is_a? String %>
+          <% if message.is_a? String -%>
             <p><%= message %></p>
-          <%- else %>
+          <% else -%>
             <h3><%= message['title'] %></h3>
             <p><%= message['body'] %></p>
-          <%- end %>
+          <% end -%>
         </div>
 
         <!-- Close flash button -->
@@ -28,6 +28,6 @@
         </button>
 
       </div>
-    <% end %>
-  <%- end %>
+    <% end -%>
+  <% end -%>
 </div>

@@ -10,9 +10,7 @@ class ScoreAchievement < Achievement
       achievement.check
     end
 
-    if !awarded && player.score >= requirements[0]
-      player.award self
-    end
+    player.award self if !awarded && player.score >= requirements[0]
 
     awarded
   end

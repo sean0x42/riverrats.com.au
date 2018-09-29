@@ -8,6 +8,7 @@
   right: 0;
   top: 0;
   transition: opacity 500ms;
+  z-index: 11;
 
   &[active] {
     opacity: 0.35;
@@ -27,7 +28,7 @@
     left: 0;
     line-height: $body-line-height;
     margin-top: 0.8rem;
-    min-width: 280px;
+    min-width: 275px;
     position: absolute;
     top: 100%;
 
@@ -40,10 +41,36 @@
   ul {
     list-style-type: none;
     margin: 0;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
+
+    li {
+      width: 100%;
+    }
 
     a {
-      padding: 0.25rem 1rem;
+      align-items: center;
+      color: $text;
+      cursor: pointer;
+      display: flex;
+      padding: 0.25rem 1.25rem;
+
+      &:hover {
+        background: $zurple;
+        color: $zurple-inverted;
+        fill: $zurple-inverted;
+      }
+    }
+
+    svg {
+      height: 22px;
+      margin-right: 0.75rem;
+      width: 22px;
+    }
+
+    .spacer {
+      border-bottom: 1px solid $grey;
+      margin: 0.75rem 1.25rem;
+      width: unset;
     }
   }
 
@@ -56,6 +83,7 @@
 .header-menu-trigger {
   @include no-select();
   align-items: center;
+  cursor: pointer;
   display: flex;
   fill: $darcula-inverted;
   flex-direction: column;

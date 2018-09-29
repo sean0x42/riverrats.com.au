@@ -1,13 +1,13 @@
 <%= form_with model: [:admin, @player], class: 'modal-form' do |form| %>
 
   <!-- Username -->
-  <%- if @player.persisted? %>
+  <% if @player.persisted? %>
     <div class="field">
       <%= form.label :username %><br/>
       <%= field_errors @player, :username %>
       <%= form.text_field :username, spellcheck: false %>
     </div>
-  <%- end %>
+  <% end %>
 
   <!-- First name -->
   <div class="field">

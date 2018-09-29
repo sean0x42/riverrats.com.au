@@ -5,18 +5,18 @@
 
   <!-- Username and flair -->
   <td class="stretch">
-    <%- if player.nil? %>
+    <% if player.nil? %>
       [Deleted player]
-    <%- else %>
+    <% else %>
       <%= link_to player_path(player) do %>
         <span class="highlight"><%= player.full_name %></span>&nbsp;@<%= player.username %>
-        <%- if player.developer? %>
+        <% if player.developer? %>
           <span class="flair">developer</span>
-        <%- elsif player.admin? %>
+        <% elsif player.admin? %>
           <span class="flair">admin</span>
-        <%- end %>
-      <%- end %>
-    <%- end %>
+        <% end %>
+      <% end %>
+    <% end %>
   </td>
 
   <!-- Score -->

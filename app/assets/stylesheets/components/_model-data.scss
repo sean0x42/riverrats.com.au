@@ -51,9 +51,9 @@
   }
 
   .venue-image {
+    border-bottom: 1px solid $grey;
     margin: 0 0 1rem;
     overflow: hidden;
-    border-bottom: 1px solid $grey;
 
     img {
       display: block;

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
@@ -9,7 +11,7 @@
 server '159.65.104.90',
        user: 'rails',
        password: 'kF39fs',
-       roles: %w(app db web)
+       roles: %w[app db web]
 
 # role-based syntax
 # ==================

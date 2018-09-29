@@ -74,13 +74,14 @@
     color: inherit;
     display: block;
     text-decoration: none;
-  }
 
-  a.register {
-    color: lighten(saturate($zurple, 100%), 18%);
-
-    &:hover {
-      color: lighten(saturate($zurple, 100%), 24%);
+    &.button-secondary {
+      background: none;
+      border-color: $zurple-dark;
+      border-width: 1px;
+      font-weight: normal;
+      padding: 0.4rem 0.5rem;
+      margin-left: 0.5rem;
     }
   }
 }
@@ -179,7 +180,7 @@
     .account {
       margin-left: auto;
 
-      svg:first-child {
+      svg.account-icon {
         fill: $zurple-light;
         height: 22px;
         margin-bottom: 0;

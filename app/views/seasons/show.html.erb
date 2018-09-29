@@ -1,6 +1,6 @@
-<%- content_for :title, t('seasons.show.title') % { season: @season.name } %>
-<%- content_for :description, t('seasons.show.description') % { season: @season.name } %>
-<%- content_for :canonical_url, seasons_url %>
+<% content_for :title, t('seasons.show.title') % { season: @season.name } %>
+<% content_for :description, t('seasons.show.description') % { season: @season.name } %>
+<% content_for :canonical_url, seasons_url %>
 
 <div class="wrapper split-header">
   <span class="subheading">Leaderboard</span>
@@ -9,7 +9,7 @@
 
 <div class="wrapper split-wrapper">
   <div>
-    <%- players = @season.paginated_players(params[:page]) %>
+    <% players = @season.paginated_players(params[:page]) %>
     <div class="model-list">
       <table>
         <%= render collection: players, partial: 'application/standard_player' %>
