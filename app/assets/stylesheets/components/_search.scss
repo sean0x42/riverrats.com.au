@@ -2,7 +2,6 @@
   background: $search;
   border-radius: 3px;
   color: $search-inverted;
-  margin-right: 1rem;
   max-width: 350px;
   overflow: hidden;
   position: relative;
@@ -20,5 +19,11 @@
     line-height: 1;
     padding: 10px;
     width: 100%;
+  }
+}
+
+@media (min-width: 980px) {
+  .search-wrapper {
+    margin-right: 1rem;
   }
 }

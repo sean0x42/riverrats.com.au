@@ -1,7 +1,7 @@
 .wrapper {
   margin: 4rem auto;
   max-width: $wrapper-width;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
   position: relative;
   width: 100%;
   z-index: 10;
@@ -26,5 +26,6 @@
 @media (min-width: 980px) {
   .wrapper {
     margin: 8rem auto;
+    padding: 0 1.5rem;
   }
 }
