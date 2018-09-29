@@ -8,6 +8,7 @@
   right: 0;
   top: 0;
   transition: opacity 500ms;
+  z-index: 11;
 
   &[active] {
     opacity: 0.35;
@@ -15,26 +16,19 @@
 }
 
 .header-menu-wrapper {
-  position: relative;
-
   .header-menu {
     background: $white;
     border: 1px solid $grey;
-    border-radius: $border-radius;
+    bottom: 100%;
     color: $text;
     display: none;
     fill: $text;
     left: 0;
     line-height: $body-line-height;
     margin-top: 0.8rem;
-    min-width: 280px;
+    min-width: 275px;
     position: absolute;
-    top: 100%;
-
-    &.right-aligned {
-      left: unset;
-      right: 0;
-    }
+    right: 0;
   }
 
   ul {
@@ -42,8 +36,34 @@
     margin: 0;
     padding: 1rem 0;
 
+    li {
+      width: 100%;
+    }
+
     a {
-      padding: 0.25rem 1rem;
+      align-items: center;
+      color: $text;
+      cursor: pointer;
+      display: flex;
+      padding: 0.4rem 1.25rem;
+
+      &:hover {
+        background: $zurple;
+        color: $zurple-inverted;
+        fill: $zurple-inverted;
+      }
+    }
+
+    svg {
+      height: 22px;
+      margin-right: 0.75rem;
+      width: 22px;
+    }
+
+    .spacer {
+      border-bottom: 1px solid $grey;
+      margin: 0.75rem 1.25rem;
+      width: unset;
     }
   }
 
@@ -56,6 +76,7 @@
 .header-menu-trigger {
   @include no-select();
   align-items: center;
+  cursor: pointer;
   display: flex;
   fill: $darcula-inverted;
   flex-direction: column;
@@ -65,5 +86,28 @@
   .header-link,
   .header-menu-wrapper .header-menu-trigger {
     flex-direction: row;
+  }
+
+  .header-menu-wrapper {
+    position: relative;
+
+    .header-menu {
+      border-radius: $border-radius;
+      bottom: unset;
+      top: 100%;
+
+      &.right-aligned {
+        left: unset;
+        right: 0;
+      }
+    }
+
+    ul {
+      padding: 0.75rem 0;
+
+      a {
+        padding: 0.25rem 1.25rem;
+      }
+    }
   }
 }

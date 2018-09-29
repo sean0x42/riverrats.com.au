@@ -6,13 +6,11 @@ class TheWoodenSpoon < Achievement
     awarded = player.awarded? self
 
     if awarded
-      achievement = player.achievements.find_by(type: self.sti_name)
+      achievement = player.achievements.find_by(type: sti_name)
       achievement.check
     end
 
-    if (!awarded) && player.wooden_spoons >= requirements[0]
-      player.award self
-    end
+    player.award self if !awarded && player.wooden_spoons >= requirements[0]
 
     awarded
   end
@@ -30,12 +28,12 @@ class TheWoodenSpoon < Achievement
   end
 
   def title
-    I18n.t('achievement.the_wooden_spoon.title') % { level: (level + 1).to_roman }
+    format(I18n.t('achievement.the_wooden_spoon.title'), level: (level + 1).to_roman)
   end
 
   def description
     games = TheWoodenSpoon.requirements[level]
-    I18n.t('achievement.the_wooden_spoon.description') % { games: "#{games} #{'game'.pluralize games}" }
+    format(I18n.t('achievement.the_wooden_spoon.description'), games: "#{games} #{'game'.pluralize games}")
   end
 
   def self.type

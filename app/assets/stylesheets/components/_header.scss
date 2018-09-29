@@ -43,7 +43,7 @@
     border-bottom: 4px solid $zurple;
     bottom: 0;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
     left: 0;
     list-style-type: none;
     margin: 0;
@@ -72,16 +72,8 @@
 
   .header-link {
     color: inherit;
-    display: block;
+    display: flex;
     text-decoration: none;
-  }
-
-  a.register {
-    color: lighten(saturate($zurple, 100%), 18%);
-
-    &:hover {
-      color: lighten(saturate($zurple, 100%), 24%);
-    }
   }
 }
 
@@ -160,6 +152,17 @@
     position: fixed;
     top: 0;
 
+    .header-link {
+      display: block;
+    }
+
+    .header-button {
+      border: 1px solid $zurple-dark;
+      border-radius: $border-radius - 1px;
+      margin-left: 0.5rem;
+      padding: 0.4rem 0.5rem;
+    }
+
     .header-link,
     .header-menu-trigger {
       font-size: $font-size;
@@ -179,7 +182,7 @@
     .account {
       margin-left: auto;
 
-      svg:first-child {
+      svg.account-icon {
         fill: $zurple-light;
         height: 22px;
         margin-bottom: 0;

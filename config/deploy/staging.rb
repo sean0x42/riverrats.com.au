@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 set :stage, :production
 
 # server-based syntax
@@ -11,7 +13,7 @@ set :stage, :production
 
 server '167.99.165.98',
        user: 'rails',
-       roles: %w{app db web}
+       roles: %w[app db web]
 
 # role-based syntax
 # ==================

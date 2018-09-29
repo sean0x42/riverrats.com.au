@@ -1,48 +1,63 @@
-let dropdownOverlay;
-let activeDropdown = null;
+let menuOverlay;
+let activeMenu = null;
 
 /**
  * Shows the given dropdown menu.
  * @param wrapper Dropdown wrapper to enable.
  */
-const enableDropdown = (wrapper) => {
-  // Disable current dropdown
-  if (activeDropdown != null) {
-    disableDropdown(activeDropdown);
+const enableMenu = (wrapper) => {
+  // Disable current menu
+  if (activeMenu != null) {
+    disableMenu();
   }
 
   // Enable
-  dropdownOverlay.setAttribute("active", "");
+  menuOverlay.setAttribute("active", "");
   wrapper.setAttribute("active", "");
-  activeDropdown = wrapper;
+  activeMenu = wrapper;
 };
 
 /**
- * Disables a given dropdown (assuming it is enabled).
- * @param wrapper Dropdown wrapper to disable.
+ * Disables currently active menus.
  */
-const disableDropdown = (wrapper) => {
-  wrapper.removeAttribute("active");
-  dropdownOverlay.removeAttribute("active");
-  activeDropdown = null;
+const disableMenu = () => {
+  // Ensure a menu is actually enabled
+  if (activeMenu === null) {
+    return;
+  }
+
+  activeMenu.removeAttribute("active");
+  menuOverlay.removeAttribute("active");
+  activeMenu = null;
 };
 
+// /**
+//  * An event handler that is fired whenever the mouse enters a dropdown trigger.
+//  * @param event Mouse enter event.
+//  */
+// const onTriggerMouseEnter = (event) => {
+//   const { target } = event;
+//   enableMenu(target.parentNode);
+// };
+//
+// /**
+//  * An event handler that is fired whenever the mouse leaves a menu.
+//  */
+// const onMenuMouseLeave = () => {
+//   disableMenu();
+// };
+
 /**
- * An event handler that is fired whenever the mouse enters a dropdown trigger.
- * @param event Mouse enter event.
+ * An event which is fired whenever the document is clicked.
+ * @param event Click event
  */
-const onTriggerMouseEnter = (event) => {
+const onDocumentClick = (event) => {
   const { target } = event;
-  enableDropdown(target.parentNode);
-};
+  if (target.closest(".header-menu-trigger") !== null) {
+    return;
+  }
 
-/**
- * An event handler that is fired whenever the mouse leaves a dropdown.
- * @param event Mouse leave event.
- */
-const onDropdownMouseLeave = (event) => {
-  const { target } = event;
-  disableDropdown(target.parentNode);
+  disableMenu();
 };
 
 /**
@@ -52,19 +67,30 @@ const onDropdownMouseLeave = (event) => {
 const bindToWrapperEvents = (wrapper) => {
   // Retrieve children
   const trigger = wrapper.children[0];
-  const dropdown = wrapper.children[1];
+  const menu = wrapper.children[1];
 
   // Bind to events
-  trigger.addEventListener("mouseenter", onTriggerMouseEnter);
-  dropdown.addEventListener("mouseleave", onDropdownMouseLeave);
+  // trigger.addEventListener("mouseenter", onTriggerMouseEnter);
+  // menu.addEventListener("mouseleave", onMenuMouseLeave);
+  trigger.addEventListener("click", (event) => {
+    const wrapper = event.target.closest(".header-menu-wrapper");
+    if (wrapper.hasAttribute("active")) {
+      disableMenu();
+    } else {
+      enableMenu(wrapper);
+    }
+  });
+
+  document.removeEventListener("click", onDocumentClick);
+  document.addEventListener("click", onDocumentClick);
 };
 
 /**
  * Initialises various event handlers to allow the navigation menu to work.
  */
 const init = () => {
-  dropdownOverlay = document.querySelector(".header-dropdown-overlay");
-  document.querySelectorAll(".header-dropdown-wrapper").forEach(bindToWrapperEvents);
+  menuOverlay = document.querySelector(".header-menu-overlay");
+  document.querySelectorAll(".header-menu-wrapper").forEach(bindToWrapperEvents);
 };
 
 addEventListener("turbolinks:load", init);

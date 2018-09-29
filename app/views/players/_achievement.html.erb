@@ -1,15 +1,15 @@
 <li class="achievement">
   <div class="image"></div>
 
-  <%- if achievement.proof.present? %>
+  <% if achievement.proof.present? %>
     <%= link_to achievement.proof.url(:full) do %>
       <p class="title"><%= achievement.title %></p>
       <p class="description"><%= achievement.description %></p>
     <% end %>
-  <%- else %>
+  <% else %>
     <div>
       <p class="title"><%= achievement.title %></p>
       <p class="description"><%= achievement.description %></p>
     </div>
-  <%- end %>
+  <% end %>
 </li>

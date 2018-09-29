@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # config valid for current version and patch releases of Capistrano
 lock '~> 3.11.0'
 
@@ -17,7 +19,7 @@ set :deploy_via, :remote_cache
 after 'deploy:publishing', 'deploy:restart'
 
 namespace :deploy do
-  desc "reload the database with seed data"
+  desc 'reload the database with seed data'
   task :seed do
     on roles(:all) do
       within "#{fetch(:deploy_to)}/current" do

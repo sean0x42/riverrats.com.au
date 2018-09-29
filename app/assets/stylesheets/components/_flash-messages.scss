@@ -1,9 +1,7 @@
 .flash-messages {
-  max-width: 475px;
-  padding: 1rem;
+  bottom: 76px;
+  padding: 0.5rem;
   position: fixed;
-  right: 0;
-  top: 74px;
   width: 100%;
   z-index: 1000;
 }
@@ -17,7 +15,7 @@
   grid-gap: 1.5rem;
   grid-template-columns: 40px 1fr 40px;
   line-height: $body-line-height;
-  margin-bottom: 1rem;
+  margin-top: 0.75rem;
   padding-right: 1rem;
   width: 100%;
 
@@ -75,5 +73,19 @@
       line-height: 1;
       vertical-align: middle;
     }
+  }
+}
+
+@media (min-width: 980px) {
+  .flash-messages {
+    bottom: unset;
+    max-width: 475px;
+    padding: 1rem;
+    right: 0;
+    top: 74px;
+  }
+
+  .flash {
+    margin-bottom: 1rem;
   }
 }
