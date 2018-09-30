@@ -2,7 +2,6 @@
 <%- content_for :description, t('players.show.description') % { name: @player.full_name } %>
 <%- content_for :canonical_url, players_url %>
 
-
 <div class="hero inverted">
   <div class="wrapper">
     <span class="subheading">Player Profile</span>
@@ -10,8 +9,7 @@
   </div>
 </div>
 
-<div class="wrapper split-wrapper">
-
+<div class="wrapper split-wrapper player-wrapper">
   <div>
     <!-- Breakdown -->
     <div class="breakdown">
@@ -19,13 +17,13 @@
       <!-- All Time Score -->
       <div>
         <h2>All Time Score</h2>
-        <p><%= number_to_human(@player.score, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+        <p><%= number_format @player.score %></p>
       </div>
 
       <!-- Seasonal Score -->
       <div>
         <h2>Seasonal Score</h2>
-        <p><%= number_to_human(season_player.nil? ? 0 : season_player.score, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+        <p><%= number_format season_player.nil? ? 0 : season_player.score %></p>
       </div>
 
       <!-- All time rank -->
@@ -60,5 +58,4 @@
     -->
     <p>Sorry, this section is under construction. Please check back later.</p>
   </div>
-
 </div>

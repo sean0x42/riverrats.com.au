@@ -22,19 +22,19 @@
   <!-- Player count -->
   <div>
     <h2>Registered Players</h2>
-    <p><%= number_to_human(Player.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+    <p><%= number_format Player.count %></p>
   </div>
 
   <!-- Recent -->
   <div>
     <h2>Joined Recently</h2>
-    <p><%= number_to_human(Player.recent.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+    <p><%= number_format Player.recent.count %></p>
   </div>
 
   <!-- Admins -->
   <div>
     <h2>Admins</h2>
-    <p><%= number_to_human(Player.admins.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+    <p><%= number_format Player.admins.count %></p>
   </div>
 
 </div>

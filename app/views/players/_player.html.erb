@@ -1,5 +1,4 @@
 <tr>
-
   <!-- Rank -->
   <td><%= player.rank.nil? ? 'n/a' : (player.rank + 1).ordinalize %></td>
 
@@ -20,9 +19,8 @@
   </td>
 
   <!-- Score -->
-  <td class="numeric"><%= number_to_human(player.score, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %> pts</td>
+  <td class="numeric"><%= number_format player.score %> pts</td>
 
   <!-- Wins -->
-  <td class="numeric"><%= number_to_human(player.games_played, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %> <%= 'game'.pluralize(player.games_played) %></td>
-
+  <td class="numeric"><%= number_format player.games_played %> <%= 'game'.pluralize(player.games_played) %></td>
 </tr>

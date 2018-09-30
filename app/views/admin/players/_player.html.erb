@@ -1,28 +1,26 @@
 <tr>
-
   <!-- Player name and username -->
   <td>
     <%= link_to edit_admin_player_path(player), remote: true, data: { expects_modal: 'true' } do %>
       <span class="highlight"><%= player.full_name %></span>&nbsp;@<%= player.username %>
-      <%- if player.developer? %>
+      <% if player.developer? -%>
         <span class="flair">developer</span>
-      <%- elsif player.admin? %>
+      <% elsif player.admin? -%>
         <span class="flair">admin</span>
-      <%- end %>
-    <%- end %>
+      <% end -%>
+    <% end -%>
   </td>
 
   <!-- IP address -->
   <td class="inter-ui-ss01 stretch">
-    <%- unless player.current_sign_in_ip == nil %>
+    <% unless player.current_sign_in_ip.nil? -%>
       <%= player.current_sign_in_ip %>
-      <%- unless player.current_sign_in_at == nil %>
+      <% unless player.current_sign_in_at.nil? -%>
         &middot; <%= local_time_ago player.current_sign_in_at %>
-      <%- end %>
-    <%- end %>
+      <% end -%>
+    <% end -%>
   </td>
 
   <!-- Score -->
-  <td class="numeric"><%= number_to_human(player.score, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %> pts</td>
-
+  <td class="numeric"><%= number_format player.score %> pts</td>
 </tr>

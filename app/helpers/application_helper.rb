@@ -2,7 +2,12 @@
 
 # A helper which is available application wide.
 module ApplicationHelper
-  # Renders field errors
+  NUMBER_FORMAT_OPTIONS = {
+    format: '%n%u',
+    precision: 3,
+    units: { thousand: 'k', million: 'm', billion: 'b' }
+  }.freeze
+
   def field_errors(model, field)
     render 'application/field_errors', model: model, field: field
   end
@@ -15,5 +20,9 @@ module ApplicationHelper
     else
       ((page - 1) * per + index + 1).ordinalize
     end
+  end
+
+  def number_format(value)
+    number_to_human(value, NUMBER_FORMAT_OPTIONS)
   end
 end

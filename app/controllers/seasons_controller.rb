@@ -4,8 +4,7 @@
 class SeasonsController < ApplicationController
   # GET /seasons
   def index
-    now = Time.zone.now
-    @season = Season.where('start_at < ? and end_at > ?', now, now).first
+    @season = Season.reorder(id: :desc).first
     redirect_to season_path(@season)
   end
 
