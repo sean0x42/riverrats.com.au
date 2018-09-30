@@ -4,7 +4,7 @@
 class SeasonsController < ApplicationController
   # GET /seasons
   def index
-    @season = Season.reorder(id: :desc).first
+    @season = Season.current
     redirect_to season_path(@season)
   end
 
