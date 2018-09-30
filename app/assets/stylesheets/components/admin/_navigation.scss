@@ -1,12 +1,12 @@
 .admin-navigation {
+  background: $grey-light;
+  bottom: 73px;
   display: none;
+  left: 0;
   line-height: $body-line-height;
   position: fixed;
-  top: 0;
-  left: 0;
   right: 0;
-  bottom: 73px;
-  background: $grey-light;
+  top: 0;
   z-index: 2000;
 
   &[active] {
@@ -59,22 +59,22 @@
 }
 
 .mobile-admin-navigation-trigger {
-  position: fixed;
-  bottom: 90px;
-  right: 10px;
-  z-index: 11;
-  border: none;
-  background: $zurple-dark;
-  color: $zurple-dark-inverted;
-  fill: $zurple-dark-inverted;
-  border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  background: $zurple-dark;
+  border: 0;
+  border-radius: 50%;
+  bottom: 90px;
+  color: $zurple-dark-inverted;
   cursor: pointer;
+  display: flex;
+  fill: $zurple-dark-inverted;
+  flex-direction: column;
+  height: 55px;
+  justify-content: center;
+  position: fixed;
+  right: 10px;
+  width: 55px;
+  z-index: 11;
 
   span {
     font-size: 14px;
@@ -94,14 +94,14 @@
 
 @media (min-width: 1080px) {
   .admin-navigation {
+    background: none;
+    bottom: unset;
     display: block;
+    left: unset;
     position: sticky;
+    right: unset;
     top: 100px;
     width: 270px;
-    background: none;
-    left: unset;
-    right: unset;
-    bottom: unset;
 
     h2 {
       padding-left: 0.75rem;
