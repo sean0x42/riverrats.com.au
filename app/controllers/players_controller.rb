@@ -9,7 +9,10 @@ class PlayersController < ApplicationController
 
   # GET /players/search
   def search
-    @players = Player.search params[:query], page: params[:page]
+    @players = Player.search params[:query],
+                             page: params[:page],
+                             fields: %i[full_name username],
+                             match: :word_start
   end
 
   # GET /players/:username

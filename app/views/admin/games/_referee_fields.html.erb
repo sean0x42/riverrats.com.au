@@ -1,7 +1,7 @@
 <% player = form.object.player %>
-<li data-player-id="<%= player.id %>" data-player="<%= escape_javascript(player_to_search_result(player)) %>">
+<li data-player-id="<%= player.id %>" data-player="<%= escape_javascript(player_to_search_result(player)) %>" data-scope="referee">
   <%= form.hidden_field :player_id %>
-  <%= form.hidden_field :_destroy %>
+  <%= form.hidden_field :_destroy, class: 'js-destroy-field' %>
 
   <div class="inline-player">
     <span class="highlight"><%= player.full_name %></span><span>@<%= player.username %></span><% if player.developer? -%><span class="flair">developer</span><% elsif player.admin? -%><span class="flair">admin</span><% end -%>
