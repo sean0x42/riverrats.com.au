@@ -1,4 +1,4 @@
-import flatpickr from "flatpickr"
+import flatpickr from "flatpickr";
 
 const DATE_SELECTOR = "input[type='date']:not([data-processed]), .datepickr:not([data-processed])";
 const DATE_CONFIG = Object.freeze({

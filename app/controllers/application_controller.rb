@@ -7,11 +7,13 @@ class ApplicationController < ActionController::Base
   private
 
   def require_admin
-    if current_player.email.nil?
-      redirect_to root_path, notice: t('errors.missing_admin_email.flash')
-    elsif !current_player.admin? && !current_player.developer?
-      redirect_to root_path, notice: t('errors.insufficient_permission.flash')
-    end
+    message = if current_player.email.nil?
+                t('errors.missing_admin_email.flash')
+              elsif !current_player.admin? && !current_player.developer?
+                t('errors.insufficient_permission.flash')
+              end
+
+    redirect_to root_path, notice: message unless message.nil?
   end
 
   def after_sign_in_path_for(_resource)

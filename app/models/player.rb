@@ -14,45 +14,45 @@ class Player < ApplicationRecord
 
   before_validation :gen_username, on: :create
 
-  has_many :games_players, class_name: 'GamesPlayer', dependent: :nullify
+  with_options dependent: :nullify, inverse_of: :player do
+    has_many :games_players, class_name: 'GamesPlayer'
+    has_many :players_venues, class_name: 'PlayersVenue'
+    has_many :players_regions, class_name: 'PlayersRegion'
+    has_many :players_seasons, class_name: 'PlayersSeason'
+  end
+
   has_many :games, through: :games_players
   has_many :referees, dependent: :nullify
   has_many :games, through: :referees
-  has_many :players_venues, class_name: 'PlayersVenue', dependent: :nullify
   has_many :venues, through: :players_venues
-  has_many :players_regions, class_name: 'PlayersRegion', dependent: :nullify
   has_many :regions, through: :players_regions
-  has_many :players_seasons, class_name: 'PlayersSeason', dependent: :nullify
   has_many :seasons, through: :players_seasons
-  has_many :achievements
+  has_many :achievements, dependent: :destroy
 
-  attr_accessor :login
   attr_writer :login
 
-  validates :username,
-            presence: true,
-            uniqueness: { case_sensitive: false },
-            format: {
-              with: /\A[a-z0-9-]*\z/,
-              message: 'may use numbers, letters, underscores (_), and hyphens (-)'
-            },
-            length: { minimum: 2 }
-
-  validates :first_name, :last_name,
-            presence: true,
-            format: {
-              with: /\A[a-zA-Z][a-zA-Z-]*[a-zA-Z]\z/,
-              message: 'may use letters and hyphens (-)'
-            },
-            length: { maximum: 64 }
+  with_options presence: true do
+    validates :username,
+              uniqueness: { case_sensitive: false },
+              length: { minimum: 2 },
+              format: {
+                with: /\A[a-z0-9-]*\z/,
+                message: 'may use numbers, letters, underscores (_), and hyphens (-)'
+              }
+    validates :first_name, :last_name,
+              length: { maximum: 64 },
+              format: {
+                with: /\A[a-zA-Z][a-zA-Z-]*[a-zA-Z]\z/,
+                message: 'may use letters and hyphens (-)'
+              }
+    validates :notify_promotional, :notify_events
+  end
 
   validates :score, :games_played, :games_won,
             numericality: {
               only_integer: true,
               greater_than_or_equal_to: 0
             }
-
-  validates :notify_promotional, :notify_events, presence: true
 
   validates :email,
             format: { with: URI::MailTo::EMAIL_REGEXP },

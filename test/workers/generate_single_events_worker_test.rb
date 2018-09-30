@@ -3,7 +3,7 @@
 require 'test_helper'
 
 # Tests the generation of single events
-class GenerateSingleEventsWorkerTest < MiniTest::Unit::TestCase
+class GenerateSingleEventsWorkerTest < MiniTest::Test
   def test_example
     skip "add some examples to (or delete) #{__FILE__}"
   end

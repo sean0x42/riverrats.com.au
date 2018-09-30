@@ -68,6 +68,10 @@
 }
 
 @media (min-width: 980px) {
+  .landing-fold {
+    padding: 45px 0 1px;
+  }
+
   .landing-recent-games {
     .game-wrapper {
       align-items: flex-start;
