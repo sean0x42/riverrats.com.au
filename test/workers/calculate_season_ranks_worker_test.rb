@@ -3,7 +3,7 @@
 require 'test_helper'
 
 # Test the season ranks worker
-class CalculateSeasonRanksWorkerTest < MiniTest::Unit::TestCase
+class CalculateSeasonRanksWorkerTest < MiniTest::Test
   def test_example
     skip "add some examples to (or delete) #{__FILE__}"
   end

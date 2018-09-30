@@ -30,7 +30,7 @@
 
   <div class="player-area" id="js-game-players">
     <%= render 'empty_players', show: @game.games_players.empty? %>
-    <ul class="players js-sortable" style="<%= 'display: none' if @game.games_players.empty? %>">
+    <ul class="players js-sortable" style="<%= 'display: none' if @game.games_players.empty? %>" data-scope="player">
       <%= form.fields_for :games_players do |players_form| -%>
         <%= render 'games_player_fields', form: players_form %>
       <% end -%>
@@ -52,7 +52,7 @@
 
   <div class="player-area" id="js-game-referees">
     <%= render 'empty_referees', show: @game.referees.empty? %>
-    <ul class="players" style="<%= 'display: none' if @game.referees.empty? %>">
+    <ul class="players" style="<%= 'display: none' if @game.referees.empty? %>" data-scope="referee">
       <%= form.fields_for :referees do |referees_form| -%>
         <%= render 'referee_fields', form: referees_form %>
       <% end -%>

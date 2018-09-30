@@ -6,6 +6,14 @@ AllCops:
   - 'bin/*'
   - 'node_modules/**/*'
   - 'db/schema.rb'
+
+Metrics/MethodLength:
+  Exclude:
+  - 'db/migrate/*'
+Metrics/AbcSize:
+  Exclude:
+  - 'db/migrate/*'
+
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/RegexpLiteral:
@@ -13,9 +21,6 @@ Style/RegexpLiteral:
 Style/Documentation:
   Exclude:
     - 'db/migrate/*'
-Metrics/MethodLength:
-  Exclude:
-    - 'db/migrate/*'
-Metrics/AbcSize:
-  Exclude:
-  - 'db/migrate/*'
+
+Rails/InverseOf:
+  Enabled: true

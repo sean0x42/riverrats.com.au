@@ -4,8 +4,7 @@
 class SeasonsController < ApplicationController
   # GET /seasons
   def index
-    @season = Season.current
-    redirect_to season_path(@season)
+    redirect_to season_path(Season.where_current.pluck(:id))
   end
 
   # GET /seasons/:id

@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Tests players
 class PlayerTest < ActiveSupport::TestCase
   test 'email should be optional' do
     player = players(:carter)

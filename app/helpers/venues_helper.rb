@@ -14,12 +14,11 @@ module VenuesHelper
   private
 
   def construct_suburb_state_tuple(venue)
-    out = ''
-    out += venue.suburb unless venue.suburb.nil?
-    out += ' ' if out.present?
-    out += venue.state unless venue.state.nil?
-    out += ', ' if out.present?
-    out += venue.post_code.to_s unless venue.post_code.nil?
-    out
+    format(
+      '%<suburb>s %<state>s, %<post_code>d',
+      suburb: venue.suburb,
+      state: venue.state,
+      post_code: venue.post_code
+    )
   end
 end

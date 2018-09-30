@@ -2,7 +2,8 @@
 
 # A single season (quarter of a year)
 class Season < ApplicationRecord
-  has_many :players_seasons, class_name: 'PlayersSeason', dependent: :nullify
+  has_many :players_seasons, class_name: 'PlayersSeason', dependent: :nullify,
+                             inverse_of: :season
   has_many :players, through: :players_seasons
 
   validates :start_at, :end_at, presence: true
@@ -26,8 +27,11 @@ class Season < ApplicationRecord
     PlayersSeason.includes(:player).where(season: self).page(page).per(25)
   end
 
-  def self.current
-    now = Time.zone.now
-    Season.find_by('start_at <= ? and end_at >= ?', now, now)
+  def self.current(date = Time.zone.now)
+    Season.find_by('start_at <= ? AND end_at >= ?', date, date)
+  end
+
+  def self.where_current(date = Time.zone.now)
+    Season.where('start_at <= ? AND end_at <= ?', date, date)
   end
 end

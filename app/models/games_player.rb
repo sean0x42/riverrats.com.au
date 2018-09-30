@@ -11,17 +11,19 @@ class GamesPlayer < ApplicationRecord
 
   belongs_to :game
   belongs_to :player
+
   before_save :calc_score
   after_save :update_stats
   after_destroy :update_stats
 
-  validates :game, :player, presence: true
-  validates :position, :score,
-            presence: true,
-            numericality: {
-              only_integer: true,
-              greater_than_or_equal_to: 0
-            }
+  with_options presence: true do
+    validates :game, :player
+    validates :position, :score,
+              numericality: {
+                only_integer: true,
+                greater_than_or_equal_to: 0
+              }
+  end
 
   def first_place?
     position.zero?

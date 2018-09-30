@@ -1,5 +1,3 @@
-"use strict";
-
 import { renderFlashMessage } from "./flash_controller";
 
 export class Flash {
