@@ -307,7 +307,7 @@ function initialise() {
     playerInput.addEventListener("suggestion:select", onPlayerAdd);
     initialiseSortable();
     addExistingPlayers("player", "#js-game-players .players");
-    playerInput.closest("form").addEventListener("submit", onSubmitForm)
+    playerInput.closest("form").addEventListener("submit", onSubmitForm);
   }
 
   // Handle game referees
