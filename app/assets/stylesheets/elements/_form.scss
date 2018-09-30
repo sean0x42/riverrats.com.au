@@ -1,91 +1,45 @@
 form {
-  font-size: 15px;
-
-  h2, h3 {
-    margin: 0 0 1rem;
-    font-size: 15px;
-    font-weight: bold;
-    color: $generic-text-bold;
-  }
-
   .fields {
     display: grid;
-    grid-gap: 2rem;
+    grid-gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
   }
 
   .field {
-    margin: 0 0 1.5rem;
-  }
+    margin: 0 0 1rem;
 
-  .buttons {
-    margin-top: 0 !important;
-    margin-bottom: 0;
-    flex-direction: row-reverse;
-  }
+    .checkbox {
+      margin-bottom: 0.5rem;
+    }
 
-  section {
-    border-bottom: 1px solid $border-on-white;
-    padding: 2rem 0 3rem;
-
-    &:first-of-type {
-      padding-top: 1rem;
+    .field-descriptor {
+      color: lighten($text, 30%);
+      margin: 0.25rem 0;
     }
   }
 
-  .section-outline {
-    margin-bottom: 2rem;
+  .field-errors {
+    border-left: 2px solid $danger;
+    color: lighten($text, 15%);
+    line-height: $body-line-height;
+    margin: 0.5rem 0 0.75rem;
+    padding-left: 1.75rem;
+  }
 
-    h2 {
-      text-transform: unset;
-      letter-spacing: unset;
+  // scss-lint:disable SelectorFormat
+  .field_with_errors {
+    display: inline;
+
+    input {
+      border-bottom-color: $danger;
+      border-bottom-width: 2px;
     }
 
-    h2 > span {
-      color: $branding-primary;
-      font-weight: bold;
-
-      &:after {
-        content: '.\00a0';
-      }
-    }
-
-  }
-
-  .section-content, .section-outline {
-    & > *:first-child { margin-top:    0; }
-    & > *:last-child  { margin-bottom: 0; }
-  }
-
-}
-
-.form-description {
-  margin-bottom: 2rem;
-  max-width: 600px;
-}
-
-
-@media (min-width: 800px) {
-
-  form {
-    .buttons {
-      margin-top: 2.5rem !important;
+    label {
+      color: $text-bold;
+      font-weight: 500;
+      margin-bottom: 0;
     }
   }
-
-  section {
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .section-outline {
-    width: 33%;
-    max-width: 33%;
-    margin-bottom: none;
-  }
-
-  .section-content {
-    width: 66%;
-  }
-
+  // scss-lint:enable SelectorFormat
 }

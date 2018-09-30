@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :redis do
   %w[start stop restart].each do |command|
     desc "#{command.capitalize} redis"

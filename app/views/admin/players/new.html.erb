@@ -1,29 +1,6 @@
-<%- content_for :title, 'New player (Admin)' %>
+<% content_for :title, t('admin.players.new.title') %>
 
-<div class="column-wrapper small-first">
+<span class="subheading">Admin Tools</span>
+<h1><%= t('admin.players.new.title') %></h1>
 
-    <!-- Navigation -->
-    <div class="thin">
-        <%= render 'admin/navigation' %>
-    </div>
-
-    <div class="wide">
-
-        <!-- Header -->
-        <div class="wrapper-header admin">
-            <div>
-                <h1 class="has-subtitle">Create a player</h1>
-                <p class="subtitle">Register a new player. The player will be sent a randomly generated password via
-                    email.</p>
-            </div>
-        </div>
-
-        <!-- Form -->
-        <div class="background">
-            <h2>Form</h2>
-            <%= render 'form' %>
-        </div>
-
-    </div>
-
-</div>
+<%= render 'form' %>

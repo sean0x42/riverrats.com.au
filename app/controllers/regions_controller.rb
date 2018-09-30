@@ -1,9 +1,11 @@
-class RegionsController < ApplicationController
+# frozen_string_literal: true
 
+# A controller for regions
+class RegionsController < ApplicationController
   # GET /regions/:slug
   def show
-    @region = Region.friendly_id.find_by! slug: params[:slug]
-    @players = @region.players_regions.page(params[:page]).per(25)
+    @region = Region.friendly_id
+                    .includes(:venues)
+                    .find_by!(slug: params[:slug])
   end
-
 end

@@ -1,35 +1,34 @@
-root = "/home/rails/river_rats/current"
-working_directory root
+# frozen_string_literal: true
 
-pid = "#{root}/tmp/pids/unicorn.pid"
+root = '/home/rails/river_rats/current'
+working_directory root
 
 stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
 
-worker_processes ENV.fetch("RAILS_MAX_THREADS") { 5 }
+worker_processes ENV.fetch('RAILS_MAX_THREADS') { 5 }
 timeout 30
 preload_app true
 
 listen '/var/sockets/unicorn.river_rats.sock', backlog: 64
 
-before_fork do |server, worker|
+before_fork do
   Signal.trap 'TERM' do
-    puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
+    Rails.logger.debug t('log.intercept_term')
     Process.kill 'QUIT', Process.pid
   end
 
-  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
 end
 
-after_fork do |server, worker|
+after_fork do
   Signal.trap 'TERM' do
-    puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
+    Rails.logger.debug t('log.term_trap')
   end
 
-  defined?(ActiveRecord::Base) and
+  defined?(ActiveRecord::Base) &&
     ActiveRecord::Base.establish_connection
 end
-
 
 # Force the bundler gemfile environment variable to
 # reference the capistrano "current" symlink

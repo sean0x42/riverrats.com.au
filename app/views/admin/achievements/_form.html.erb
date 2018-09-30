@@ -1,0 +1,33 @@
+<%= form_with model: [:admin, @achievement.becomes(Achievement)], html: { multipart: true }, class: 'modal-form' do |form| %>
+  <!-- Achievement -->
+  <div class="field">
+    <%= form.label :type, 'Achievement' %><br/>
+    <%= field_errors @achievement, :type %>
+    <%= form.select :type, options_for_select(
+        [
+            [StraightFlush.title, StraightFlush.sti_name],
+            [RoyalFlush.title, RoyalFlush.sti_name],
+            [KingOfTheWorld.title, KingOfTheWorld.sti_name]
+        ]
+    ) %>
+  </div>
+
+  <!-- Player -->
+  <div class="field">
+    <%= form.label :player_id %><br/>
+    <%= field_errors @achievement, :player_id %>
+    <%= form.hidden_field :player_id %>
+    <div class="player-input-wrapper js-achievements-input">
+      <%= form.text_field :player, class: 'player-input', name: nil, placeholder: 'Name or username', value: @player_name %>
+    </div>
+  </div>
+
+  <!-- Proof -->
+  <div class="field">
+    <%= form.label :proof %><br/>
+    <%= field_errors @achievement, :proof %>
+    <%= form.file_field :proof %>
+  </div>
+
+  <%= form.submit 'Award Achievement', class: 'button wide', data: { disable_with: 'Please wait...' } %>
+<% end %>

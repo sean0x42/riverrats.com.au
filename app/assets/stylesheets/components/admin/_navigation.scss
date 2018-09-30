@@ -1,215 +1,122 @@
 .admin-navigation {
-  position: fixed;
-  bottom: 0;
+  background: $grey-light;
+  bottom: 73px;
+  display: none;
   left: 0;
-  width: 100vw;
-  background: white;
-  border-top: 1px solid $branding-primary;
-  z-index: 20000;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
+  line-height: $body-line-height;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2000;
+
+  &[active] {
+    display: block;
+  }
+
+  h2 {
+    color: $zurple-dark;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    margin: 2rem 0 0.5rem;
+    padding-left: 1.25rem;
+    text-transform: uppercase;
+  }
 
   ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
-    padding: 0;
-    margin: 0;
     list-style-type: none;
+    margin: 0 0 1rem;
+    padding: 0;
+  }
+
+  a {
+    @include no-select();
+    $hover-color: hsl(220, 8%, 99%);
+    align-items: center;
+    border-radius: 3px;
+    color: $grey-darker;
+    display: flex;
+    fill: $grey-darker;
+    margin: 3px 0;
+    padding: 6px 1.5rem;
+
+    svg {
+      height: 22px;
+      margin-right: 0.7rem;
+      width: 22px;
+    }
+
+    &:hover {
+      background: $hover-color;
+    }
+
+    &.active {
+      background: $white;
+      color: $zurple-dark;
+      fill: $zurple-dark;
+    }
+  }
+}
+
+.mobile-admin-navigation-trigger {
+  align-items: center;
+  background: $zurple-dark;
+  border: 0;
+  border-radius: 50%;
+  bottom: 90px;
+  color: $zurple-dark-inverted;
+  cursor: pointer;
+  display: flex;
+  fill: $zurple-dark-inverted;
+  flex-direction: column;
+  height: 55px;
+  justify-content: center;
+  position: fixed;
+  right: 10px;
+  width: 55px;
+  z-index: 11;
+
+  span {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 980px) {
+  .admin-navigation {
+    bottom: 0;
+    top: 64px;
+  }
+
+  .mobile-admin-navigation-trigger {
+    bottom: 10px;
+  }
+}
+
+@media (min-width: 1080px) {
+  .admin-navigation {
+    background: none;
+    bottom: unset;
+    display: block;
+    left: unset;
+    position: sticky;
+    right: unset;
+    top: 100px;
+    width: 270px;
+
+    h2 {
+      padding-left: 0.75rem;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
 
     a {
-      @include no-select;
-      display: flex;
-      flex-direction: column;
-      font-size: 14px;
-      color: lighten($generic-text, 15%);
-      border-radius: 3px;
-      align-items: center;
-      padding: 6px 0.5rem;
-      margin: 3px 0;
-      text-decoration: none;
-
-      i {
-        padding-top: 6px;
-        font-size: 26px;
-        color: lighten($generic-text, 25%);
-      }
-
-      &:hover {
-        background: hsl(220, 8%, 99%);
-      }
-
-      &.active {
-        color: darken($branding-primary, 5%);
-        i { color: $branding-primary; }
-      }
-
+      padding: 6px 1rem;
     }
-
   }
 
-  h2,
-  hr,
-  .copyright,
-  #regions,
-  #venues {
+  .mobile-admin-navigation-trigger {
     display: none;
   }
-
-  .overflow-navigation {
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    bottom: 75px;
-    background: white;
-    overflow-y: auto;
-    padding: 1rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 100ms;
-
-    h2 {
-      display: block;
-      color: lighten($generic-text-bold, 30%);
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-      margin: 2rem 0 0;
-      padding-left: 12px;
-    }
-
-    ul {
-      display: block;
-      margin: 0.5rem 0 1rem;
-
-      a {
-        flex-direction: row;
-        font-size: $font-size;
-        padding: 6px 12px;
-        margin: 3px 0;
-
-        i {
-          padding-top: 0;
-          font-size: 21px;
-          margin: -3px 0.75rem -3px 0;
-        }
-
-        &.active {
-          background: white;
-        }
-
-      }
-
-      .more {
-        display: none;
-      }
-
-      &.actions,
-      &.danger-zone {
-        display: block;
-      }
-
-    }
-
-  }
-
-  &.open .overflow-navigation {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-}
-
-@media (min-width: 410px) {
-  .admin-navigation #venues {
-    display: block;
-  }
-}
-
-@media (min-width: 510px) {
-  .admin-navigation #regions {
-    display: block;
-  }
-}
-
-
-@media (min-width: 1000px) {
-
-  .admin-navigation {
-    position: relative;
-    width: 270px;
-    flex-shrink: 0;
-    margin-right: 2rem;
-    border-radius: 3px;
-    border-top: none;
-    background: unset;
-    box-shadow: unset;
-
-    h2 {
-      display: block;
-      color: lighten($generic-text-bold, 30%);
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-      margin: 3rem 0 0;
-      padding-left: 12px;
-    }
-
-    & > h2:first-child { margin: 0; }
-
-    ul {
-      display: block;
-      margin: 0.5rem 0 1rem;
-
-      a {
-        flex-direction: row;
-        font-size: $font-size;
-        padding: 6px 12px;
-        margin: 3px 0;
-
-        i {
-          padding-top: 0;
-          font-size: 21px;
-          margin: -3px 0.75rem -3px 0;
-        }
-
-        &.active { background: white; }
-      }
-
-      .more { display: none; }
-      &.actions, &.danger-zone { display: block; }
-    }
-
-    hr {
-      display: block;
-      border: none;
-      border-top: 1px solid $border-on-grey;
-      margin: 2rem 0 1.5rem;
-    }
-
-    .copyright {
-      display: inline;
-      font-size: 15px;
-      margin: 2rem 0 0;
-      padding-left: 12px;
-      color: lighten($generic-text, 28%);
-    }
-
-    .overflow-navigation {
-      position: relative;
-      background: none;
-      top: unset;
-      bottom: unset;
-      padding: 0;
-      opacity: 1;
-      pointer-events: all;
-
-      .normal-nav {
-        display: none;
-      }
-    }
-
-  }
-
 }

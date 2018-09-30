@@ -1,26 +1,21 @@
-class Admin::EventsController < ApplicationController
+# frozen_string_literal: true
 
+require 'flash_message'
+
+# A controller for events in the admin scope
+class Admin::EventsController < ApplicationController
   layout 'admin'
+
+  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/events
   def index
-
-    all = SingleEvent.all
-
-    if params.has_key? :query
-      @events = SingleEvent.search params[:query], page: params[:page], per_page: 25
-    else
-      @events = SingleEvent.where('start_at > ?', Time.now - 2.weeks).page params[:page]
-    end
-
-    @stats = {
-      finished: all.where('start_at < ?', Time.now).count,
-      upcoming: all.where('start_at > ? AND start_at < ?', Time.now, Time.now + 2.weeks).count,
-      recurring: RecurringEvent.count
-    }
-
+    @events = SingleEvent
+              .includes(:venue)
+              .where('start_at > ?', Time.zone.now - 3.days)
+              .page(params[:page])
   end
 
   # GET /admin/events/new
@@ -29,21 +24,21 @@ class Admin::EventsController < ApplicationController
   end
 
   # POST /admin/events
-  # noinspection RailsChecklist01
   def create
-    @event = Event.new event_params
+    p = create_event_params
+    @event = if p[:repeats] == '1'
+               RecurringEvent.new(p)
+             else
+               SingleEvent.new(p)
+             end
 
     if @event.save
-      flash[:success] = FlashMessage.new(
-        'Success!',
-        t('event.create') % {
-          event: @event.clean_title,
-          link: event_path(@event)
-        }
-      )
-      redirect_to admin_events_path
+      redirect_to admin_events_path, notice: t('admin.events.create.flash')
     else
-      render 'new'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.js { render 'failure' }
+      end
     end
   end
 
@@ -56,15 +51,8 @@ class Admin::EventsController < ApplicationController
   def update
     @event = Event.find params[:id]
 
-    if @event.update event_params
-      flash[:success] = FlashMessage.new(
-        'Success!',
-        t('event.update') % {
-          event: @event.clean_title,
-          link: event_path(@event)
-        }
-      )
-      redirect_to admin_events_path
+    if @event.update(edit_event_params)
+      redirect_to admin_events_path, notice: t('admin.events.update.flash')
     else
       render 'edit'
     end
@@ -73,31 +61,21 @@ class Admin::EventsController < ApplicationController
   # DELETE /admin/events/:id
   def destroy
     @event = Event.find params[:id]
+    @event.destroy_from_date(params[:from])
 
-    if params.has_key? :from
-      @events = SingleEvent.where(recurring_event_id: @event.id).where(['id >= ?', params[:from]])
-      @events.destroy_all
-    end
-
-    @event.destroy
-
-    redirect_to admin_events_path, notice: t('event.destroy') % { event: @event.clean_title }
+    redirect_to admin_events_path, notice: t('admin.events.destroy.flash')
   end
 
   private
 
-  def event_params
+  def create_event_params
     params.require(:event).permit(
       :title, :description, :start_at, :venue_id,
-      :type, :period, :interval, day: []
+      :repeats, :period, :interval, day: []
     )
   end
 
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
+  def edit_event_params
+    params.require(:event).permit(:title, :description, :start_at, :venue_id)
   end
-
 end

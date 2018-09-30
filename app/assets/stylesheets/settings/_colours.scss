@@ -1,30 +1,55 @@
-// Branding colours
-$branding-primary: hsl(282, 34%, 45%);
-$branding-primary-rotated: adjust-hue($branding-primary, 20deg);
-$branding-primary-text: hsl(282, 10%, 99%);
+// Zurple
+$zurple-dark: hsl(278, 42%, 51%);
+$zurple-dark-inverted: hsl(278, 14%, 97%);
+$zurple: hsl(278, 50%, 55%);
+$zurple-inverted: hsl(278, 14%, 99%);
+$zurple-light: hsl(278, 51%, 61%);
+$zurple-light-inverted: hsl(278, 14%, 95%);
+$zurple-lighter: hsl(278, 51%, 71%);
+$zurple-lighter-inverted: hsl(278, 14%, 95%);
 
-$branding-secondary: hsl(88, 50%, 53%);
-$branding-secondary-rotated: adjust_hue($branding-secondary, 14deg);
-$branding-secondary-text: hsl(88, 10%, 96%);
+// Darcula
+$darcula-dark: hsl(270, 21%, 13%);
+$darcula-dark-inverted: hsl(270, 20%, 90%);
+$darcula: hsl(273, 21%, 14%);
+$darcula-inverted: hsl(273, 20%, 90%);
+$darcula-light: hsl(270, 13%, 22%);
+$darcula-light-inverted: hsl(270, 20%, 90%);
+
+$search: hsla(270, 8%, 29%, 0.7);
+$search-inverted: hsl(270, 8%, 94%);
+
+$new: hsl(145, 63%, 49%);
+$new-inverted: hsl(145, 15%, 98%);
+$improved: hsl(212, 68%, 50%);
+$improved-inverted: hsl(212, 15%, 94%);
+$deprecated: hsl(2, 58%, 50%);
+$deprecated-inverted: hsl(2, 15%, 96%);
+$removed: hsl(2, 58%, 50%);
+$removed-inverted: hsl(2, 15%, 96%);
+$fixed: hsl(168, 76%, 36%);
+$fixed-inverted: hsl(168, 15%, 96%);
+$security: hsl(6, 78%, 57%);
+$security-inverted: hsl(6, 15%, 95%);
 
 // Interface colours
-$danger-red: hsl(11, 70%, 57%);
-$danger-red-rotated: adjust-hue($danger-red, 4deg);
-$danger-text: hsl(11, 15%, 97%);
-
-$acceptance-green: hsl(145, 67%, 45%);
-
-$breakdown: $branding-primary; // hsl(38, 90%, 51%);
-$breakdown-rotated: adjust_hue($breakdown, 8deg);
-$breakdown-text: hsl(38, 15%, 21%);
+$danger: hsl(11, 70%, 57%);
+$danger-inverted: hsl(11, 15%, 97%);
+$danger-red-rotated: adjust-hue($danger, 4deg);
 
 // Default text colours
-$generic-text: hsl(282, 15%, 25%);
-$generic-text-bold: darken($generic-text, 15%);
+$text: hsl(278, 15%, 33%);
+$text-bold: hsl(278, 15%, 28%);
 
-$border-on-white: hsl(282, 15%, 94%);
-$border-on-grey: hsl(282, 15%, 87%);
+// Grey
+$grey-darker: hsl(278, 20%, 50%);
+$grey-dark: hsl(278, 20%, 91%);
+$grey-dark-inverted: hsl(278, 21%, 48%);
+$grey: hsl(278, 20%, 94%);
+$grey-inverted: hsl(278, 21%, 48%);
+$grey-light: hsl(278, 20%, 97%);
+$grey-light-inverted: hsl(278, 21%, 40%);
+$grey-lighter: hsl(278, 18%, 98%);
 
-$button-border: hsl(282, 15%, 92%);
-$input-border: darken($border-on-white, 4%);
-$input-background: lighten($border-on-white, 3%);
+$transparent: rgba(0, 0, 0, 0);
+$white: #ffffff;

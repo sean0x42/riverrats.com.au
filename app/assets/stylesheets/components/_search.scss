@@ -1,32 +1,29 @@
 .search-wrapper {
+  background: $search;
+  border-radius: 3px;
+  color: $search-inverted;
+  max-width: 350px;
+  overflow: hidden;
   position: relative;
   width: 100%;
-  max-width: 400px;
-  border-radius: 3px;
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.02),
-  0 5px 15px rgba(0, 0, 0, 0.02);
 
-  input[type="submit"] { display: none; }
+  input[type="submit"] {
+    display: none;
+  }
 
   input[type="search"] {
+    background: none;
+    border: 0;
+    color: inherit;
     font-size: $font-size - 1px;
-    color: $generic-text;
-    padding: 15px 15px 15px 52px;
-    line-height: 1.0;
+    line-height: 1;
+    padding: 10px;
     width: 100%;
-    border: none;
   }
+}
 
-  i {
-    position: absolute;
-    top: 0;
-    font-size: 21px;
-    color: lighten($generic-text, 25%);
-    transition: color 200ms;
-    padding: 12px 1.2rem;
-    pointer-events: none;
+@media (min-width: 980px) {
+  .search-wrapper {
+    margin-right: 1rem;
   }
-
 }

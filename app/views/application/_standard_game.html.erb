@@ -1,0 +1,8 @@
+<tr>
+  <td class="stretch">
+    <%= link_to game_path(standard_game) do %>
+      <span class="highlight">Game <%= standard_game.name %></span> at the <%= standard_game.venue.name %>
+    <% end %>
+  </td>
+  <td><%= standard_game.played_on.strftime '%B %d, %Y' %></td>
+</tr>

@@ -1,113 +1,70 @@
-<%= form_with model: [:admin, @game], local: true do |form| %>
+<%= form_with model: [:admin, @game], class: 'modal-form game-form' do |form| %>
 
-    <%= render partial: 'application/form-errors', locals: { object: @game } %>
+  <!-- Date played -->
+  <div class="field">
+    <%= form.label :played_on %><br/>
+    <%= field_errors @game, :played_on %>
+    <%= form.date_field :played_on, placeholder: 'Click to edit' %>
+  </div>
 
-    <!-- Game information -->
-    <section>
-        <div class="section-outline">
-            <h2><span>I</span>Game details</h2>
-        </div>
-        <div class="section-content">
+  <!-- Venue -->
+  <div class="field">
+    <%= form.label :venue_id %><br/>
+    <%= field_errors @game, :venue_id %>
+    <%= form.collection_select :venue_id, Venue.all, :id, :name %>
+  </div>
 
-            <!-- Date played -->
-            <div class="field">
-                <%= form.label :played_on, for: 'game_played_on' %>
-                <div class="input-wrapper">
-                    <i class="material-icons">&#xE916;</i>
-                    <%= form.text_field :played_on, id: 'game_played_on', class: 'date-input', placeholder: 'Click to edit' %>
-                </div>
-            </div>
+  <!-- Season -->
+  <div class="field">
+    <%= form.label :season_id %><br/>
+    <%= field_errors @game, :season_id %>
+    <%= form.collection_select :season_id, Season.all.order(start_at: :desc).limit(10), :id, :name %>
+  </div>
 
-            <!-- Venue -->
-            <div class="field">
-                <%= form.label :venue_id, for: 'game_venue_id' %><br/>
-                <%= form.collection_select :venue_id, Venue.all, :id, :name, {}, { id: 'game_venue_id' } %>
-            </div>
+  <div class="player-area-header">
+    <h2><%= t('admin.games.new.add_players') %></h2>
+    <%= link_to 'Create player', new_admin_player_path, class: 'anchor', remote: true, data: { expects_modal: true } %>
+  </div>
 
-            <!-- Season -->
-            <div class="field">
-                <%= form.label :season_id, for: 'game_season_id' %><br/>
-                <%= form.collection_select :season_id, Season.all.order(start_at: :desc).limit(10), :id, :name, {}, { id: 'game_season_id' } %>
-            </div>
+  <%= field_errors @game, :games_players %>
 
-        </div>
+  <div class="player-area" id="js-game-players">
+    <%= render 'empty_players', show: @game.games_players.empty? %>
+    <ul class="players js-sortable" style="<%= 'display: none' if @game.games_players.empty? %>" data-scope="player">
+      <%= form.fields_for :games_players do |players_form| -%>
+        <%= render 'games_player_fields', form: players_form %>
+      <% end -%>
+    </ul>
+  </div>
 
-    </section>
-
-    <!-- Game players -->
-    <section>
-        <div class="section-outline">
-            <h2><span>II</span>Players</h2>
-        </div>
-
-        <div class="section-content">
-
-            <!-- Players -->
-            <div class="field">
-                <p class="tip"><strong>Hint:</strong> Drag and drop players using <i class="material-icons drag-handle">drag_indicator</i> to reorder them.</p>
-
-                <div id="games_players" class="player-list sortable">
-                    <%= form.fields_for :games_players do |game_player| %>
-                        <%= render 'games_player_fields', f: game_player %>
-                    <% end %>
-                </div>
-
-                <h3>Add Players</h3>
-                <p>Search for players by their username, or full name. Missing someone? <%= link_to 'Create a new player', new_admin_player_path, target: '_blank' %>.</p>
-
-                <div class="player-input-wrapper">
-                    <%= form.text_field :player, class: 'typeahead player-input', name: nil, placeholder: 'Name or username' %>
-                    <%= link_to_add_association 'Add player', form, :games_players, class: 'button-secondary',
-                                                data: {
-                                                    'association-insertion-node': '.player-list#games_players',
-                                                    'association-insertion-method': 'append'
-                                                } %>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Referees -->
-    <section>
-
-        <div class="section-outline">
-            <h2><span>III</span>Tournament directors</h2>
-        </div>
-
-        <div class="section-content">
-
-            <div class="field">
-
-                <div id="referees" class="player-list">
-                    <%= form.fields_for :referees do |referee| %>
-                        <%= render 'referee_fields', f: referee %>
-                    <% end %>
-                </div>
-
-                <h3>Add Directors</h3>
-                <p>Search for players by their username, or full name.</p>
-
-                <div class="player-input-wrapper">
-                    <%= form.text_field :player, class: 'typeahead player-input', name: nil, placeholder: 'Name or username' %>
-                    <%= link_to_add_association 'Add director', form, :referees, class: 'button-secondary',
-                                                data: {
-                                                    'association-insertion-node': '.player-list#referees',
-                                                    'association-insertion-method': 'append'
-                                                } %>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <div class="buttons">
-        <%= form.submit class: 'button' %>
-        <%= link_to 'Cancel', admin_games_path, class: 'button-tertiary' %>
+  <div class="player-area-footer">
+    <div class="player-input-wrapper" id="js-game-players-input">
+      <input type="text" class="player-input" placeholder="Name or username">
+      <button class="player-input-submit button-secondary">Add player</button>
     </div>
+  </div>
 
+  <div class="player-area-header">
+    <h2><%= t('admin.games.new.add_tournament_directors') %></h2>
+  </div>
+
+  <%= field_errors @game, :referees %>
+
+  <div class="player-area" id="js-game-referees">
+    <%= render 'empty_referees', show: @game.referees.empty? %>
+    <ul class="players" style="<%= 'display: none' if @game.referees.empty? %>" data-scope="referee">
+      <%= form.fields_for :referees do |referees_form| -%>
+        <%= render 'referee_fields', form: referees_form %>
+      <% end -%>
+    </ul>
+  </div>
+
+  <div class="player-area-footer">
+    <div class="player-input-wrapper" id="js-game-referees-input">
+      <input type="text" class="player-input" placeholder="Name or username">
+      <button class="player-input-submit button-secondary">Add TD</button>
+    </div>
+  </div>
+
+  <%= form.submit class: 'button wide', name: nil, data: { disable_with: 'Please wait...' } %>
 <% end %>

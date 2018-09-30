@@ -1,16 +1,18 @@
-class Admin::RegionsController < ApplicationController
+# frozen_string_literal: true
 
+require 'flash_message'
+
+# A controller for regions in the admin scope
+class Admin::RegionsController < ApplicationController
   layout 'admin'
+
+  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/regions
   def index
-    if params.has_key? :query
-      @regions = Region.search params[:query], page: params[:page], per_page: 25
-    else
-      @regions = Region.page params[:page]
-    end
+    @regions = Region.page params[:page]
   end
 
   # GET /admin/regions/new
@@ -23,10 +25,12 @@ class Admin::RegionsController < ApplicationController
     @region = Region.new region_params
 
     if @region.save
-      flash[:notice] = t('region.create') % {region: @region.name }
-      redirect_to admin_regions_path
+      redirect_to admin_regions_path, notice: t('admin.regions.create.flash')
     else
-      render 'new'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.js { render 'failure' }
+      end
     end
   end
 
@@ -40,8 +44,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.friendly.find params[:id]
 
     if @region.update region_params
-      flash[:notice] = t('region.update') % {region: @region.name }
-      redirect_to admin_regions_path
+      redirect_to admin_regions_path, notice: t('admin.regions.update.flash')
     else
       render 'edit'
     end
@@ -52,20 +55,12 @@ class Admin::RegionsController < ApplicationController
     @region = Region.friendly.find params[:id]
     @region.destroy
 
-    flash[:notice] = t('region.destroy') % {region: @region.name }
-    redirect_to admin_regions_path
+    redirect_to admin_regions_path, notice: t('admin.regions.destroy.flash')
   end
 
   private
 
   def region_params
     params.require(:region).permit(:name)
-  end
-
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
   end
 end

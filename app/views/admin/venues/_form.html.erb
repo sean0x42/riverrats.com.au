@@ -1,105 +1,80 @@
-<%= form_for [:admin, @venue] do |form| %>
+<%= form_with model: [:admin, @venue], class: 'modal-form' do |form| %>
 
-    <%= render partial: 'application/form-errors', locals: { object: @venue } %>
+  <!-- Name -->
+  <div class="field">
+    <%= form.label :name %><br/>
+    <%= field_errors @venue, :name %>
+    <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Nabiac Hotel' %>
+  </div>
 
-    <section>
-        <div class="section-outline">
-            <h2><span>I</span>Venue details</h2>
-        </div>
-        <div class="section-content">
+  <!-- Phone -->
+  <div class="field">
+    <%= form.label :phone_number %><br/>
+    <%= field_errors @venue, :phone_number %>
+    <%= form.telephone_field :phone_number %>
+  </div>
 
-            <!-- Name -->
-            <div class="field">
-                <%= form.label :name, for: 'venue_name' %><br/>
-                <%= form.text_field :name, id: 'venue_name', autofocus: true, spellcheck: false, placeholder: 'e.g. Nabiac Hotel' %>
-            </div>
+  <!-- Website -->
+  <div class="field">
+    <%= form.label :website %><br/>
+    <%= field_errors @venue, :website %>
+    <%= form.text_field :website %>
+  </div>
 
-            <!-- Phone -->
-            <div class="field">
-                <%= form.label :phone_number %><br/>
-                <%= form.telephone_field :phone_number %>
-            </div>
+  <!-- Facebook -->
+  <div class="field">
+    <%= form.label :facebook, 'Facebook URL' %><br/>
+    <%= field_errors @venue, :facebook %>
+    <%= form.text_field :facebook, placeholder: 'https://www.facebook.com/...' %>
+  </div>
 
-            <!-- URLS -->
-            <div class="fields">
+  <!-- Image -->
+  <div class="field">
+    <%= form.label :image %><br/>
+    <%= form.file_field :image %>
+  </div>
 
-                <!-- Website -->
-                <div class="field">
-                    <%= form.label :website %><br />
-                    <%= form.text_field :website %>
-                </div>
+  <h2>Venue Location</h2>
 
-                <!-- Facebook -->
-                <div class="field">
-                    <%= form.label :facebook, 'Facebook URL' %><br />
-                    <%= form.text_field :facebook, placeholder: 'https://www.facebook.com/...' %>
-                </div>
+  <!-- Address -->
+  <div class="field">
+    <%= form.label :address_line_one, 'Address' %><br/>
+    <%= field_errors @venue, :address_line_one %>
+    <%= form.text_field :address_line_one, placeholder: 'Line 1' %>
+  </div>
 
-            </div>
+  <div class="field">
+    <%= field_errors @venue, :address_line_two %>
+    <%= form.text_field :address_line_two, placeholder: 'Line 2 (Optional)' %>
+  </div>
 
-            <!-- Image -->
-            <div class="field">
-                <label>Image</label>
-                <div class="file-button">
-                    <%= form.label :image, class: 'button-secondary' do %>
-                        <i class="material-icons">&#xE2C6;</i>
-                        <span>No file chosen</span>
-                    <% end %>
-                </div>
-                <%= form.file_field :image %>
-            </div>
+  <!-- Suburb -->
+  <div class="field">
+    <%= form.label :suburb, 'City/Suburb' %><br/>
+    <%= field_errors @venue, :suburb %>
+    <%= form.text_field :suburb %>
+  </div>
 
-        </div>
-    </section>
+  <!-- Post Code -->
+  <div class="field">
+    <%= form.label :post_code %><br/>
+    <%= field_errors @venue, :post_code %>
+    <%= form.number_field :post_code %>
+  </div>
 
+  <!-- State -->
+  <div class="field">
+    <%= form.label :state %><br/>
+    <%= field_errors @venue, :state %>
+    <%= form.select :state, Venue.states.keys %>
+  </div>
 
-    <section>
-        <div class="section-outline">
-            <h2><span>II</span>Location</h2>
-        </div>
-        <div class="section-content">
+  <!-- Region -->
+  <div class="field">
+    <%= form.label :region_id %><br/>
+    <%= field_errors @venue, :region_id %>
+    <%= form.collection_select :region_id, Region.all, :id, :name %>
+  </div>
 
-            <!-- Address -->
-            <div class="field">
-                <%= form.label :address_line_one, 'Address' %><br />
-                <%= form.text_field :address_line_one, placeholder: 'Line 1' %>
-                <%= form.text_field :address_line_two, placeholder: 'Line 2 (Optional)' %>
-            </div>
-
-            <div class="fields">
-
-                <!-- Suburb -->
-                <div class="field">
-                    <%= form.label :suburb, 'City/Suburb' %><br/>
-                    <%= form.text_field :suburb %>
-                </div>
-
-                <!-- Post Code -->
-                <div class="field">
-                    <%= form.label :post_code %><br/>
-                    <%= form.number_field :post_code %>
-                </div>
-
-            </div>
-
-            <!-- State -->
-            <div class="field">
-                <%= form.label :state %><br/>
-                <%= form.select :state, Venue.states.keys.map { |state| [state.titleize, state] } %>
-            </div>
-
-            <!-- Region -->
-            <div class="field">
-                <%= form.label :region_id, for: 'venue_region_id' %><br/>
-                <%= form.collection_select :region_id, Region.all, :id, :name, {}, { id: 'venue_region_id' } %>
-            </div>
-
-        </div>
-    </section>
-
-    <div class="actions buttons">
-        <%= form.submit class: 'button' %>
-        <%= link_to 'Cancel', admin_venues_path, class: 'button-tertiary' %>
-    </div>
-
-<% end %>
+  <%= form.submit class: 'button wide', data: { disable_with: 'Please wait...' } %>
+<% end -%>

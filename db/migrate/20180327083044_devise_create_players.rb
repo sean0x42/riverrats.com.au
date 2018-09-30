@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DeviseCreatePlayers < ActiveRecord::Migration[5.1]
   def change
     create_table :players do |t|

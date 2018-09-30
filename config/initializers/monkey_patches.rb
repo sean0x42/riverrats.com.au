@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module CoreExtensions
   module Integer
     module RomanNumerals
       def to_roman
-        result = ""
+        result = ''
         number = self
         roman_mapping.keys.each do |divisor|
           quotient, modulus = number.divmod divisor

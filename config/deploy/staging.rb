@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 set :stage, :production
 
 # server-based syntax
@@ -11,8 +13,7 @@ set :stage, :production
 
 server '167.99.165.98',
        user: 'rails',
-       roles: %w{app db web}
-
+       roles: %w[app db web]
 
 # role-based syntax
 # ==================
@@ -26,8 +27,6 @@ server '167.99.165.98',
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -35,7 +34,6 @@ server '167.99.165.98',
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
 
 # Custom SSH Options
 # ==================

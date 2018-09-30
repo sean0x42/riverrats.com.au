@@ -1,0 +1,26 @@
+<div class="empty-wrapper">
+
+  <!-- Table of placeholders -->
+  <table class="empty-table">
+    <% 5.times do %>
+      <tr style="border: none;">
+        <td class="placeholder"><span style="width: <%= Random.rand(100..230) %>px"></span></td>
+        <td class="placeholder stretch"><span style="width: <%= Random.rand(100..230) %>px"></span></td>
+        <td class="placeholder numeric"><span style="width: <%= Random.rand(80..120) %>px"></span></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <!-- Empty state text -->
+  <div class="empty-state">
+    <div>
+      <h1><%= t('empty_state') %></h1>
+      <% if params.has_key? :query %>
+        <p>We couldn't find any <%= noun %> that match '<strong><%= params[:query] %></strong>'.</p>
+      <% else %>
+        <p>You haven't created an <%= noun %> yet! <%= link_to 'Create one now', link %>.</p>
+      <% end %>
+    </div>
+  </div>
+
+</div>

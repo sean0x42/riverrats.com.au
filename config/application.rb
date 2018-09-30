@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -11,7 +13,6 @@ Bundler.require(*Rails.groups)
 
 module RiverratsComAu
   class Application < Rails::Application
-
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
@@ -31,13 +32,10 @@ module RiverratsComAu
       "#{config.root}/app/models/achievements/wins"
     ]
 
-    # Register observers
-    config.active_record.observers = [:games_players_observer, :game_observer]
+    # Action View
+    config.action_view.form_with_generates_ids = true
 
     # Set default time zone
-    config.time_zone = "Sydney"
-
-    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
-
+    config.time_zone = 'Sydney'
   end
 end

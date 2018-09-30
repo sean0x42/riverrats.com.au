@@ -1,80 +1,42 @@
-<%- content_for :title, 'All Events (Admin)' %>
+<% content_for :title, t('admin.events.index.title') %>
 
-<div class="column-wrapper small-first">
+<div class="heading-and-button">
+  <div>
+    <span class="subheading">Admin Tools</span>
+    <h1><%= t('admin.events.index.title') %></h1>
+  </div>
+  <div>
+    <%= link_to new_admin_event_path, class: 'button', remote: true, data: { expects_modal: true } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="material-icons" style="margin-left: -3px">
+        <path d="M11.99,2C6.47,2,2,6.48,2,12c0,5.52,4.47,10,9.99,10C17.52,22,22,17.52,22,12C22,6.48,17.52,2,11.99,2z M12,20c-4.42,0-8-3.58-8-8c0-4.42,3.58-8,8-8s8,3.58,8,8C20,16.42,16.42,20,12,20z"></path>
+        <path d="M11.78,7h-0.06C11.32,7,11,7.32,11,7.72v4.72c0,0.35,0.18,0.68,0.49,0.86l4.15,2.49c0.34,0.2,0.78,0.1,0.98-0.24v0c0.21-0.34,0.1-0.79-0.25-0.99l-3.87-2.3V7.72C12.5,7.32,12.18,7,11.78,7z"></path>
+      </svg>
+      <span><%= t('admin.events.new.title') %></span>
+    <% end %>
+  </div>
+</div>
 
-    <!-- Navigation -->
-    <div class="thin">
-        <%= render 'admin/navigation' %>
-    </div>
+<div class="breakdown">
+  <!-- Events completed -->
+  <div>
+    <h2>Events held</h2>
+    <p><%= number_format SingleEvent.in_the_past.count %></p>
+  </div>
 
-    <div class="wide">
+  <!-- Events upcoming -->
+  <div>
+    <h2>Upcoming</h2>
+    <p><%= number_format SingleEvent.upcoming.count %></p>
+  </div>
+</div>
 
-        <!-- Header -->
-        <div class="wrapper-header admin">
-            <div>
-                <h1 class="has-subtitle">Events</h1>
-                <p class="subtitle">Here you can view and manage all events.</p>
-            </div>
-            <%= render 'admin/buttons' %>
-        </div>
+<div class="events-list model-list">
+  <table>
+    <%= render collection: @events, partial: 'admin/events/event' %>
+  </table>
+</div>
 
-        <!-- Breakdown -->
-        <div class="background">
-            <h2><i class="material-icons">&#xE8E5;</i> Breakdown</h2>
-
-            <div class="stats">
-
-                <!-- Finished events -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @stats[:finished] %></p>
-                    <p class="label">events held</p>
-                </div>
-
-                <!-- Upcoming events -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @stats[:upcoming] %></p>
-                    <p class="label">upcoming events</p>
-                </div>
-
-                <!-- Recurring events -->
-                <div class="stat">
-                    <p class="numeric"><%= number_with_delimiter @stats[:recurring] %></p>
-                    <p class="label">recurring events</p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Event list -->
-        <div class="background">
-
-            <h2><i class="material-icons">&#xE616;</i> Events</h2>
-
-            <% if @events.empty? %>
-                <%= render partial: 'admin/empty-state', locals: {noun: 'events', link: new_admin_event_path} %>
-            <% else %>
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th class="stretch"></th>
-                            <th>Start time</th>
-                        </tr>
-                        <%= render collection: @events, partial: 'admin/events/event' %>
-                    </table>
-                </div>
-            <% end %>
-
-            <div class="background-footer">
-                <%= paginate @events %>
-                <p><%= page_entries_info @events %></p>
-            </div>
-
-        </div>
-
-    </div>
-
+<div class="model-list-footer">
+  <%= paginate @events %>
+  <p><%= page_entries_info @events %></p>
 </div>

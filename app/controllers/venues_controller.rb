@@ -1,9 +1,11 @@
-class VenuesController < ApplicationController
+# frozen_string_literal: true
 
+# A controller for venues
+class VenuesController < ApplicationController
   # GET /venues/:slug
   def show
-    @venue = Venue.friendly_id.find_by! slug: params[:slug]
-    @players = @venue.players_venues.page(params[:page]).per(25)
+    @venue = Venue.friendly_id
+                  .includes(:players_venues, :players)
+                  .find_by!(slug: params[:slug])
   end
-
 end

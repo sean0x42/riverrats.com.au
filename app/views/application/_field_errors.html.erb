@@ -1,0 +1,8 @@
+<% errors = model.errors[field] -%>
+<% unless errors.empty? -%>
+  <ul class="field-errors">
+    <% errors.each do |message| -%>
+      <li><%= message %></li>
+    <% end -%>
+  </ul>
+<% end -%>

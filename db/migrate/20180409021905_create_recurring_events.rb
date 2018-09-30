@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 class CreateRecurringEvents < ActiveRecord::Migration[5.1]
   def change
-    add_column :events, :period,   :integer, limit: 1, default: 1
-    add_column :events, :interval, :integer, limit: 2, default: 1
-    add_column :events, :days,     :text
+    change_table :events, bulk: true do |t|
+      t.integer :period,   limit: 1, default: 1
+      t.integer :interval, limit: 2, default: 1
+      t.text :days
+    end
   end
 end

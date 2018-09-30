@@ -1,4 +1,6 @@
-desc "Check that cap can access everything"
+# frozen_string_literal: true
+
+desc 'Check that cap can access everything'
 task :check_file_permissions do
   on roles(:app) do |host|
     if test("[ -w #{fetch(:deploy_to)} ]")

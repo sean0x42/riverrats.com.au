@@ -1,49 +1,22 @@
-<%- content_for :title, 'All Venues (Admin)' %>
+<% content_for :title, t('admin.venues.index.title') %>
 
-<div class="column-wrapper small-first">
+<div class="heading-and-button">
+  <div>
+    <span class="subheading">Admin Tools</span>
+    <h1>Venues</h1>
+  </div>
+  <div>
+    <%= link_to t('admin.venues.new.title'), new_admin_venue_path, class: 'button' %>
+  </div>
+</div>
 
-    <!-- Navigation -->
-    <div class="thin">
-        <%= render 'admin/navigation' %>
-    </div>
+<div class="venue-list model-list">
+  <table>
+    <%= render @venues %>
+  </table>
+</div>
 
-    <div class="wide">
-
-        <!-- Header -->
-        <div class="wrapper-header admin">
-            <div>
-                <h1 class="has-subtitle">Venues</h1>
-                <p class="subtitle">Here you can view and manage all venues.</p>
-            </div>
-            <%= render 'admin/buttons' %>
-        </div>
-
-        <!-- Venue list -->
-        <div class="background">
-
-            <h2><i class="material-icons">&#xE8F9;</i> Venues</h2>
-
-            <% if @venues.empty? %>
-                <%= render partial: 'admin/empty-state', locals: {noun: 'venues', link: new_admin_venue_path} %>
-            <% else %>
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th class="stretch">Region</th>
-                        </tr>
-                        <%= render @venues %>
-                    </table>
-                </div>
-            <% end %>
-
-            <div class="background-footer">
-                <%= paginate @venues %>
-                <p><%= page_entries_info @venues %></p>
-            </div>
-
-        </div>
-
-    </div>
-
+<div class="model-list-footer">
+  <%= paginate @venues %>
+  <p><%= page_entries_info @venues %></p>
 </div>

@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
+# Players registration controller
 class Players::RegistrationsController < Devise::RegistrationsController
-
-  layout :resolve_layout
-
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  respond_to :html, :js
 
   # GET /resource/sign_up
   # def new
@@ -11,9 +12,9 @@ class Players::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -39,24 +40,12 @@ class Players::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-
-  private
-
-  def resolve_layout
-    case action_name
-    when 'edit'
-      'application'
-    else
-      'authentication'
-    end
-  end
-
-
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email])
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: %i[first_name last_name email])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

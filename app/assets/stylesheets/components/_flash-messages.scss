@@ -1,0 +1,92 @@
+.flash-messages {
+  bottom: 76px;
+  padding: 0.5rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.flash {
+  align-items: center;
+  background: $white;
+  border: 2px solid $zurple;
+  border-radius: $border-radius;
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: 40px 1fr 40px;
+  line-height: $body-line-height;
+  margin-top: 0.75rem;
+  padding-right: 1rem;
+  width: 100%;
+
+  &.flash-error {
+    border-color: $danger;
+
+    .flash-icon {
+      background: $danger;
+    }
+
+    .flash-close svg.material-icons {
+      fill: $danger;
+    }
+  }
+
+  .flash-icon {
+    align-self: stretch;
+    background: $zurple;
+    line-height: 1;
+    padding: 18px 0.5rem;
+    vertical-align: middle;
+
+    svg {
+      fill: $zurple-inverted;
+    }
+  }
+
+  .flash-body {
+    padding: 0.5rem 0;
+  }
+
+  h3 {
+    font-size: $font-size;
+    line-height: $body-line-height;
+    margin: 0.5rem 0 -0.25rem;
+  }
+
+  p {
+    font-size: $font-size;
+    margin: 0.5rem 0;
+  }
+
+  .flash-close {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    fill: $zurple;
+    line-height: 1;
+    margin: 0;
+    padding: 0.5rem;
+    vertical-align: middle;
+    width: 40px;
+
+    svg {
+      line-height: 1;
+      vertical-align: middle;
+    }
+  }
+}
+
+@media (min-width: 980px) {
+  .flash-messages {
+    bottom: unset;
+    max-width: 475px;
+    padding: 1rem;
+    right: 0;
+    top: 74px;
+  }
+
+  .flash {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+}

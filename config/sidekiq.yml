@@ -3,7 +3,7 @@
   - [searchkick, 4]
   - [default, 3]
   - [mailers, 2]
-  - low_priority
+  - [low_priority, 1]
 
 production:
   :concurrency: 25

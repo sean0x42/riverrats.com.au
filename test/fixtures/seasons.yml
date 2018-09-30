@@ -1,5 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
- start_at: <%= Date.today %>
- end_at: <%= Date.today + 3.months %>
+season_zero:
+  start_at: <%= Date.parse('January 1, 1990') %>
+  end_at: <%= Date.parse('December 30, 1995') %>
+
+season_one:
+  start_at: <%= Date.today.at_beginning_of_year %>
+  end_at: <%= Date.today.at_end_of_year %>

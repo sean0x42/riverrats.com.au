@@ -1,7 +1,0 @@
-<tr>
-    <td><%= link_to "Game #{game.name}", game_path(game) %></td>
-    <td class="quiet"><%= game.played_on.strftime "%B %d, %Y" %></td>
-    <%- venue = game.venue %>
-    <td class="stretch quiet"><%= link_to venue.name, venue_path(venue) %></td>
-    <td class="numeric quiet"><%= game.games_players.count %></td>
-</tr>

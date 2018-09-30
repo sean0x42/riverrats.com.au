@@ -1,0 +1,26 @@
+Rails:
+  Enabled: true
+
+AllCops:
+  Exclude:
+  - 'bin/*'
+  - 'node_modules/**/*'
+  - 'db/schema.rb'
+
+Metrics/MethodLength:
+  Exclude:
+  - 'db/migrate/*'
+Metrics/AbcSize:
+  Exclude:
+  - 'db/migrate/*'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+Style/Documentation:
+  Exclude:
+    - 'db/migrate/*'
+
+Rails/InverseOf:
+  Enabled: true

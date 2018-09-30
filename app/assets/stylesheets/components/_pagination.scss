@@ -1,41 +1,43 @@
 nav.pagination {
-  margin: 2rem 0 0;
+  margin: 2rem 0 1.5rem;
 
-  & > div {
+  > div {
     display: flex;
     justify-content: center;
-
-    .page {
-      border-top: 1px solid $border-on-white;
-      border-bottom: 1px solid $border-on-white;
-      border-right: 1px solid $border-on-white;
-      padding-left: 1px;
-
-      &:last-child {
-        border-radius: 0 3px 3px 0;
-      }
-
-      &:first-child {
-        padding-left: 0;
-        border-radius: 3px 0 0 3px;
-        border-left: 1px solid $border-on-white;
-      }
-
-      line-height: 1;
-
-      a, &.current, &.gap {
-        display: block;
-        padding: 8px 11px;
-      }
-
-      &.current {
-        background: $branding-primary;
-        color: $branding-primary-text;
-        border-color: $branding-primary;
-      }
-
-    }
-
   }
 
+  .page {
+    background: $grey-light;
+    border: 1px solid darken($grey-dark, 4%);
+    border-left: 0;
+    line-height: 1;
+    padding-left: 1px;
+
+    &:last-child {
+      border-radius: 0 3px 3px 0;
+    }
+
+    &:first-child {
+      border-left: 1px solid $grey-dark;
+      border-radius: 3px 0 0 3px;
+      padding-left: 0;
+    }
+
+    a {
+      color: $zurple-dark;
+    }
+
+    a,
+    &.current,
+    &.gap {
+      display: block;
+      padding: 8px 11px;
+    }
+
+    &.current {
+      background: $zurple;
+      border-color: $zurple;
+      color: $zurple-inverted;
+    }
+  }
 }

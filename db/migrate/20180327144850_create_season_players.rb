@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSeasonPlayers < ActiveRecord::Migration[5.1]
   def change
     create_table :players_seasons do |t|

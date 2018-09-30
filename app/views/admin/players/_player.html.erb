@@ -1,12 +1,26 @@
 <tr>
-    <td><%= link_to player.full_name, edit_admin_player_path(player), data: { player_id: player.id, show_profile_preview: true } %></td>
-    <td>@<%= player.username %></td>
-    <td class="badge-column">
-        <% if player.is_admin %>
-            <span class="badge">administrator</span>
-        <% end %>
-    </td>
-    <td class="numeric stretch"><%= player.score %></td>
-    <td class="numeric"><%= player.games_played %></td>
-    <td class="numeric"><%= player.games_won %></td>
+  <!-- Player name and username -->
+  <td>
+    <%= link_to edit_admin_player_path(player), remote: true, data: { expects_modal: 'true' } do %>
+      <span class="highlight"><%= player.full_name %></span>&nbsp;@<%= player.username %>
+      <% if player.developer? -%>
+        <span class="flair">developer</span>
+      <% elsif player.admin? -%>
+        <span class="flair">admin</span>
+      <% end -%>
+    <% end -%>
+  </td>
+
+  <!-- IP address -->
+  <td class="inter-ui-ss01 stretch">
+    <% unless player.current_sign_in_ip.nil? -%>
+      <%= player.current_sign_in_ip %>
+      <% unless player.current_sign_in_at.nil? -%>
+        &middot; <%= local_time_ago player.current_sign_in_at %>
+      <% end -%>
+    <% end -%>
+  </td>
+
+  <!-- Score -->
+  <td class="numeric"><%= number_format player.score %> pts</td>
 </tr>

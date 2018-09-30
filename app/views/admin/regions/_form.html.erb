@@ -1,25 +1,10 @@
-<%= form_with model: [:admin, @region], local: true do |form| %>
+<%= form_with model: [:admin, @region], class: 'modal-form' do |form| %>
+  <!-- Name -->
+  <div class="field">
+    <%= form.label :name %><br/>
+    <%= field_errors @region, :name %>
+    <%= form.text_field :name, autofocus: true, spellcheck: false, placeholder: 'e.g. Taree' %>
+  </div>
 
-    <%= render partial: 'application/form-errors', locals: { object: @region } %>
-
-    <section>
-        <div class="section-outline">
-            <h2><span>I</span>Region details</h2>
-        </div>
-        <div class="section-content">
-
-            <!-- Name -->
-            <div class="field">
-                <%= form.label :name, for: 'region_name' %><br/>
-                <%= form.text_field :name, id: 'region_name', autofocus: true, spellcheck: false, placeholder: 'e.g. Taree' %>
-            </div>
-
-        </div>
-    </section>
-
-    <div class="actions buttons">
-        <%= form.submit class: 'button' %>
-        <%= link_to 'Cancel', admin_regions_path, class: 'button-tertiary' %>
-    </div>
-
+  <%= form.submit class: 'button wide', data: { disable_with: 'Please wait...' } %>
 <% end %>

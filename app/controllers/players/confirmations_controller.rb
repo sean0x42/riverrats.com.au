@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
+# Player confirmations controller TODO Is this needed?
 class Players::ConfirmationsController < Devise::ConfirmationsController
-
-  layout 'authentication'
-
   # GET /resource/confirmation/new
   # def new
   #   super

@@ -1,0 +1,79 @@
+.model-list {
+  background: $white;
+  border-radius: $border-radius;
+  margin: 3rem 0 0;
+  overflow-x: auto;
+  width: 100%;
+
+  table {
+    border: 1px solid $grey;
+    border-collapse: collapse;
+    border-radius: $border-radius;
+    width: 100%;
+  }
+
+  tr:not(:last-child) td {
+    border-bottom: 2px solid $grey-light;
+  }
+
+  td {
+    line-height: $body-line-height;
+    padding: 0.5rem;
+    text-align: left;
+    white-space: nowrap;
+
+    &:first-child {
+      padding-left: 1.5rem;
+    }
+
+    &:last-child {
+      padding-right: 1.5rem;
+    }
+  }
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: $zurple-dark;
+    }
+
+    // Disabled because fixing this would result in deeper nesting
+    // scss-lint:disable MergeableSelector
+    &:hover .highlight {
+      color: $zurple-dark;
+    }
+    // scss-lint:enable MergeableSelector
+  }
+
+  .stretch {
+    width: 100%;
+  }
+
+  .highlight {
+    color: $text;
+  }
+
+  td:not(.highlight) {
+    color: lighten($text, 25%);
+  }
+
+  .numeric {
+    text-align: right;
+  }
+}
+
+.model-list-footer {
+  margin: 0 0 2rem;
+  padding: 1rem 0 0;
+
+  p {
+    margin: 0;
+    text-align: center;
+
+    b {
+      color: $text-bold;
+      font-weight: 500;
+    }
+  }
+}

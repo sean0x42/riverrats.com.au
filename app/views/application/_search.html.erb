@@ -1,7 +1,0 @@
-<div class="search-wrapper">
-    <%= form_with url: url, method: :get, class: 'search', local: true do |form| %>
-        <i class="material-icons">&#xE8B6;</i>
-        <%= form.search_field :query, value: params[:query], placeholder: placeholder %>
-        <%= form.submit 'search', name: nil %>
-    <% end %>
-</div>

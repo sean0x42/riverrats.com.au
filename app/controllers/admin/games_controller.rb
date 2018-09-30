@@ -1,29 +1,23 @@
-class Admin::GamesController < ApplicationController
+# frozen_string_literal: true
 
+require 'flash_message'
+
+# A controller for games in the admin scope
+class Admin::GamesController < ApplicationController
   layout 'admin'
+
+  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/games
   def index
-    all = Game.order(id: :desc)
-
-    if params.has_key? :query
-      @games = Game.search params[:query], page: params[:page], per_page: 25
-    else
-      @games = all.page params[:page]
-    end
-
-    @stats = {
-      count: all.count,
-      new_count: all.where('created_at > ?', Date.today - 30.days).count,
-    }
+    @games = Game.includes(:venue).page(params[:page])
   end
 
   # GET /admin/games/new
   def new
     @game = Game.new
-    @attrs = Admin::AttributeCollector.empty_attrs
   end
 
   # POST /admin/games
@@ -31,17 +25,18 @@ class Admin::GamesController < ApplicationController
     @game = Game.new games_params
 
     if @game.save
-      redirect_to admin_games_path, notice: t('game.create')  % { game: @game.name }
+      redirect_to admin_games_path, notice: t('admin.games.create.flash')
     else
-      @attrs = Admin::AttributeCollector.from_params params
-      render 'new'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.js { render 'failure' }
+      end
     end
   end
 
   # GET /admin/games/:id/edit
   def edit
     @game = Game.find params[:id]
-    @attrs = Admin::AttributeCollector.from_db params[:id]
   end
 
   # POST /admin/games/:id
@@ -49,11 +44,12 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
 
     if @game.update games_params
-      @game.update_ranks
-      redirect_to admin_games_path, notice: t('game.update') % { game: @game.name }
+      redirect_to admin_games_path, notice: t('admin.games.update.flash')
     else
-      @attrs = Admin::AttributeCollector.from_params params
-      render 'edit'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.js { render 'failure' }
+      end
     end
   end
 
@@ -62,7 +58,7 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
     @game.destroy
 
-    redirect_to admin_games_path, notice: t('game.destroy')  % { game: @game.name }
+    redirect_to admin_games_path, notice: t('admin.games.destroy.flash')
   end
 
   private
@@ -70,16 +66,8 @@ class Admin::GamesController < ApplicationController
   def games_params
     params.require(:game).permit(
       :played_on, :venue_id, :season_id,
-      games_players_attributes: [:id, :player_id, :position, :_destroy],
-      referees_attributes: [:id, :player_id, :_destroy]
+      games_players_attributes: %i[id player_id position _destroy],
+      referees_attributes: %i[id player_id _destroy]
     )
   end
-
-  def require_admin
-    unless current_player.is_admin
-      flash[:success] = FlashMessage.new 'Permission denied', 'You do not have permission to access this page.'
-      redirect_to root_path
-    end
-  end
-
 end

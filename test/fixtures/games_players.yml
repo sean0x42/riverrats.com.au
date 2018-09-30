@@ -1,5 +1,49 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
+negative_position:
+  game: game_1
+  player: eve
+  position: -4
+
+negative_score:
+  game: game_2
+  player: eve
+  position: 0
+  score: -400
+
+one:
+  game: no_referees
+  player: dave
+  position: 0
+
+two:
+  game: no_referees
+  player: felicity
+  position: 1
+
+<% 2.times do |n| %>
+player_alpha_<%= n %>:
+  game: duplicate_players
+  player: dave
+  position: <%= n %>
+<% end %>
+
+five:
+  game: duplicate_referees
+  player: dave
+  position: 0
+
+six:
+  game: duplicate_referees
+  player: felicity
+  position: 1
+
+seven:
+  game: out_of_season
+  player: eve
+  position: 0
+
+eight:
+  game: out_of_season
+  player: greg
+  position: 1

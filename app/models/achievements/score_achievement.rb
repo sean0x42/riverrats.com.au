@@ -1,16 +1,16 @@
-class ScoreAchievement < Achievement
+# frozen_string_literal: true
 
-  def self.check_conditions_for (player)
+# Awarded to players for reaching a certain score threshold
+class ScoreAchievement < Achievement
+  def self.check_conditions_for(player)
     awarded = player.awarded? self
 
     if awarded
-      achievement = player.achievements.find_by(type: self.sti_name)
+      achievement = player.achievements.find_by(type: sti_name)
       achievement.check
     end
 
-    if (!awarded) && player.score >= requirements[0]
-      player.award self
-    end
+    player.award self if !awarded && player.score >= requirements[0]
 
     awarded
   end
@@ -28,21 +28,19 @@ class ScoreAchievement < Achievement
   end
 
   def title
-    I18n.t('achievement.score.title') % { level: (level + 1).to_roman }
+    format(I18n.t('achievement.score.title'), level: (level + 1).to_roman)
   end
 
   def description
-    I18n.t('achievement.score.description') % { score: ScoreAchievement.requirements[level] }
+    format(I18n.t('achievement.score.description'),
+           score: ScoreAchievement.requirements[level])
   end
 
   def self.type
     :single
   end
 
-  private
-
   def self.requirements
-    [50, 1000, 2500, 5000, 10000, 25000, 50000]
+    [50, 1000, 2500, 5000, 10_000, 25_000, 50_000]
   end
-
 end

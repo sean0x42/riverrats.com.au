@@ -1,0 +1,88 @@
+<% content_for :description, t('landing.index.description') -%>
+<% content_for :canonical_url, root_url -%>
+
+<div class="landing-fold inverted">
+  <div class="wrapper">
+    <span class="subheading">Official Website</span>
+    <h1>River Rats Poker League</h1>
+
+    <ul>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.88-11.71L10 14.17l-1.88-1.88c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7c.39-.39.39-1.02 0-1.41-.39-.39-1.03-.39-1.42 0z"></path></svg>
+        View leaderboards
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.88-11.71L10 14.17l-1.88-1.88c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7c.39-.39.39-1.02 0-1.41-.39-.39-1.03-.39-1.42 0z"></path></svg>
+        Explore games
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.88-11.71L10 14.17l-1.88-1.88c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7c.39-.39.39-1.02 0-1.41-.39-.39-1.03-.39-1.42 0z"></path></svg>
+        Earn achievements
+      </li>
+    </ul>
+
+    <p>What's not to love?</p>
+    <div class="buttons">
+      <% if player_signed_in? -%>
+        <%= link_to 'View my profile', player_path(current_player), class: 'button' %>
+        <%= link_to 'Random profile', random_players_path, class: 'button-secondary' %>
+      <% else -%>
+        <%= link_to 'Create an account', new_player_registration_path, class: 'button', remote: true, data: { expects_modal: true } %>
+        <%= link_to 'Secure login', new_player_session_path, class: 'button-secondary', remote: true, data: { expects_modal: true } %>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<div class="landing-recent-games">
+  <div class="wrapper">
+    <span class="subheading">What's new</span>
+    <h1>Recent Games</h1>
+  </div>
+
+  <div class="wrapper game-wrapper">
+    <div>
+      <div class="model-list">
+        <table>
+          <%= render collection: @games, partial: 'application/standard_game' %>
+        </table>
+      </div>
+
+      <div class="buttons">
+        <%= link_to 'Browse all games', games_path, class: 'button' %>
+      </div>
+    </div>
+
+    <div class="game-data">
+      <ul>
+        <!-- Players -->
+        <li>
+          <% player_count = Player.count -%>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"><path d="M16,11c1.66,0,2.99-1.34,2.99-3c0-1.66-1.33-3-2.99-3s-3,1.34-3,3C13,9.66,14.34,11,16,11z"></path><path d="M8,11c1.66,0,2.99-1.34,2.99-3c0-1.66-1.33-3-2.99-3S5,6.34,5,8C5,9.66,6.34,11,8,11z"></path><path d="M8,13c-2.33,0-7,1.17-7,3.5V18c0,0.55,0.45,1,1,1h12c0.55,0,1-0.45,1-1v-1.5C15,14.17,10.33,13,8,13z"></path><path d="M16,13c-0.29,0-0.62,0.02-0.97,0.05c0.02,0.01,0.03,0.03,0.04,0.04C16.21,13.92,17,15.03,17,16.5V18c0,0.35-0.07,0.69-0.18,1H22c0.55,0,1-0.45,1-1v-1.5C23,14.17,18.33,13,16,13z"></path></svg>
+          <span><strong><%= number_format player_count %></strong> <%= 'player'.pluralize(player_count) %></span>
+        </li>
+
+        <!-- Games -->
+        <li>
+          <% game_count = Game.count -%>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"><path d="M15,7.29V3c0-0.55-0.45-1-1-1h-4C9.45,2,9,2.45,9,3v4.29c0,0.13,0.05,0.26,0.15,0.35l2.5,2.5c0.2,0.2,0.51,0.2,0.71,0l2.5-2.5C14.95,7.55,15,7.43,15,7.29z M7.29,9H3c-0.55,0-1,0.45-1,1v4c0,0.55,0.45,1,1,1h4.29c0.13,0,0.26-0.05,0.35-0.15l2.5-2.5c0.2-0.2,0.2-0.51,0-0.71l-2.5-2.5C7.55,9.05,7.43,9,7.29,9z M9,16.71V21c0,0.55,0.45,1,1,1h4c0.55,0,1-0.45,1-1v-4.29c0-0.13-0.05-0.26-0.15-0.35l-2.5-2.5c-0.2-0.2-0.51-0.2-0.71,0l-2.5,2.5C9.05,16.45,9,16.57,9,16.71z M16.35,9.15l-2.5,2.5c-0.2,0.2-0.2,0.51,0,0.71l2.5,2.5c0.09,0.09,0.22,0.15,0.35,0.15H21c0.55,0,1-0.45,1-1v-4c0-0.55-0.45-1-1-1h-4.29C16.57,9,16.45,9.05,16.35,9.15z"></path></svg>
+          <span><strong><%= number_format game_count %></strong> <%= 'game'.pluralize(game_count) %></span>
+        </li>
+
+        <!-- Venues -->
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="material-icons"><path d="M13,16h-2c-0.55,0-1-0.45-1-1H3.01v4c0,1.1,0.9,2,2,2H19c1.1,0,2-0.9,2-2v-4h-7C14,15.55,13.55,16,13,16z"></path><path d="M20,7h-4c0-2.21-1.79-4-4-4C9.79,3,8,4.79,8,7H4C2.9,7,2,7.9,2,9v3c0,1.11,0.89,2,2,2h6v-1c0-0.55,0.45-1,1-1h2c0.55,0,1,0.45,1,1v1h6c1.1,0,2-0.9,2-2V9C22,7.9,21.1,7,20,7z M10,7c0-1.1,0.9-2,2-2c1.1,0,2,0.9,2,2l-0.01,0h-4L10,7z"></path></svg>
+          <% venue_count = Venue.count -%>
+          <span><strong><%= number_format venue_count %></strong> <%= 'venue'.pluralize(venue_count) %></span>
+        </li>
+
+        <!-- Regions -->
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="material-icons"><path d="M13.2,7.07L10.25,11l2.25,3c0.33,0.44,0.24,1.07-0.2,1.4l0,0c-0.44,0.33-1.07,0.25-1.4-0.2c-1.05-1.4-2.31-3.07-3.1-4.14c-0.4-0.53-1.2-0.53-1.6,0l-4,5.33C1.71,17.06,2.18,18,3,18h18c0.82,0,1.29-0.94,0.8-1.6l-7-9.33C14.4,6.53,13.6,6.53,13.2,7.07z"></path></svg>
+          <% region_count = Region.count -%>
+          <span><strong><%= number_format region_count %></strong> <%= 'region'.pluralize(region_count) %></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,14 @@
-class SeasonsController < ApplicationController
-  layout 'application'
+# frozen_string_literal: true
 
+# A controller for seasons
+class SeasonsController < ApplicationController
+  # GET /seasons
   def index
-    @season = Season.where('start_at < ? and end_at > ?', Time.now, Time.now).first
-    redirect_to season_path(@season)
+    redirect_to season_path(Season.where_current.pluck(:id))
   end
 
+  # GET /seasons/:id
   def show
     @season = Season.find params[:id]
-    @players = @season.players_seasons.order(score: :desc).page(params[:page]).per(25)
-    @games_played = Game.where(season_id: @season.id).count
   end
 end

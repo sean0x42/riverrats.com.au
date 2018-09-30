@@ -1,32 +1,55 @@
 .checkbox {
   transition: color 300ms;
 
-  input {
-    @include hidden-visually;
+  input[type="checkbox"] {
+    @include hidden-visually();
+
+    + label::after {
+      content: none;
+    }
+  }
+
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background: $zurple;
+      border-color: $zurple;
+    }
+
+    &::after {
+      content: "";
+    }
   }
 
   label {
-    display: flex;
-    align-items: center;
+    padding-left: 1.75rem;
+    position: relative;
 
-    i {
-      @include no-select;
-      color: darken($border-on-white, 10%);
+    &::before {
+      background: $white;
+      border: 2px solid darken($grey-dark, 8%);
+      border-radius: $border-radius - 1px;
+      content: "";
       cursor: pointer;
-      line-height: 1;
-      vertical-align: middle;
-      margin: -3px;
-      margin-right: 5px;
+      display: inline-block;
+      height: 1.2rem;
+      left: 0;
+      position: absolute;
+      top: 2px;
+      transition: background 200ms, border-color 200ms;
+      width: 1.2rem;
     }
 
-    span {
-      vertical-align: middle;
+    &::after {
+      border-bottom: 2.5px solid $white;
+      border-left: 2.5px solid $white;
+      content: "";
+      display: inline-block;
+      height: 7px;
+      left: 3px;
+      position: absolute;
+      top: 6px;
+      transform: rotate(-45deg);
+      width: 13px;
     }
-
   }
-
-  &.active {
-    i { color: $branding-primary; }
-  }
-
 }

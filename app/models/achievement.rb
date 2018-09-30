@@ -1,10 +1,11 @@
-class Achievement < ApplicationRecord
+# frozen_string_literal: true
 
+# An achievement awarded to a player
+class Achievement < ApplicationRecord
   belongs_to :player
 
   has_attached_file :proof, styles: { full: '1400x1400>' }
-  validates_attachment_content_type :proof,
-                                    content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :proof, content_type: /\Aimage\/.*\z/
 
   def title
     raise 'System Error: method missing (title)'
@@ -17,5 +18,4 @@ class Achievement < ApplicationRecord
   def self.type
     raise 'System Error: method missing (type)'
   end
-
 end

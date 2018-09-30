@@ -1,0 +1,10 @@
+<% content_for :title, t('players.search.title') %>
+<% content_for :description, t('players.search.description') %>
+<% content_for :canonical_url, players_url %>
+
+<div class="content-wrapper wrapper">
+  <span class="subheading">Players</span>
+  <h1><%= t('players.search.title') %></h1>
+
+  <%= render 'search_data' %>
+</div>

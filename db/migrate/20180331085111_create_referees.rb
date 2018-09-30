@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateReferees < ActiveRecord::Migration[5.1]
   def change
     create_table :referees do |t|

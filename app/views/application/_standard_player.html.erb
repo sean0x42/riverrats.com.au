@@ -1,0 +1,24 @@
+<% player = standard_player.player -%>
+<tr>
+  <!-- Position -->
+  <td><%= position(standard_player, standard_player_counter, params[:page]) %></td>
+
+  <!-- Username and flair -->
+  <td class="stretch">
+    <% if player.nil? -%>
+      [Deleted player]
+    <% else -%>
+      <%= link_to player_path(player) do -%>
+        <span class="highlight"><%= player.full_name %></span>&nbsp;@<%= player.username %>
+        <% if player.developer? -%>
+          <span class="flair">developer</span>
+        <% elsif player.admin? -%>
+          <span class="flair">admin</span>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+  </td>
+
+  <!-- Score -->
+  <td class="numeric"><%= number_format standard_player.score %> pts</td>
+</tr>

@@ -1,42 +1,5 @@
-<%- content_for :title, "Edit #{@venue.name} (Admin)" %>
+<% content_for :title, t('admin.venues.edit.title') %>
 
-<div class="column-wrapper small-first">
-
-    <!-- Navigation -->
-    <div class="thin">
-        <%= render 'admin/navigation' %>
-    </div>
-
-    <div class="wide">
-
-        <!-- Header -->
-        <div class="wrapper-header admin">
-            <div>
-                <h1 class="has-subtitle">Edit <%= @venue.name %></h1>
-                <p class="subtitle">Make some changes to this venue.</p>
-            </div>
-        </div>
-
-        <!-- Form -->
-        <div class="background">
-            <h2>Form</h2>
-            <%= render 'form' %>
-        </div>
-
-        <!-- Danger zone -->
-        <div class="background danger-zone">
-
-            <h2><i class="material-icons">&#xE002;</i>Delete venue</h2>
-            <p><strong>Permanently</strong> delete <%= @venue.name %> from the database. You will not be able to recover it.</p>
-
-            <div class="buttons">
-                <%= link_to admin_venue_path(@venue), method: :delete, class: 'button danger', data: {confirm: t('venue.confirm_delete')} do %>
-                    Delete <%= @venue.name %>
-                <% end %>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+<span class="subheading">Admin Tools</span>
+<h1><%= t('admin.venues.edit.title') %></h1>
+<%= render 'form' %>

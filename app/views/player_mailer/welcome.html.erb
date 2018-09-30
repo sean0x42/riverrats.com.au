@@ -1,13 +1,19 @@
 <div style="background-color: rgb(243, 244, 246);padding: 8px;">
-    <div style="box-shadow:0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);border-radius: 3px;color:#483d4d;background:white;line-height:1.75;width:100%;max-width:400px;padding:48px;margin:32px auto;font-family: '-apple-system','system-ui','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica Neue','Arial','sans-serif','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';">
-        <p style="font-weight: bold;margin: 0 0 32px;color:#251f28;">Welcome <%= @player.first_name %>,</p>
-        <p style="margin: 32px 0;">We've just created an account for you over at <%= link_to 'riverrats.com.au', root_url, style: 'color: #9154ab;' %>. Logging in is easy. simply use the following username and password:</p>
+  <div style="box-shadow:0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);border-radius: 3px;color:#483d4d;background:white;line-height:1.75;width:100%;max-width:400px;padding:48px;margin:32px auto;font-family: '-apple-system','system-ui','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica Neue','Arial','sans-serif','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';">
+    <p style="font-weight: bold;margin: 0 0 32px;color:#251f28;">Welcome <%= @player.first_name %>,</p>
+    <p style="margin: 32px 0;">We've just created an account for you over
+      at <%= link_to 'riverrats.com.au', root_url, style: 'color: #9154ab;' %>. Logging in is easy. simply use the
+      following username and password:</p>
 
-        <p style="margin: 16px 0;">Your username: <span style="font-family: monospace;background: rgb(243, 244, 246);border-radius: 2px;padding: 3px 0;">&nbsp;<%= @player.username %>&nbsp;</span></p>
-        <p style="margin: 16px 0 32px;">Your password: <span style="font-family: monospace;background: rgb(243, 244, 246);border-radius: 2px;padding: 3px 0;">&nbsp;<%= @password %>&nbsp;</span></p>
+    <p style="margin: 16px 0;">Your username:
+      <span style="font-family: monospace;background: rgb(243, 244, 246);border-radius: 2px;padding: 3px 0;">&nbsp;<%= @player.username %>&nbsp;</span>
+    </p>
+    <p style="margin: 16px 0 32px;">Your password:
+      <span style="font-family: monospace;background: rgb(243, 244, 246);border-radius: 2px;padding: 3px 0;">&nbsp;<%= @password %>&nbsp;</span>
+    </p>
 
-        <%= link_to 'Click here to log in', new_player_session_url, style: 'color: #fdfcfd; background: linear-gradient(90deg, #9154ab, #ab54a8);line-height: 1.1; border-radius: 3px;text-decoration: none;padding: 16px 26px;margin: 0;display: inline-block;' %>
+    <%= link_to 'Click here to log in', new_player_session_url, style: 'color: #fdfcfd; background: linear-gradient(90deg, #9154ab, #ab54a8);line-height: 1.1; border-radius: 3px;text-decoration: none;padding: 16px 26px;margin: 0;display: inline-block;' %>
 
-        <p style="margin: 32px 0 0;color: #7d6986;">We strongly recommend you <%= link_to 'update your password, by clicking this link', edit_player_registration_url, style: 'color: #ab7dbf;' %>.</p>
-    </div>
+    <p style="margin: 32px 0 0;color: #7d6986;">We strongly recommend you <%= link_to 'update your password, by clicking this link', edit_player_registration_url, style: 'color: #ab7dbf;' %>.</p>
+  </div>
 </div>

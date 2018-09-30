@@ -1,33 +1,49 @@
-h1, h2, h3, h4, h5, h6 {
+.subheading {
+  color: $zurple;
+  font-size: 14px;
   font-weight: bold;
-  color: $generic-text-bold;
+  letter-spacing: 0.05em; // Extra 5% letter spacing for added readability
+  text-transform: uppercase;
+
+  &:not(:first-child) {
+    margin-top: 2rem;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $text-bold;
+}
+
+.inverted {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $zurple-inverted;
+  }
+
+  .subheading {
+    color: $grey-light;
+  }
 }
 
 h1 {
-  font-size: 30px;
-  line-height: 1.3;
-  color: lighten($generic-text, 5%);
-
-  .badge {
-    margin-left: 0.25rem;
-  }
+  font-size: 2.2em;
+  font-weight: normal; // Font weight should be similar to that of the subheading (visually).
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  margin-top: 0.25rem; // Space between H1 and subheading
 }
 
-
 h2 {
-  display: flex;
-  align-items: center;
-  color: $branding-primary;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 14px;
-  margin-bottom: 1.5rem;
-
-  i.material-icons {
-    font-size: 21px;
-    line-height: 1.0;
-    vertical-align: middle;
-    margin: -5px 0.5rem -4px 0;
-  }
-
+  font-size: 16px;
+  font-weight: 500;
+  margin: 2.5rem 0 1rem;
 }

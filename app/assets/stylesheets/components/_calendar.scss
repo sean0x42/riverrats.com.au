@@ -1,4 +1,14 @@
+.calendar-wrapper .wrapper {
+  margin-top: 0;
+  max-width: 1550px;
+}
+
 .calendar {
+  background: $white;
+  border-left: 1px solid $grey;
+  border-radius: $border-radius;
+  padding: 0.75rem 0;
+  width: 100%;
 
   .weekday-title {
     display: none;
@@ -6,160 +16,108 @@
 
   .date {
     display: grid;
-    grid-template-columns: 40px 1fr;
     grid-gap: 1rem;
-    margin-bottom: 1rem;
-
-    .day {
-      text-align: center;
-      font-size: 25px;
-      font-weight: bold;
-      color: $branding-primary;
-      margin: 0.75rem 0 0;
-      line-height: 1;
-    }
-
-    .weekday {
-      color: lighten($generic-text, 15%);
-      text-align: center;
-      margin: 0.2rem 0 0;
-      font-size: $font-size * 0.85;
-    }
+    grid-template-columns: 40px 1fr;
+    padding: 0.75rem;
 
     &.empty,
     &.disabled {
       display: none;
     }
 
-    &.today {
-      border: 1px solid $branding-primary;
-      background: #ffffff url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239154ab' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
-
-      .day {
-        font-weight: bold;
-      }
-    }
-
-    ul {
+    .day {
+      color: lighten($text, 14%);
+      font-size: 25px;
+      line-height: 1;
       margin: 0;
-      padding: 0;
-      list-style-type: none;
+      text-align: center;
     }
 
-    .event {
-      display: block;
-      color: lighten($generic-text, 20%);
-      background: $input-background;
-      border-radius: 3px;
-      padding: 0.5rem 0.75rem;
-      margin-bottom: 0.5rem;
-
-      &.active {
-        border-left: 3px solid lighten($branding-primary, 5%);
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        padding-left: 9px;
-      }
-
-      &:hover {
-        text-decoration: none;
-      }
-
-      p {
-        margin: 0;
-      }
-
-      .starts {
-        font-size: $font-size * 0.85;
-        color: lighten($generic-text, 30%);
-      }
+    .weekday {
+      font-size: 90%;
+      margin: 0 0 0.2rem;
+      text-align: center;
     }
 
+    &.today:not(.disabled) .day {
+      color: $zurple;
+    }
   }
 
-}
-
-.calendar-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0;
-  padding: 1rem 0;
-
-  p {
-    color: $branding-primary;
-    text-align: center;
+  ul {
+    list-style-type: none;
     margin: 0;
-    text-transform: unset;
-    font-size: 16px;
-    letter-spacing: unset;
+    padding: 0;
   }
 
+  li:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  .event {
+    background: $zurple;
+    border-radius: $border-radius;
+    color: $zurple-inverted;
+    display: block;
+    padding: 0.25rem 0.5rem;
+
+    p {
+      line-height: 1.4;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+    }
+  }
 }
 
 @media (min-width: 1220px) {
-
   .calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    border-left: 1px solid $input-border;
+    padding: 0;
 
     .weekday-title {
+      border-right: 1px solid $grey;
+      color: $text-bold;
       display: inline;
-      font-size: 15px;
-      line-height: 1.0;
-      color: lighten($generic-text, 20%);
+      font-weight: 500;
+      line-height: 1;
       margin: 0;
-      padding: 1rem;
-      border-top: 1px solid $input-border;
-      border-bottom: 1px solid $input-border;
-      border-right: 1px solid $input-border;
-    }
-
-    .status-dot {
-      display: inline-block;
+      padding: 1rem 0.75rem 0;
     }
 
     .date {
+      border-bottom: 1px solid $grey;
+      border-right: 1px solid $grey;
       display: block;
-      min-height: 150px;
-      border-bottom: 1px solid $input-border;
-      border-right: 1px solid $input-border;
-      padding: 1rem;
-      margin: 0;
-
-      .day {
-        text-align: unset;
-        font-size: unset;
-        font-weight: unset;
-        line-height: unset;
-        margin: 0;
-      }
-
-      .weekday {
-        display: none;
-      }
+      min-height: 190px;
+      padding: 0.75rem;
 
       &.empty,
       &.disabled {
         display: block;
       }
 
-      &.disabled {
-        background: $input-background;
-
-        .day {
-          color: lighten($generic-text, 40%);
-        }
+      .day {
+        font-size: 20px;
+        margin: 0.75rem 0;
+        text-align: right;
       }
 
-      .event {
-        font-size: 14px;
-        line-height: 1.6;
-        color: lighten($generic-text, 15%);
-        padding: 0.25rem 0.5rem;
+      .weekday {
+        display: none;
       }
 
+      &.disabled .day {
+        color: lighten($text, 50%);
+      }
+
+      &.disabled .event {
+        background: $grey;
+        color: $grey-inverted;
+      }
     }
   }
 }

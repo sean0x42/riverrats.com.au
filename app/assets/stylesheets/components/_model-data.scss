@@ -1,0 +1,73 @@
+.venue-data,
+.region-data,
+.season-data,
+.game-data {
+  background: $white;
+  border: 1px solid $grey;
+  border-radius: $border-radius;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+
+  svg {
+    fill: $grey-darker;
+    height: 22px;
+    margin-right: 0.5rem;
+    width: 22px;
+  }
+
+  ul {
+    line-height: $body-line-height;
+    list-style-type: none;
+    margin: 0;
+    padding: 0.75rem 1.25rem;
+  }
+
+  li {
+    align-items: center;
+    display: flex;
+    margin: 0.5rem 0;
+  }
+
+  address {
+    color: $text;
+    font-style: normal;
+    line-height: $body-line-height;
+    padding: 0 1.25rem 1.75rem;
+  }
+
+  .games-and-players {
+    align-items: center;
+    background: $grey-lighter;
+    border-top: 1px solid $grey;
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+    padding: 1.25rem;
+
+    p {
+      align-items: center;
+      display: flex;
+      line-height: 1;
+      margin: 0;
+    }
+  }
+
+  .venue-image {
+    border-bottom: 1px solid $grey;
+    margin: 0 0 1rem;
+    overflow: hidden;
+
+    img {
+      display: block;
+      line-height: 1;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+  }
+}
+
+@media (min-width: 1245px) {
+  .venue-image {
+    margin-bottom: 1.5rem;
+  }
+}

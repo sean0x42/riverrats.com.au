@@ -1,32 +1,89 @@
-.modals {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
+.modal-overlay {
+  background: $darcula;
   bottom: 0;
   left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
   right: 0;
-  background: rgba(0, 0, 0, 0.15);
-  z-index: 2000;
+  top: 0;
+  transition: opacity 300ms;
+  z-index: 10000;
+
+  &[active] {
+    opacity: 0.75;
+    pointer-events: all;
+  }
+}
+
+.modal-loader {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 100ms;
+  z-index: 10001;
+
+  &[active] {
+    opacity: 1;
+  }
+}
+
+.modal-wrapper {
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10002;
+
+  .wrapper {
+    margin: 1rem auto;
+    max-width: $modal-width;
+    padding: 0 1rem;
+  }
 
   .modal {
-    position: relative;
-    background: white;
-    width: 400px;
-    padding: 21px 1rem 1rem;
-    border-radius: 3px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: $white;
+    border-radius: $border-radius;
+    overflow-x: hidden;
+    padding: 2rem;
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, $branding-primary, $branding-primary-rotated);
-      border-radius: 3px 3px 0 0;
+    > *:first-child {
+      margin-top: 0;
     }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.remember-and-forget {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2.5rem 0 0;
+
+  .remember {
+    margin-right: auto;
+  }
+
+  .checkbox {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 980px) {
+  .modal-wrapper .wrapper {
+    margin: 6rem auto 4rem;
+    padding: 0 1.5rem;
   }
 }
