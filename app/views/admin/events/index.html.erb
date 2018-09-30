@@ -20,13 +20,13 @@
   <!-- Events completed -->
   <div>
     <h2>Events held</h2>
-    <p><%= number_to_human(SingleEvent.in_the_past.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+    <p><%= number_format SingleEvent.in_the_past.count %></p>
   </div>
 
   <!-- Events upcoming -->
   <div>
     <h2>Upcoming</h2>
-    <p><%= number_to_human(SingleEvent.upcoming.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+    <p><%= number_format SingleEvent.upcoming.count %></p>
   </div>
 </div>
 

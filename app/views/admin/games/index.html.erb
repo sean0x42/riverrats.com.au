@@ -20,13 +20,13 @@
   <!-- Games played -->
   <div>
     <h2>Games Recorded</h2>
-    <p><%= number_to_human(Game.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+    <p><%= number_format Game.count %></p>
   </div>
 
   <!-- Recent Games -->
   <div>
     <h2>Recent Games</h2>
-    <p><%= number_to_human(Game.recent.count, format: '%n%u', precision: 3, units: { thousand: 'k', million: 'm', billion: 'b' }) %></p>
+    <p><%= number_format Game.recent.count %></p>
   </div>
 
 </div>

@@ -1,8 +1,17 @@
 .admin-navigation {
+  background: $grey-light;
+  bottom: 73px;
+  display: none;
+  left: 0;
   line-height: $body-line-height;
-  position: sticky;
-  top: 100px;
-  width: 270px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2000;
+
+  &[active] {
+    display: block;
+  }
 
   h2 {
     color: $zurple-dark;
@@ -10,12 +19,8 @@
     font-weight: bold;
     letter-spacing: 0.05em;
     margin: 2rem 0 0.5rem;
-    padding-left: 0.75rem;
+    padding-left: 1.25rem;
     text-transform: uppercase;
-
-    &:first-child {
-      margin-top: 0;
-    }
   }
 
   ul {
@@ -33,7 +38,7 @@
     display: flex;
     fill: $grey-darker;
     margin: 3px 0;
-    padding: 6px 1rem;
+    padding: 6px 1.5rem;
 
     svg {
       height: 22px;
@@ -50,5 +55,68 @@
       color: $zurple-dark;
       fill: $zurple-dark;
     }
+  }
+}
+
+.mobile-admin-navigation-trigger {
+  align-items: center;
+  background: $zurple-dark;
+  border: 0;
+  border-radius: 50%;
+  bottom: 90px;
+  color: $zurple-dark-inverted;
+  cursor: pointer;
+  display: flex;
+  fill: $zurple-dark-inverted;
+  flex-direction: column;
+  height: 55px;
+  justify-content: center;
+  position: fixed;
+  right: 10px;
+  width: 55px;
+  z-index: 11;
+
+  span {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 980px) {
+  .admin-navigation {
+    bottom: 0;
+    top: 64px;
+  }
+
+  .mobile-admin-navigation-trigger {
+    bottom: 10px;
+  }
+}
+
+@media (min-width: 1080px) {
+  .admin-navigation {
+    background: none;
+    bottom: unset;
+    display: block;
+    left: unset;
+    position: sticky;
+    right: unset;
+    top: 100px;
+    width: 270px;
+
+    h2 {
+      padding-left: 0.75rem;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    a {
+      padding: 6px 1rem;
+    }
+  }
+
+  .mobile-admin-navigation-trigger {
+    display: none;
   }
 }

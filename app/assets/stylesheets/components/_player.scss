@@ -1,7 +1,12 @@
+.wrapper.player-wrapper {
+  flex-direction: column !important;
+}
+
 .player-data {
   background: $white;
   border: 1px solid $grey;
   border-radius: $border-radius;
+  margin-top: 1.5rem;
   padding: 1.5rem;
 
   > *:first-child {
@@ -55,5 +60,11 @@
     justify-content: center;
     margin: 0;
     text-align: center;
+  }
+}
+
+@media (min-width: 980px) {
+  .player-data {
+    margin-top: 0;
   }
 }

@@ -1,9 +1,11 @@
 .venue-data,
 .region-data,
-.season-data {
+.season-data,
+.game-data {
   background: $white;
   border: 1px solid $grey;
   border-radius: $border-radius;
+  margin-bottom: 1.5rem;
   overflow: hidden;
 
   svg {

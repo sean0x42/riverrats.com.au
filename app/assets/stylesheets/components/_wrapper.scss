@@ -7,10 +7,8 @@
   z-index: 10;
 
   &.split-wrapper {
-    align-items: flex-start;
-    display: grid;
-    grid-gap: 1.5rem;
-    grid-template-columns: 1fr 320px;
+    display: flex;
+    flex-direction: column-reverse;
     margin-top: 0;
 
     .model-list {
@@ -27,5 +25,12 @@
   .wrapper {
     margin: 8rem auto;
     padding: 0 1.5rem;
+
+    &.split-wrapper {
+      align-items: flex-start;
+      display: grid;
+      grid-gap: 1.5rem;
+      grid-template-columns: 1fr 320px;
+    }
   }
 }

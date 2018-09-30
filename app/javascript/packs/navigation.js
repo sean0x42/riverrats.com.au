@@ -91,6 +91,14 @@ const bindToWrapperEvents = (wrapper) => {
 const init = () => {
   menuOverlay = document.querySelector(".header-menu-overlay");
   document.querySelectorAll(".header-menu-wrapper").forEach(bindToWrapperEvents);
+
+  const adminNavTrigger = document.querySelector(".mobile-admin-navigation-trigger");
+  if (adminNavTrigger !== null) {
+    adminNavTrigger.addEventListener("click", () => {
+      const nav = document.querySelector("nav.admin-navigation");
+      nav.setAttribute("active", "");
+    });
+  }
 };
 
 addEventListener("turbolinks:load", init);
