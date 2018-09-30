@@ -27,6 +27,7 @@ class Season < ApplicationRecord
   end
 
   def self.current
-    Season.find_by('start_at <= ? and end_at >= ?', Time.zone.now, Time.zone.now)
+    now = Time.zone.now
+    Season.find_by('start_at <= ? and end_at >= ?', now, now)
   end
 end

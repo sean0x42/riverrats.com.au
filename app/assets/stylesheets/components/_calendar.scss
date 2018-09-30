@@ -16,8 +16,8 @@
 
   .date {
     display: grid;
-    grid-template-columns: 40px 1fr;
     grid-gap: 1rem;
+    grid-template-columns: 40px 1fr;
     padding: 0.75rem;
 
     &.empty,
@@ -34,9 +34,9 @@
     }
 
     .weekday {
+      font-size: 90%;
       margin: 0 0 0.2rem;
       text-align: center;
-      font-size: 90%;
     }
 
     &.today:not(.disabled) .day {
