@@ -39,7 +39,7 @@ group :development, :test do
   # console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  gem 'capybara', '~> 3.8'
   gem 'selenium-webdriver'
 end
 
@@ -79,7 +79,7 @@ gem 'ice_cube'
 gem 'js-routes'
 gem 'kaminari'
 gem 'local_time'
-gem 'paperclip', '~> 6.0.0'
+gem 'paperclip', '~> 6.1.0'
 gem 'searchkick'
 gem 'sidekiq'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
