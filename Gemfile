@@ -79,7 +79,7 @@ gem 'ice_cube'
 gem 'js-routes'
 gem 'kaminari'
 gem 'local_time'
-gem 'paperclip', '~> 6.0.0'
+gem 'paperclip', '~> 6.1.0'
 gem 'searchkick'
 gem 'sidekiq'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
