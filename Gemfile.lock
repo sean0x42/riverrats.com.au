@@ -111,7 +111,7 @@ GEM
     faraday (0.15.3)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
-    friendly_id (5.1.0)
+    friendly_id (5.2.4)
       activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -329,7 +329,7 @@ DEPENDENCIES
   connection_pool
   devise
   elasticsearch
-  friendly_id (~> 5.1.0)
+  friendly_id (~> 5.2.4)
   ice_cube
   jbuilder (~> 2.5)
   js-routes

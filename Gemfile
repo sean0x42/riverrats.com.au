@@ -74,7 +74,7 @@ gem 'bootsnap', require: false
 gem 'connection_pool'
 gem 'devise'
 gem 'elasticsearch'
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id', '~> 5.2.4'
 gem 'ice_cube'
 gem 'js-routes'
 gem 'kaminari'
