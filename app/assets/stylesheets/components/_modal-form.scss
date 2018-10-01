@@ -34,10 +34,20 @@
     margin: 2rem -2rem -2rem;
     padding: 1rem;
     text-align: center;
+  }
 
-    p {
-      margin: 0;
+  .danger-zone {
+    h2 {
+      margin-bottom: 0.75rem;
     }
+
+    .buttons {
+      margin-top: 0.75rem;
+    }
+  }
+
+  p {
+    margin: 0;
   }
 
   input {

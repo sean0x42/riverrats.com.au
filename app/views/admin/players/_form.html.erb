@@ -40,4 +40,8 @@
 <!--  </div>-->
 
   <%= form.submit class: 'button wide', remote: true, data: { disable_with: 'Please wait...' } %>
-<% end %>
+
+  <% if @player.persisted? -%>
+    <%= danger_zone(@player, "Delete @#{@player.username}", admin_player_path(@player), t('admin.players.confirm_delete')) %>
+  <% end -%>
+<% end -%>
