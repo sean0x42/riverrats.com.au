@@ -1,0 +1,8 @@
+<div class="danger-zone">
+  <h2>Danger Zone</h2>
+  <p><%= t('admin.danger_zone') %></p>
+
+  <div class="buttons">
+    <%= link_to button_label, button_path, class: 'button danger', method: :delete, data: { confirm: confirmation } %>
+  </div>
+</div>
