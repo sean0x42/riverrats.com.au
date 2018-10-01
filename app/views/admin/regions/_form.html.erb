@@ -7,4 +7,8 @@
   </div>
 
   <%= form.submit class: 'button wide', data: { disable_with: 'Please wait...' } %>
+
+  <% if @region.persisted? -%>
+    <%= danger_zone(@region, "Delete #{@region.name}", admin_region_path(@region), t('admin.regions.confirm_delete')) %>
+  <% end -%>
 <% end %>

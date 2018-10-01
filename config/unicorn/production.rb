@@ -12,7 +12,7 @@ preload_app true
 
 listen '/var/sockets/unicorn.river_rats.sock', backlog: 64
 
-before_fork do
+before_fork do |_server, _worker|
   Signal.trap 'TERM' do
     Rails.logger.debug t('log.intercept_term')
     Process.kill 'QUIT', Process.pid
@@ -21,7 +21,7 @@ before_fork do
   defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
 end
 
-after_fork do
+after_fork do |_server, _worker|
   Signal.trap 'TERM' do
     Rails.logger.debug t('log.term_trap')
   end

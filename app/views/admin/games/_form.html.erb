@@ -67,4 +67,8 @@
   </div>
 
   <%= form.submit class: 'button wide', name: nil, data: { disable_with: 'Please wait...' } %>
+
+  <% if @game.persisted? -%>
+    <%= danger_zone(@game, "Delete Game #{@game.name}", admin_game_path(@game), t('admin.games.confirm_delete')) %>
+  <% end -%>
 <% end %>
