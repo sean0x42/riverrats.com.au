@@ -13,7 +13,7 @@ class Player < ApplicationRecord
   searchkick callbacks: :async, word_start: %i[full_name username]
 
   before_validation :gen_username, on: :create
-  before_save :nil_if_blank
+  before_save :nil_if_blank, :titleize_names
 
   with_options dependent: :nullify, inverse_of: :player do
     has_many :games_players,   class_name: 'GamesPlayer'
@@ -155,6 +155,12 @@ class Player < ApplicationRecord
   def nil_if_blank
     %w[nickname email].each do |attribute|
       self[attribute] = nil if self[attribute].blank?
+    end
+  end
+
+  def titleize_names
+    %w[first_name nickname last_name].each do |attribute|
+      self[attribute] = self[attribute].titleize
     end
   end
 end
