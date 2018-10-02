@@ -38,15 +38,3 @@ eve:
   developer: false
   email: eve@stephens.com
   encrypted_password: <%= Devise::Encryptor.digest Player, '_evenstephens' %>
-
-felicity:
-  username: ''
-  first_name: Felicity
-  last_name: Jones
-  encrypted_password: <%= Devise::Encryptor.digest Player, 'aLpHaBeTsOuP' %>
-
-greg:
-  username: gregorydavis
-  first_name: ''
-  last_name: Davis
-  encrypted_password: <%= Devise::Encryptor.digest Player, '_3287hbdsfk' %>

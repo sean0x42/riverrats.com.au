@@ -13,10 +13,11 @@ class Player < ApplicationRecord
   searchkick callbacks: :async, word_start: %i[full_name username]
 
   before_validation :gen_username, on: :create
+  before_save :nil_if_blank, :titleize_names
 
   with_options dependent: :nullify, inverse_of: :player do
-    has_many :games_players, class_name: 'GamesPlayer'
-    has_many :players_venues, class_name: 'PlayersVenue'
+    has_many :games_players,   class_name: 'GamesPlayer'
+    has_many :players_venues,  class_name: 'PlayersVenue'
     has_many :players_regions, class_name: 'PlayersRegion'
     has_many :players_seasons, class_name: 'PlayersSeason'
   end
@@ -39,13 +40,16 @@ class Player < ApplicationRecord
                 with: /\A[a-z0-9-]*\z/,
                 message: 'may use numbers, letters, underscores (_), and hyphens (-)'
               }
-    validates :first_name, :last_name,
-              length: { maximum: 64 },
-              format: {
-                with: /\A[a-zA-Z][a-zA-Z-]*[a-zA-Z]\z/,
-                message: 'may use letters and hyphens (-)'
-              }
     validates :notify_promotional, :notify_events
+  end
+
+  with_options length: { maximum: 64 },
+               format: {
+                 with: /\A[a-zA-Z][a-zA-Z-]*[a-zA-Z]\z/,
+                 message: 'may use letters and hyphens (-)'
+               } do
+    validates :first_name, :last_name, presence: true
+    validates :nickname, allow_nil: true, allow_blank: true
   end
 
   validates :score, :games_played, :games_won,
@@ -54,11 +58,8 @@ class Player < ApplicationRecord
               greater_than_or_equal_to: 0
             }
 
-  validates :email,
-            format: { with: URI::MailTo::EMAIL_REGEXP },
-            allow_nil: true,
-            allow_blank: true,
-            uniqueness: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP },
+                    allow_nil: true, allow_blank: true, uniqueness: true
 
   def to_param
     username
@@ -74,7 +75,11 @@ class Player < ApplicationRecord
   end
 
   def full_name
-    "#{first_name} #{last_name}"
+    if nickname.nil?
+      "#{first_name} #{last_name}"
+    else
+      "#{first_name} '#{nickname}' #{last_name}"
+    end
   end
 
   def login
@@ -143,5 +148,19 @@ class Player < ApplicationRecord
 
   def self.admins
     Player.where(admin: true).or(Player.where(developer: true))
+  end
+
+  protected
+
+  def nil_if_blank
+    %w[nickname email].each do |attribute|
+      self[attribute] = nil if self[attribute].blank?
+    end
+  end
+
+  def titleize_names
+    %w[first_name nickname last_name].each do |attribute|
+      self[attribute] = self[attribute].titleize
+    end
   end
 end
