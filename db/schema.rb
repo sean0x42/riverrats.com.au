@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_22_043403) do
+ActiveRecord::Schema.define(version: 2018_10_02_020607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_043403) do
     t.integer "second_places", default: 0, null: false
     t.integer "wooden_spoons", default: 0, null: false
     t.boolean "developer", default: false
+    t.string "nickname"
     t.index ["email"], name: "index_players_on_email"
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
     t.index ["username"], name: "index_players_on_username", unique: true

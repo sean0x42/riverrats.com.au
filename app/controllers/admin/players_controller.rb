@@ -57,7 +57,10 @@ class Admin::PlayersController < ApplicationController
     else
       # noinspection RubyResolve
       @player.username = @player.username_was if @player.username_changed?
-      render 'edit'
+      respond_to do |format|
+        format.html { render 'edit' }
+        format.js { render 'failure' }
+      end
     end
   end
 
@@ -72,12 +75,11 @@ class Admin::PlayersController < ApplicationController
   private
 
   def new_params
-    params[:email] = nil if params.key?(:email) && params[:email].blank?
-    params.require(:player).permit(:first_name, :last_name, :email)
+    params.require(:player).permit(:first_name, :nickname, :last_name, :email)
   end
 
   def edit_params
-    params[:email] = nil if params.key?(:email) && params[:email].blank?
-    params.require(:player).permit(:username, :first_name, :last_name, :email)
+    params.require(:player).permit(:username, :nickname, :first_name,
+                                   :last_name, :email)
   end
 end
