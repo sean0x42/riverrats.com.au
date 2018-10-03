@@ -13,7 +13,7 @@ class Player < ApplicationRecord
   searchkick callbacks: :async, word_start: %i[full_name username]
 
   before_validation :gen_username, on: :create
-  before_save :nil_if_blank, :titleize_names
+  before_save :nil_if_blank
 
   with_options dependent: :nullify, inverse_of: :player do
     has_many :games_players,   class_name: 'GamesPlayer'
@@ -22,13 +22,17 @@ class Player < ApplicationRecord
     has_many :players_seasons, class_name: 'PlayersSeason'
   end
 
-  has_many :games, through: :games_players
   has_many :referees, dependent: :nullify
-  has_many :games, through: :referees
-  has_many :venues, through: :players_venues
-  has_many :regions, through: :players_regions
-  has_many :seasons, through: :players_seasons
-  has_many :achievements, dependent: :destroy
+  has_many :games,    through: :games_players
+  has_many :games,    through: :referees
+  has_many :venues,   through: :players_venues
+  has_many :regions,  through: :players_regions
+  has_many :seasons,  through: :players_seasons
+
+  with_options dependent: :destroy do
+    has_many :achievements
+    has_many :notifications
+  end
 
   attr_writer :login
 
@@ -38,15 +42,17 @@ class Player < ApplicationRecord
               length: { minimum: 2 },
               format: {
                 with: /\A[a-z0-9-]*\z/,
-                message: 'may use numbers, letters, underscores (_), and hyphens (-)'
+                message: 'may use numbers, letters, underscores (_), and '\
+                         'hyphens (-)'
               }
     validates :notify_promotional, :notify_events
   end
 
   with_options length: { maximum: 64 },
                format: {
-                 with: /\A[a-zA-Z][a-zA-Z-]*[a-zA-Z]\z/,
-                 message: 'may use letters and hyphens (-)'
+                 with: /\A[A-Z][a-zA-Z-]*[a-z]\z/,
+                 message: 'may use letters and hyphens (-), must start with an'\
+                          ' uppercase letter'
                } do
     validates :first_name, :last_name, presence: true
     validates :nickname, allow_nil: true, allow_blank: true
@@ -69,8 +75,8 @@ class Player < ApplicationRecord
     {
       full_name: full_name,
       username: "@#{username}",
-      is_admin: admin?,
-      is_developer: developer?
+      is_admin: admin,
+      is_developer: developer
     }
   end
 
@@ -86,12 +92,16 @@ class Player < ApplicationRecord
     @login || username || email
   end
 
+  # noinspection RubyClassMethodNamingConvention
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if (login = conditions.delete(:login))
-      where(conditions.to_h).where(['lower(username) = :value OR lower(email) = :value', { value: login.downcase }]).first
+      where(conditions.to_h).find_by([
+                                       'lower(username) = :value OR lower(email) = :value',
+                                       { value: login.downcase }
+                                     ])
     elsif conditions.key?(:username) || conditions.key?(:email)
-      where(conditions.to_h).first
+      find_by(conditions.to_h)
     end
   end
 
@@ -153,14 +163,8 @@ class Player < ApplicationRecord
   protected
 
   def nil_if_blank
-    %w[nickname email].each do |attribute|
-      self[attribute] = nil if self[attribute].blank?
-    end
-  end
-
-  def titleize_names
-    %w[first_name nickname last_name].each do |attribute|
-      self[attribute] = self[attribute].titleize
+    %i[nickname email].each do |attr|
+      self[attr] = nil if self[attr].blank?
     end
   end
 end
