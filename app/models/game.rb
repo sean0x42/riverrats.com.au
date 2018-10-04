@@ -10,6 +10,8 @@ class Game < ApplicationRecord
   searchkick callbacks: :async
 
   after_save :update_stats, :update_ranks
+  after_create :send_create_notifications
+  after_update :send_update_notifications
   after_destroy :update_stats, :update_ranks
 
   has_many :games_players,
@@ -99,5 +101,17 @@ class Game < ApplicationRecord
   def update_ranks
     CalculateRanksWorker.perform_in(2.minutes)
     CalculateSeasonRanksWorker.perform_in(3.minutes, season.id)
+  end
+
+  def send_create_notifications
+    game_played_by.pluck(:id).each do |player_id|
+      GameNotificationWorker.perform_async(id, player_id, 'create')
+    end
+  end
+
+  def send_update_notifications
+    game_played_by.pluck(:id).each do |player_id|
+      GameNotificationWorker.perform_async(id, player_id, 'update')
+    end
   end
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   authenticated :player do
     mount Sidekiq::Web => '/sidekiq'
+    mount ActionCable.server => '/cable'
   end
 
   devise_for :players,

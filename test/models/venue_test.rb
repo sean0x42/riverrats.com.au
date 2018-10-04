@@ -64,6 +64,7 @@ class VenueTest < ActiveSupport::TestCase
   test 'website should be valid url' do
     venue = Venue.new(website: 'a')
     assert_not venue.valid?, 'Venue is valid with invalid URL'
-    assert_not_empty venue.errors[:website], 'No validation error for invalid URL'
+    assert_not_empty venue.errors[:website],
+                     'No validation error for invalid URL'
   end
 end

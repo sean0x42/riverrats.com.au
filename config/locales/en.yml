@@ -7,6 +7,10 @@
 
 en:
   version: "version 1.2-indev"
+  notification:
+    game:
+      create: "A game you played at <strong>%{venue}</strong> has been recorded: <strong>Game %{game}</strong>."
+      update: "<strong>Game %{game}</strong> has been updated."
   achievement:
     wins:
       title: "Winner Winner Chicken Dinner %{level}"

@@ -14,3 +14,4 @@
 //= require turbolinks
 //= require local-time
 //= require js-routes
+//= require_tree .

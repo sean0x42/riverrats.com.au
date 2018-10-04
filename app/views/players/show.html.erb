@@ -40,10 +40,15 @@
     </div>
 
     <!-- Game history -->
+    <% games = @player.recent_games.page(params[:page]).per(25) -%>
     <div class="model-list game-list">
       <table>
-        <%= render collection: @player.recent_games, partial: 'game_player' %>
+        <%= render collection: games, partial: 'game_player' %>
       </table>
+    </div>
+
+    <div class="model-list-footer">
+      <%= paginate games %>
     </div>
   </div>
 

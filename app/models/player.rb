@@ -145,7 +145,7 @@ class Player < ApplicationRecord
   def recent_games
     GamesPlayer.includes(game: [:venue])
                .where(player: self)
-               .reorder(created_at: :desc).limit(25)
+               .reorder(created_at: :desc)
   end
 
   def season_player
