@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2018_10_03_033751) do
     t.datetime "updated_at", null: false
     t.string "proof_file_name"
     t.string "proof_content_type"
-    t.integer "proof_file_size"
+    t.bigint "proof_file_size"
     t.datetime "proof_updated_at"
     t.integer "level", default: 0, null: false
     t.index ["player_id"], name: "index_achievements_on_player_id"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2018_10_03_033751) do
     t.text "days"
     t.text "description"
     t.bigint "recurring_event_id"
-    t.string "type", null: false
+    t.string "type", default: "", null: false
     t.index ["recurring_event_id"], name: "index_events_on_recurring_event_id"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
@@ -202,6 +202,8 @@ ActiveRecord::Schema.define(version: 2018_10_03_033751) do
   create_table "seasons", force: :cascade do |t|
     t.date "start_at", null: false
     t.date "end_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "venues", force: :cascade do |t|
@@ -220,7 +222,7 @@ ActiveRecord::Schema.define(version: 2018_10_03_033751) do
     t.integer "state", limit: 2, default: 1
     t.string "image_file_name"
     t.string "image_content_type"
-    t.integer "image_file_size"
+    t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.index ["region_id"], name: "index_venues_on_region_id"
     t.index ["slug"], name: "index_venues_on_slug", unique: true
