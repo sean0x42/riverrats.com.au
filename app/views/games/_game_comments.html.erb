@@ -1,0 +1,11 @@
+<% if player_signed_in? -%>
+  <!-- Create comment form -->
+  <%= form_with model: [@game, @game.comments.build] do |form| %>
+    <%= form.text_area :body %>
+  <% end -%>
+
+  <!-- Comments -->
+  <ul class="game-comments">
+    <%= render @game.comments %>
+  </ul>
+<% end -%>

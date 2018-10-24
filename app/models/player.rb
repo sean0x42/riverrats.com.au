@@ -20,6 +20,7 @@ class Player < ApplicationRecord
     has_many :players_venues,  class_name: 'PlayersVenue'
     has_many :players_regions, class_name: 'PlayersRegion'
     has_many :players_seasons, class_name: 'PlayersSeason'
+    has_many :comments
   end
 
   has_many :games, through: :games_players
