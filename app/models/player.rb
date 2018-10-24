@@ -153,13 +153,17 @@ class Player < ApplicationRecord
   protected
 
   def nil_if_blank
-    %w[nickname email].each do |attribute|
+    %i[nickname email].each do |attribute|
+      next if self[attribute].nil?
+
       self[attribute] = nil if self[attribute].blank?
     end
   end
 
   def titleize_names
-    %w[first_name nickname last_name].each do |attribute|
+    %i[first_name nickname last_name].each do |attribute|
+      next if self[attribute].nil?
+
       self[attribute] = self[attribute].titleize
     end
   end
