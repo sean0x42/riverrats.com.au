@@ -1,8 +1,7 @@
 <%= form_with model: resource, url: player_password_path, class: 'modal-form' do |form| %>
-  <%= devise_error_messages! %>
-
   <div class="field">
     <%= form.label :email %><br/>
+    <%= field_errors resource, :email %>
     <%= form.email_field :email, autofocus: true, placeholder: 'someone@example.com' %>
   </div>
 
