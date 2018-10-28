@@ -39,7 +39,7 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
 # set :local_user, -> { `git config user.name`.chomp }
 
 # Default value for keep_releases is 5
-set :keep_releases, 5 
+set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before
 # first deploy.
