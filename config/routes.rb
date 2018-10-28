@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   require 'sidekiq/web'
   authenticated :player do
@@ -28,6 +29,10 @@ Rails.application.routes.draw do
     resources :achievements, only: %i[index show]
   end
 
+  authenticated :player do
+    resources :notifications, only: :index
+  end
+
   resources :events, only: :show
   resources :games, :seasons, only: %i[index show]
   get '/calendar(/:year/:month)', to: 'events#index', as: 'events'
@@ -45,3 +50,4 @@ Rails.application.routes.draw do
     get 'scores', to: 'scores#index'
   end
 end
+# rubocop:enable Metrics/BlockLength

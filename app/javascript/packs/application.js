@@ -13,6 +13,7 @@ import "./polyfill/includes";
 // Components
 import "./components/flashes/flash_controller";
 import "./components/modals/modal_controller";
+import "./components/notifications/notification_controller";
 import "./components/date_picker";
 import "./components/better_select";
 import "./components/player_input.js";

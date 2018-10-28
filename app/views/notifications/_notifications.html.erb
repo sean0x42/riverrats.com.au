@@ -1,0 +1,9 @@
+<% if @notifications.empty? -%>
+  <p>You haven't got any notifications yet!</p>
+<% else -%>
+  <ul class="notification-list">
+    <%= render @notifications %>
+  </ul>
+<% end -%>
+
+<%= link_to 'View all my notifications', notifications_path %>
