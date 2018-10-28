@@ -1,0 +1,19 @@
+<tr>
+  <!-- Icon -->
+  <td></td>
+
+  <!-- Message -->
+  <td>
+    <% if notification.url.nil? -%>
+      <%= notification.message %>
+    <% else -%>
+      <%= link_to notification.message, notification.url %>
+    <% end -%>
+  </td>
+
+  <!-- Mark as read -->
+  <td></td>
+
+  <!-- Delete -->
+  <td></td>
+</tr>

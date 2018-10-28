@@ -2,7 +2,7 @@
   <p>You haven't got any notifications yet!</p>
 <% else -%>
   <ul class="notification-list">
-    <%= render @notifications %>
+    <%= render collection: @notifications, partial: 'notifications/short_notification' %>
   </ul>
 <% end -%>
 
