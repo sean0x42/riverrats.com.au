@@ -5,8 +5,8 @@ let state = State.NONE;
 const queue = [];
 
 /**
- * Checks if there is a new modal in the queue to display. If there is, the state is updated appropriately and the new
- * modal is displayed.
+ * Checks if there is a new modal in the queue to display. If there is, the
+ * state is updated appropriately and the new modal is displayed.
  */
 const updateModalQueue = () => {
   if (state === State.DISPLAYING_MODAL || queue.length === 0) return;
@@ -92,6 +92,13 @@ window.constructModal = (title, subheading, html) => {
   updateModalQueue();
   checkForDateFields();
   checkForSelects();
+};
+
+/**
+ * Closes any currently open modal window.
+ */
+window.closeModal = () => {
+  closeCurrentModal();
 };
 
 // Listen to ajax before event

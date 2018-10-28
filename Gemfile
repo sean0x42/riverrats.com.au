@@ -36,16 +36,17 @@ gem 'bcrypt', platform: :ruby
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capybara', '~> 3.8'
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '~> 3.10'
   gem 'selenium-webdriver'
 end
 
 group :development do
   gem 'capistrano', '~> 3.11.0', require: false
-  gem 'capistrano-bundler', '~> 1.3', require: false
+  gem 'capistrano-bundler', '~> 1.4', require: false
+  gem 'capistrano-passenger', require: false
   gem 'capistrano-rails', '~> 1.3', require: false
   gem 'capistrano-rvm', require: false
-  gem 'capistrano3-unicorn', require: false
   gem 'letter_opener'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop', require: false
