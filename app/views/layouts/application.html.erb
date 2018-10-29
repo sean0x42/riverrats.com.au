@@ -14,11 +14,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application' %>
   <%= yield :scripts %>
-
-  <%# Add meta tag to page to let javascript know whether the player is signed in -%>
-  <% if player_signed_in? -%>
-    <%= tag :meta, name: 'current-user', data: { id: current_player.id } %>
-  <% end -%>
 </head>
 <body class="<%= yield(:body_class) %>">
   <%= render 'flash_messages' %>

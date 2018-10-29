@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   # These routes only apply to logged in players
   authenticated :player do
     mount Sidekiq::Web => '/sidekiq'
-    mount ActionCable.server => '/cable'
 
     # Routes for notifications
     resources :notifications, only: %i[index destroy] do

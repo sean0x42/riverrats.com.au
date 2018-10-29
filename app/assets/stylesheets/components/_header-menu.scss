@@ -95,13 +95,13 @@
 }
 
 .header-menu::after {
-  border-color: $transparent $transparent $white $transparent;
+  border-color: $transparent $transparent $white;
   border-width: 8px;
   right: 25px;
 }
 
 .header-menu::before {
-  border-color: $transparent $transparent $grey $transparent;
+  border-color: $transparent $transparent $grey;
   border-width: 9px;
   right: 24px;
 }
