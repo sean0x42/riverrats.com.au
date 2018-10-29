@@ -18,4 +18,4 @@ Contributions are welcome, and encouraged!
 ## Author
 
 This website is designed, developed, and maintained by
-[Sean Bailey](https://www.seanbailey.io].
+[Sean Bailey](https://www.seanbailey.io).
