@@ -2,7 +2,7 @@ function ready(func) {
   if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
     func();
   } else {
-    document.addEventListener('DOMContentLoaded', func);
+    document.addEventListener("DOMContentLoaded", func);
   }
 }
 
