@@ -12,9 +12,11 @@ class Player < ApplicationRecord
 
   searchkick callbacks: :async, word_start: %i[full_name username]
 
+  # Active record callbacks
   before_validation :gen_username, on: :create
   before_save :nil_if_blank
 
+  # Relationships
   with_options dependent: :nullify, inverse_of: :player do
     has_many :games_players,   class_name: 'GamesPlayer'
     has_many :players_venues,  class_name: 'PlayersVenue'
@@ -36,6 +38,7 @@ class Player < ApplicationRecord
 
   attr_writer :login
 
+  # Validation
   with_options presence: true do
     validates :username,
               uniqueness: { case_sensitive: false },
@@ -71,6 +74,7 @@ class Player < ApplicationRecord
     username
   end
 
+  # Defines searchkick data
   def search_data
     {
       full_name: full_name,
@@ -80,6 +84,7 @@ class Player < ApplicationRecord
     }
   end
 
+  # Returns a human readable form of the players full name
   def full_name
     if nickname.nil?
       "#{first_name} #{last_name}"
@@ -158,6 +163,10 @@ class Player < ApplicationRecord
 
   def self.admins
     Player.where(admin: true).or(Player.where(developer: true))
+  end
+
+  def unread_notifications
+    notifications.where(read: false)
   end
 
   protected

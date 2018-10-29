@@ -1,15 +1,27 @@
 <tr>
   <!-- Icon -->
-  <td></td>
+  <td class="icon">
+    <% case notification.icon -%>
+    <% when 'game' -%>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="material-icons"><path d="M15,7.29V3c0-0.55-0.45-1-1-1h-4C9.45,2,9,2.45,9,3v4.29c0,0.13,0.05,0.26,0.15,0.35l2.5,2.5c0.2,0.2,0.51,0.2,0.71,0l2.5-2.5C14.95,7.55,15,7.43,15,7.29z M7.29,9H3c-0.55,0-1,0.45-1,1v4c0,0.55,0.45,1,1,1h4.29c0.13,0,0.26-0.05,0.35-0.15l2.5-2.5c0.2-0.2,0.2-0.51,0-0.71l-2.5-2.5C7.55,9.05,7.43,9,7.29,9z M9,16.71V21c0,0.55,0.45,1,1,1h4c0.55,0,1-0.45,1-1v-4.29c0-0.13-0.05-0.26-0.15-0.35l-2.5-2.5c-0.2-0.2-0.51-0.2-0.71,0l-2.5,2.5C9.05,16.45,9,16.57,9,16.71z M16.35,9.15l-2.5,2.5c-0.2,0.2-0.2,0.51,0,0.71l2.5,2.5c0.09,0.09,0.22,0.15,0.35,0.15H21c0.55,0,1-0.45,1-1v-4c0-0.55-0.45-1-1-1h-4.29C16.57,9,16.45,9.05,16.35,9.15z"></path></svg>
+    <% when 'comment' -%>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.17 17c.51 0 .98-.29 1.2-.74l1.42-2.84c.14-.28.21-.58.21-.89V8c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h2l-1.03 2.06c-.45.89.2 1.94 1.2 1.94zm10 0c.51 0 .98-.29 1.2-.74l1.42-2.84c.14-.28.21-.58.21-.89V8c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h2l-1.03 2.06c-.45.89.2 1.94 1.2 1.94z"></path></svg>
+    <% else -%>
+      Other: <%= notification.icon.inspect %>
+    <% end -%>
+  </td>
 
   <!-- Message -->
-  <td>
+  <td class="stretch<%= ' highlight' unless notification.read %>">
     <% if notification.url.nil? -%>
       <%= notification.message %>
     <% else -%>
       <%= link_to notification.message, notification.url %>
     <% end -%>
   </td>
+
+  <!-- Date/Time -->
+  <td>Sent <%= local_time_ago(notification.created_at) %></td>
 
   <!-- Mark as read -->
   <td></td>

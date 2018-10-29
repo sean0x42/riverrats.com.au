@@ -23,7 +23,7 @@ class GameNotificationWorker
                                     icon: :game
     notification.message = format(
       I18n.t("notification.game.#{scope}"),
-      position: position.ordinalize,
+      position: (position + 1).ordinalize,
       game: "##{game_id.to_s.rjust(2, '0')}",
       venue: venue_name
     )

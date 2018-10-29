@@ -105,7 +105,7 @@
           </div>
         </li>
 
-        <% notifications = current_player.notifications.count -%>
+        <% notifications = current_player.unread_notifications.count -%>
         <li class="header-menu-wrapper header-desktop">
           <!-- Trigger -->
           <%= link_to notifications_path, class: "header-menu-trigger notifications#{' active' unless notifications.zero?}", remote: true do %> 

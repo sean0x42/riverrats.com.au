@@ -9,8 +9,8 @@ en:
   version: "version 1.2-indev"
   notification:
     game:
-      create: "You placed <strong>%{position}</strong> in <strong>Game %{game}</strong> at the <strong>%{venue}</strong>."
-      update: "<strong>Game %{game}</strong> has been updated."
+      create: "You placed %{position} in Game %{game} at the %{venue}."
+      update: "Game %{game} has been updated."
   achievement:
     wins:
       title: "Winner Winner Chicken Dinner %{level}"
@@ -208,7 +208,7 @@ en:
       description: "View a list of all achievements unlocked by %{player}"
   notifications:
     title: 'Notifications'
-    description: 'View all your current notifications.'
+    description: 'View your full notificatio history.'
   log:
     term_trap: "Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT"
     intercept_term: "Unicorn master intercepting TERM and sending myself QUIT instead"
