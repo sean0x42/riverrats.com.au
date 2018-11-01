@@ -2,8 +2,9 @@
 
 require 'test_helper'
 
+# Tests the notification controller
 class NotificationsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test '' do
+    assert true
+  end
 end

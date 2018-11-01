@@ -1,10 +1,48 @@
+$width: 350px;
+
 .header-menu.notification-area {
-  max-width: 300px;
+  max-width: $width;
   padding: 0.75rem;
-  width: 400px;
+  width: $width;
+
+  .notifications-header {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .clear-all {
+    display: inline-block;
+
+    svg {
+      fill: lighten($text, 10%);
+      height: 30px;
+      line-height: 1;
+      vertical-align: middle;
+      width: 30px;
+    }
+  }
 
   .button-tertiary {
     margin: 0;
     white-space: nowrap;
+  }
+
+  .empty {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 0;
+
+    img {
+      margin-bottom: 0.5rem;
+      max-height: 110px;
+      max-width: 100%;
+    }
+
+    p {
+      color: lighten($text, 10%);
+      margin: 0;
+    }
   }
 }

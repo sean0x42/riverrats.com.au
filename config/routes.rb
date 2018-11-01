@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     # Routes for notifications
     resources :notifications, only: %i[index destroy] do
       match 'mark-read', via: %i[patch put]
+      collection { match 'clear', via: %i[patch put] }
     end
   end
 

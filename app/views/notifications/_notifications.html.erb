@@ -1,5 +1,8 @@
 <% if @notifications.empty? -%>
-  <p>You haven't got any notifications yet!</p>
+  <div class="empty">
+    <%= image_tag 'player-list-empty.png' %>
+    <p>Nice! You're all caught up.</p>
+  </div>
 <% else -%>
   <ul class="notification-list">
     <%= render collection: @notifications, partial: 'notifications/short_notification' %>
