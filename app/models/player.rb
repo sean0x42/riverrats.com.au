@@ -14,7 +14,6 @@ class Player < ApplicationRecord
 
   # Active record callbacks
   before_validation :gen_username, on: :create
-  before_save :nil_if_blank
 
   # Relationships
   with_options dependent: :nullify, inverse_of: :player do
@@ -170,21 +169,23 @@ class Player < ApplicationRecord
     notifications.where(read: false)
   end
 
-  protected
-
-  def nil_if_blank
-    %i[nickname email].each do |attribute|
-      next if self[attribute].nil?
-
-      self[attribute] = nil if self[attribute].blank?
+  # Define custom setters which make blank attributes nil
+  %w[nickname email].each do |attribute|
+    define_method "#{attribute}=" do |value|
+      value = value.presence unless value.nil?
+      super(value)
     end
   end
 
-  def titleize_names
-    %i[first_name nickname last_name].each do |attribute|
-      next if self[attribute].nil?
+  # Define custom setters which automatically titleize
+  %w[first_name last_name].each do |attribute|
+    define_method "#{attribute}=" do |value|
+      # We need to be sure we only capitalize the first char
+      if value.instance_of?(String) && value.present?
+        value = value[0].capitalize + value.slice(1..-1)
+      end
 
-      self[attribute] = self[attribute].titleize
+      super(value)
     end
   end
 end
