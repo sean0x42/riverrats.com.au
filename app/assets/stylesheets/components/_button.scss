@@ -98,9 +98,9 @@
 }
 
 .button-tertiary {
-  background: $grey-light;
-  color: lighten($text, 20%);
-  fill: lighten($text, 20%);
+  background: $grey;
+  color: lighten($text, 15%);
+  fill: lighten($text, 15%);
   margin: 0.5rem -0.25rem;
 
   &:hover {
