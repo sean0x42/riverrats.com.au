@@ -1,0 +1,56 @@
+$width: 350px;
+
+.header-menu.notification-area {
+  max-width: $width;
+  padding: 0.75rem 1rem 1rem;
+  width: $width;
+
+  .notifications-header {
+    align-items: center;
+    border-bottom: 1px solid $grey;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5rem 0.5rem;
+
+    p {
+      color: $text-bold;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
+
+  .clear-all {
+    color: lighten($text, 15%);
+    display: inline-block;
+    margin-left: auto;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .button-tertiary {
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .empty {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2.25rem 0;
+
+    svg {
+      $size: 75px;
+      fill: darken($grey-dark, 15%);
+      height: $size;
+      margin-bottom: 0.5rem;
+      width: $size;
+    }
+
+    p {
+      color: lighten($text, 20%);
+      margin: 0;
+    }
+  }
+}

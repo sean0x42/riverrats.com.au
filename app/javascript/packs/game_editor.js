@@ -254,7 +254,6 @@ function onSubmitForm(event) {
     // Get fields
     const positionField = player.querySelector(".js-position-field");
     const destroyField = player.querySelector(".js-destroy-field");
-    console.log(player);
 
     // Set
     if (destroyField.value === true || destroyField.value === "true") {

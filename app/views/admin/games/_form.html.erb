@@ -1,5 +1,4 @@
 <%= form_with model: [:admin, @game], class: 'modal-form game-form' do |form| %>
-
   <!-- Date played -->
   <div class="field">
     <%= form.label :played_on %><br/>
@@ -18,12 +17,15 @@
   <div class="field">
     <%= form.label :season_id %><br/>
     <%= field_errors @game, :season_id %>
-    <%= form.collection_select :season_id, Season.all.order(start_at: :desc).limit(10), :id, :name %>
+    <%= form.collection_select :season_id, 
+                               Season.all.order(start_at: :desc).limit(10), 
+                               :id, :name %>
   </div>
 
   <div class="player-area-header">
     <h2><%= t('admin.games.new.add_players') %></h2>
-    <%= link_to 'Create player', new_admin_player_path, class: 'anchor', remote: true, data: { expects_modal: true } %>
+    <%= link_to 'Create player', new_admin_player_path, class: 'anchor', 
+                remote: true, data: { expects_modal: true } %>
   </div>
 
   <%= field_errors @game, :games_players %>

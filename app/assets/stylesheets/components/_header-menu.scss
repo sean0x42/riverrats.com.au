@@ -26,7 +26,7 @@
     left: 0;
     line-height: $body-line-height;
     margin-top: 0.8rem;
-    min-width: 275px;
+    min-width: 240px;
     position: absolute;
     right: 0;
   }
@@ -61,7 +61,7 @@
     }
 
     .spacer {
-      border-bottom: 1px solid $grey;
+      border-bottom: 2px dashed $grey-dark;
       margin: 0.75rem 1.25rem;
       width: unset;
     }
@@ -80,6 +80,30 @@
   display: flex;
   fill: $darcula-inverted;
   flex-direction: column;
+}
+
+// Define triangle
+.header-menu::after,
+.header-menu::before {
+  border-style: solid;
+  bottom: 100%;
+  content: "";
+  display: block;
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+.header-menu::after {
+  border-color: $transparent $transparent $white;
+  border-width: 8px;
+  right: 25px;
+}
+
+.header-menu::before {
+  border-color: $transparent $transparent $grey;
+  border-width: 9px;
+  right: 24px;
 }
 
 @media (min-width: 980px) {

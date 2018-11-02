@@ -17,8 +17,6 @@ Rails:
 Rails/InverseOf:
   Enabled: true
 
-Style/ClassAndModuleChildren:
-  Enabled: false
 Style/Documentation:
   Exclude:
     - 'db/migrate/*'

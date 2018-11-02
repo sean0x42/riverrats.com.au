@@ -61,6 +61,12 @@
   .numeric {
     text-align: right;
   }
+
+  .icon svg {
+    fill: lighten($text, 25%);
+    line-height: 1;
+    vertical-align: middle;
+  }
 }
 
 .model-list-footer {

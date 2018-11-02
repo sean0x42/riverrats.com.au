@@ -1,0 +1,19 @@
+<% content_for :title, t('notifications.title') -%>
+<% content_for :description, t('notifications.description') -%>
+<% content_for :canonical_url, notifications_url -%>
+
+<div class="content-wrapper wrapper">
+  <span class="subheading">Account Tools</span>
+  <h1><%= t('notifications.title') -%></h1>
+
+  <div class="model-list">
+    <table>
+      <%= render @notifications %>
+    </table>
+  </div>
+
+  <div class="model-list-footer">
+    <%= paginate @notifications %>
+    <p><%= page_entries_info @notifications %></p>
+  </div>
+</div>

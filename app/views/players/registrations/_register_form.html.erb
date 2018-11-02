@@ -1,36 +1,51 @@
 <%= form_with model: resource, class: 'modal-form' do |form| %>
-  <%= devise_error_messages! %>
-
+  <!-- First name -->
   <div class="field">
     <%= form.label :first_name %><br/>
-    <%= form.text_field :first_name, autofocus: true, spellcheck: false, placeholder: 'Given name...' %>
+    <%= field_errors resource, :first_name %> 
+    <%= form.text_field :first_name, autofocus: true, spellcheck: false, 
+                        placeholder: 'Given name...' %>
   </div>
 
+  <!-- Last name -->
   <div class="field">
     <%= form.label :last_name %><br/>
-    <%= form.text_field :last_name, spellcheck: false, placeholder: 'Surname, family name...' %>
+    <%= field_errors resource, :last_name %>
+    <%= form.text_field :last_name, spellcheck: false, 
+                        placeholder: 'Surname, family name...' %>
   </div>
 
-  <hr/>
-
+  <!-- Email -->
   <div class="field">
     <%= form.label :email %><br/>
+    <%= field_errors resource, :email %>
     <%= form.email_field :email, placeholder: 'someone@example.com' %>
   </div>
 
+  <!-- Password -->
   <div class="field">
     <%= form.label :password %><br/>
-    <%= form.password_field :password, autocomplete: 'off', placeholder: '6 characters minimum' %>
+    <%= field_errors resource, :password %>
+    <%= form.password_field :password, autocomplete: 'off', 
+                            placeholder: '6 characters minimum' %>
   </div>
 
+  <!-- Password confirmation -->
   <div class="field">
     <%= form.label :password_confirmation %><br/>
-    <%= form.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Retype your password' %>
+    <%= field_errors resource, :password_confirmation %>
+    <%= form.password_field :password_confirmation, autocomplete: 'off', 
+                            placeholder: 'Retype your password' %>
   </div>
 
-  <%= form.submit 'Create my account', class: 'button wide', name: nil, data: { disable_with: 'Please wait...' } %>
+  <%= form.submit 'Create my account', class: 'button wide', name: nil, 
+                  data: { disable_with: 'Please wait...' } %>
 
   <div class="modal-footer">
-    <p>Already have an account? <%= link_to 'Log in', new_player_session_path, class: 'anchor', remote: true, data: { expects_modal: true, disable: true } %>.</p>
+    <p>
+      Already have an account?
+      <%= link_to 'Log in', new_player_session_path, class: 'anchor', 
+                  remote: true, data: { expects_modal: true } %>.
+    </p>
   </div>
 <% end %>
