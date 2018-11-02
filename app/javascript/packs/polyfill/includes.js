@@ -2,7 +2,7 @@
 
 if (!Array.prototype.includes) {
   Object.defineProperty(Array.prototype, "includes", {
-    value: function(searchElement, n = 0) {
+    value: (searchElement, n = 0) => {
       if (this === null) {
         throw new TypeError("\"this\" is null or undefined.");
       }

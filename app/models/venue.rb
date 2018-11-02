@@ -14,6 +14,7 @@ class Venue < ApplicationRecord
                             inverse_of: :venue
   has_many :players, through: :players_venues
   belongs_to :region
+  has_many :games, dependent: :nullify
 
   enum state: %i[ACT NSW NT QLD SA TAS VIC WA]
 

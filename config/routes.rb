@@ -1,9 +1,18 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   require 'sidekiq/web'
+
+  # These routes only apply to logged in players
   authenticated :player do
     mount Sidekiq::Web => '/sidekiq'
+
+    # Routes for notifications
+    resources :notifications, only: %i[index destroy] do
+      match 'mark-read', via: %i[patch put]
+      collection { match 'clear', via: %i[patch put] }
+    end
   end
 
   devise_for :players,
@@ -14,6 +23,7 @@ Rails.application.routes.draw do
                passwords: 'players/passwords'
              }
 
+  # Landing page routes
   root 'landing#index'
   get '/privacy-policy', to: 'landing#privacy_policy'
   get '/release-notes', to: 'landing#release_notes'
@@ -32,6 +42,7 @@ Rails.application.routes.draw do
   get '/calendar(/:year/:month)', to: 'events#index', as: 'events'
   resources :regions, :venues, only: :show, param: :slug
 
+  # Routes that are only accessible to administrators
   namespace :admin do
     root to: redirect('/admin/players')
 
@@ -44,3 +55,4 @@ Rails.application.routes.draw do
     get 'scores', to: 'scores#index'
   end
 end
+# rubocop:enable Metrics/BlockLength

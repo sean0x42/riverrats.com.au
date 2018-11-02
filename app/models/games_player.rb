@@ -15,6 +15,8 @@ class GamesPlayer < ApplicationRecord
   before_save :calc_score
   after_save :update_stats
   after_destroy :update_stats
+  after_create :send_create_notification
+  after_update :send_update_notification
 
   with_options presence: true do
     validates :game, :player
@@ -45,5 +47,13 @@ class GamesPlayer < ApplicationRecord
 
   def update_stats
     CalculatePlayerStatsWorker.perform_async(player.id)
+  end
+
+  def send_create_notification
+    GameNotificationWorker.perform_async(id, player.id, 'create')
+  end
+
+  def send_update_notifications
+    GameNotificationWorker.perform_async(id, player.id, 'update')
   end
 end

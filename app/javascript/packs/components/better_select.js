@@ -22,6 +22,31 @@ const getValueAsString = (select) => {
 };
 
 /**
+ * An event handler, that should be fired whenever the
+ * trigger for a better select element is clicked.
+ * @param event Click event.
+ */
+const onSelectTriggerClick = (event) => {
+  // Buttons inside a form will submit their parent form when clicked => prevent default
+  event.preventDefault();
+  const wrapper = event.target.parentNode;
+
+  // Disable all selects
+  document.querySelectorAll(".better-select-wrapper[active]").forEach((select) => {
+    if (select !== wrapper) {
+      select.removeAttribute("active");
+    }
+  });
+
+  // Toggle wrapper
+  if (wrapper.hasAttribute("active")) {
+    wrapper.removeAttribute("active");
+  } else {
+    wrapper.setAttribute("active", "");
+  }
+};
+
+/**
  * Builds a custom select wrapper around an existing select element.
  * @param select Existing select element.
  */
@@ -58,31 +83,6 @@ const buildSelectWrapper = (select) => {
   });
 
   select.parentNode.insertBefore(wrapper, select);
-};
-
-/**
- * An event handler, that should be fired whenever the
- * trigger for a better select element is clicked.
- * @param event Click event.
- */
-const onSelectTriggerClick = (event) => {
-  // Buttons inside a form will submit their parent form when clicked => prevent default
-  event.preventDefault();
-  const wrapper = event.target.parentNode;
-
-  // Disable all selects
-  document.querySelectorAll(".better-select-wrapper[active]").forEach((select) => {
-    if (select !== wrapper) {
-      select.removeAttribute("active");
-    }
-  });
-
-  // Toggle wrapper
-  if (wrapper.hasAttribute("active")) {
-    wrapper.removeAttribute("active");
-  } else {
-    wrapper.setAttribute("active", "");
-  }
 };
 
 /**

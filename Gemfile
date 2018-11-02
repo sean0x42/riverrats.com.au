@@ -35,8 +35,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', platform: :ruby
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger
-  # console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.10'
@@ -68,6 +66,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'autoprefixer-rails'
 gem 'bootsnap', require: false
 gem 'connection_pool'
+gem 'coveralls', require: false
 gem 'devise'
 gem 'elasticsearch'
 gem 'friendly_id', '~> 5.2.4'
