@@ -1,0 +1,17 @@
+.comment-form {
+  background: $grey-lighter;
+  border: 1px solid $grey;
+  border-radius: $border-radius;
+  max-width: 700px;
+  padding: 0.5rem;
+
+  textarea {
+    margin: 0 0 0.5rem;
+    resize: vertical;
+  }
+
+  .button {
+    margin-left: auto;
+    padding: 12px 18px;
+  }
+}
