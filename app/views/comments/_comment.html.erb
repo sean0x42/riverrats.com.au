@@ -1,1 +1,25 @@
-<li><%= comment.body %></li>
+<% player = comment.player -%>
+<li class="comment">
+  <!-- Comment header -->
+  <div class="comment-header">
+    <% if player.nil? -%>
+      [Deleted player]
+    <% else -%>
+      <%= link_to player_path(player) do %>
+        <span class="highlight"><%= player.full_name %></span>&nbsp;@<%= player.username %>
+        <% if player.developer? -%>
+          <span class="flair">developer</span>
+        <% elsif player.admin? -%>
+          <span class="flair">admin</span>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+
+    <span>&nbsp;&middot; commented <%= local_time_ago comment.created_at %></span>
+  </div>
+
+  <!-- Contents -->
+  <div class="comment-body">
+    <p><%= comment.body %></p>
+  </div>
+</li>

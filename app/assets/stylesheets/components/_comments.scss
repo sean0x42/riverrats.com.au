@@ -15,3 +15,58 @@
     padding: 12px 18px;
   }
 }
+
+.game-comments {
+  list-style-type: none;
+  margin: 2rem 0 0;
+  max-width: 80ch;
+  padding: 0 0 1rem;
+  position: relative;
+
+  &::before {
+    background: $grey-dark;
+    bottom: 0;
+    content: "";
+    left: 38.5px;
+    position: absolute;
+    top: 0;
+    width: 3px;
+    z-index: 1;
+  }
+
+  .comment {
+    margin: 2rem 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .comment-header {
+    align-items: center;
+    background: $grey-lighter;
+    border: 1px solid $grey;
+    border-bottom: 0;
+    border-radius: $border-radius $border-radius 0 0;
+    color: lighten($text, 25%);
+    display: flex;
+    padding: 0.75rem 1rem;
+
+    a {
+      color: inherit;
+    }
+
+    .highlight {
+      color: $text;
+    }
+  }
+
+  .comment-body {
+    background: $white;
+    border: 1px solid $grey;
+    border-radius: 0 0 $border-radius $border-radius;
+    padding: 0.75rem 1rem;
+    
+    p {
+      margin: 0;
+    }
+  }
+}

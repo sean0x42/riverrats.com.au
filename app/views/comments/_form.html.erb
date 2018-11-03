@@ -2,5 +2,5 @@
 <%= form_with model: [@game, @comment], class: 'comment-form' do |form| %>
   <%= field_errors @comment, :body %>
   <%= form.text_area :body, placeholder: 'Leave a comment...' %>
-  <%= form.submit class: 'button', data: { disable_with: 'Commenting...' } %>
+  <%= form.submit 'Post comment', class: 'button', data: { disable_with: 'Commenting...' } %>
 <% end -%>

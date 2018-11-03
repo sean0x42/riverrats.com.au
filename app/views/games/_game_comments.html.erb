@@ -1,8 +1,11 @@
-<% if player_signed_in? -%>
-  <%= render 'comments/form' %>
-<% end -%>
+<% comments = @game.comments.includes(:player) %>
+<h2><%= pluralize comments.count, 'comment' %></h2>
 
 <!-- Comments -->
 <ul class="game-comments">
-  <%= render @game.comments %>
+  <%= render comments %>
 </ul>
+
+<% if player_signed_in? -%>
+  <%= render 'comments/form' %>
+<% end -%>
