@@ -55,9 +55,9 @@ class ArticleTest < ActiveSupport::TestCase
   end
 
   test 'article should have visibility' do
-    article = Article.new(public: nil)
+    article = Article.new(draft: nil)
     assert_not article.valid?, 'Article is valid with nil visibility'
-    assert_not_empty article.errors[:public],
+    assert_not_empty article.errors[:draft],
                      'No validation error for article with nil visibility'
   end
 end
