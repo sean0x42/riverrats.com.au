@@ -36,12 +36,12 @@ class Admin::GamesController < ApplicationController
 
   # GET /admin/games/:id/edit
   def edit
-    @game = Game.find params[:id]
+    @game = Game.find(params[:id])
   end
 
-  # POST /admin/games/:id
+  # PATCH|PUT /admin/games/:id
   def update
-    @game = Game.find params[:id]
+    @game = Game.find(params[:id])
 
     if @game.update games_params
       redirect_to admin_games_path, notice: t('admin.games.update.flash')
@@ -55,7 +55,7 @@ class Admin::GamesController < ApplicationController
 
   # DELETE /admin/games/:id
   def destroy
-    @game = Game.find params[:id]
+    @game = Game.find(params[:id])
     @game.destroy
 
     redirect_to admin_games_path, notice: t('admin.games.destroy.flash')

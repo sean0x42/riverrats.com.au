@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the
   # project's package.json
@@ -49,7 +50,10 @@ Rails.application.configure do
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
-  # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
+  # config.action_cable.allowed_request_origins = [
+  #   'http://example.com',
+  #   /http:\/\/example.*/
+  # ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use
   # secure cookies.
@@ -111,3 +115,4 @@ Rails.application.configure do
 
   config.require_master_key = true
 end
+# rubocop:enable Metrics/BlockLength

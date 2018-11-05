@@ -26,14 +26,14 @@ class VenueTest < ActiveSupport::TestCase
                      'No validation error for venue with non-unique name'
   end
 
-  test 'name should not be long' do
+  test 'name should not be short' do
     venue = Venue.new(name: 'a')
     assert_not venue.valid?, 'Venue is valid with short name (1 char)'
     assert_not_empty venue.errors[:name],
                      'No validation error for venue with short name (1 char)'
   end
 
-  test 'name should not be short' do
+  test 'name should not be long' do
     venue = Venue.new(name: 'a' * 200)
     assert_not venue.valid?, 'Venue is valid with long name (200 chars)'
     assert_not_empty venue.errors[:name],
