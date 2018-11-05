@@ -1,5 +1,5 @@
-<% comments = @game.comments.includes(:player) %>
-<h2><%= pluralize comments.count, 'comment' %></h2>
+<% comments = @game.comments.includes(:player).page(params[:comment_page]).per(10) %>
+<h2><%= pluralize @game.comments.count, 'comment' %></h2>
 
 <!-- Comments -->
 <ul class="game-comments">
@@ -9,3 +9,5 @@
 <% if player_signed_in? -%>
   <%= render 'comments/form' %>
 <% end -%>
+
+<%= paginate comments, param_name: :comment_page %>
