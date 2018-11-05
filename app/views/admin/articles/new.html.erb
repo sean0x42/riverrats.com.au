@@ -1,2 +1,6 @@
-<h1>Admin::Articles#new</h1>
-<p>Find me in app/views/admin/articles/new.html.erb</p>
+<% content_for :title, t('admin.articles.new.title') -%>
+
+<span class="subheading">Admin Tools</span>
+<h1><%= t('admin.articles.new.title') %></h1>
+
+<%= render 'form' %>

@@ -53,4 +53,11 @@ class ArticleTest < ActiveSupport::TestCase
     assert_not_empty article.errors[:body],
                      'No validation error for article with short body (3 chars)'
   end
+
+  test 'article should have visibility' do
+    article = Article.new(public: nil)
+    assert_not article.valid?, 'Article is valid with nil visibility'
+    assert_not_empty article.errors[:public],
+                     'No validation error for article with nil visibility'
+  end
 end

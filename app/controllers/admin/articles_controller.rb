@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# A controller for articles
 class Admin::ArticlesController < ApplicationController
   layout 'admin'
 
@@ -16,6 +17,12 @@ class Admin::ArticlesController < ApplicationController
   # POST /admin/articles
   def create
     @article = Article.new(article_params)
+
+    if @article.save
+      redirect_to admin_articles_path, notice: t('admin.articles.create.flash')
+    else
+      render 'new'
+    end
   end
 
   # GET /admin/articles/:id/edit
@@ -36,6 +43,6 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body, :draft)
   end
 end
