@@ -1,10 +1,11 @@
-<%- content_for :title, t('admin.players.index.title') %>
+<% content_for :title, t('admin.players.index.title') -%>
 
 <div class="heading-and-button">
   <div>
     <span class="subheading">Admin Tools</span>
     <h1><%= t('admin.players.index.title') %></h1>
   </div>
+
   <div>
     <%= link_to new_admin_player_path, class: 'button', remote: true, data: { expects_modal: true } do %>
       <svg width="24px" height="24px" viewBox="0 0 24 24" class="material-icons" style="margin-left: -3px;">
@@ -18,7 +19,6 @@
 </div>
 
 <div class="breakdown">
-
   <!-- Player count -->
   <div>
     <h2>Registered Players</h2>
@@ -36,7 +36,6 @@
     <h2>Admins</h2>
     <p><%= number_format Player.admins.count %></p>
   </div>
-
 </div>
 
 <div class="players-list model-list">

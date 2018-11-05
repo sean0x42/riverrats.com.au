@@ -11,7 +11,8 @@ require 'resolv-replace'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module RiverratsComAu
+module Riverrats
+  # Application configuration
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
@@ -37,5 +38,8 @@ module RiverratsComAu
 
     # Set default time zone
     config.time_zone = 'Sydney'
+
+    # Disable default asset generation
+    config.generators.assets = false
   end
 end

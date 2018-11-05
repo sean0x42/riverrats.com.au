@@ -6,7 +6,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  version: "version 1.2-indev"
+  version: "version 1.4-indev"
   notification:
     game:
       create: "You placed %{position} in Game %{game} at the %{venue}."
@@ -151,6 +151,14 @@ en:
       new:
         title: "Generate Mailing List"
     danger_zone: "Careful! Actions performed here cannot be undone."
+    articles:
+      index:
+        title: 'News & Updates'
+      new:
+        title: 'Compose Article'
+      create:
+        flash: 'You have successfully created an article'
+      confirm_delete: 'Are you sure you want to delete this article? This action cannot be undone.'
   seasons:
     show:
       title: "%{season}"

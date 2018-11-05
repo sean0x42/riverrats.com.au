@@ -23,3 +23,6 @@ Style/Documentation:
 Style/RegexpLiteral:
   Enabled: true
   EnforcedStyle: slashes
+Style/ClassAndModuleChildren:
+  Enabled: true
+  EnforcedStyle: compact

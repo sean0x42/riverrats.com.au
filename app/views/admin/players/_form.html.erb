@@ -4,7 +4,7 @@
     <div class="field">
       <%= form.label :username %><br/>
       <%= field_errors @player, :username %>
-      <%= form.text_field :username, spellcheck: false %>
+      <%= form.text_field :username, spellcheck: false, autofocus: true %>
     </div>
   <% end %>
 

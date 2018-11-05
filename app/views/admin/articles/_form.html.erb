@@ -1,0 +1,29 @@
+<%= form_with model: [:admin, @article] do |form| %>
+  <!-- Title -->
+  <div class="field">
+    <%= form.label :title %><br/>
+    <%= field_errors @article, :title %>
+    <%= form.text_field :title, autofocus: true %>
+  </div>
+
+  <!-- Body -->
+  <div class="field"></div>
+
+  <!-- Visibility -->
+  <h2>Visibility</h2>
+
+  <div class="field">
+    <div class="checkbox">
+      <%= form.check_box :draft %>
+      <%= form.label :draft, 'This article is a draft' %>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <%= form.submit class: 'button', remote: true, data: { disable_with: 'Please wait...' } %>
+  </div>
+
+  <% if @article.persisted? -%>
+    <%= danger_zone(@article, "Delete #{@article.title}", admin_article_path(@article), t('admin.articles.confirm_delete')) %>
+  <% end -%>
+<% end -%>

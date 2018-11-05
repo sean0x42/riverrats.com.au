@@ -15,11 +15,6 @@ class Admin::PlayersController < ApplicationController
     @players = Player.order(score: :desc).page params[:page]
   end
 
-  # GET /admin/players/:username
-  def show
-    @player = Player.find_by!(username: params[:username])
-  end
-
   # GET /admin/players/new
   def new
     @player = Player.new
