@@ -11,33 +11,35 @@ require 'resolv-replace'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-# Application configuration
-class RiverRats::Application < Rails::Application
-  # Initialize configuration defaults for originally generated Rails version.
-  config.load_defaults 5.1
+module Riverrats
+  # Application configuration
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.1
 
-  # Settings in config/environments/* take precedence over those specified here.
-  # Application configuration should go into files in config/initializers
-  # -- all .rb files in that directory are automatically loaded.
-  config.action_mailer.default_url_options = { host: 'riverrats.com.au' }
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
+    config.action_mailer.default_url_options = { host: 'riverrats.com.au' }
 
-  config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :sidekiq
 
-  # Add models achievements path
-  # noinspection RubyLiteralArrayInspection
-  config.autoload_paths += [
-    "#{config.root}/app/models/achievements",
-    "#{config.root}/app/models/achievements/participation",
-    "#{config.root}/app/models/achievements/score",
-    "#{config.root}/app/models/achievements/wins"
-  ]
+    # Add models achievements path
+    # noinspection RubyLiteralArrayInspection
+    config.autoload_paths += [
+      "#{config.root}/app/models/achievements",
+      "#{config.root}/app/models/achievements/participation",
+      "#{config.root}/app/models/achievements/score",
+      "#{config.root}/app/models/achievements/wins"
+    ]
 
-  # Action View
-  config.action_view.form_with_generates_ids = true
+    # Action View
+    config.action_view.form_with_generates_ids = true
 
-  # Set default time zone
-  config.time_zone = 'Sydney'
+    # Set default time zone
+    config.time_zone = 'Sydney'
 
-  # Disable default asset generation
-  config.generators.assets = false
+    # Disable default asset generation
+    config.generators.assets = false
+  end
 end
