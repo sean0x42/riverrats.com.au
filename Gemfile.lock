@@ -90,7 +90,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.1)
     connection_pool (2.2.2)
     crass (1.0.4)
     devise (4.5.0)
@@ -117,11 +117,11 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashie (3.6.0)
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     ice_cube (0.16.3)
     jaro_winkler (1.5.1)
-    jbuilder (2.7.0)
+    jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     js-routes (1.4.4)
@@ -333,7 +333,7 @@ DEPENDENCIES
   elasticsearch
   friendly_id (~> 5.1.0)
   ice_cube
-  jbuilder (~> 2.5)
+  jbuilder (~> 2.8)
   js-routes
   kaminari
   letter_opener
