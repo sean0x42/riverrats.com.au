@@ -3,7 +3,7 @@
   border: 1px solid $grey;
   border-radius: $border-radius;
   max-width: 700px;
-  padding: 0.5rem;
+  padding: 0.75rem;
 
   textarea {
     margin: 0 0 0.5rem;
@@ -11,16 +11,26 @@
   }
 
   .button {
-    margin-left: auto;
     padding: 12px 18px;
+  }
+}
+
+.comment-form--footer {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+
+  label {
+    color: lighten($text, 20%);
+    line-height: 1;
   }
 }
 
 .game-comments {
   list-style-type: none;
-  margin: 2rem 0 0;
+  margin: 1.5rem 0 0;
   max-width: 80ch;
-  padding: 0 0 1rem;
+  padding: 0;
   position: relative;
 
   &::before {
@@ -30,11 +40,14 @@
     left: 38.5px;
     position: absolute;
     top: 0;
-    width: 3px;
+    width: 2px;
     z-index: 1;
   }
 
   .comment {
+    background: $white;
+    border: 1px solid $grey-dark;
+    border-radius: $border-radius;
     margin: 2rem 0;
     position: relative;
     z-index: 2;
@@ -43,8 +56,7 @@
   .comment-header {
     align-items: center;
     background: $grey-lighter;
-    border: 1px solid $grey;
-    border-bottom: 0;
+    border-bottom: 1px solid $grey;
     border-radius: $border-radius $border-radius 0 0;
     color: lighten($text, 25%);
     display: flex;
@@ -57,16 +69,30 @@
     .highlight {
       color: $text;
     }
+
+    .flair {
+      background: $zurple-light;
+      color: $zurple-lighter-inverted;
+    }
   }
 
   .comment-body {
-    background: $white;
-    border: 1px solid $grey;
-    border-radius: 0 0 $border-radius $border-radius;
     padding: 0.75rem 1rem;
 
     p {
       margin: 0;
+    }
+  }
+
+  .comment-footer {
+    align-items: center;
+    display: flex;
+    list-style-type: none;
+    padding: 0.25rem 1rem 0.75rem;
+
+    a {
+      color: lighten($text, 25%);
+      margin-right: 0.5rem;
     }
   }
 }

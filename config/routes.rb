@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   end
 
   resources :games, only: %i[index show] do
-    resources :comments, only: %i[create update destroy]
+    resources :comments, except: %i[index show new]
   end
 
   resources :events, only: :show

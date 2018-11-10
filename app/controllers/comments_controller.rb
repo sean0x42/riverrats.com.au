@@ -22,12 +22,23 @@ class CommentsController < ApplicationController
     end
   end
 
+  # GET /games/:id/comments/:id
+  def edit
+    @game = Game.find(params[:game_id])
+    @comment = @game.comments.find(params[:id])
+  end
+
   # PATCH|PUT /games/:id/comments/:id
   def update
   end
 
   # DELETE /games/:id/comments/:id
   def destroy
+    @game = Game.find(params[:game_id])
+    @comment = @game.comments.find(params[:id])
+    @comment.destroy
+
+    render 'destroy'
   end
 
   private

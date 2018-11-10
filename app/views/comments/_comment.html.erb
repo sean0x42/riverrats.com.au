@@ -22,4 +22,13 @@
   <div class="comment-body">
     <p><%= comment.body %></p>
   </div>
+
+  <!-- Footer -->
+  <% if player == current_player -%>
+    <ul class="comment-footer">
+      <!-- Edit -->
+      <li><%= link_to 'edit', edit_game_comment_path(@game, comment), remote: true %></li>
+      <li><%= link_to 'delete', game_comment_path(@game, comment), remote: true, method: :delete %></li>
+    </ul>
+  <% end -%>
 </li>
