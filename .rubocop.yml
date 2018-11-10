@@ -20,6 +20,7 @@ Rails/InverseOf:
 Style/Documentation:
   Exclude:
     - 'db/migrate/*'
+    - 'app/controllers/*'
 Style/RegexpLiteral:
   Enabled: true
   EnforcedStyle: slashes
