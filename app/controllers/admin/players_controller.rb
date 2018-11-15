@@ -5,14 +5,12 @@ require 'flash_message'
 # A controller for players in the admin scope
 class Admin::PlayersController < ApplicationController
   layout 'admin'
-
-  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/players
   def index
-    @players = Player.order(score: :desc).page params[:page]
+    @players = Player.order(score: :desc).page(params[:page])
   end
 
   # GET /admin/players/:username

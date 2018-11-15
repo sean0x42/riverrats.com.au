@@ -152,7 +152,10 @@ en:
         title: "Generate Mailing List"
     tickets:
       new:
-        title: "Award Tickets"
+        title: "Award & Revoke Tickets"
+    actions:
+      index:
+        title: "Review Logs"
     danger_zone: "Careful! Actions performed here cannot be undone."
   seasons:
     show:

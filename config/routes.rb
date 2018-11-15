@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     # Generic routes
     resources :games, :events, :regions, :venues, except: :show
     resources :achievements, only: %i[new create]
+    resources :actions, only: :index
 
     # Mail
     resources :mail, only: :index do
