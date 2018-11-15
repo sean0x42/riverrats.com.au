@@ -8,6 +8,6 @@ class Admin::ActionsController < ApplicationController
 
   # GET /admin/actions
   def index
-    @actions = Action.page(params[:page])
+    @actions = Action.order(created_at: :desc).page(params[:page])
   end
 end

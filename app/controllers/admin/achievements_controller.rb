@@ -5,8 +5,6 @@ require 'flash_message'
 # Controller for achievements in the admin scope
 class Admin::AchievementsController < ApplicationController
   layout 'admin'
-
-  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
@@ -24,6 +22,8 @@ class Admin::AchievementsController < ApplicationController
         t('admin.achievements.create.title'),
         t('admin.achievements.create.body')
       )
+      record_action(:achievement, 'achievements.create',
+                    achievement: @achievement.type)
       redirect_to admin_players_path
     else
       if params.key?(:achievement) && params[:achievement].key?(:player_id)

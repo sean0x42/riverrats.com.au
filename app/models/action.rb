@@ -2,10 +2,12 @@
 
 # Represents a single administrative action in the admin panel
 class Action < ApplicationRecord
-  enum action: %i[tickets]
+  belongs_to :player
+
+  enum action: %i[player game event venue region achievement ticket comment]
 
   with_options presence: true do
     validates :action
-    validates :description, length: { within: 3..140 }
+    validates :description, length: { minimum: 3 }
   end
 end

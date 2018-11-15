@@ -23,6 +23,7 @@ class Admin::GamesController < ApplicationController
     @game = Game.new games_params
 
     if @game.save
+      record_action(:game, 'games.create', game: @game.id)
       redirect_to admin_games_path, notice: t('admin.games.create.flash')
     else
       respond_to do |format|
@@ -42,6 +43,7 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
 
     if @game.update games_params
+      record_action(:game, 'games.update', game: @game.id)
       redirect_to admin_games_path, notice: t('admin.games.update.flash')
     else
       respond_to do |format|
@@ -56,6 +58,7 @@ class Admin::GamesController < ApplicationController
     @game = Game.find params[:id]
     @game.destroy
 
+    record_action(:game, 'games.destroy', game: @game.id)
     redirect_to admin_games_path, notice: t('admin.games.destroy.flash')
   end
 

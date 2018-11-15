@@ -66,10 +66,13 @@ en:
         title: "Edit Player"
       create:
         flash: "You have successfully created a player."
+        action: "created player @%{player}."
       update:
         flash: "You have successfully updated a player."
+        action: "edited player @%{player}."
       destroy:
         flash: "You have successfully deleted a player."
+        action: "deleted player @%{player}."
       confirm_delete: "Are you sure you want to delete this player? This action cannot be undone."
     games:
       index:
@@ -89,10 +92,13 @@ en:
         title: "Edit Game"
       create:
         flash: "You have successfully created a game."
+        action: "created Game #%{game}."
       update:
         flash: "You have successfully updated a game."
+        action: "edited Game #%{game}."
       destroy:
         flash: "You have successfully deleted a game."
+        action: "deleted Game #%{game}."
       confirm_delete: "Are you sure you want to delete this game? This action cannot be undone."
     events:
       index:
@@ -103,10 +109,13 @@ en:
         title: "Edit Event"
       create:
         flash: "You have successfully created an event."
+        action: "created event %{event}."
       update:
         flash: "You have successfully updated an event."
+        action: "edited event %{event}."
       destroy:
         flash: "You have successfully deleted an event."
+        action: "deleted event %{event}."
       confirm_delete: "Are you sure you want to delete this event? This action cannot be undone."
       recurring:
         confirm_delete: "Are you sure you want to delete this event, and all following events? This action cannot be undone."
@@ -122,10 +131,13 @@ en:
         title: "Edit Venue"
       create:
         flash: "You have successfully created a venue."
+        action: "created venue %{venue}."
       update:
         flash: "You have successfully updated a venue."
+        action: "edited venue %{venue}."
       destroy:
         flash: "You have successfully deleted a venue."
+        action: "deleted venue %{venue}."
       confirm_delete: "Are you sure you want to delete this venue? This action cannot be undone."
     regions:
       index:
@@ -136,10 +148,13 @@ en:
         title: "Edit Region"
       create:
         flash: "You have successfully created a region."
+        action: "created region %{region}."
       update:
         flash: "You have successfully updated a region."
+        action: "edited region %{region}."
       destroy:
         flash: "You have successfully deleted a region."
+        action: "deleted region %{region}."
       confirm_delete: "Are you sure you want to delete this region? This action cannot be undone."
     achievements:
       create:
@@ -155,7 +170,7 @@ en:
         title: "Award & Revoke Tickets"
     actions:
       index:
-        title: "Review Logs"
+        title: "Review Admin Actions"
     danger_zone: "Careful! Actions performed here cannot be undone."
   seasons:
     show:

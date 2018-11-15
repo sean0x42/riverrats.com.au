@@ -22,6 +22,7 @@ class Player < ApplicationRecord
     has_many :players_regions, class_name: 'PlayersRegion'
     has_many :players_seasons, class_name: 'PlayersSeason'
     has_many :comments
+    has_many :actions
   end
 
   has_many :referees, dependent: :nullify

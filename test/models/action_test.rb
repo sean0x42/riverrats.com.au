@@ -21,16 +21,6 @@ class ActionTest < ActiveSupport::TestCase
                      "(#{len} chars)"
   end
 
-  test 'description must not be long' do
-    len = 141
-    action = Action.new(description: 'a' * len)
-    assert_not action.valid?,
-               "Action is valid with long description (#{len} chars)"
-    assert_not_empty action.errors[:description],
-                     'No validation error raised for long description '\
-                     "(#{len} chars)"
-  end
-
   test 'action must not be nil' do
     action = Action.new(action: nil)
     assert_not action.valid?, 'Action is valid with nil action'

@@ -5,8 +5,6 @@ require 'flash_message'
 # A controller for events in the admin scope
 class Admin::EventsController < ApplicationController
   layout 'admin'
-
-  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
@@ -33,6 +31,7 @@ class Admin::EventsController < ApplicationController
              end
 
     if @event.save
+      record_action(:event, 'events.create', event: @event.title)
       redirect_to admin_events_path, notice: t('admin.events.create.flash')
     else
       respond_to do |format|
@@ -52,6 +51,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find params[:id]
 
     if @event.update(edit_event_params)
+      record_action(:event, 'events.update', event: @event.title)
       redirect_to admin_events_path, notice: t('admin.events.update.flash')
     else
       render 'edit'
@@ -63,6 +63,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find params[:id]
     @event.destroy_from_date(params[:from])
 
+    record_action(:event, 'events.destroy', event: @event.title)
     redirect_to admin_events_path, notice: t('admin.events.destroy.flash')
   end
 
