@@ -10,5 +10,10 @@ class GamesController < ApplicationController
   # GET /games/:id
   def show
     @game = Game.includes(:venue).find(params[:id])
+    @comment = @game.comments.build
+
+    respond_to do |format|
+      format.html
+    end
   end
 end

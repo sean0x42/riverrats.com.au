@@ -180,6 +180,8 @@ en:
     show:
       description: "View the region: %{region}"
       title: "%{region}"
+  comments:
+    destroy: "Successfully deleted this comment."
   input:
     file:
       label: "Browse this device"

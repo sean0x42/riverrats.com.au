@@ -1,0 +1,34 @@
+<% player = comment.player -%>
+<li class="comment">
+  <!-- Comment header -->
+  <div class="comment-header">
+    <% if player.nil? -%>
+      [Deleted player]
+    <% else -%>
+      <%= link_to player_path(player) do %>
+        <span class="highlight"><%= player.full_name %></span>&nbsp;@<%= player.username %>
+        <% if player.developer? -%>
+          <span class="flair">developer</span>
+        <% elsif player.admin? -%>
+          <span class="flair">admin</span>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+
+    <span>&nbsp;&middot; commented <%= local_time_ago comment.created_at %></span>
+  </div>
+
+  <!-- Contents -->
+  <div class="comment-body">
+    <p><%= comment.body %></p>
+  </div>
+
+  <!-- Footer -->
+  <% if player == current_player -%>
+    <ul class="comment-footer">
+      <!-- Edit -->
+      <li><%= link_to 'edit', edit_game_comment_path(@game, comment), remote: true %></li>
+      <li><%= link_to 'delete', game_comment_path(@game, comment), remote: true, method: :delete %></li>
+    </ul>
+  <% end -%>
+</li>

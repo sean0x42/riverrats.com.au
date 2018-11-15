@@ -37,8 +37,12 @@ Rails.application.routes.draw do
     resources :achievements, only: %i[index show]
   end
 
+  resources :games, only: %i[index show] do
+    resources :comments, except: %i[index show new]
+  end
+
   resources :events, only: :show
-  resources :games, :seasons, only: %i[index show]
+  resources :seasons, only: %i[index show]
   get '/calendar(/:year/:month)', to: 'events#index', as: 'events'
   resources :regions, :venues, only: :show, param: :slug
 

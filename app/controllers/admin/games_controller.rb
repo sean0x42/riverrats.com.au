@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'flash_message'
-
 # A controller for games in the admin scope
 class Admin::GamesController < ApplicationController
   layout 'admin'

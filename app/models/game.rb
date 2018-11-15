@@ -2,9 +2,6 @@
 
 # Represents a single game recorded by tournament directors
 class Game < ApplicationRecord
-  belongs_to :venue
-  belongs_to :season
-
   default_scope { order(id: :desc) }
 
   searchkick callbacks: :async
@@ -12,20 +9,22 @@ class Game < ApplicationRecord
   after_save :update_stats, :update_ranks
   after_destroy :update_stats, :update_ranks
 
-  has_many :games_players,
-           class_name: 'GamesPlayer',
-           dependent: :delete_all,
-           inverse_of: :game
+  belongs_to :venue
+  belongs_to :season
+
   has_many :players, through: :games_players
-  has_many :referees, dependent: :delete_all, inverse_of: :game
   has_many :players, through: :referees
 
-  accepts_nested_attributes_for :games_players,
-                                reject_if: :all_blank,
-                                allow_destroy: true
-  accepts_nested_attributes_for :referees,
-                                reject_if: :all_blank,
-                                allow_destroy: true
+  with_options dependent: :delete_all, inverse_of: :game do
+    has_many :games_players, class_name: 'GamesPlayer'
+    has_many :referees
+    has_many :comments
+  end
+
+  with_options reject_if: :all_blank, allow_destroy: true do
+    accepts_nested_attributes_for :games_players
+    accepts_nested_attributes_for :referees
+  end
 
   validates :venue, :season, :played_on, presence: true
   validate :player_count, :referee_count, :no_duplicate_players,

@@ -9,10 +9,22 @@
 
 <%- players = @game.paginated_players(params[:page]) %>
 <div class="wrapper split-wrapper">
-  <div class="model-list">
-    <table>
-      <%= render collection: players, partial: 'player' %>
-    </table>
+  <div>
+    <div class="model-list">
+      <table>
+        <%= render collection: players, partial: 'player' %>
+      </table>
+    </div>
+
+    <div class="model-list-footer">
+      <%= paginate players %>
+      <p><%= page_entries_info players %></p>
+    </div>
+
+    <!-- Comments -->
+    <div class="js-comments">
+      <%= render 'game_comments' %>
+    </div>
   </div>
 
   <div class="game-data">

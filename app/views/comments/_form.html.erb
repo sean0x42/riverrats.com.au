@@ -1,0 +1,10 @@
+<!-- Create comment form -->
+<%= form_with model: [@game, @comment], class: 'comment-form' do |form| %>
+  <%= field_errors @comment, :body %>
+  <%= form.text_area :body, placeholder: 'Leave a comment...' %>
+
+  <div class="comment-form--footer">
+    <%= form.label :body, "Commenting as @#{current_player.username}" %>
+    <%= form.submit 'Post comment', class: 'button', data: { disable_with: 'Commenting...' } %>
+  </div>
+<% end -%>

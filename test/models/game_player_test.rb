@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Test games players
 class GamePlayerTest < ActiveSupport::TestCase
   test 'position should be positive' do
     player = games_players(:negative_position)
