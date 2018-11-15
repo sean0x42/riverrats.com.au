@@ -61,11 +61,8 @@ class Player < ApplicationRecord
     validates :nickname, allow_nil: true, allow_blank: true
   end
 
-  validates :score, :games_played, :games_won,
-            numericality: {
-              only_integer: true,
-              greater_than_or_equal_to: 0
-            }
+  validates :score, :games_played, :games_won, :tickets,
+            numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP },
                     allow_nil: true, allow_blank: true, uniqueness: true

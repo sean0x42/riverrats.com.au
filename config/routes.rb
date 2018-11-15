@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get '/privacy-policy', to: 'landing#privacy_policy'
   get '/release-notes', to: 'landing#release_notes'
 
+  # Player specific routes
   resources :players, only: %i[index show], param: :username do
     collection do
       get 'search'
@@ -50,12 +51,25 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: redirect('/admin/players')
 
-    resources :players, except: :show, param: :username
+    # Player specific routes
+    resources :players, except: :show, param: :username do
+      get 'tickets', to: 'tickets#show'
+      match 'tickets', to: 'tickets#update', via: %i[patch put]
+    end
+
+    # Generic routes
     resources :games, :events, :regions, :venues, except: :show
     resources :achievements, only: %i[new create]
 
-    get 'mail', to: 'mail#index'
-    post 'mail/players', to: 'mail#show', defaults: { format: 'csv' }
+    # Mail
+    resources :mail, only: :index do
+      collection do
+        post 'players', to: 'mail#generate', defaults: { format: 'csv' }
+      end
+    end
+
+    # Generic objects
+    get 'tickets', to: 'tickets#index'
     get 'scores', to: 'scores#index'
   end
 end

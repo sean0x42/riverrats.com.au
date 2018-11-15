@@ -150,6 +150,9 @@ en:
     mail:
       new:
         title: "Generate Mailing List"
+    tickets:
+      new:
+        title: "Award Tickets"
     danger_zone: "Careful! Actions performed here cannot be undone."
   seasons:
     show:
