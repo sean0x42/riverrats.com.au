@@ -7,7 +7,7 @@
   border: 1px solid $grey;
   border-radius: $border-radius;
   margin-top: 1.5rem;
-  padding: 1.5rem;
+  padding: 1.25rem;
 
   > *:first-child {
     margin-top: 0;
@@ -17,9 +17,10 @@
     margin-bottom: 0;
   }
 
+
   ul {
     list-style-type: none;
-    margin: 1.5rem 0;
+    margin: 0.25rem 0;
     padding: 0;
   }
 
@@ -60,6 +61,33 @@
     justify-content: center;
     margin: 0;
     text-align: center;
+  }
+
+  .tickets {
+    align-items: center;
+    background: $grey-lighter;
+    border-top: 1px solid $grey;
+    margin: 0 -1.25rem -1.25rem;
+    padding: 1.25rem;
+
+    p {
+      align-items: center;
+      display: flex;
+      line-height: 1;
+      margin: 0;
+    }
+  }
+
+  svg {
+    fill: $grey-darker;
+    height: 22px;
+    margin-right: 0.5rem;
+    width: 22px;
+  }
+
+  .highlight {
+    color: $text;
+    font-weight: 500;
   }
 }
 
