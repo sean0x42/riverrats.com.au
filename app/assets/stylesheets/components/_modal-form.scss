@@ -1,4 +1,4 @@
-.admin .modal-form {
+:not(.modal-wrapper) .modal-form {
   background: $white;
   border-radius: $border-radius;
   max-width: $modal-width;

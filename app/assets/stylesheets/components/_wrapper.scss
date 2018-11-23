@@ -19,6 +19,10 @@
   &.split-header {
     margin-bottom: 2.8rem;
   }
+
+  &.with-modal {
+    max-width: $modal-width;
+  }
 }
 
 @media (min-width: 980px) {

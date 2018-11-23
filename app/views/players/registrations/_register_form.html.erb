@@ -1,4 +1,4 @@
-<%= form_with model: resource, class: 'modal-form' do |form| %>
+<%= form_with model: resource, local: true, class: 'modal-form' do |form| %>
   <!-- First name -->
   <div class="field">
     <%= form.label :first_name %><br/>
