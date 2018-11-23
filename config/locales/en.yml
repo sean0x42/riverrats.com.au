@@ -166,7 +166,7 @@ en:
       new:
         title: "Generate Mailing List"
     tickets:
-      new:
+      index:
         title: "Award & Revoke Tickets"
     actions:
       index:

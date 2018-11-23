@@ -54,7 +54,6 @@ Rails.application.routes.draw do
     # Player specific routes
     resources :players, except: :show, param: :username do
       get 'tickets', to: 'tickets#show'
-      match 'tickets', to: 'tickets#update', via: %i[patch put]
     end
 
     # Generic routes
@@ -71,6 +70,7 @@ Rails.application.routes.draw do
 
     # Generic objects
     get 'tickets', to: 'tickets#index'
+    match 'tickets', to: 'tickets#update', via: %i[patch put] 
     get 'scores', to: 'scores#index'
   end
 end
