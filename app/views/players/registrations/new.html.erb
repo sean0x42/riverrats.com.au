@@ -2,7 +2,9 @@
 <% content_for :description, t('description.players.registrations.new') %>
 <% content_for :canonical_url, new_player_registration_url %>
 
-<span class="subheading">Create an account</span>
-<h1>Register</h1>
+<div class="wrapper with-modal">
+  <span class="subheading">Create an account</span>
+  <h1>Register</h1>
 
-<%= render 'register_form' %>
+  <%= render 'register_form' %>
+</div>
