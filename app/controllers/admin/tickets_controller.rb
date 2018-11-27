@@ -7,18 +7,16 @@ class Admin::TicketsController < ApplicationController
   before_action :authenticate_player!
   before_action :require_admin
 
-  PLAYER_TICKET_ATTRIBUTES = %i[id first_name last_name username tickets].freeze
-
-  # GET /admin/tickets
-  def index; end
-
   # GET /admin/players/:player_username/tickets
-  def show
+  def edit
     @player = Player.find_by!(username: params[:player_username])
-    render json: @player.as_json(only: PLAYER_TICKET_ATTRIBUTES)
-    respond_to :json
   end
 
   # PATCH|PUT /admin/players/:player_username/tickets
-  def update; end
+  def update
+    @player = Player.find_by!(username: params[:player_username])
+    @player.tickets += params[:tickets].to_i
+    @player.save
+    redirect_to admin_players_path, notice: t('admin.tickets.update.flash')
+  end
 end

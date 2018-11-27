@@ -1,9 +1,17 @@
-<%= form_with url: admin_tickets_path, method: :patch, class: 'modal-form' do |form| %>
+<%= form_with url: admin_player_tickets_path(@player), 
+              method: :patch, 
+              class: 'modal-form' do |form| %>
+  <!-- Add/Remove -->
   <div class="field">
-    
+    <%# TODO: Create translation for this %>
+    <%= form.label :tickets, format(
+      t('admin.tickets.new.label'), 
+      name: @player.full_name, tickets: pluralize(@player.tickets, 'ticket')
+    ) %>
+    <%= form.number_field :tickets, value: 0, min: @player.tickets * -1 %>
   </div>
-  <div class="player-input-wrapper" id="js-ticket-player-input">
-    <input type="text" class="player-input" placeholder="Name or username">
-    <button class="player-input-submit button-secondary">Choose player</button>
-  </div>
+
+  <%= form.submit class: 'button wide', 
+                  remote: true, 
+                  data: { disable_with: 'Please wait...' } %>
 <% end -%>

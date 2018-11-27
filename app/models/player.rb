@@ -186,4 +186,9 @@ class Player < ApplicationRecord
       super(value)
     end
   end
+
+  def tickets=(value)
+    value = 0 if value.negative?
+    super(value)
+  end
 end

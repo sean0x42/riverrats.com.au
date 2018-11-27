@@ -53,4 +53,9 @@
   input {
     max-width: unset;
   }
+
+  span.highlight {
+    color: $text-bold;
+    font-weight: 500;
+  }
 }

@@ -53,12 +53,13 @@ Rails.application.routes.draw do
 
     # Player specific routes
     resources :players, except: :show, param: :username do
-      get 'tickets', to: 'tickets#show'
+      get 'tickets', to: 'tickets#edit'
+      match 'tickets', to: 'tickets#update', via: %i[patch put]
+      resources :achievements, only: %i[new create]
     end
 
     # Generic routes
     resources :games, :events, :regions, :venues, except: :show
-    resources :achievements, only: %i[new create]
     resources :actions, only: :index
 
     # Mail
@@ -69,8 +70,6 @@ Rails.application.routes.draw do
     end
 
     # Generic objects
-    get 'tickets', to: 'tickets#index'
-    match 'tickets', to: 'tickets#update', via: %i[patch put] 
     get 'scores', to: 'scores#index'
   end
 end
