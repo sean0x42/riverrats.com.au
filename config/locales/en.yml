@@ -78,7 +78,7 @@ en:
       index:
         title: "Games"
       new:
-        title: "Create Game"
+        title: "Record Game"
         add_players: "Add Players"
         add_tournament_directors: "Add Tournament Directors"
         game_details: "Edit Details"
@@ -92,7 +92,7 @@ en:
         title: "Edit Game"
       create:
         flash: "You have successfully created a game."
-        action: "created Game #%{game}."
+        action: "recorded Game #%{game}."
       update:
         flash: "You have successfully updated a game."
         action: "edited Game #%{game}."
@@ -159,16 +159,19 @@ en:
     achievements:
       create:
         flash: "Successfully awarded an achievement"
+        action: "awarded achievement %{achievement} to @%{player}."
       new:
         title: "Award Achievement"
     mail:
       new:
         title: "Generate Mailing List"
     tickets:
-      index:
+      edit:
         title: "Award & Revoke Tickets"
+        label: "Hi"
       update:
         flash: "Successfully updated player tickets."
+        action: "awarded %{tickets} ticket(s) to @%{player}."
     actions:
       index:
         title: "Review Admin Actions"

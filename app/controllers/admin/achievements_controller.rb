@@ -21,7 +21,7 @@ class Admin::AchievementsController < ApplicationController
 
     if @achievement.save
       record_action(:achievement, 'achievements.create',
-                    achievement: @achievement.type)
+                    achievement: @achievement.type, player: @player.username)
       redirect_to admin_players_path,
                   notice: t('admin.achievements.create.flash')
     else

@@ -3,9 +3,8 @@
               class: 'modal-form' do |form| %>
   <!-- Add/Remove -->
   <div class="field">
-    <%# TODO: Create translation for this %>
     <%= form.label :tickets, format(
-      t('admin.tickets.new.label'), 
+      t('admin.tickets.edit.label'), 
       name: @player.full_name, tickets: pluralize(@player.tickets, 'ticket')
     ) %>
     <%= form.number_field :tickets, value: 0, min: @player.tickets * -1 %>

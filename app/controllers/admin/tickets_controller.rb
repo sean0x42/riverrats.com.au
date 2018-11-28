@@ -14,9 +14,12 @@ class Admin::TicketsController < ApplicationController
 
   # PATCH|PUT /admin/players/:player_username/tickets
   def update
+    tickets = params[:tickets].to_i
     @player = Player.find_by!(username: params[:player_username])
-    @player.tickets += params[:tickets].to_i
+    @player.tickets += tickets
     @player.save
+    record_action(:ticket, 'tickets.update',
+                  tickets: tickets, player: @player.username)
     redirect_to admin_players_path, notice: t('admin.tickets.update.flash')
   end
 end
