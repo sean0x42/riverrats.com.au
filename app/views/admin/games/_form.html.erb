@@ -22,10 +22,17 @@
                                :id, :name %>
   </div>
 
+  <!-- Tickets -->
+  <div class="field">
+    <%= form.label :tickets %><br/>
+    <%= field_errors @game, :tickets %>
+    <%= form.number_field :tickets, value: 0 %>
+  </div>
+
   <div class="player-area-header">
     <h2><%= t('admin.games.new.add_players') %></h2>
-    <%= link_to 'Create player', new_admin_player_path, class: 'anchor', 
-                remote: true, data: { expects_modal: true } %>
+    <%= link_to 'Create player (opens in tab)', new_admin_player_path, class: 'anchor',
+                target: '_blank' %>
   </div>
 
   <%= field_errors @game, :games_players %>

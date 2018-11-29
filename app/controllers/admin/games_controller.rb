@@ -39,6 +39,7 @@ class Admin::GamesController < ApplicationController
   end
 
   # POST /admin/games/:id
+  # rubocop:disable Metrics/AbcSize
   def update
     @game = Game.find params[:id]
 
@@ -52,6 +53,7 @@ class Admin::GamesController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   # DELETE /admin/games/:id
   def destroy
@@ -66,7 +68,7 @@ class Admin::GamesController < ApplicationController
 
   def games_params
     params.require(:game).permit(
-      :played_on, :venue_id, :season_id,
+      :played_on, :venue_id, :season_id, :tickets,
       games_players_attributes: %i[id player_id position _destroy],
       referees_attributes: %i[id player_id _destroy]
     )

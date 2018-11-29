@@ -3,5 +3,5 @@
 require 'test_helper'
 
 # Tests daily action worker
-class DailyActionWorkerTest < MiniTest::Unit::TestCase
+class DailyActionWorkerTest < MiniTest::Test
 end

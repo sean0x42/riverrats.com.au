@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :players,
-             path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' },
+             path_names: {
+               sign_in: 'login',
+               sign_out: 'logout',
+               sign_up: 'register'
+             },
              controllers: {
                registrations: 'players/registrations',
                sessions: 'players/sessions',

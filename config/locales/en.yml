@@ -168,7 +168,7 @@ en:
     tickets:
       edit:
         title: "Award & Revoke Tickets"
-        label: "Hi"
+        label: "Tickets to Award (can be negative)"
       update:
         flash: "Successfully updated player tickets."
         action: "awarded %{tickets} ticket(s) to @%{player}."
