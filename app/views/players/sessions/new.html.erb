@@ -1,8 +1,10 @@
-<% content_for :title, 'Secure Login' %>
-<% content_for :description, t('description.players.sessions.new') %>
-<% content_for :canonical_url, new_player_session_url %>
+<% content_for :title, 'Secure Login' -%>
+<% content_for :description, t('description.players.sessions.new') -%>
+<% content_for :canonical_url, new_player_session_url -%>
 
-<span class="subheading">Welcome Back</span>
-<h1>Secure Login</h1>
+<div class="wrapper with-modal">
+  <span class="subheading">Welcome Back</span>
+  <h1>Secure Login</h1>
 
-<%= render 'form' %>
+  <%= render 'form' %>
+</div>
