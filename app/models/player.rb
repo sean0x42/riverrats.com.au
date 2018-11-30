@@ -22,6 +22,7 @@ class Player < ApplicationRecord
     has_many :players_regions, class_name: 'PlayersRegion'
     has_many :players_seasons, class_name: 'PlayersSeason'
     has_many :comments
+    has_many :actions
   end
 
   has_many :referees, dependent: :nullify
@@ -61,11 +62,8 @@ class Player < ApplicationRecord
     validates :nickname, allow_nil: true, allow_blank: true
   end
 
-  validates :score, :games_played, :games_won,
-            numericality: {
-              only_integer: true,
-              greater_than_or_equal_to: 0
-            }
+  validates :score, :games_played, :games_won, :tickets,
+            numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP },
                     allow_nil: true, allow_blank: true, uniqueness: true
@@ -187,5 +185,10 @@ class Player < ApplicationRecord
 
       super(value)
     end
+  end
+
+  def tickets=(value)
+    value = 0 if value.negative?
+    super(value)
   end
 end

@@ -1,4 +1,7 @@
-<%= form_with model: [:admin, @achievement.becomes(Achievement)], html: { multipart: true }, class: 'modal-form' do |form| %>
+<%= form_with model: @achievement.becomes(Achievement), 
+              url: admin_player_achievements_path(@player), 
+              html: { multipart: true }, 
+              class: 'modal-form' do |form| %>
   <!-- Achievement -->
   <div class="field">
     <%= form.label :type, 'Achievement' %><br/>
@@ -12,16 +15,6 @@
     ) %>
   </div>
 
-  <!-- Player -->
-  <div class="field">
-    <%= form.label :player_id %><br/>
-    <%= field_errors @achievement, :player_id %>
-    <%= form.hidden_field :player_id %>
-    <div class="player-input-wrapper js-achievements-input">
-      <%= form.text_field :player, class: 'player-input', name: nil, placeholder: 'Name or username', value: @player_name %>
-    </div>
-  </div>
-
   <!-- Proof -->
   <div class="field">
     <%= form.label :proof %><br/>
@@ -29,5 +22,7 @@
     <%= form.file_field :proof %>
   </div>
 
-  <%= form.submit 'Award Achievement', class: 'button wide', data: { disable_with: 'Please wait...' } %>
+  <%= form.submit 'Award Achievement', 
+                  class: 'button wide', 
+                  data: { disable_with: 'Please wait...' } %>
 <% end %>

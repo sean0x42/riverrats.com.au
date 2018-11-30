@@ -5,14 +5,12 @@ require 'flash_message'
 # A controller for players in the admin scope
 class Admin::PlayersController < ApplicationController
   layout 'admin'
-
-  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/players
   def index
-    @players = Player.order(score: :desc).page params[:page]
+    @players = Player.order(score: :desc).page(params[:page])
   end
 
   # GET /admin/players/:username
@@ -33,6 +31,7 @@ class Admin::PlayersController < ApplicationController
 
     # noinspection RailsChecklist01
     if @player.save
+      record_action(:player, 'players.create', player: @player.username)
       PlayerMailer.welcome(@player.id, player_params[:password]).deliver_later
       redirect_to admin_players_path, notice: t('admin.players.create.flash')
     else
@@ -53,6 +52,7 @@ class Admin::PlayersController < ApplicationController
     @player = Player.find_by!(username: params[:username])
 
     if @player.update edit_params
+      record_action(:player, 'players.update', player: @player.username)
       redirect_to admin_players_path, notice: t('admin.players.update.flash')
     else
       # noinspection RubyResolve
@@ -69,6 +69,7 @@ class Admin::PlayersController < ApplicationController
     @player = Player.find_by!(username: params[:username])
     @player.destroy
 
+    record_action(:player, 'players.destroy', player: @player.username)
     redirect_to admin_players_path, notice: t('admin.players.destroy.flash')
   end
 

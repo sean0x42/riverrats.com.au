@@ -29,8 +29,7 @@ class CommentsController < ApplicationController
   end
 
   # PATCH|PUT /games/:id/comments/:id
-  def update
-  end
+  def update; end
 
   # DELETE /games/:id/comments/:id
   def destroy

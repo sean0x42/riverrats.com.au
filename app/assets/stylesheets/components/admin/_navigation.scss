@@ -98,9 +98,9 @@
     bottom: unset;
     display: block;
     left: unset;
-    position: sticky;
+    position: relative;
     right: unset;
-    top: 100px;
+    top: unset;
     width: 270px;
     z-index: 1;
 
@@ -113,7 +113,7 @@
     }
 
     a {
-      padding: 6px 1rem;
+      padding: 5px 1rem;
     }
   }
 

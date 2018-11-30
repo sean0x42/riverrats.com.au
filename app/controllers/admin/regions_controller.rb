@@ -5,8 +5,6 @@ require 'flash_message'
 # A controller for regions in the admin scope
 class Admin::RegionsController < ApplicationController
   layout 'admin'
-
-  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
@@ -25,6 +23,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.new region_params
 
     if @region.save
+      record_action(:region, 'regions.create', region: @region.name)
       redirect_to admin_regions_path, notice: t('admin.regions.create.flash')
     else
       respond_to do |format|
@@ -44,6 +43,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.friendly.find params[:id]
 
     if @region.update region_params
+      record_action(:region, 'regions.update', region: @region.name)
       redirect_to admin_regions_path, notice: t('admin.regions.update.flash')
     else
       render 'edit'
@@ -55,6 +55,7 @@ class Admin::RegionsController < ApplicationController
     @region = Region.friendly.find params[:id]
     @region.destroy
 
+    record_action(:region, 'regions.destroy', region: @region.name)
     redirect_to admin_regions_path, notice: t('admin.regions.destroy.flash')
   end
 

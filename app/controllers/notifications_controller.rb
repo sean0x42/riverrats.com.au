@@ -35,7 +35,9 @@ class NotificationsController < ApplicationController
 
   # PATCH/PUT /notifications
   def clear
-    current_player.notifications.update(read: true)
+    # rubocop:disable Rails/SkipsModelValidations
+    current_player.notifications.update_all(read: true)
+    # rubocop:enable Rails/SkipsModelValidations
     head :ok, content_type: 'text/html'
   end
 end

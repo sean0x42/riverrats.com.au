@@ -1,0 +1,15 @@
+<% content_for :title, t('admin.actions.index.title') -%>
+
+<span class="subheading">Admin Tools</span>
+<h1><%= t('admin.actions.index.title') %></h1>
+
+<div class="action-list model-list">
+  <table>
+    <%= render @actions %>
+  </table>
+</div>
+
+<div class="model-list-footer">
+  <%= paginate @actions %>
+  <p><%= page_entries_info @actions %></p>
+</div>

@@ -92,11 +92,20 @@ const init = () => {
   menuOverlay = document.querySelector(".header-menu-overlay");
   document.querySelectorAll(".header-menu-wrapper").forEach(bindToWrapperEvents);
 
+  // Register events for movile admin navigation trigger
   const adminNavTrigger = document.querySelector(".mobile-admin-navigation-trigger");
   if (adminNavTrigger !== null) {
     adminNavTrigger.addEventListener("click", () => {
       const nav = document.querySelector("nav.admin-navigation");
       nav.setAttribute("active", "");
+    });
+  }
+
+  // Register events for notification clear button
+  const clearButton = document.querySelector(".notification-area .clear-all");
+  if (clearButton !== null) {
+    clearButton.addEventListener("click", () => {
+      disableMenu();
     });
   }
 };

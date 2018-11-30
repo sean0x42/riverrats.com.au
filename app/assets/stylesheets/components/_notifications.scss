@@ -10,7 +10,7 @@ $width: 350px;
     border-bottom: 1px solid $grey;
     display: flex;
     justify-content: space-between;
-    padding: 0 0.5rem 0.5rem;
+    padding: 0 0 0.5rem;
 
     p {
       color: $text-bold;
@@ -51,6 +51,37 @@ $width: 350px;
     p {
       color: lighten($text, 20%);
       margin: 0;
+    }
+  }
+}
+
+.notification-list {
+  max-height: 300px;
+  overflow-y: auto;
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  .notification-body,
+  a.notification-link {
+    border-left: 2px solid $zurple-light;
+    color: $text;
+    display: inline-block;
+    margin-left: 9px;
+    padding: 0;
+    padding-left: 15px;
+  }
+
+  .notification-header {
+    align-items: center;
+    color: $text-bold;
+    display: flex;
+
+    svg {
+      height: 20px;
+      margin-right: 0.4rem;
+      width: 20px;
     }
   }
 }

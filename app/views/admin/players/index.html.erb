@@ -1,4 +1,4 @@
-<%- content_for :title, t('admin.players.index.title') %>
+<% content_for :title, t('admin.players.index.title') -%>
 
 <div class="heading-and-button">
   <div>
@@ -18,7 +18,6 @@
 </div>
 
 <div class="breakdown">
-
   <!-- Player count -->
   <div>
     <h2>Registered Players</h2>
@@ -36,7 +35,6 @@
     <h2>Admins</h2>
     <p><%= number_format Player.admins.count %></p>
   </div>
-
 </div>
 
 <div class="players-list model-list">

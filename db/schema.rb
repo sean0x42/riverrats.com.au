@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_025504) do
+ActiveRecord::Schema.define(version: 2018_11_15_054721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 2018_10_29_025504) do
     t.datetime "proof_updated_at"
     t.integer "level", default: 0, null: false
     t.index ["player_id"], name: "index_achievements_on_player_id"
+  end
+
+  create_table "actions", force: :cascade do |t|
+    t.bigint "player_id"
+    t.integer "action"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_actions_on_player_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -147,6 +156,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_025504) do
     t.integer "wooden_spoons", default: 0, null: false
     t.boolean "developer", default: false
     t.string "nickname"
+    t.integer "tickets", default: 0, null: false
     t.index ["email"], name: "index_players_on_email"
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
     t.index ["username"], name: "index_players_on_username", unique: true

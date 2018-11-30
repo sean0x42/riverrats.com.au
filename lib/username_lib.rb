@@ -6,7 +6,7 @@ module UsernameLib
     standard = "#{first_name}#{last_name}".downcase
     username = standard
 
-    # Keep adding a random digit to the end of the players name until it's unique
+    # Keep adding random digits to players name until unique
     while Player.exists?(username: username)
       username = "#{standard}#{Random.rand(1..99)}"
     end

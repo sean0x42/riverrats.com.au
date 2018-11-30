@@ -50,6 +50,10 @@ class Game < ApplicationRecord
     Player.joins(:games_players).where(games_players: { game_id: id })
   end
 
+  def award_tickets(tickets)
+    GameTicketsWorker.perform_async(id, tickets) unless tickets.nil?
+  end
+
   private
 
   def player_count

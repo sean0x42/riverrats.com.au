@@ -85,4 +85,18 @@ class PlayerTest < ActiveSupport::TestCase
     player.last_name = 'McDonald'
     assert player.last_name == 'McDonald', error
   end
+
+  test 'tickets should be clamped above 0' do
+    player = Player.new
+    player.tickets = -1
+    assert player.tickets.zero?, 'Ticket count was not clamped above zero'
+  end
+
+  test 'tickets should be an integer' do
+    player = Player.new(tickets: 10.5)
+    assert_not player.valid?, 'Player is valid with non-integer tickets'
+    assert_not_empty player.errors[:tickets],
+                     'No validation error present for player with non-integer'\
+                     ' tickets'
+  end
 end

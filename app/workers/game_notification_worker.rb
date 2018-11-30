@@ -12,7 +12,6 @@ class GameNotificationWorker
     game_id = game_player.game.id
     venue = Venue.joins(:games).find_by(games: { id: game_id })
     notification = create_notification(scope, player_id, game_player.position, game_id, venue.name)
-    NotificationChannel.broadcast_to(player, notification)
   end
 
   private

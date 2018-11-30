@@ -25,6 +25,7 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.new venue_params
 
     if @venue.save
+      record_action(:venue, 'venues.create', venue: @venue.name)
       redirect_to admin_venues_path, notice: t('admin.venues.create.flash')
     else
       respond_to do |format|
@@ -44,6 +45,7 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.friendly.find params[:id]
 
     if @venue.update venue_params
+      record_action(:venue, 'venues.update', venue: @venue.name)
       redirect_to admin_venues_path, notice: t('admin.venues.update.flash')
     else
       render 'edit'
@@ -55,6 +57,7 @@ class Admin::VenuesController < ApplicationController
     @venue = Venue.friendly.find params[:id]
     @venue.destroy
 
+    record_action(:venue, 'venues.destroy', venue: @venue.name)
     redirect_to admin_venues_path, notice: t('admin.venues.destroy.flash')
   end
 
