@@ -22,12 +22,14 @@
                                :id, :name %>
   </div>
 
-  <!-- Tickets -->
-  <div class="field">
-    <%= form.label :tickets %><br/>
-    <%= field_errors @game, :tickets %>
-    <%= form.number_field :tickets, value: 0 %>
-  </div>
+  <% unless @game.persisted? %>
+    <!-- Tickets -->
+    <div class="field">
+      <%= form.label :tickets %><br/>
+      <%= field_errors @game, :tickets %>
+      <%= form.number_field :tickets, value: 0, min: 0 %>
+    </div>
+  <% end -%>
 
   <div class="player-area-header">
     <h2><%= t('admin.games.new.add_players') %></h2>
