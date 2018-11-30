@@ -29,161 +29,132 @@
   <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60-precomposed.png">
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
   <style>
     @import url('https://rsms.me/inter/inter-ui.css');
 
+    *,::after,::before {
+      box-sizing:inherit
+    }
+
+    :root {
+      -moz-tab-size:4;
+      -o-tab-size:4;
+      tab-size:4
+    }
+
     ::-moz-selection {
+      background: #9c53c6;
       color: #fdfcfd;
-      background: #9154ab;
     }
 
     ::selection {
+      background: #9c53c6;
       color: #fdfcfd;
-      background: #9154ab;
     }
 
     * {
-      font-family: 'Inter UI',
-      '-a`pple-system',
-      'system-ui',
-      'BlinkMacSystemFont',
-      'Segoe UI',
-      'Roboto',
-      'Helvetica Neue',
-      'Arial',
-      'sans-serif',
-      'Apple Color Emoji',
-      'Segoe UI Emoji',
-      'Segoe UI Symbol';
+      -webkit-font-kerning: auto;
+      font-kerning: auto;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    html {
+      box-sizing:border-box;
+      -webkit-text-size-adjust: 100%;
+      line-height:1.15
+    }
+
+    body {
+      background: #f8f6f9;
+      color: #584861;
+      font-family: "Inter UI", "-apple-system", "system-ui", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 16px;
+      margin:0;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    .subheading {
+      color: #9c53c6;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .subheading:not(:first-child) {
+      margin-top: 2rem;
     }
 
     h1 {
-      font-size: 50px;
-      margin-bottom: 0;
-      font-weight: 900;
+      color: #4a3d52;
+      font-size: 2.2em;
+      font-weight: normal;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      margin-top: 0.25rem;
     }
 
     p {
-      line-height: 1.8;
-      margin: 2rem 0;
-      font-size: 17px;
+      line-height: 1.75;
     }
 
-    .wrapper {
-      margin: 8rem auto;
-      max-width: 55ch;
-      text-align: center;
-    }
-
-    .buttons {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: start;
-      -ms-flex-align: start;
-      align-items: flex-start;
-      -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: -0.5rem;
-      margin-top: 3rem;
-    }
-
-    .buttons .button, .buttons .button-secondary {
-      margin: 0.5rem;
-    }
-
-    .button, .button-secondary {
+    .button {
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
       align-items: center;
+      background: #9c53c6;
+      border: 0;
+      border-radius: 3px;
+      color: #fdfcfd;
+      cursor: pointer;
+      display: inline-block;
+      fill: #fdfcfd;
       font-size: 15px;
       font-weight: 500;
-      letter-spacing: 0.5px;
       line-height: 1.1;
-      vertical-align: middle;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
+      margin: 1rem 0 0;
+      padding: 14px 22px;
       text-decoration: none;
-      padding: 16px 26px;
-    }
-
-    .button {
-      color: #fdfcfd;
-      background: -webkit-gradient(linear, left top, right top, from(#9154ab), to(#ab54a8));
-      background: linear-gradient(90deg, #9154ab, #ab54a8);
-      -webkit-transition: all 300ms;
-      transition: all 300ms;
-      -webkit-transform: translateY(0px);
-      transform: translateY(0px);
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+      transition: box-shadow 300ms, -webkit-transform 300ms;
+      transition: transform 300ms, box-shadow 300ms;
+      transition: transform 300ms, box-shadow 300ms, -webkit-transform 300ms;
+      vertical-align: middle;
     }
 
     .button:hover {
+      text-decoration: none;
+    }
+
+    .button:not([disabled]):hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       -webkit-transform: translateY(-1px);
       transform: translateY(-1px);
-      -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .button-secondary {
-      position: relative;
-      color: #884fa1;
-      background: none;
-      border: 2px solid #ece8ee;
-      padding: 14px 24px;
-    }
-
-    .button > i, .button-secondary > i {
-      font-size: 22px;
-      font-weight: normal;
-      margin: -3px -8px;
-      margin-right: 0.5em;
-    }
-
-    .button-secondary i {
-      color: #a776bc;
+    .wrapper {
+      width: 100%;
+      max-width: 65ch;
+      margin: 6rem auto;
+      padding: 0 1rem;
     }
   </style>
 </head>
 
 <body>
+  <div class="wrapper">
+    <span class="subheading">HTTP Exception 404</span>
+    <h1>Page Not Found</h1>
 
-<div class="wrapper">
-  <h1>404</h1>
-  <p>Sorry, but we couldn't find that page. You may have mistyped the address, or the page may have been moved.</p>
-  <div class="buttons">
-
-    <a href="/" class="button">
-      <i class="material-icons">home</i>
-      Return home
-    </a>
-
-    <a href="javascript:history.back()" class="button-secondary back-link">
-      <i class="material-icons">arrow_back</i>
-      Go back
-    </a>
-
+    <p>We couldn't find a page at this address. You may have mistyped the address, or the page may have been moved.</p>
+    <a href="/" class="button">Go to home page</a>
   </div>
-</div>
-
-<script>
-  var link = document.querySelector(".back-link");
-  link.setAttribute("href", document.referrer);
-  link.onclick = function () {
-    history.back();
-  }
-</script>
-
 </body>
 </html>
