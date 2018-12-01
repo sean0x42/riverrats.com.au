@@ -55,6 +55,11 @@
     max-width: unset;
   }
 
+  textarea {
+    min-height: 156px;
+    resize: vertical;
+  }
+
   span.highlight {
     color: $text-bold;
     font-weight: 500;

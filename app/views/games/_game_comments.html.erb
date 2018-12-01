@@ -1,4 +1,11 @@
-<% comments = @game.comments.includes(:player).page(params[:comment_page]).per(10) %>
+<% if current_player.admin -%>
+  <% comments = @game.comments.includes(:player)
+                     .page(params[:comment_page]).per(10) -%>
+<% else -%>
+  <% comments = @game.comments.includes(:player).where(deleted: false)
+                     .page(params[:comment_page]).per(10) -%>
+<% end -%>
+
 <h2><%= pluralize @game.comments.count, 'comment' %></h2>
 
 <!-- Comments -->
@@ -9,7 +16,8 @@
 <% if player_signed_in? -%>
   <%= render 'comments/form' %>
 <% else -%>
-  <p>You must <%= link_to 'login', new_player_session_path, class: 'anchor', remote: true, data: { expects_modal: true} %> to leave comments.</p>
+  <p>You must <%= link_to 'login', new_player_session_path, class: 'anchor',
+                          remote: true, data: { expects_modal: true} %> to leave comments.</p>
 <% end -%>
 
 <%= paginate comments, param_name: :comment_page %>

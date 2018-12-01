@@ -39,4 +39,11 @@ class CommentTest < ActiveSupport::TestCase
     assert_not_empty comment.errors[:game],
                      'No validation error present for comment with nil game'
   end
+
+  test 'invalid with nil deleted' do
+    comment = Comment.new(deleted: nil)
+    assert_not comment.valid?, 'Comment is valid with nil deleted'
+    assert_not_empty comment.errors[:deleted],
+                     'No validation error present for comment with nil deleted'
+  end
 end
