@@ -22,14 +22,14 @@ class NotificationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /notifications/:id/mark-read
+  # PATCH/PUT /notifications/:notification_id/mark-read
   def mark_read
-    @notification = current_player.notifications.find(params[:id])
-    @notification.update(read: true)
+    @notification = current_player.notifications.find(params[:notification_id])
+    @notification.update(read: !@notification.read)
 
     respond_to do |format|
       format.html { redirect_to notifications_path }
-      format.js
+      format.js { render 'success' }
     end
   end
 

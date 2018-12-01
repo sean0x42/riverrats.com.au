@@ -1,6 +1,7 @@
 <% content_for :title, t('notifications.title') -%>
 <% content_for :description, t('notifications.description') -%>
 <% content_for :canonical_url, notifications_url -%>
+<% content_for :no_turblinks_cache, true -%>
 
 <div class="content-wrapper wrapper">
   <%= render 'application/password_banner' %>
@@ -8,7 +9,7 @@
   <span class="subheading">Account Tools</span>
   <h1><%= t('notifications.title') -%></h1>
 
-  <div class="model-list">
+  <div class="model-list not-list">
     <table>
       <%= render @notifications %>
     </table>

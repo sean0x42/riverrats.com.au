@@ -85,3 +85,23 @@ $width: 350px;
     }
   }
 }
+
+.model-list.not-list {
+  .read {
+    align-items: center;
+    display: flex;
+
+    svg {
+      fill: lighten($text, 15%);
+      height: 22px;
+      line-height: 1;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+      width: 22px;
+    }
+
+    &:hover svg {
+      fill: $zurple-light;
+    }
+  }
+}
