@@ -3,6 +3,8 @@
 <%- content_for :canonical_url, venue_url(@venue) %>
 
 <div class="wrapper split-header">
+  <%= render 'application/password_banner' %>
+
   <span class="subheading">Venue</span>
   <h1><%= t('venues.show.title') % { venue: @venue.name } %></h1>
 </div>

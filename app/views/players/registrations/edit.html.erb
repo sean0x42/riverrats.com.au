@@ -1,17 +1,19 @@
-<% content_for :title, 'Preferences' -%>
+<% content_for :title, t('players.registrations.edit.title') -%>
+<% content_for :description, t('players.registrations.edit.description') -%>
+<% content_for :canonical_url, edit_player_registration_url -%>
 
-<span class="subheading">Account Tools</span>
-<h1>Settings</h1>
+<div class="wrapper with-modal">
+  <span class="subheading">Account Tools</span>
+  <h1><%= t('players.registrations.edit.title') %></h1>
 
-<%= render 'settings_form' %>
+  <%= render 'settings_form' %>
 
   <div class="thin">
-
     <!-- Cancel account -->
     <div class="background danger-zone">
       <h2><i class="material-icons">&#xE002;</i>Delete account</h2>
       <p><strong>Warning! This action cannot be undone.</strong> Unhappy? Cancel your account here. We'll be sad to see
-        you go.</p>
+      you go.</p>
 
       <div class="buttons">
         <%= link_to 'Delete account',
@@ -21,5 +23,5 @@
                     class: 'button danger' %>
       </div>
     </div>
-
   </div>
+</div>
