@@ -7,16 +7,21 @@ class CommentNotificationWorker
 
   def perform(id, player_id)
     comment = Comment.find(id)
-    sender = comment.player
-    venue = Venue.joins(:games).find_by(games: { id: comment.game_id })
     Notification.create(
       player_id: player_id,
       icon: :comment,
-      message: format(I18n.t('notification.comment'),
-                      sender: sender.username,
-                      game: comment.game_id.to_s.rjust(2, '0'),
-                      venue: venue.name),
+      message: message(comment),
       url: game_path(comment.game_id)
     )
+  end
+
+  private
+
+  def message(comment)
+    venue = Venue.joins(:games).find_by(games: { id: comment.game_id })
+    format(I18n.t('notification.comment'),
+           sender: comment.player.username,
+           game: comment.game_id.to_s.rjust(2, '0'),
+           venue: venue.name)
   end
 end

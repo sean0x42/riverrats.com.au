@@ -8,9 +8,7 @@
 en:
   version: "version 1.2.0"
   notification:
-    game:
-      create: "You placed %{position} in Game %{game} at the %{venue}."
-      update: "Game %{game} has been updated."
+    game: "You placed %{position} in Game #%{game} at the %{venue}."
     comment: "@%{sender} just commented on Game #%{game} at the %{venue}."
   achievement:
     wins:
