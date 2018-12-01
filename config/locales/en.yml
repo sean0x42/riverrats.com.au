@@ -6,7 +6,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  version: "version 1.2-indev"
+  version: "version 1.2.0"
   notification:
     game:
       create: "You placed %{position} in Game %{game} at the %{venue}."
