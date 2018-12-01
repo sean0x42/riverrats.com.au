@@ -1,15 +1,5 @@
 <!-- Contains both the mobile and desktop versions of the header -->
 <div class="header" data-turblinks-permanent>
-  <!-- Banner -->
-  <%# TODO Hide this banner with a cookie %>
-  <div class="banner" style="display: none">
-    <div class="wrapper">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"><path d="M12,10.9c-0.61,0-1.1,0.49-1.1,1.1s0.49,1.1,1.1,1.1c0.61,0,1.1-0.49,1.1-1.1S12.61,10.9,12,10.9z M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M14.19,14.19L6,18l3.81-8.19L18,6L14.19,14.19z"></path></svg>
-      <p>We've been working hard to improve riverrats.com.au! <%= link_to 'See what\'s new', release_notes_path %>
-        or <%= link_to 'dismiss this message', 'javascript:void(0)' %>.</p>
-    </div>
-  </div>
-
   <div class="wrapper">
     <!-- Logo -->
     <%= link_to root_path, class: 'logo' do %>

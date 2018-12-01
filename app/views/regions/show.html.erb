@@ -3,6 +3,8 @@
 <% content_for :canonical_url, region_url(@region) -%>
 
 <div class="wrapper split-header">
+  <%= render 'application/password_banner' %>
+
   <span class="subheading">Region</span>
   <h1><%= t('region.show.title') % { region: @region.name } %></h1>
 </div>

@@ -24,10 +24,12 @@ class Admin::PlayersController < ApplicationController
   end
 
   # POST /admin/players
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def create
     player_params = new_params
     player_params[:password] = Devise.friendly_token(8)
     @player = Player.new(player_params)
+    @player.password_changed = false
 
     # noinspection RailsChecklist01
     if @player.save
@@ -41,6 +43,7 @@ class Admin::PlayersController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   # GET /admin/players/:username/edit
   def edit
@@ -48,6 +51,7 @@ class Admin::PlayersController < ApplicationController
   end
 
   # PATCH /admin/players/:username
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def update
     @player = Player.find_by!(username: params[:username])
 
@@ -63,6 +67,7 @@ class Admin::PlayersController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   # DELETE /admin/players/:username
   def destroy

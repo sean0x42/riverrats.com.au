@@ -1,10 +1,10 @@
-<% content_for :title, 'Create an account' -%>
-<% content_for :description, t('description.players.registrations.new') -%>
+<% content_for :title, t('players.registrations.new.title') -%>
+<% content_for :description, t('players.registrations.new.description') -%>
 <% content_for :canonical_url, new_player_registration_url -%>
 
 <div class="wrapper with-modal">
   <span class="subheading">Create an account</span>
-  <h1>Register</h1>
+  <h1><%= t('players.registrations.new.title') %></h1>
 
   <%= render 'register_form' %>
 </div>
