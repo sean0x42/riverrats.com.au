@@ -5,4 +5,15 @@
 <div class="content-wrapper wrapper">
   <span class="subheading">Achievement List</span>
   <h1><%= t('achievements.index.title') % { player: @player.full_name } %></h1>
+
+  <div class="model-list">
+    <table>
+      <%= render collection: @achievements, partial: 'achievement' %>
+    </table>
+  </div>
+
+  <div class="model-list-footer">
+    <%= paginate @achievements %>
+    <p><%= page_entries_info @achievements %></p>
+  </div>
 </div>

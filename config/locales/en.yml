@@ -23,28 +23,28 @@ en:
       description: "Play %{count} %{game}."
     royal_flush:
       title: "Get Flushed!"
-      description: "Get a Royal Flush"
+      description: "Get dealt a royal flush."
     straight_flush:
       title: "Semi Flushable"
-      description: "Get a Straight Flush"
+      description: "Get dealt a straight flush."
     king_of_the_world:
       title: "King Of The World"
       description: "Win a regional championship."
     born_leader:
       title: "Born Leader"
-      description: "Regional Point Winner"
+      description: "Regional Point Winner."
     hand_me_the_deed:
       title: "Hand Me The Deed"
-      description: "Venue Point Winner"
+      description: "Venue Point Winner."
     the_bridesmaid:
       title: "The Bridesmaid"
-      description: "Place second in %{games}"
+      description: "Place second in %{games}."
     the_prodigy:
       title: "The Prodigy"
-      description: "Most games won by any player in a season"
+      description: "Most games won by any player in a season."
     the_wooden_spoon:
       title: "The Wooden Spoon %{level}"
-      description: "Place 10th in %{games}"
+      description: "Place 10th in %{games}."
   players:
     index:
       title: "All Time Leaderboard"

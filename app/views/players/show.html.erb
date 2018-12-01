@@ -1,6 +1,6 @@
-<%- content_for :title, t('players.show.title') % { name: @player.full_name, username: "@#{@player.username}" } %>
-<%- content_for :description, t('players.show.description') % { name: @player.full_name } %>
-<%- content_for :canonical_url, players_url %>
+<% content_for :title, t('players.show.title') % { name: @player.full_name, username: "@#{@player.username}" } -%>
+<% content_for :description, t('players.show.description') % { name: @player.full_name } -%>
+<% content_for :canonical_url, players_url -%>
 
 <div class="hero inverted">
   <div class="wrapper">
@@ -13,7 +13,7 @@
   <div>
     <!-- Breakdown -->
     <div class="breakdown">
-      <%- season_player = @player.season_player %>
+      <% season_player = @player.season_player -%>
       <!-- All Time Score -->
       <div>
         <h2>All Time Score</h2>
@@ -55,11 +55,10 @@
   <!-- Achievements -->
   <div class="player-data">
     <h2>Recent Achievements</h2>
-    <%# <ul> %>
-    <%#   <%= render collection: @player.achievements.order(updated_at: :desc).first(3), partial: 'achievement' %1> %>
-    <%# </ul> %>
-    <%# <%= link_to 'View all achievements', player_achievements_path(@player), class: 'button-tertiary' %1> %>
-    <p>Sorry, this section is under construction. Please check back later.</p>
+    <ul>
+      <%= render collection: @player.achievements.order(updated_at: :desc).first(3), partial: 'achievement' %>
+    </ul>
+    <%= link_to 'View all achievements', player_achievements_path(@player), class: 'button-tertiary' %>
 
     <div class="tickets">
       <p>

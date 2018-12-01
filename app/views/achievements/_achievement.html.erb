@@ -1,0 +1,12 @@
+<tr>
+  <!-- Title -->
+  <td><span class="highlight"><%= achievement.title %></span></td>
+
+  <!-- Description -->
+  <td class="stretch"><%= achievement.description %></td>
+
+  <!-- Proof -->
+  <% if achievement.proof.present? -%>
+    <td><%= link_to 'View proof', achievement.proof.url(:full) %></td>
+  <% end -%>
+</tr>
