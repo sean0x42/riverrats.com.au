@@ -1,2 +1,3 @@
 document.querySelector(".js-comments").innerHTML = "<%= escape_javascript(render 'games/game_comments') %>";
-createFlash("Comment deleted!", "Your comment was successfully removed.");
+closeModal();
+createFlash("Success!", "You've successfully updated a comment.");

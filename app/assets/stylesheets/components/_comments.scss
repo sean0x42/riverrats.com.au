@@ -13,16 +13,16 @@
   .button {
     padding: 12px 18px;
   }
-}
 
-.comment-form--footer {
-  align-items: flex-start;
-  display: flex;
-  justify-content: space-between;
+  .comment-form--footer {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
 
-  label {
-    color: lighten($text, 20%);
-    line-height: 1;
+    label {
+      color: lighten($text, 20%);
+      line-height: 1;
+    }
   }
 }
 
@@ -51,6 +51,12 @@
     margin: 2rem 0;
     position: relative;
     z-index: 2;
+
+    &.deleted {
+      background: $red-lighter;
+      border-color: $red;
+      color: $red-lighter-inverted;
+    }
   }
 
   .comment-header {
@@ -76,6 +82,22 @@
     }
   }
 
+  .deleted .comment-header {
+    background: $red-light;
+    border-color: $red;
+    color: $red-light-inverted;
+
+    .highlight {
+      color: $red-inverted;
+      font-weight: 500;
+    }
+
+    .flair {
+      background: $red-light-inverted;
+      color: $red-light;
+    }
+  }
+
   .comment-body {
     padding: 0.75rem 1rem;
 
@@ -90,9 +112,18 @@
     list-style-type: none;
     padding: 0.25rem 1rem 0.75rem;
 
-    a {
+    a,
+    span {
       color: lighten($text, 25%);
       margin-right: 0.5rem;
+    }
+  }
+
+  .deleted .comment-footer {
+    a,
+    span {
+      color: $red-lighter-inverted;
+      text-decoration: line-through;
     }
   }
 }

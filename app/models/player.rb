@@ -4,6 +4,7 @@ require 'csv'
 require 'username_lib'
 
 # Represents a single player
+# rubocop:disable Metrics/ClassLength
 class Player < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable
@@ -196,3 +197,4 @@ class Player < ApplicationRecord
     super(value)
   end
 end
+# rubocop:enable Metrics/ClassLength

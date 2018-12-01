@@ -16,7 +16,6 @@ class GamesPlayer < ApplicationRecord
   after_save :update_stats
   after_destroy :update_stats
   after_create :send_create_notification
-  after_update :send_update_notification
 
   with_options presence: true do
     validates :game, :player
@@ -50,10 +49,6 @@ class GamesPlayer < ApplicationRecord
   end
 
   def send_create_notification
-    GameNotificationWorker.perform_in(10.seconds, id, player.id, 'create')
-  end
-
-  def send_update_notifications
-    GameNotificationWorker.perform_in(10.seconds, id, player.id, 'update')
+    GameNotificationWorker.perform_in(10.seconds, id, player.id)
   end
 end

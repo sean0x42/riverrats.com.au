@@ -1,5 +1,5 @@
 <% player = comment.player -%>
-<li class="comment">
+<li class="comment<%= ' deleted' if comment.deleted %>">
   <!-- Comment header -->
   <div class="comment-header">
     <% if player.nil? -%>
@@ -24,11 +24,21 @@
   </div>
 
   <!-- Footer -->
-  <% if player == current_player -%>
-    <ul class="comment-footer">
+  <ul class="comment-footer">
+    <% if comment.deleted -%>
+      <li><span>This comment has been deleted</span></li>
+    <% elsif player == current_player -%>
       <!-- Edit -->
-      <li><%= link_to 'edit', edit_game_comment_path(@game, comment), remote: true %></li>
-      <li><%= link_to 'delete', game_comment_path(@game, comment), remote: true, method: :delete %></li>
-    </ul>
-  <% end -%>
+      <li><%= link_to 'edit', edit_game_comment_path(@game, comment),
+                      remote: true,
+                      data: { expects_modal: true } %></li>
+    <% end -%>
+
+    <% if (player == current_player || current_player.admin) && !comment.deleted -%>
+      <li><%= link_to 'delete', game_comment_path(@game, comment),
+                      remote: true, 
+                      method: :delete,
+                      data: { confirm: 'Are you sure you want to delete this comment?' } %></li>
+    <% end -%>
+  </ul>
 </li>
