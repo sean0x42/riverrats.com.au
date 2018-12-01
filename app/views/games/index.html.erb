@@ -1,8 +1,10 @@
-<% content_for :title, t('games.index.title') %>
-<% content_for :description, t('games.index.description') %>
-<% content_for :canonical_url, games_url %>
+<% content_for :title, t('games.index.title') -%>
+<% content_for :description, t('games.index.description') -%>
+<% content_for :canonical_url, games_url -%>
 
 <div class="wrapper">
+  <%= render 'application/password_banner' %>
+
   <span class="subheading">River Rats History</span>
   <h1><%= t('games.index.title') %></h1>
 

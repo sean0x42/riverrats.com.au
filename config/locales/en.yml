@@ -45,12 +45,29 @@ en:
     the_wooden_spoon:
       title: "The Wooden Spoon %{level}"
       description: "Place 10th in %{games}"
+  players:
+    index:
+      title: "All Time Leaderboard"
+      description: "View the best players that the River Rats Poker League has to offer!"
+    search:
+      title: "Search Results"
+      description: "Search all players"
+    show:
+      title: "%{name} (%{username})"
+      description: "View %{name}'s player profile, including a brief game history, achievements, and rankings!"
+    registrations:
+      new:
+        title: "Register"
+        description: "Join the River Rats Poker League official website. Start tracking your scores, games, achievements and more!"
+      edit:
+        title: "Settings"
+        description: "Adjust your account settings, to get the most out of the River Rats website."
+    sessions:
+      new:
+        title: "Login"
+        description: "Login to access your River Rats Poker League account. You can use either your email address or your username."
   description:
     players:
-      registrations:
-        new: "Join the River Rats Poker League official website. Start tracking your scores, games, achievements and more!"
-      sessions:
-        new: "Login to access your River Rats Poker League account. You can use either your email address or your username."
       passwords:
         new: "If you forgot your account password, then this page allows you to send a password reset email."
     events:
@@ -180,16 +197,6 @@ en:
     show:
       title: "%{season}"
       description: "This page contains complete leaderboards, start and end dates, and some other metadata for %{season}."
-  players:
-    index:
-      title: "All Time Leaderboard"
-      description: "View the best players that the River Rats Poker League has to offer!"
-    search:
-      title: "Search Results"
-      description: "Search all players"
-    show:
-      title: "%{name} (%{username})"
-      description: "View %{name}'s player profile, including a brief game history, achievements, and rankings!"
   games:
     show:
       title: "Game %{game} at the %{venue}"
@@ -239,3 +246,7 @@ en:
   log:
     term_trap: "Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT"
     intercept_term: "Unicorn master intercepting TERM and sending myself QUIT instead"
+  password:
+    banner:
+      title: "Please change your password"
+      body: "You're still using the default password. Please update it now to keep your account secure."

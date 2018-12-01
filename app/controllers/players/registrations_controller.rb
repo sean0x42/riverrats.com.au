@@ -22,9 +22,12 @@ class Players::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    return if current_player.password_changed
+
+    current_player.update(password_changed: true)
+  end
 
   # DELETE /resource
   # def destroy

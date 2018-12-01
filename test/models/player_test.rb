@@ -99,4 +99,12 @@ class PlayerTest < ActiveSupport::TestCase
                      'No validation error present for player with non-integer'\
                      ' tickets'
   end
+
+  test 'password changed should exist' do
+    player = Player.new(password_changed: nil)
+    assert_not player.valid?, 'Player is valid with nil password changed'
+    assert_not_empty player.errors[:password_changed],
+                     'No validation error present for player with nil password'\
+                     ' changed'
+  end
 end
