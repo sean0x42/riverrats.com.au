@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(_resource)
     root_path
   end
+
+  def record_action(action, translation, value_hash = {})
+    Action.create(
+      player: current_player, action: action,
+      description: format(t("admin.#{translation}.action"), value_hash)
+    )
+  end
 end

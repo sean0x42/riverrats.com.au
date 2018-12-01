@@ -27,9 +27,10 @@ export class Player {
 
   /**
    * An element representation of this player.
+   * @param position Player position (optional)
    * @returns {HTMLElement} Element containing information about this player.
    */
-  asElement() {
+  asElement(positon = null) {
     // Init
     const player = document.createElement("div");
     const nameSpan = document.createElement("span");

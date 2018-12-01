@@ -1,0 +1,107 @@
+$width: 350px;
+
+.header-menu.notification-area {
+  max-width: $width;
+  padding: 0.75rem 1rem 1rem;
+  width: $width;
+
+  .notifications-header {
+    align-items: center;
+    border-bottom: 1px solid $grey;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 0.5rem;
+
+    p {
+      color: $text-bold;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
+
+  .clear-all {
+    color: lighten($text, 15%);
+    display: inline-block;
+    margin-left: auto;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .button-tertiary {
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .empty {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2.25rem 0;
+
+    svg {
+      $size: 75px;
+      fill: darken($grey-dark, 15%);
+      height: $size;
+      margin-bottom: 0.5rem;
+      width: $size;
+    }
+
+    p {
+      color: lighten($text, 20%);
+      margin: 0;
+    }
+  }
+}
+
+.notification-list {
+  max-height: 300px;
+  overflow-y: auto;
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  .notification-body,
+  a.notification-link {
+    border-left: 2px solid $zurple-light;
+    color: $text;
+    display: inline-block;
+    margin-left: 9px;
+    padding: 0;
+    padding-left: 15px;
+  }
+
+  .notification-header {
+    align-items: center;
+    color: $text-bold;
+    display: flex;
+
+    svg {
+      height: 20px;
+      margin-right: 0.4rem;
+      width: 20px;
+    }
+  }
+}
+
+.model-list.not-list {
+  .read {
+    align-items: center;
+    display: flex;
+
+    svg {
+      fill: lighten($text, 15%);
+      height: 22px;
+      line-height: 1;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+      width: 22px;
+    }
+
+    &:hover svg {
+      fill: $zurple-light;
+    }
+  }
+}

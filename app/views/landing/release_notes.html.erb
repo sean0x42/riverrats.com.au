@@ -3,17 +3,70 @@
 <% content_for :canonical_url, release_notes_url -%>
 
 <div class="wrapper">
+  <%= render 'application/password_banner' %>
+
   <span class="subheading">Version History</span>
   <h1><%= t('landing.release_notes.title') %></h1>
 
   <div class="release-notes">
+    <!-- 1.2.0 -->
+    <div class="release">
+      <h2><span class="version">1.2.0</span>Decemeber 1st, 2018</h2>
+      <ul>
+        <li>
+          <div class="change change-new">new</div>
+          <p>A banner prompting players to change their password if it was automatically generated. See <%= link_to '#139', 'https://github.com/sean0x42/riverrats.com.au/pull/139', class: 'anchor' %>.</p>
+        </li>
+        <li>
+          <div class="change change-new">new</div>
+          <p>Tickets! Players can now be awarded tickets by administrators. See <%= link_to '#126', 'https://github.com/sean0x42/riverrats.com.au/pull/126', class: 'anchor' %>.</p>
+        </li>
+        <li>
+          <div class="change change-new">new</div>
+          <p>Admin actions are now recorded, and can be reviewed by other admins. See <%= link_to '#126', 'https://github.com/sean0x42/riverrats.com.au/pull/126', class: 'anchor' %>.</p>
+        </li>
+        <li>
+          <div class="change change-new">new</div>
+          <p>Players can now comment on games. See <%= link_to '#112', 'https://github.com/sean0x42/riverrats.com.au/pull/112', class: 'anchor' %>.</p>
+        </li>
+        <li>
+          <div class="change change-new">new</div>
+          <p>You'll now receive notifications for various things, such as playing in a game. See <%= link_to '#101', 'https://github.com/sean0x42/riverrats.com.au/pull/101', class: 'anchor' %>.</p>
+        </li>
+        <li>
+          <div class="change change-new">new</div>
+          <p>Admins can now give players nicknames. See <%= link_to '#100', 'https://github.com/sean0x42/riverrats.com.au/pull/100', class: 'anchor' %>.</p>
+        </li>
+        <li>
+          <div class="change change-new">new</div>
+          <p>Improved achievement views. See <%= link_to '#137', 'https://github.com/sean0x42/riverrats.com.au/pull/137', class: 'anchor' %>.</p>
+        </li>
+        <li>
+          <div class="change change-improved">improved</div>
+          <p>Error pages (<%= link_to '404', '/404', class: 'anchor', target: '_blank' %>, <%= link_to '422', '/422', class: 'anchor', target: '_blank' %>, <%= link_to '500', '/500', class: 'anchor', target: '_blank' %>) have had a facelift. They should be more meaningful now. See <%= link_to '#138', 'https://github.com/sean0x42/riverrats.com.au/pull/138', class: 'anchor' %>.</p>
+        </li>
+        <li>
+          <div class="change change-improved">improved</div>
+          <p>Some emails have had an aesthetic rework. See <%= link_to '#136', 'https://github.com/sean0x42/riverrats.com.au/pull/136', class: 'anchor' %>.</p>
+        </li>
+        <li>
+          <div class="change change-fixed">fixed</div>
+          <p>Fixed a bug with logging in, signing up, and editing account settings. See <%= link_to '#133', 'https://github.com/sean0x42/riverrats.com.au/pull/133', class: 'anchor' %> and <%= link_to '#139', 'https://github.com/sean0x42/riverrats.com.au/pull/139', class: 'anchor' %>.</p>
+        </li>
+        <li>
+          <div class="change change-fixed">fixed</div>
+          <p>Player's names are now capitalised appropriately. See <%= link_to '#15', 'https://github.com/sean0x42/riverrats.com.au/issues/15', class: 'anchor' %>.</p>
+        </li>
+      </ul>
+    </div>
+
     <!-- 1.1.3 -->
     <div class="release">
       <h2><span class="version">1.1.3</span>October 27th, 2018</h2>
       <ul>
         <li>
           <div class="change change-fixed">fixed</div>
-          <p>Fixed an issue preventing players from resetting their passwords <a href="https://github.com/sean0x42/riverrats.com.au/issues/105" class="anchor">#105</a>.</p>
+          <p>Fixed an issue preventing players from resetting their passwords <%= link_to '#105', 'https://github.com/sean0x42/riverrats.com.au/issues/105', class: 'anchor' %>.</p>
         </li>
       </ul>
     </div>

@@ -5,30 +5,26 @@ require 'flash_message'
 # Controller for achievements in the admin scope
 class Admin::AchievementsController < ApplicationController
   layout 'admin'
-
-  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
-  # GET /admin/achievements/new
+  # GET /admin/players/:player_username/achievements/new
   def new
-    @achievement = Achievement.new
+    @player = Player.find_by!(username: params[:player_username])
+    @achievement = @player.achievements.build
   end
 
-  # POST /admin/achievements
+  # POST /admin/players/:player_username/achievements
   def create
-    @achievement = Achievement.new achievement_params
+    @player = Player.find_by!(username: params[:player_username])
+    @achievement = @player.achievements.build(achievement_params)
 
     if @achievement.save
-      flash[:success] = Struct::Flash.new(
-        t('admin.achievements.create.title'),
-        t('admin.achievements.create.body')
-      )
-      redirect_to admin_players_path
+      record_action(:achievement, 'achievements.create',
+                    achievement: @achievement.type, player: @player.username)
+      redirect_to admin_players_path,
+                  notice: t('admin.achievements.create.flash')
     else
-      if params.key?(:achievement) && params[:achievement].key?(:player_id)
-        @player_name = Player.find(params[:achievement][:player_id]).full_name
-      end
       render 'new'
     end
   end
@@ -36,6 +32,6 @@ class Admin::AchievementsController < ApplicationController
   private
 
   def achievement_params
-    params.require(:achievement).permit(:type, :player_id, :proof)
+    params.require(:achievement).permit(:type, :proof)
   end
 end

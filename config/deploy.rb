@@ -4,7 +4,7 @@
 lock '~> 3.11.0'
 
 set :application, 'river_rats'
-set :repo_url, 'git@github.com:LuckehPickle/riverrats.com.au.git'
+set :repo_url, 'git@github.com:sean0x42/riverrats.com.au.git'
 set :branch, 'master'
 set :domain, 'riverrats.com.au'
 set :rvm_ruby_version, '2.4.4'
@@ -39,7 +39,7 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
 # set :local_user, -> { `git config user.name`.chomp }
 
 # Default value for keep_releases is 5
-set :keep_releases, 5 
+set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before
 # first deploy.

@@ -6,7 +6,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  version: "version 1.1.3"
+  version: "version 1.2.0"
+  notification:
+    game: "You placed %{position} in Game #%{game} at the %{venue}."
+    comment: "@%{sender} just commented on Game #%{game} at the %{venue}."
   achievement:
     wins:
       title: "Winner Winner Chicken Dinner %{level}"
@@ -19,34 +22,55 @@ en:
       description: "Play %{count} %{game}."
     royal_flush:
       title: "Get Flushed!"
-      description: "Get a Royal Flush"
+      description: "Get dealt a royal flush."
     straight_flush:
       title: "Semi Flushable"
-      description: "Get a Straight Flush"
+      description: "Get dealt a straight flush."
     king_of_the_world:
       title: "King Of The World"
       description: "Win a regional championship."
     born_leader:
       title: "Born Leader"
-      description: "Regional Point Winner"
+      description: "Regional Point Winner."
     hand_me_the_deed:
       title: "Hand Me The Deed"
-      description: "Venue Point Winner"
+      description: "Venue Point Winner."
     the_bridesmaid:
       title: "The Bridesmaid"
-      description: "Place second in %{games}"
+      description: "Place second in %{games}."
     the_prodigy:
       title: "The Prodigy"
-      description: "Most games won by any player in a season"
+      description: "Most games won by any player in a season."
     the_wooden_spoon:
       title: "The Wooden Spoon %{level}"
-      description: "Place 10th in %{games}"
+      description: "Place 10th in %{games}."
+  comments:
+    edit:
+      title: "Edit Comment"
+    destroy: "Successfully deleted this comment."
+  players:
+    index:
+      title: "All Time Leaderboard"
+      description: "View the best players that the River Rats Poker League has to offer!"
+    search:
+      title: "Search Results"
+      description: "Search all players"
+    show:
+      title: "%{name} (%{username})"
+      description: "View %{name}'s player profile, including a brief game history, achievements, and rankings!"
+    registrations:
+      new:
+        title: "Register"
+        description: "Join the River Rats Poker League official website. Start tracking your scores, games, achievements and more!"
+      edit:
+        title: "Settings"
+        description: "Adjust your account settings, to get the most out of the River Rats website."
+    sessions:
+      new:
+        title: "Login"
+        description: "Login to access your River Rats Poker League account. You can use either your email address or your username."
   description:
     players:
-      registrations:
-        new: "Join the River Rats Poker League official website. Start tracking your scores, games, achievements and more!"
-      sessions:
-        new: "Login to access your River Rats Poker League account. You can use either your email address or your username."
       passwords:
         new: "If you forgot your account password, then this page allows you to send a password reset email."
     events:
@@ -62,16 +86,19 @@ en:
         title: "Edit Player"
       create:
         flash: "You have successfully created a player."
+        action: "created player @%{player}."
       update:
         flash: "You have successfully updated a player."
+        action: "edited player @%{player}."
       destroy:
         flash: "You have successfully deleted a player."
+        action: "deleted player @%{player}."
       confirm_delete: "Are you sure you want to delete this player? This action cannot be undone."
     games:
       index:
         title: "Games"
       new:
-        title: "Create Game"
+        title: "Record Game"
         add_players: "Add Players"
         add_tournament_directors: "Add Tournament Directors"
         game_details: "Edit Details"
@@ -85,10 +112,13 @@ en:
         title: "Edit Game"
       create:
         flash: "You have successfully created a game."
+        action: "recorded Game #%{game}."
       update:
         flash: "You have successfully updated a game."
+        action: "edited Game #%{game}."
       destroy:
         flash: "You have successfully deleted a game."
+        action: "deleted Game #%{game}."
       confirm_delete: "Are you sure you want to delete this game? This action cannot be undone."
     events:
       index:
@@ -99,10 +129,13 @@ en:
         title: "Edit Event"
       create:
         flash: "You have successfully created an event."
+        action: "created event %{event}."
       update:
         flash: "You have successfully updated an event."
+        action: "edited event %{event}."
       destroy:
         flash: "You have successfully deleted an event."
+        action: "deleted event %{event}."
       confirm_delete: "Are you sure you want to delete this event? This action cannot be undone."
       recurring:
         confirm_delete: "Are you sure you want to delete this event, and all following events? This action cannot be undone."
@@ -118,10 +151,13 @@ en:
         title: "Edit Venue"
       create:
         flash: "You have successfully created a venue."
+        action: "created venue %{venue}."
       update:
         flash: "You have successfully updated a venue."
+        action: "edited venue %{venue}."
       destroy:
         flash: "You have successfully deleted a venue."
+        action: "deleted venue %{venue}."
       confirm_delete: "Are you sure you want to delete this venue? This action cannot be undone."
     regions:
       index:
@@ -132,35 +168,38 @@ en:
         title: "Edit Region"
       create:
         flash: "You have successfully created a region."
+        action: "created region %{region}."
       update:
         flash: "You have successfully updated a region."
+        action: "edited region %{region}."
       destroy:
         flash: "You have successfully deleted a region."
+        action: "deleted region %{region}."
       confirm_delete: "Are you sure you want to delete this region? This action cannot be undone."
     achievements:
       create:
-        title: "Successfully awarded an achievement"
-        body: "You awarded an achievement."
+        flash: "Successfully awarded an achievement"
+        action: "awarded achievement %{achievement} to @%{player}."
       new:
         title: "Award Achievement"
     mail:
       new:
         title: "Generate Mailing List"
+    tickets:
+      edit:
+        title: "Award & Revoke Tickets"
+        label: "Tickets to Award (can be negative)"
+      update:
+        flash: "Successfully updated player tickets."
+        action: "awarded %{tickets} ticket(s) to @%{player}."
+    actions:
+      index:
+        title: "Review Admin Actions"
     danger_zone: "Careful! Actions performed here cannot be undone."
   seasons:
     show:
       title: "%{season}"
       description: "This page contains complete leaderboards, start and end dates, and some other metadata for %{season}."
-  players:
-    index:
-      title: "All Time Leaderboard"
-      description: "View the best players that the River Rats Poker League has to offer!"
-    search:
-      title: "Search Results"
-      description: "Search all players"
-    show:
-      title: "%{name} (%{username})"
-      description: "View %{name}'s player profile, including a brief game history, achievements, and rankings!"
   games:
     show:
       title: "Game %{game} at the %{venue}"
@@ -202,6 +241,13 @@ en:
     index:
       title: "%{player}'s Achievements"
       description: "View a list of all achievements unlocked by %{player}"
+  notifications:
+    title: 'Notifications'
+    description: 'View your full notificatio history.'
   log:
     term_trap: "Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT"
     intercept_term: "Unicorn master intercepting TERM and sending myself QUIT instead"
+  password:
+    banner:
+      title: "Please change your password"
+      body: "You're still using the default password. Please update it now to keep your account secure."

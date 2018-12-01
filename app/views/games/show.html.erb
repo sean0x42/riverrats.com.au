@@ -1,18 +1,32 @@
-<%- content_for :title, t('games.show.title') % { game: @game.name, venue: @game.venue.name } %>
-<%- content_for :description, t('games.show.description') % { game: @game.name } %>
-<%- content_for :canonical_url, games_url %>
+<% content_for :title, t('games.show.title') % { game: @game.name, venue: @game.venue.name } -%>
+<% content_for :description, t('games.show.description') % { game: @game.name } -%>
+<% content_for :canonical_url, games_url -%>
 
 <div class="wrapper split-header">
+  <%= render 'application/password_banner' %>
+
   <span class="subheading">Game Log</span>
   <h1><%= t('games.show.title') % { game: @game.name, venue: @game.venue.name } %></h1>
 </div>
 
 <%- players = @game.paginated_players(params[:page]) %>
 <div class="wrapper split-wrapper">
-  <div class="model-list">
-    <table>
-      <%= render collection: players, partial: 'player' %>
-    </table>
+  <div>
+    <div class="model-list">
+      <table>
+        <%= render collection: players, partial: 'player' %>
+      </table>
+    </div>
+
+    <div class="model-list-footer">
+      <%= paginate players %>
+      <p><%= page_entries_info players %></p>
+    </div>
+
+    <!-- Comments -->
+    <div class="js-comments">
+      <%= render 'game_comments' %>
+    </div>
   </div>
 
   <div class="game-data">

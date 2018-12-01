@@ -1,0 +1,19 @@
+<%= form_with url: admin_player_tickets_path(@player), 
+              method: :patch, 
+              class: 'modal-form' do |form| %>
+  <!-- Ticket count -->
+  <p><%= @player.full_name %> has <%= pluralize(@player.tickets, 'ticket') %>.</p><br/>
+
+  <!-- Add/Remove -->
+  <div class="field">
+    <%= form.label :tickets, format(
+      t('admin.tickets.edit.label'), 
+      name: @player.full_name, tickets: pluralize(@player.tickets, 'ticket')
+    ) %><br/>
+    <%= form.number_field :tickets, value: 0, min: @player.tickets * -1 %>
+  </div>
+
+  <%= form.submit class: 'button wide', 
+                  remote: true, 
+                  data: { disable_with: 'Please wait...' } %>
+<% end -%>

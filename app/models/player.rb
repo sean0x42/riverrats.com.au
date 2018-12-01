@@ -4,6 +4,7 @@ require 'csv'
 require 'username_lib'
 
 # Represents a single player
+# rubocop:disable Metrics/ClassLength
 class Player < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable
@@ -12,81 +13,103 @@ class Player < ApplicationRecord
 
   searchkick callbacks: :async, word_start: %i[full_name username]
 
+  # Active record callbacks
   before_validation :gen_username, on: :create
 
+  # Relationships
   with_options dependent: :nullify, inverse_of: :player do
-    has_many :games_players, class_name: 'GamesPlayer'
-    has_many :players_venues, class_name: 'PlayersVenue'
+    has_many :games_players,   class_name: 'GamesPlayer'
+    has_many :players_venues,  class_name: 'PlayersVenue'
     has_many :players_regions, class_name: 'PlayersRegion'
     has_many :players_seasons, class_name: 'PlayersSeason'
+    has_many :comments
+    has_many :actions
   end
 
-  has_many :games, through: :games_players
   has_many :referees, dependent: :nullify
-  has_many :games, through: :referees
-  has_many :venues, through: :players_venues
-  has_many :regions, through: :players_regions
-  has_many :seasons, through: :players_seasons
-  has_many :achievements, dependent: :destroy
+  has_many :games,    through: :games_players
+  has_many :games,    through: :referees
+  has_many :venues,   through: :players_venues
+  has_many :regions,  through: :players_regions
+  has_many :seasons,  through: :players_seasons
+
+  with_options dependent: :destroy do
+    has_many :achievements
+    has_many :notifications
+  end
 
   attr_writer :login
 
+  # Validation
   with_options presence: true do
     validates :username,
               uniqueness: { case_sensitive: false },
               length: { minimum: 2 },
               format: {
                 with: /\A[a-z0-9-]*\z/,
-                message: 'may use numbers, letters, underscores (_), and hyphens (-)'
-              }
-    validates :first_name, :last_name,
-              length: { maximum: 64 },
-              format: {
-                with: /\A[a-zA-Z][a-zA-Z-]*[a-zA-Z]\z/,
-                message: 'may use letters and hyphens (-)'
+                message: 'may use numbers, letters, underscores (_), and '\
+                         'hyphens (-)'
               }
     validates :notify_promotional, :notify_events
   end
 
-  validates :score, :games_played, :games_won,
-            numericality: {
-              only_integer: true,
-              greater_than_or_equal_to: 0
-            }
+  with_options length: { maximum: 64 },
+               format: {
+                 with: /\A[A-Z][a-zA-Z-]*[a-z]\z/,
+                 message: 'may use letters and hyphens (-), must start with an'\
+                          ' uppercase letter'
+               } do
+    validates :first_name, :last_name, presence: true
+    validates :nickname, allow_nil: true, allow_blank: true
+  end
 
-  validates :email,
-            format: { with: URI::MailTo::EMAIL_REGEXP },
-            allow_nil: true,
-            allow_blank: true,
-            uniqueness: true
+  validates :score, :games_played, :games_won, :tickets,
+            numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP },
+                    allow_nil: true, allow_blank: true, uniqueness: true
+
+  # Since validation by presence doesn't work for booleans
+  validates :password_changed, :developer, :admin,
+            inclusion: { in: [true, false] }
 
   def to_param
     username
   end
 
+  # Defines searchkick data
   def search_data
     {
       full_name: full_name,
       username: "@#{username}",
-      is_admin: admin?,
-      is_developer: developer?
+      is_admin: admin,
+      is_developer: developer
     }
   end
 
+  # Returns a human readable form of the players full name
   def full_name
-    "#{first_name} #{last_name}"
+    if nickname.nil?
+      "#{first_name} #{last_name}"
+    else
+      "#{first_name} '#{nickname}' #{last_name}"
+    end
   end
 
   def login
     @login || username || email
   end
 
+  # noinspection RubyClassMethodNamingConvention
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if (login = conditions.delete(:login))
-      where(conditions.to_h).where(['lower(username) = :value OR lower(email) = :value', { value: login.downcase }]).first
+      where(conditions.to_h).find_by([
+                                       'lower(username) = :value OR lower(email) = :value',
+                                       { value: login.downcase }
+                                     ])
     elsif conditions.key?(:username) || conditions.key?(:email)
-      where(conditions.to_h).first
+      find_by(conditions.to_h)
     end
   end
 
@@ -130,7 +153,7 @@ class Player < ApplicationRecord
   def recent_games
     GamesPlayer.includes(game: [:venue])
                .where(player: self)
-               .reorder(created_at: :desc).limit(25)
+               .reorder(created_at: :desc)
   end
 
   def season_player
@@ -144,4 +167,34 @@ class Player < ApplicationRecord
   def self.admins
     Player.where(admin: true).or(Player.where(developer: true))
   end
+
+  def unread_notifications
+    notifications.where(read: false)
+  end
+
+  # Define custom setters which make blank attributes nil
+  %w[nickname email].each do |attribute|
+    define_method "#{attribute}=" do |value|
+      value = value.presence unless value.nil?
+      super(value)
+    end
+  end
+
+  # Define custom setters which automatically titleize
+  %w[first_name last_name].each do |attribute|
+    define_method "#{attribute}=" do |value|
+      # We need to be sure we only capitalize the first char
+      if value.instance_of?(String) && value.present?
+        value = value[0].capitalize + value.slice(1..-1)
+      end
+
+      super(value)
+    end
+  end
+
+  def tickets=(value)
+    value = 0 if value.negative?
+    super(value)
+  end
 end
+# rubocop:enable Metrics/ClassLength

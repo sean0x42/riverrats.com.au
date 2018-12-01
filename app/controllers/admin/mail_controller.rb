@@ -5,16 +5,16 @@ require 'flash_message'
 # A controller for mail in the admins cope
 class Admin::MailController < ApplicationController
   layout 'admin'
-
-  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/mail
-  def index; end
+  def index
+    respond_to :js
+  end
 
   # POST /admin/mail/players.csv
-  def show
+  def generate
     target = params.key?(:target) ? params[:target] : 'promotional'
     options = {}
 

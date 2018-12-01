@@ -5,14 +5,12 @@ require 'flash_message'
 # A controller for players in the admin scope
 class Admin::PlayersController < ApplicationController
   layout 'admin'
-
-  # noinspection RailsParamDefResolve
   before_action :authenticate_player!
   before_action :require_admin
 
   # GET /admin/players
   def index
-    @players = Player.order(score: :desc).page params[:page]
+    @players = Player.order(score: :desc).page(params[:page])
   end
 
   # GET /admin/players/:username
@@ -26,13 +24,16 @@ class Admin::PlayersController < ApplicationController
   end
 
   # POST /admin/players
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def create
     player_params = new_params
     player_params[:password] = Devise.friendly_token(8)
     @player = Player.new(player_params)
+    @player.password_changed = false
 
     # noinspection RailsChecklist01
     if @player.save
+      record_action(:player, 'players.create', player: @player.username)
       PlayerMailer.welcome(@player.id, player_params[:password]).deliver_later
       redirect_to admin_players_path, notice: t('admin.players.create.flash')
     else
@@ -42,6 +43,7 @@ class Admin::PlayersController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   # GET /admin/players/:username/edit
   def edit
@@ -49,35 +51,41 @@ class Admin::PlayersController < ApplicationController
   end
 
   # PATCH /admin/players/:username
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def update
     @player = Player.find_by!(username: params[:username])
 
     if @player.update edit_params
+      record_action(:player, 'players.update', player: @player.username)
       redirect_to admin_players_path, notice: t('admin.players.update.flash')
     else
       # noinspection RubyResolve
       @player.username = @player.username_was if @player.username_changed?
-      render 'edit'
+      respond_to do |format|
+        format.html { render 'edit' }
+        format.js { render 'failure' }
+      end
     end
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   # DELETE /admin/players/:username
   def destroy
     @player = Player.find_by!(username: params[:username])
     @player.destroy
 
+    record_action(:player, 'players.destroy', player: @player.username)
     redirect_to admin_players_path, notice: t('admin.players.destroy.flash')
   end
 
   private
 
   def new_params
-    params[:email] = nil if params.key?(:email) && params[:email].blank?
-    params.require(:player).permit(:first_name, :last_name, :email)
+    params.require(:player).permit(:first_name, :nickname, :last_name, :email)
   end
 
   def edit_params
-    params[:email] = nil if params.key?(:email) && params[:email].blank?
-    params.require(:player).permit(:username, :first_name, :last_name, :email)
+    params.require(:player).permit(:username, :nickname, :first_name,
+                                   :last_name, :email)
   end
 end

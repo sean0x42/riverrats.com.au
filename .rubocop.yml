@@ -1,11 +1,9 @@
-Rails:
-  Enabled: true
-
 AllCops:
   Exclude:
   - 'bin/*'
   - 'node_modules/**/*'
   - 'db/schema.rb'
+  - 'app/models/achievements/**/*'
 
 Metrics/MethodLength:
   Exclude:
@@ -14,13 +12,18 @@ Metrics/AbcSize:
   Exclude:
   - 'db/migrate/*'
 
-Style/ClassAndModuleChildren:
-  Enabled: false
-Style/RegexpLiteral:
-  EnforcedStyle: slashes
+Rails:
+  Enabled: true
+Rails/InverseOf:
+  Enabled: true
+
 Style/Documentation:
   Exclude:
     - 'db/migrate/*'
-
-Rails/InverseOf:
+    - 'app/controllers/*'
+Style/RegexpLiteral:
   Enabled: true
+  EnforcedStyle: slashes
+Style/ClassAndModuleChildren:
+  Enabled: true
+  EnforcedStyle: compact

@@ -1,8 +1,10 @@
-<% content_for :title, t('players.index.title') %>
-<% content_for :description, t('players.index.description') %>
-<% content_for :canonical_url, players_url %>
+<% content_for :title, t('players.index.title') -%>
+<% content_for :description, t('players.index.description') -%>
+<% content_for :canonical_url, players_url -%>
 
 <div class="content-wrapper wrapper">
+  <%= render 'application/password_banner' %>
+
   <span class="subheading">Leaderboard</span>
   <h1><%= t('players.index.title') %></h1>
 

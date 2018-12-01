@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_22_043403) do
+ActiveRecord::Schema.define(version: 2018_12_01_022853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,19 @@ ActiveRecord::Schema.define(version: 2018_09_22_043403) do
     t.datetime "updated_at", null: false
     t.string "proof_file_name"
     t.string "proof_content_type"
-    t.integer "proof_file_size"
+    t.bigint "proof_file_size"
     t.datetime "proof_updated_at"
     t.integer "level", default: 0, null: false
     t.index ["player_id"], name: "index_achievements_on_player_id"
+  end
+
+  create_table "actions", force: :cascade do |t|
+    t.bigint "player_id"
+    t.integer "action"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_actions_on_player_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -49,6 +58,25 @@ ActiveRecord::Schema.define(version: 2018_09_22_043403) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "draft", default: true, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "player_id", null: false
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "deleted", default: false, null: false
+    t.index ["game_id"], name: "index_comments_on_game_id"
+    t.index ["player_id"], name: "index_comments_on_player_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.bigint "venue_id", null: false
@@ -60,7 +88,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_043403) do
     t.text "days"
     t.text "description"
     t.bigint "recurring_event_id"
-    t.string "type", null: false
+    t.string "type", default: "", null: false
     t.index ["recurring_event_id"], name: "index_events_on_recurring_event_id"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
@@ -99,6 +127,17 @@ ActiveRecord::Schema.define(version: 2018_09_22_043403) do
     t.index ["player_id"], name: "index_games_players_on_player_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "player_id", null: false
+    t.integer "icon", default: 0, null: false
+    t.string "message", null: false
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "read", default: false, null: false
+    t.index ["player_id"], name: "index_notifications_on_player_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "username", null: false
     t.string "first_name", null: false
@@ -125,6 +164,9 @@ ActiveRecord::Schema.define(version: 2018_09_22_043403) do
     t.integer "second_places", default: 0, null: false
     t.integer "wooden_spoons", default: 0, null: false
     t.boolean "developer", default: false
+    t.string "nickname"
+    t.integer "tickets", default: 0, null: false
+    t.boolean "password_changed", default: true, null: false
     t.index ["email"], name: "index_players_on_email"
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
     t.index ["username"], name: "index_players_on_username", unique: true
@@ -191,6 +233,8 @@ ActiveRecord::Schema.define(version: 2018_09_22_043403) do
   create_table "seasons", force: :cascade do |t|
     t.date "start_at", null: false
     t.date "end_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "venues", force: :cascade do |t|
@@ -209,7 +253,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_043403) do
     t.integer "state", limit: 2, default: 1
     t.string "image_file_name"
     t.string "image_content_type"
-    t.integer "image_file_size"
+    t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.index ["region_id"], name: "index_venues_on_region_id"
     t.index ["slug"], name: "index_venues_on_slug", unique: true

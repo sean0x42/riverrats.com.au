@@ -35,8 +35,6 @@ gem 'jbuilder', '~> 2.8'
 gem 'bcrypt', platform: :ruby
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger
-  # console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.12'
@@ -45,7 +43,7 @@ end
 
 group :development do
   gem 'capistrano', '~> 3.11.0', require: false
-  gem 'capistrano-bundler', '~> 1.3', require: false
+  gem 'capistrano-bundler', '~> 1.4', require: false
   gem 'capistrano-passenger', require: false
   gem 'capistrano-rails', '~> 1.3', require: false
   gem 'capistrano-rvm', require: false
@@ -68,9 +66,10 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'autoprefixer-rails'
 gem 'bootsnap', require: false
 gem 'connection_pool'
+gem 'coveralls', require: false
 gem 'devise'
 gem 'elasticsearch'
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id', '~> 5.2.4'
 gem 'ice_cube'
 gem 'js-routes'
 gem 'kaminari'

@@ -1,5 +1,4 @@
 <%= form_with model: [:admin, @game], class: 'modal-form game-form' do |form| %>
-
   <!-- Date played -->
   <div class="field">
     <%= form.label :played_on %><br/>
@@ -18,12 +17,24 @@
   <div class="field">
     <%= form.label :season_id %><br/>
     <%= field_errors @game, :season_id %>
-    <%= form.collection_select :season_id, Season.all.order(start_at: :desc).limit(10), :id, :name %>
+    <%= form.collection_select :season_id, 
+                               Season.all.order(start_at: :desc).limit(10), 
+                               :id, :name %>
   </div>
+
+  <% unless @game.persisted? %>
+    <!-- Tickets -->
+    <div class="field">
+      <%= form.label :tickets %><br/>
+      <%= field_errors @game, :tickets %>
+      <%= form.number_field :tickets, value: 0, min: 0 %>
+    </div>
+  <% end -%>
 
   <div class="player-area-header">
     <h2><%= t('admin.games.new.add_players') %></h2>
-    <%= link_to 'Create player', new_admin_player_path, class: 'anchor', remote: true, data: { expects_modal: true } %>
+    <%= link_to 'Create player (opens in tab)', new_admin_player_path, class: 'anchor',
+                target: '_blank' %>
   </div>
 
   <%= field_errors @game, :games_players %>
@@ -38,7 +49,7 @@
   </div>
 
   <div class="player-area-footer">
-    <div class="player-input-wrapper" id="js-game-players-input">
+    <div class="player-input-wrapper" id="js-game-players-input" data-clear-input="true">
       <input type="text" class="player-input" placeholder="Name or username">
       <button class="player-input-submit button-secondary">Add player</button>
     </div>
