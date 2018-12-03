@@ -40,7 +40,7 @@
 
   <% if @player.persisted? -%>
     <h2>Actions</h2>
-    <ul>
+    <ul class="player-actions">
       <!-- Achievements -->
       <li>
         <%= link_to new_admin_player_achievement_path(@player), remote: true, data: { expects_modal: true } do %>

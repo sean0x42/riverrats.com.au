@@ -6,7 +6,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  version: "version 1.2.0"
+  version: "version 1.2.1"
   notification:
     game: "You placed %{position} in Game #%{game} at the %{venue}."
     comment: "@%{sender} just commented on Game #%{game} at the %{venue}."
@@ -188,7 +188,7 @@ en:
     tickets:
       edit:
         title: "Award & Revoke Tickets"
-        label: "Tickets to Award (can be negative)"
+        label: "Tickets to award (can be negative)"
       update:
         flash: "Successfully updated player tickets."
         action: "awarded %{tickets} ticket(s) to @%{player}."
