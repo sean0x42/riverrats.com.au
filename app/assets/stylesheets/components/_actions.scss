@@ -1,0 +1,24 @@
+.player-actions {
+  list-style-type: none;
+  margin: -0.5rem;
+  padding: 0;
+
+  li a {
+    align-items: center;
+    border-radius: $border-radius;
+    color: $text;
+    display: flex;
+    fill: $text;
+    padding: 0.5rem;
+
+    &:hover {
+      background: $grey-light;
+      color: $text-bold;
+      fill: $text-bold;
+    }
+  }
+
+  svg {
+    margin-right: 0.5rem;
+  }
+}

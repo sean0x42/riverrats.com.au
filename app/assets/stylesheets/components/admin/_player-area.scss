@@ -21,10 +21,15 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+
+    &.sortable {
+      counter-reset: players;
+    }
   }
 
   li {
     align-items: center;
+    counter-increment: players;
     display: flex;
     padding: 0 0 0 1rem;
 
@@ -35,6 +40,10 @@
     * {
       flex-shrink: 0;
     }
+  }
+
+  .js-sortable .inline-player::before {
+    content: counter(players) ". ";
   }
 
   .drag-handle {
