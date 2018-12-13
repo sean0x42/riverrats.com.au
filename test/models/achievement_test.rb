@@ -2,8 +2,6 @@
 
 require 'test_helper'
 
+# Tests achievements
 class AchievementTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 end

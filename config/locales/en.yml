@@ -6,7 +6,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  version: "version 1.2.1"
+  version: "version 1.2.2"
   notification:
     game: "You placed %{position} in Game #%{game} at the %{venue}."
     comment: "@%{sender} just commented on Game #%{game} at the %{venue}."
