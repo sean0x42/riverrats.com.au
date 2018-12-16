@@ -16,6 +16,7 @@ class Admin::GamesController < ApplicationController
   # GET /admin/games/new
   def new
     @game = Game.new
+    authorize @game
   end
 
   # POST /admin/games
