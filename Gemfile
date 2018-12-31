@@ -69,7 +69,7 @@ gem 'connection_pool'
 gem 'coveralls', require: false
 gem 'devise'
 gem 'elasticsearch'
-gem 'friendly_id', '~> 5.2.4'
+gem 'friendly_id', '~> 5.2.5'
 gem 'ice_cube'
 gem 'js-routes'
 gem 'kaminari'
