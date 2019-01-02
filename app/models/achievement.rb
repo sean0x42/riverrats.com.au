@@ -5,7 +5,7 @@ class Achievement < ApplicationRecord
   belongs_to :player
 
   has_attached_file :proof, styles: { full: '1400x1400>' }
-  validates_attachment_content_type :proof, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :proof, content_type: %r{\Aimage/.*\z}
 
   def title
     raise 'System Error: method missing (title)'

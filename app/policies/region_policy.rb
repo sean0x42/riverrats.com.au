@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# A policy for managing access to recording games
-class GamePolicy < ApplicationPolicy
+# A policy for managing regions
+class RegionPolicy < ApplicationPolicy
   def new?
     %i[tournament_director admin].include? user.group
   end

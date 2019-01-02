@@ -17,12 +17,12 @@ class Admin::VenuesController < ApplicationController
 
   # GET /admin/venues/new
   def new
-    @venue = Venue.new
+    @venue = authorize Venue.new
   end
 
   # POST /admin/venues
   def create
-    @venue = Venue.new venue_params
+    @venue = authorize Venue.new(venue_params)
 
     if @venue.save
       record_action(:venue, 'venues.create', venue: @venue.name)
@@ -37,12 +37,12 @@ class Admin::VenuesController < ApplicationController
 
   # GET /admin/venues/:id/edit
   def edit
-    @venue = Venue.friendly.find params[:id]
+    @venue = authorize Venue.friendly.find(params[:id])
   end
 
   # PATCH /admin/venues/:id
   def update
-    @venue = Venue.friendly.find params[:id]
+    @venue = authorize Venue.friendly.find(params[:id])
 
     if @venue.update venue_params
       record_action(:venue, 'venues.update', venue: @venue.name)
@@ -54,7 +54,7 @@ class Admin::VenuesController < ApplicationController
 
   # DELETE /admin/venues/:id
   def destroy
-    @venue = Venue.friendly.find params[:id]
+    @venue = authorize Venue.friendly.find(params[:id])
     @venue.destroy
 
     record_action(:venue, 'venues.destroy', venue: @venue.name)

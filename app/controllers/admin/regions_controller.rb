@@ -10,17 +10,17 @@ class Admin::RegionsController < ApplicationController
 
   # GET /admin/regions
   def index
-    @regions = Region.page params[:page]
+    @regions = Region.page(params[:page])
   end
 
   # GET /admin/regions/new
   def new
-    @region = Region.new
+    @region = authorize Region.new
   end
 
   # POST /admin/regions
   def create
-    @region = Region.new region_params
+    @region = authorize Region.new(region_params)
 
     if @region.save
       record_action(:region, 'regions.create', region: @region.name)
@@ -35,12 +35,12 @@ class Admin::RegionsController < ApplicationController
 
   # GET /admin/regions/:id/edit
   def edit
-    @region = Region.friendly.find params[:id]
+    @region = authorize Region.friendly.find(params[:id])
   end
 
   # PATCH /admin/regions/:id
   def update
-    @region = Region.friendly.find params[:id]
+    @region = authorize Region.friendly.find(params[:id])
 
     if @region.update region_params
       record_action(:region, 'regions.update', region: @region.name)
@@ -52,7 +52,7 @@ class Admin::RegionsController < ApplicationController
 
   # DELETE /admin/regions/:id
   def destroy
-    @region = Region.friendly.find params[:id]
+    @region = authorize Region.friendly.find(params[:id])
     @region.destroy
 
     record_action(:region, 'regions.destroy', region: @region.name)

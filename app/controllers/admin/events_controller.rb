@@ -18,7 +18,7 @@ class Admin::EventsController < ApplicationController
 
   # GET /admin/events/new
   def new
-    @event = Event.new
+    @event = authorize Event.new
   end
 
   # POST /admin/events
@@ -29,6 +29,7 @@ class Admin::EventsController < ApplicationController
              else
                SingleEvent.new(p)
              end
+    authorize @event
 
     if @event.save
       record_action(:event, 'events.create', event: @event.title)
@@ -43,12 +44,12 @@ class Admin::EventsController < ApplicationController
 
   # GET /admin/events/:id/edit
   def edit
-    @event = Event.find params[:id]
+    @event = authorize Event.find(params[:id])
   end
 
   # PATCH /admin/events/:id
   def update
-    @event = Event.find params[:id]
+    @event = authorize Event.find(params[:id])
 
     if @event.update(edit_event_params)
       record_action(:event, 'events.update', event: @event.title)
@@ -60,7 +61,7 @@ class Admin::EventsController < ApplicationController
 
   # DELETE /admin/events/:id
   def destroy
-    @event = Event.find params[:id]
+    @event = authorize Event.find(params[:id])
     @event.destroy_from_date(params[:from])
 
     record_action(:event, 'events.destroy', event: @event.title)

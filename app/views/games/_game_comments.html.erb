@@ -1,4 +1,4 @@
-<% if player_signed_in? && current_player.admin -%>
+<% if player_signed_in? && current_player.admin? -%>
   <% comments = @game.comments.includes(:player)
                      .page(params[:comment_page]).per(10) -%>
 <% else -%>
