@@ -2,7 +2,7 @@
 
 # Coveralls
 require 'coveralls'
-Coveralls.wear!
+Coveralls.wear!('rails')
 
 require File.expand_path('../config/environment', __dir__)
 require 'rails/test_help'

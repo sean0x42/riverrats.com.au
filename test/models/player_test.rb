@@ -107,4 +107,14 @@ class PlayerTest < ActiveSupport::TestCase
                      'No validation error present for player with nil password'\
                      ' changed'
   end
+
+  test 'full name without nickname' do
+    player = Player.new(first_name: 'Sean', last_name: 'Bailey')
+    assert_equal 'Sean Bailey', player.full_name,
+                 'Player name not formatted correctly'
+
+    player.nickname = 'sean0x42'
+    assert_equal "Sean 'sean0x42' Bailey", player.full_name,
+                 'Player name not formatted correctly'
+  end
 end
