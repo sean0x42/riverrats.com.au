@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Tests region policies
 class RegionPolicyTest < ActiveSupport::TestCase
   def test_scope; end
 

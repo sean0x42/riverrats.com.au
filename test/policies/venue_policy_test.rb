@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Tests venue policies
 class VenuePolicyTest < ActiveSupport::TestCase
   def test_scope; end
 

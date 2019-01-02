@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Tests event policies
 class EventPolicyTest < ActiveSupport::TestCase
   def test_scope; end
 
