@@ -72,8 +72,7 @@ class Player < ApplicationRecord
                     allow_nil: true, allow_blank: true, uniqueness: true
 
   # Since validation by presence doesn't work for booleans
-  validates :password_changed, :developer, :admin,
-            inclusion: { in: [true, false] }
+  validates :password_changed, inclusion: { in: [true, false] }
 
   def to_param
     username
