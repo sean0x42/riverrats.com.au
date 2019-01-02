@@ -72,7 +72,7 @@
                 <% end -%>
               </li>
 
-              <% if current_player.admin || current_player.developer -%>
+              <% unless current_player.player? -%>
                 <!-- Admin panel -->
                 <li>
                   <%= link_to admin_root_path do %>

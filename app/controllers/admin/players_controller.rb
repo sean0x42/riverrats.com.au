@@ -20,7 +20,7 @@ class Admin::PlayersController < ApplicationController
 
   # GET /admin/players/new
   def new
-    @player = Player.new
+    @player = authorize Player.new
   end
 
   # POST /admin/players
@@ -28,7 +28,7 @@ class Admin::PlayersController < ApplicationController
   def create
     player_params = new_params
     player_params[:password] = Devise.friendly_token(8)
-    @player = Player.new(player_params)
+    @player = authorize Player.new(player_params)
     @player.password_changed = false
 
     # noinspection RailsChecklist01
@@ -47,13 +47,13 @@ class Admin::PlayersController < ApplicationController
 
   # GET /admin/players/:username/edit
   def edit
-    @player = Player.find_by!(username: params[:username])
+    @player = authorize Player.find_by!(username: params[:username])
   end
 
   # PATCH /admin/players/:username
   # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def update
-    @player = Player.find_by!(username: params[:username])
+    @player = authorize Player.find_by!(username: params[:username])
 
     if @player.update edit_params
       record_action(:player, 'players.update', player: @player.username)
@@ -71,7 +71,7 @@ class Admin::PlayersController < ApplicationController
 
   # DELETE /admin/players/:username
   def destroy
-    @player = Player.find_by!(username: params[:username])
+    @player = authorize Player.find_by!(username: params[:username])
     @player.destroy
 
     record_action(:player, 'players.destroy', player: @player.username)

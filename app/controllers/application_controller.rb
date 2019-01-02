@@ -2,8 +2,8 @@
 
 # Base controller
 class ApplicationController < ActionController::Base
-  include Pundit
   protect_from_forgery with: :exception
+  include Pundit
 
   def pundit_user
     current_player

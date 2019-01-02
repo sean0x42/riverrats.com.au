@@ -13,6 +13,8 @@ class Player < ApplicationRecord
 
   searchkick callbacks: :async, word_start: %i[full_name username]
 
+  enum group: %i[player tournament_director admin developer]
+
   # Active record callbacks
   before_validation :gen_username, on: :create
 
@@ -82,8 +84,7 @@ class Player < ApplicationRecord
     {
       full_name: full_name,
       username: "@#{username}",
-      is_admin: admin,
-      is_developer: developer
+      group: group
     }
   end
 
@@ -165,7 +166,7 @@ class Player < ApplicationRecord
   end
 
   def self.admins
-    Player.where(admin: true).or(Player.where(developer: true))
+    Player.where.not(group: :player)
   end
 
   def unread_notifications

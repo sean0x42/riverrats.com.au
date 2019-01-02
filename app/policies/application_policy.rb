@@ -37,6 +37,7 @@ class ApplicationPolicy
     false
   end
 
+  # Inner scope
   class Scope
     attr_reader :user, :scope
 

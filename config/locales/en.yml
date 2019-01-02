@@ -230,6 +230,7 @@ en:
   errors:
     insufficient_permission:
       flash: "You do not have permission to access this page."
+      action: "Sorry, you don't have permission to perform that action."
     missing_admin_email:
       flash: "Your account must have a verified email address to access this part of the website."
     game:

@@ -3,10 +3,10 @@
 # A policy for managing access to recording games
 class GamePolicy < ApplicationPolicy
   def new?
-    user.admin
+    user.admin?
   end
 
   def create?
-    user.admin
+    user.admin?
   end
 end

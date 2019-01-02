@@ -9,9 +9,9 @@ const queue = [];
  * state is updated appropriately and the new modal is displayed.
  */
 const updateModalQueue = () => {
+  document.querySelector(".modal-loader").removeAttribute("active");
   if (state === State.DISPLAYING_MODAL || queue.length === 0) return;
   renderModal(queue.shift());
-  document.querySelector(".modal-loader").removeAttribute("active");
   state = State.DISPLAYING_MODAL;
 };
 
@@ -54,20 +54,9 @@ const renderModal = (modal) => {
 };
 
 /**
- * @return {boolean} Whether the modal can currently be closed.
- */
-const isCloseable = () => {
-  return state === State.AWAITING_MODAL || state === State.DISPLAYING_MODAL;
-};
-
-/**
  * Closes the currently displayed modal (assuming there is one).
  */
 const closeCurrentModal = () => {
-  // Ensure there is actually a modal to close
-  if (!isCloseable()) return;
-
-  // Close modal
   const overlay = document.querySelector(".modal-overlay");
   const wrapper = document.querySelector(".modal-wrapper");
   document.body.classList.remove("no-scroll");
@@ -123,7 +112,7 @@ addEventListener("ajax:before", (event) => {
 // Listen to click event
 addEventListener("click", (event) => {
   const { target } = event;
-  if ((target.classList.contains("modal-wrapper") || target.classList.contains("modal-overlay")) && isCloseable()) {
+  if ((target.classList.contains("modal-wrapper") || target.classList.contains("modal-overlay"))) {
     closeCurrentModal();
   }
 });

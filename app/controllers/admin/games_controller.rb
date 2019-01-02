@@ -23,6 +23,7 @@ class Admin::GamesController < ApplicationController
   # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def create
     @game = Game.new(games_params)
+    authorize @game
 
     if @game.save
       @game.award_tickets(params[:game][:tickets])
