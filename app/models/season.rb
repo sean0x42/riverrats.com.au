@@ -32,6 +32,6 @@ class Season < ApplicationRecord
   end
 
   def self.where_current(date = Time.zone.now)
-    Season.where('start_at <= ? AND end_at <= ?', date, date)
+    Season.where('start_at <= ? AND end_at >= ?', date, date)
   end
 end
