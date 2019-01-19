@@ -43,7 +43,7 @@ end
 
 group :development do
   gem 'capistrano', '~> 3.11.0', require: false
-  gem 'capistrano-bundler', '~> 1.4', require: false
+  gem 'capistrano-bundler', '~> 1.5', require: false
   gem 'capistrano-passenger', require: false
   gem 'capistrano-rails', '~> 1.3', require: false
   gem 'capistrano-rvm', require: false
@@ -69,7 +69,7 @@ gem 'connection_pool'
 gem 'coveralls', require: false
 gem 'devise'
 gem 'elasticsearch'
-gem 'friendly_id', '~> 5.2.4'
+gem 'friendly_id', '~> 5.2.5'
 gem 'ice_cube'
 gem 'js-routes'
 gem 'kaminari'
