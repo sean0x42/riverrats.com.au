@@ -78,4 +78,4 @@ gem 'paperclip', '~> 6.1.0'
 gem 'searchkick'
 gem 'sidekiq'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.0'
