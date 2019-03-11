@@ -75,6 +75,7 @@ gem 'js-routes'
 gem 'kaminari'
 gem 'local_time'
 gem 'paperclip', '~> 6.1.0'
+gem 'pundit'
 gem 'searchkick'
 gem 'sidekiq'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?

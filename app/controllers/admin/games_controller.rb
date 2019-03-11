@@ -15,13 +15,13 @@ class Admin::GamesController < ApplicationController
 
   # GET /admin/games/new
   def new
-    @game = Game.new
+    @game = authorize Game.new
   end
 
   # POST /admin/games
   # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def create
-    @game = Game.new(games_params)
+    @game = authorize Game.new(games_params)
 
     if @game.save
       @game.award_tickets(params[:game][:tickets])
@@ -38,13 +38,13 @@ class Admin::GamesController < ApplicationController
 
   # GET /admin/games/:id/edit
   def edit
-    @game = Game.find(params[:id])
+    @game = authorize Game.find(params[:id])
   end
 
   # POST /admin/games/:id
   # rubocop:disable Metrics/AbcSize
   def update
-    @game = Game.find(params[:id])
+    @game = authorize Game.find(params[:id])
 
     if @game.update(games_params)
       record_action(:game, 'games.update', game: @game.id)
@@ -60,7 +60,7 @@ class Admin::GamesController < ApplicationController
 
   # DELETE /admin/games/:id
   def destroy
-    @game = Game.find(params[:id])
+    @game = authorize Game.find(params[:id])
     @game.destroy
 
     record_action(:game, 'games.destroy', game: @game.id)

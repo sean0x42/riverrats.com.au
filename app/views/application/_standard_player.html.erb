@@ -10,11 +10,7 @@
     <% else -%>
       <%= link_to player_path(player) do -%>
         <span class="highlight"><%= player.full_name %></span>&nbsp;@<%= player.username %>
-        <% if player.developer? -%>
-          <span class="flair">developer</span>
-        <% elsif player.admin? -%>
-          <span class="flair">admin</span>
-        <% end -%>
+        <%= flair player %>
       <% end -%>
     <% end -%>
   </td>

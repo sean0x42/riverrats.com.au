@@ -25,4 +25,10 @@ module ApplicationHelper
   def number_format(value)
     number_to_human(value, NUMBER_FORMAT_OPTIONS)
   end
+
+  def flair(player)
+    return if player.group == 'player'
+
+    render 'application/player_flair', player: player
+  end
 end

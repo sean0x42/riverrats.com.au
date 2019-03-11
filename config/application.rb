@@ -11,6 +11,7 @@ require 'resolv-replace'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# rubocop:disable Style/ClassAndModuleChildren, Metrics/LineLength
 module RiverratsComAu
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -37,5 +38,9 @@ module RiverratsComAu
 
     # Set default time zone
     config.time_zone = 'Sydney'
+
+    # Catch pundit unauthorized exceptions
+    config.action_dispatch.rescue_responses['Pundit::NotAuthorizedError'] = :forbidden
   end
 end
+# rubocop:enable Style/ClassAndModuleChildren, Metrics/LineLength

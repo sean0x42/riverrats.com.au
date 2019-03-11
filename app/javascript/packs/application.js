@@ -21,3 +21,4 @@ import "./components/player_input.js";
 import "./navigation";
 import "./game_editor";
 import "./event_editor";
+import "./ujs_event_handler";
