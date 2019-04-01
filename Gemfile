@@ -37,7 +37,7 @@ gem 'bcrypt', platform: :ruby
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 3.15'
+  gem 'capybara', '~> 3.16'
   gem 'selenium-webdriver'
 end
 
