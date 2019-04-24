@@ -64,10 +64,6 @@
       fill: $hover-color;
       text-decoration: none;
     }
-
-    svg:first-child {
-      margin-bottom: 0.25rem;
-    }
   }
 
   .header-link {
@@ -86,7 +82,7 @@
     fill: $darcula-inverted;
   }
 
-  svg.material-icons {
+  svg {
     fill: darken($darcula-inverted, 8%);
     height: 22px;
     margin-bottom: 0;

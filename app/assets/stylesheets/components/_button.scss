@@ -28,14 +28,11 @@
   text-decoration: none;
   vertical-align: middle;
 
-  svg.material-icons {
-    height: 22px;
-    width: 22px;
-  }
-
-  .material-icons {
+  svg {
     flex-shrink: 0;
+    height: 22px;
     margin: -3px 0.75rem;
+    width: 22px;
 
     // It is best to visually adjust these values with inline styles.
     &:first-child {

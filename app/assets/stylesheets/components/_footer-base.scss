@@ -1,0 +1,16 @@
+.footer-base {
+  background: $darcula;
+  color: $darcula-inverted;
+  padding: 0.2rem 1rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  a {
+    color: lighten($darcula-inverted, 10%);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
