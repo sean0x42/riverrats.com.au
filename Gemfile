@@ -11,11 +11,11 @@ end
 gem 'sprockets', '~> 3.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -37,7 +37,7 @@ gem 'bcrypt', platform: :ruby
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 3.12'
+  gem 'capybara', '~> 3.17'
   gem 'selenium-webdriver'
 end
 
@@ -78,4 +78,4 @@ gem 'paperclip', '~> 6.1.0'
 gem 'searchkick'
 gem 'sidekiq'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.0'
