@@ -1,0 +1,73 @@
+<%# frozen_string_literal: true %>
+
+<div class="dropdown__container" data-overlay=".header__dropdown-overlay">
+
+  <%# Dropdown trigger %>
+  <div class="dropdown__trigger account__trigger">
+    <%= inline_svg 'account_circle.svg' %>
+    <span><%= current_player.full_name %></span>
+    <%= inline_svg 'arrow_drop_down.svg' %>
+  </div>
+
+  <%# Dropdown body %>
+  <ul class="dropdown__body account__body">
+
+    <%# View profile %>
+    <li>
+      <%= link_to player_path(current_player) do %>
+        <%= inline_svg 'account_box.svg' %>
+        <span>View my profile</span>
+      <% end -%>
+    </li>
+
+    <%# View random profile %>
+    <li>
+      <%= link_to random_players_path do %>
+        <%= inline_svg 'casino.svg' %>
+        <span>Random profile</span>
+      <% end -%>
+    </li>
+
+    <%# Notifications %>
+    <li>
+      <%= link_to notifications_path do %>
+        <%= inline_svg 'notifications.svg' %>
+        <span>Notifications</span>
+      <% end -%>
+    </li>
+
+    <% if current_player.admin || current_player.developer -%>
+      <%# Admin panel %>
+      <li>
+        <%= link_to admin_root_path do %>
+          <%= inline_svg 'gavel.svg' %>
+          <span>Admin panel</span>
+        <% end -%>
+      </li>
+    <% end -%>
+
+    <li class="spacer"></li>
+
+    <%# Preferences %>
+    <li>
+      <%= link_to edit_player_registration_path,
+          data: { expects_modal: true },
+          remote: true do %>
+        <%= inline_svg 'settings.svg' %>
+        <span>Settings</span>
+      <% end -%>
+    </li>
+
+    <%# Logout %>
+    <li>
+      <%= link_to destroy_player_session_path,
+          method: :delete,
+          data: { confirm: 'Are you sure you want to log out?' } do %>
+        <%= inline_svg 'exit_to_app' %>
+        <span>Logout</span>
+      <% end -%>
+    </li>
+
+  </ul>
+</div>
+

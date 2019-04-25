@@ -1,0 +1,31 @@
+$_color: $darcula-inverted;
+$_hover-color: lighten($darcula-inverted, 8%);
+
+.header__navigation,
+.header__account {
+  align-items: center;
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  > li > a {
+    align-items: center;
+    color: $_color;
+    display: flex;
+    fill: $_color;
+    padding: 0 0.5rem;
+
+    &:hover {
+      color: $_hover-color;
+      fill: $_hover-color;
+    }
+  }
+}
+
+@media (min-width: 980px) {
+  .header__navigation svg {
+    display: none;
+  }
+}

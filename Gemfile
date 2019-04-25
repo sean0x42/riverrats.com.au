@@ -7,36 +7,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# 3.7.1 has a security vulnerability.
-gem 'sprockets', '~> 3.7.2'
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.3'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
-# Use Puma as the app server
-gem 'puma', '~> 3.12'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.8'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-gem 'bcrypt', platform: :ruby
-
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.17'
   gem 'selenium-webdriver'
 end
@@ -64,18 +36,29 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'autoprefixer-rails'
+gem 'bcrypt', platform: :ruby
 gem 'bootsnap', require: false
+gem 'coffee-rails', '~> 4.2'
 gem 'connection_pool'
 gem 'coveralls', require: false
 gem 'devise'
 gem 'elasticsearch'
 gem 'friendly_id', '~> 5.2.5'
 gem 'ice_cube'
+gem 'inline_svg'
+gem 'jbuilder', '~> 2.8'
 gem 'js-routes'
 gem 'kaminari'
 gem 'local_time'
 gem 'paperclip', '~> 6.1.0'
+gem 'pg', '~> 1.1'
+gem 'puma', '~> 3.12'
+gem 'rails', '~> 5.2.3'
+gem 'sass-rails', '~> 5.0'
 gem 'searchkick'
 gem 'sidekiq'
+gem 'sprockets', '~> 3.7.2'
+gem 'turbolinks', '~> 5'
+gem 'uglifier', '>= 1.3.0'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'webpacker', '~> 4.0'

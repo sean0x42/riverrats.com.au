@@ -1,11 +1,14 @@
+/** @format */
+
 const PERIODS = Object.freeze({
   daily: "day",
   weekly: "week",
   monthly: "month",
-  yearly: "year"
+  yearly: "year",
 });
 
-const UPDATE_SELECTOR = ".js-event-type-toggle, .js-period-field select, .js-interval-field input";
+const UPDATE_SELECTOR =
+  ".js-event-type-toggle, .js-period-field select, .js-interval-field input";
 
 /**
  * Determines whether to display or hide certain form elements.
@@ -13,8 +16,8 @@ const UPDATE_SELECTOR = ".js-event-type-toggle, .js-period-field select, .js-int
 const updateInterface = () => {
   // Init
   const intervalLabel = document.querySelector(".js-interval-label");
-  const typeToggle    = document.querySelector(".js-event-type-toggle");
-  const periodField   = document.querySelector(".js-period-field");
+  const typeToggle = document.querySelector(".js-event-type-toggle");
+  const periodField = document.querySelector(".js-period-field");
   const intervalField = document.querySelector(".js-interval-field");
   const weekdaysField = document.querySelector(".js-weekdays");
 
@@ -56,7 +59,7 @@ const updateInterface = () => {
 window.initEventEditor = () => {
   // init
   const updateFields = document.querySelectorAll(UPDATE_SELECTOR);
-  updateFields.forEach((field) => {
+  updateFields.forEach(field => {
     field.addEventListener("change", updateInterface);
   });
 

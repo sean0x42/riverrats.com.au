@@ -1,0 +1,31 @@
+<ul class="header__account">
+  <% if player_signed_in? -%>
+    <%# Account dropdown %>
+    <li><%= render 'application/header/account-dropdown' %></li>
+
+    <%# Notifications dropdown #%>
+    <li><%= render 'application/header/notifications-dropdown' %></li>
+  <% else -%>
+    <%# Join button %>
+    <li>
+      <%= link_to new_player_registration_path,
+          remote: true,
+          data: { expects_modal: true } do %>
+        <%= inline_svg 'assignment.svg' %>
+        <span>Create an account</span>
+      <% end -%>
+    </li>
+
+    <%# Login button %>
+    <li>
+      <%= link_to new_player_session_path,
+          class: 'button',
+          remote: true,
+          data: { expects_modal: true } do %>
+        <%= inline_svg 'account_circle.svg' %>
+        <span>Secure login</span>
+      <% end -%>
+    </li>
+  <% end -%>
+</ul>
+

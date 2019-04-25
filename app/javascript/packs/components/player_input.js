@@ -1,3 +1,5 @@
+/** @format */
+
 import { createPlayerFromSearch } from "../player/player_controller";
 
 const SUGGESTIONS_WINDOW_CLASS = "suggestions-window";
@@ -18,7 +20,7 @@ const delayInput = (() => {
  * already exist.
  * @param wrapper Parent wrapper.
  */
-const getOrCreateSuggestionWindow = (wrapper) => {
+const getOrCreateSuggestionWindow = wrapper => {
   let window = wrapper.querySelector(`.${SUGGESTIONS_WINDOW_CLASS}`);
 
   // Construct new window
@@ -35,9 +37,9 @@ const getOrCreateSuggestionWindow = (wrapper) => {
  * An event handler that is fired whenever you click on an entry.
  * @param event Click event
  */
-const onEntryClick = (event) => {
+const onEntryClick = event => {
   // Init
-  const {target} = event;
+  const { target } = event;
   const wrapper = target.closest(".player-input-wrapper");
 
   // Make sure wrapper was found
@@ -49,10 +51,12 @@ const onEntryClick = (event) => {
   // Finish initializing
   const suggestionWindow = wrapper.querySelector(".suggestions-window");
   const input = wrapper.querySelector("input.player-input");
-  wrapper.dispatchEvent(new CustomEvent("suggestion:select", {
-    bubbles: true,
-    detail: target.closest("li").player
-  }));
+  wrapper.dispatchEvent(
+    new CustomEvent("suggestion:select", {
+      bubbles: true,
+      detail: target.closest("li").player,
+    })
+  );
 
   // Clear
   input.value = "";
@@ -99,16 +103,18 @@ const generateSuggestions = (field, data) => {
  * player inputs.
  * @param event Key up event.
  */
-const onKeyUp = (event) => {
-  const {target} = event;
+const onKeyUp = event => {
+  const { target } = event;
 
   delayInput(() => {
     // noinspection JSUnresolvedFunction
-    const baseUri = Routes.auto_complete_players_path({format: "json"});
+    const baseUri = Routes.auto_complete_players_path({ format: "json" });
 
     // Clear suggestions if the field is empty
     if (target.value.length === 0) {
-      const suggestionWindow = target.parentNode.querySelector(`.${SUGGESTIONS_WINDOW_CLASS}`);
+      const suggestionWindow = target.parentNode.querySelector(
+        `.${SUGGESTIONS_WINDOW_CLASS}`
+      );
       if (suggestionWindow !== null) {
         suggestionWindow.parentNode.removeChild(suggestionWindow);
       }
@@ -116,21 +122,24 @@ const onKeyUp = (event) => {
     }
 
     fetch(`${baseUri}?query=${target.value}`)
-      .then((response) => { return response.json(); })
-      .then((data) => generateSuggestions(target, data))
-      .catch((error) => console.error(error));
+      .then(response => {
+        return response.json();
+      })
+      .then(data => generateSuggestions(target, data))
+      .catch(error => console.error(error));
   }, 300);
 };
-
 
 /**
  * Checks the page for any player inputs, and initializes them.
  */
 window.checkForPlayerInputs = () => {
-  const inputs = document.querySelectorAll("input.player-input:not([data-listening])");
+  const inputs = document.querySelectorAll(
+    "input.player-input:not([data-listening])"
+  );
 
   // Initialised inputs
-  inputs.forEach((input) => {
+  inputs.forEach(input => {
     input.addEventListener("keyup", onKeyUp);
     input.setAttribute("data-listening", "true");
   });

@@ -1,0 +1,18 @@
+<ul class="header__navigation">
+  <%# Leaderboards %>
+  <li>
+    <%= link_to players_path do %>
+      <%= inline_svg 'timeline.svg' %>
+      <span>Leaderboard</span>
+    <% end -%>
+  </li>
+
+  <%# Calendar %>
+  <li>
+    <%= link_to events_path(anchor: 'today') do %>
+      <%= inline_svg 'today.svg' %>
+      <span>Calendar</span>
+    <% end %>
+  </li>
+</ul>
+

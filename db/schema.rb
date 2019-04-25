@@ -58,14 +58,6 @@ ActiveRecord::Schema.define(version: 2018_12_01_022853) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "draft", default: true, null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.bigint "player_id", null: false

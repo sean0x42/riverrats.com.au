@@ -1,0 +1,39 @@
+<%# frozen_string_literal: true %>
+
+<div class="footer__buttons">
+  <% if player_signed_in? -%>
+
+    <%# View player profile TODO Add i18n %>
+    <%= link_to player_path(current_player), class: 'button' do %>
+      <%= inline_svg 'account_box.svg' %>
+      <span>View my profile</span>
+    <% end -%>
+
+    <%# Go to random profile %>
+    <%= link_to random_players_path, class: 'button-secondary' do %>
+      <%= inline_svg 'casino.svg' %>
+      <span>Random profile</span>
+    <% end -%>
+
+  <% else -%>
+
+    <%# Create an account %>
+    <%= link_to new_player_registration_path,
+        class: 'button',
+        remote: true,
+        data: { expects_modal: true } do %>
+      <span>Create an account</span>
+    <% end -%>
+
+    <%# Secure login %>
+    <%= link_to new_player_session_path,
+        class: 'button-secondary',
+        remote: true,
+        data: { expects_modal: true } do %>
+      <%= inline_svg 'lock.svg' %>
+      <span>Secure login</span>
+    <% end -%>
+
+  <% end -%>
+</div>
+

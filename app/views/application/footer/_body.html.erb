@@ -1,0 +1,63 @@
+<div class="footer__body">
+  <div class="footer__columns">
+    <%# News %>
+    <ul>
+      <li>News &amp; Updates</li>
+      <li>(Coming Soon)</li>
+    </ul>
+
+    <%# Leaderboards %>
+    <ul>
+      <li>Leaderboards</li>
+      <li><%= link_to 'All Time', players_path %></li>
+      <li><%= link_to 'Seasonal', seasons_path %></li>
+    </ul>
+
+    <%# Miscellaneous %>
+    <ul>
+      <li>Miscellaneous</li>
+      <%# TODO Add venues index %>
+      <li><%= link_to 'Venues', 'javascript:void(0)' %></li>
+      <li><%= link_to 'Game history', games_path %></li>
+      <li><%= link_to 'Event calendar', events_path(anchor: 'today') %></li>
+    </ul>
+
+    <%# Account %>
+    <ul>
+      <% if player_signed_in? -%>
+        <li>My Account</li>
+        <li><%= link_to 'View my profile', player_path(current_player) %></li>
+        <li><%= link_to 'Settings', edit_player_registration_path,
+                remote: true,
+                data: { expects_modal: true } %></li>
+        
+        <% if current_player.admin? -%>
+          <li><%= link_to 'Admin panel', admin_root_path %></li>
+        <% end -%>
+
+        <li><%= link_to 'Logout', destroy_player_session_path,
+                method: :delete,
+                data: { confirm: 'Are you sure you want to log out?' } %></li>
+      <% else -%>
+        <li>Account</li>
+        <li><%= link_to 'Create an account', new_player_registration_path,
+                remote: true,
+                data: { expects_modal: true } %></li>
+        <li><%= link_to 'Secure login', new_player_session_path,
+                remote: true,
+                data: { expects_modal: true } %></li>
+        <li><%= link_to 'Forgot password', new_player_password_path,
+                remote: true,
+                data: { expects_modal: true } %></li>
+      <% end -%>
+    </ul>
+
+    <%# Support %>
+    <ul>
+      <li>Help &amp; Support</li>
+      <li><%= link_to 'Privacy policy', privacy_policy_path %></li>
+      <li><%= link_to 'Release notes', release_notes_path %></li>
+    </ul>
+  </div>
+</div>
+

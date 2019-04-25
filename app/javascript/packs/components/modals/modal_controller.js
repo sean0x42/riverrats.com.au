@@ -1,3 +1,5 @@
+/** @format */
+
 import { Modal } from "./modal";
 import { State } from "./state";
 
@@ -15,12 +17,11 @@ const updateModalQueue = () => {
   state = State.DISPLAYING_MODAL;
 };
 
-
 /**
  * Renders the given model in the DOM.
  * @param modal Modal to render.
  */
-const renderModal = (modal) => {
+const renderModal = modal => {
   // Construct wrapper
   const wrapper = document.createElement("div");
   wrapper.classList.add("modal-wrapper");
@@ -37,7 +38,9 @@ const renderModal = (modal) => {
 
   // Add subheading if one was defined
   if (modal.subheading !== null) {
-    modalElement.innerHTML += `<span class="subheading">${modal.subheading}</span>`;
+    modalElement.innerHTML += `<span class="subheading">${
+      modal.subheading
+    }</span>`;
   }
 
   // Add title, if one was defined.
@@ -73,8 +76,7 @@ const closeCurrentModal = () => {
   document.body.classList.remove("no-scroll");
   overlay.removeAttribute("active");
 
-  if (wrapper !== null)
-    wrapper.parentNode.removeChild(wrapper);
+  if (wrapper !== null) wrapper.parentNode.removeChild(wrapper);
 
   // Update state
   state = State.NONE;
@@ -102,12 +104,14 @@ window.closeModal = () => {
 };
 
 // Listen to ajax before event
-addEventListener("ajax:before", (event) => {
+addEventListener("ajax:before", event => {
   const { target } = event;
 
   // Handle clicks on model expecting links only
-  if (target.hasAttribute("data-expects-modal") && state !== State.AWAITING_MODAL) {
-
+  if (
+    target.hasAttribute("data-expects-modal") &&
+    state !== State.AWAITING_MODAL
+  ) {
     // Deal with currently displayed modals
     if (state === State.DISPLAYING_MODAL) {
       closeCurrentModal();
@@ -121,9 +125,13 @@ addEventListener("ajax:before", (event) => {
 });
 
 // Listen to click event
-addEventListener("click", (event) => {
+addEventListener("click", event => {
   const { target } = event;
-  if ((target.classList.contains("modal-wrapper") || target.classList.contains("modal-overlay")) && isCloseable()) {
+  if (
+    (target.classList.contains("modal-wrapper") ||
+      target.classList.contains("modal-overlay")) &&
+    isCloseable()
+  ) {
     closeCurrentModal();
   }
 });

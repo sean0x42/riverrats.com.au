@@ -1,3 +1,5 @@
+/** @format */
+
 import { Flash } from "./flash";
 
 /**
@@ -36,7 +38,6 @@ function createFlash(flash) {
   return element;
 }
 
-
 /**
  * Displays a flash message.
  * @param flash Flash message to display.
@@ -46,9 +47,8 @@ export function renderFlashMessage(flash) {
   flashes.appendChild(createFlash(flash));
 }
 
-
 // Catch and deal with clicks to close flashes
-document.addEventListener("click", (event) => {
+document.addEventListener("click", event => {
   const { target } = event;
   if (!target.classList.contains("flash-close")) return;
   const flash = target.closest(".flash");

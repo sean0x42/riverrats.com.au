@@ -1,3 +1,5 @@
+/** @format */
+
 import { Player } from "./player";
 
 /**
@@ -5,5 +7,11 @@ import { Player } from "./player";
  * @param result Search result.
  */
 export function createPlayerFromSearch(result) {
-  return new Player(result.id, result.full_name, result.username, result.is_admin, result.is_developer);
+  return new Player(
+    result.id,
+    result.full_name,
+    result.username,
+    result.is_admin,
+    result.is_developer
+  );
 }

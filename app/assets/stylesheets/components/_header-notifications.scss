@@ -1,38 +1,76 @@
-$width: 350px;
+$_icon-size: 22px;
 
-.header-menu.notification-area {
-  max-width: $width;
+.notifications__trigger {
+  fill: darken($darcula-inverted, 8%);
+  padding: 0.5rem;
+
+  &:hover {
+    fill: $darcula-inverted;
+  }
+
+  svg {
+    height: $_icon-size;
+    width: $_icon-size;
+  }
+
+  span {
+    background: $darcula-dark;
+    border-radius: $border-radius - 1px;
+    color: darken($darcula-dark-inverted, 8%);
+    font-size: 90%;
+    margin-left: 0.25rem;
+    padding: 0.1rem 0;
+
+    &::before,
+    &::after {
+      content: "\00a0";
+    }
+  }
+
+  &--active span {
+    background: $zurple;
+    color: $zurple-inverted;
+  }
+}
+
+.notifications__body {
+  color: $text;
+  fill: $text;
+  line-height: $body-line-height;
+  min-width: 240px;
   padding: 0.75rem 1rem 1rem;
-  width: $width;
-
-  .notifications-header {
-    align-items: center;
-    border-bottom: 1px solid $grey;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 0 0.5rem;
-
-    p {
-      color: $text-bold;
-      font-weight: 500;
-      margin: 0;
-    }
-  }
-
-  .clear-all {
-    color: lighten($text, 15%);
-    display: inline-block;
-    margin-left: auto;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 
   .button-tertiary {
     margin: 0;
     white-space: nowrap;
   }
+}
+
+.notifications__header {
+  align-items: center;
+  border-bottom: 1px solid $grey;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 0.5rem;
+
+  p {
+    color: $text-bold;
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+.notifications__clear-all {
+  color: lighten($text, 15%);
+  display: inline-block;
+  margin-left: auto;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.header-menu.notification-area {
 
   .empty {
     align-items: center;
