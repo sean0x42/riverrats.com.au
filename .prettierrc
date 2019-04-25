@@ -1,0 +1,4 @@
+semi: true
+singleQuote: false
+insertPragma: true
+trailingComma: es5

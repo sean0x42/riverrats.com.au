@@ -1,0 +1,65 @@
+$_icon-size: 22px;
+$_dropdown-width: 240px;
+
+// Note that this selector is extends `.header__navigation`, which can be found
+// in app/assets/stylesheets/components/_header-navigation.scss
+.header__account.header__account {
+  margin-left: auto;
+
+  .button {
+    margin-left: 0.5rem;
+    padding: 9px 12px;
+  }
+}
+
+.account__trigger {
+  fill: darken($darcula-inverted, 8%);
+  padding: 0.5rem;
+
+  > svg:first-child {
+    fill: $zurple-light;
+    height: $_icon-size;
+    margin-right: 0.5rem;
+    width: $_icon-size;
+  }
+}
+
+.account__body {
+  line-height: $body-line-height;
+  list-style-type: none;
+  margin: 0;
+  margin-top: 13px;
+  max-width: $_dropdown-width;
+  padding: 9px 0;
+  right: 0;
+  width: $_dropdown-width;
+
+  .spacer {
+    border-bottom: 2px solid $grey;
+    margin: 8px 0;
+    width: unset;
+  }
+
+  li {
+    width: 100%;
+  }
+
+  a {
+    align-items: center;
+    color: darken($text, 10%);
+    cursor: pointer;
+    display: flex;
+    fill: $text;
+    padding: 5px 15px;
+
+    &:hover {
+      background: $zurple;
+      color: $zurple-inverted;
+      fill: $zurple-inverted;
+    }
+  }
+
+  svg {
+    margin-right: 11px;
+  }
+}

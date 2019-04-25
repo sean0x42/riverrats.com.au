@@ -1,14 +1,16 @@
+/** @format */
+
 import { Flash } from "./components/flashes/flash";
 import { Sortable } from "@shopify/draggable";
 import { Player } from "./player/player";
 
 const SORTABLE_CONF = Object.freeze({
-  draggable: "li"
+  draggable: "li",
 });
 
 const queues = {
   player: [],
-  referee: []
+  referee: [],
 };
 
 /**
@@ -17,7 +19,10 @@ const queues = {
  */
 function onRemoveButtonClick(event) {
   const listItem = event.target.parentNode;
-  remove(listItem.getAttribute("data-scope"), listItem.getAttribute("data-player-id"));
+  remove(
+    listItem.getAttribute("data-scope"),
+    listItem.getAttribute("data-player-id")
+  );
 }
 
 /**
@@ -44,7 +49,10 @@ function constructPlayerElement(player) {
   const positionField = document.createElement("input");
   positionField.classList.add("js-position-field");
   positionField.setAttribute("type", "hidden");
-  positionField.setAttribute("name", `game[games_players_attributes][${player.uniqueId}][position]`);
+  positionField.setAttribute(
+    "name",
+    `game[games_players_attributes][${player.uniqueId}][position]`
+  );
   positionField.value = 0;
   element.appendChild(positionField);
 
@@ -98,7 +106,10 @@ function constructElement(scope, player) {
   // Construct id field
   const playerIdField = document.createElement("input");
   playerIdField.setAttribute("type", "hidden");
-  playerIdField.setAttribute("name", `game[${attributeName}][${player.uniqueId}][player_id]`);
+  playerIdField.setAttribute(
+    "name",
+    `game[${attributeName}][${player.uniqueId}][player_id]`
+  );
   playerIdField.value = player.id;
   element.appendChild(playerIdField);
 
@@ -106,7 +117,10 @@ function constructElement(scope, player) {
   const destroyField = document.createElement("input");
   destroyField.classList.add("js-destroy-field");
   destroyField.setAttribute("type", "hidden");
-  destroyField.setAttribute("name", `game[${attributeName}][${player.uniqueId}][_destroy]`);
+  destroyField.setAttribute(
+    "name",
+    `game[${attributeName}][${player.uniqueId}][_destroy]`
+  );
   destroyField.value = false;
   element.appendChild(destroyField);
 
@@ -216,7 +230,11 @@ function onPlayerAdd(event) {
 
   // Ensure player hasn't already been added.
   if (contains("player", player.id)) {
-    new Flash("error", "Player already added", `You've already added ${player.username} to this game.`).show();
+    new Flash(
+      "error",
+      "Player already added",
+      `You've already added ${player.username} to this game.`
+    ).show();
     return;
   }
 
@@ -232,7 +250,11 @@ function onRefereeAdd(event) {
 
   // Ensure referee hasn't already been added
   if (contains("referee", referee.id)) {
-    new Flash("error", "Tournament director already added", `You've already added ${player.username} to this game.`).show();
+    new Flash(
+      "error",
+      "Tournament director already added",
+      `You've already added ${player.username} to this game.`
+    ).show();
     return;
   }
 
@@ -250,7 +272,7 @@ function onSubmitForm(event) {
 
   // Set positions
   let position = 0;
-  players.querySelectorAll("li").forEach((player) => {
+  players.querySelectorAll("li").forEach(player => {
     // Get fields
     const positionField = player.querySelector(".js-position-field");
     const destroyField = player.querySelector(".js-destroy-field");
@@ -276,9 +298,11 @@ function addExistingPlayers(scope, selector) {
   queues[scope] = [];
 
   // Retrieve existing players
-  list.querySelectorAll("li[data-player]").forEach((item) => {
+  list.querySelectorAll("li[data-player]").forEach(item => {
     // Parse and add player
-    const player = Player.fromJSON(item.getAttribute("data-player").replace(/\\/g, ""));
+    const player = Player.fromJSON(
+      item.getAttribute("data-player").replace(/\\/g, "")
+    );
     queues[scope].push(player);
     item.removeAttribute("data-player");
 

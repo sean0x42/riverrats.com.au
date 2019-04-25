@@ -1,4 +1,4 @@
-.footer-buttons {
+.footer__buttons {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -17,13 +17,13 @@
 }
 
 @media (min-width: 410px) {
-  .footer-buttons .button-secondary {
+  .footer__buttons .button-secondary {
     display: flex;
   }
 }
 
 @media (min-width: 525px) {
-  .footer-buttons {
+  .footer__buttons {
     .button,
     .button-secondary {
       margin: 0 0.5rem;

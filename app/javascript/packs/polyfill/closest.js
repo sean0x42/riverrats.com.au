@@ -1,10 +1,13 @@
+/** @format */
+
 if (!Element.prototype.matches) {
-  Element.prototype.matches = Element.prototype.msMatchesSelector ||
-                              Element.prototype.webkitMatchesSelector;
+  Element.prototype.matches =
+    Element.prototype.msMatchesSelector ||
+    Element.prototype.webkitMatchesSelector;
 }
 
 if (!Element.prototype.closest) {
-  Element.prototype.closest = (selector) => {
+  Element.prototype.closest = selector => {
     let element = this;
     if (!document.documentElement.contains(element)) return null;
     do {

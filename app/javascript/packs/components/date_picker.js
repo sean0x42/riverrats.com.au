@@ -1,17 +1,20 @@
+/** @format */
+
 import flatpickr from "flatpickr";
 
-const DATE_SELECTOR = "input[type='date']:not([data-processed]), .datepickr:not([data-processed])";
+const DATE_SELECTOR =
+  "input[type='date']:not([data-processed]), .datepickr:not([data-processed])";
 const DATE_CONFIG = Object.freeze({
   altInput: true,
   altFormat: "F j, Y",
-  dateFormat: "Y-m-d"
+  dateFormat: "Y-m-d",
 });
 
 const DATE_TIME_CONFIG = Object.freeze({
   altInput: true,
   enableTime: true,
   altFormat: "h:iK, j/m/y",
-  dateFormat: "Y-m-d H:i"
+  dateFormat: "Y-m-d H:i",
 });
 
 /**
@@ -22,7 +25,7 @@ const DATE_TIME_CONFIG = Object.freeze({
 window.checkForDateFields = () => {
   // Retrieve date inputs that have not yet been processed
   const newFields = document.querySelectorAll(DATE_SELECTOR);
-  newFields.forEach((field) => {
+  newFields.forEach(field => {
     // Get type of field
     let type = "date";
     if (field.hasAttribute("data-conf-type")) {

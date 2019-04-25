@@ -1,4 +1,4 @@
-.footer-body__columns {
+.footer__columns {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, 180px);
@@ -36,7 +36,7 @@
 }
 
 @media (min-width: 810px) {
-  .footer-body__columns {
+  .footer__columns {
     grid-gap: 2rem;
     margin: 0 auto 4rem;
   }

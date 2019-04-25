@@ -1,0 +1,35 @@
+<%# frozen_string_literal: true %>
+
+<%# Prepare some variables %>
+<%- notifications = current_player.unread_notifications.count %>
+<%- classes = ['dropdown__trigger', 'notifications__trigger'] %>
+<%- classes.push('notifications__trigger--active') unless notifications.zero? %>
+
+<div class="dropdown__container" data-overlay=".header__dropdown-overlay">
+
+  <%# Dropdown trigger %>
+  <%= link_to notifications_path, class: classes.join(' '), remote: true do %> 
+    <%- icon_suffix = notifications.zero? ? '' : '_active' %>
+    <%= inline_svg "notifications#{icon_suffix}.svg" %>
+    <span class="inter-ui-ss01"><%= number_format notifications %></span>
+  <% end -%>
+
+  <%# Dropdown body %>
+  <div class="dropdown__body notifications__body">
+    <div class="notifications__header">
+      <p>Unread notifications</p>
+      <%= link_to 'Clear all', clear_notifications_path,
+          remote: true,
+          method: :patch,
+          class: 'notifications__clear-all' %>
+    </div>
+
+    <div class="notifications__content notifications__content--js">
+      Retrieving notifications...
+    </div>
+
+    <%= link_to 'View all notifications', notifications_path,
+        class: 'button-tertiary button-tertiary--wide' %>
+  </div>
+</div>
+

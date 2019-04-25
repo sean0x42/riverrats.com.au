@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "clean": "yarn prettier --write \"app/javascript/packs/**/*.js\""
+  },
   "dependencies": {
     "@rails/webpacker": "3.5",
     "@shopify/draggable": "^1.0.0-beta.8",
@@ -7,6 +10,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "prettier": "^1.17.0",
     "webpack-dev-server": "2.11.2"
   }
 }

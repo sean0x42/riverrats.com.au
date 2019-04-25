@@ -1,3 +1,5 @@
+/** @format */
+
 export class Modal {
   constructor(title, subheading, html) {
     this.title = title;

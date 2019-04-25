@@ -1,3 +1,5 @@
+/** @format */
+
 let menuOverlay;
 let activeMenu = null;
 
@@ -5,7 +7,7 @@ let activeMenu = null;
  * Shows the given dropdown menu.
  * @param wrapper Dropdown wrapper to enable.
  */
-const enableMenu = (wrapper) => {
+const enableMenu = wrapper => {
   // Disable current menu
   if (activeMenu != null) {
     disableMenu();
@@ -51,7 +53,7 @@ const disableMenu = () => {
  * An event which is fired whenever the document is clicked.
  * @param event Click event
  */
-const onDocumentClick = (event) => {
+const onDocumentClick = event => {
   const { target } = event;
   if (target.closest(".header-menu-trigger") !== null) {
     return;
@@ -64,7 +66,7 @@ const onDocumentClick = (event) => {
  * Binds to various events on a dropdown wrapper.
  * @param wrapper Wrapper to bind to.
  */
-const bindToWrapperEvents = (wrapper) => {
+const bindToWrapperEvents = wrapper => {
   // Retrieve children
   const trigger = wrapper.children[0];
   const menu = wrapper.children[1];
@@ -72,7 +74,7 @@ const bindToWrapperEvents = (wrapper) => {
   // Bind to events
   // trigger.addEventListener("mouseenter", onTriggerMouseEnter);
   // menu.addEventListener("mouseleave", onMenuMouseLeave);
-  trigger.addEventListener("click", (event) => {
+  trigger.addEventListener("click", event => {
     const wrapper = event.target.closest(".header-menu-wrapper");
     if (wrapper.hasAttribute("active")) {
       disableMenu();
@@ -90,10 +92,14 @@ const bindToWrapperEvents = (wrapper) => {
  */
 const init = () => {
   menuOverlay = document.querySelector(".header-menu-overlay");
-  document.querySelectorAll(".header-menu-wrapper").forEach(bindToWrapperEvents);
+  document
+    .querySelectorAll(".header-menu-wrapper")
+    .forEach(bindToWrapperEvents);
 
   // Register events for movile admin navigation trigger
-  const adminNavTrigger = document.querySelector(".mobile-admin-navigation-trigger");
+  const adminNavTrigger = document.querySelector(
+    ".mobile-admin-navigation-trigger"
+  );
   if (adminNavTrigger !== null) {
     adminNavTrigger.addEventListener("click", () => {
       const nav = document.querySelector("nav.admin-navigation");
