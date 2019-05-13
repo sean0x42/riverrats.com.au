@@ -71,7 +71,7 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capybara (3.18.0)
+    capybara (3.19.1)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -340,7 +340,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails (~> 1.3)
   capistrano-rvm
-  capybara (~> 3.18)
+  capybara (~> 3.19)
   coffee-rails (~> 4.2)
   connection_pool
   coveralls
